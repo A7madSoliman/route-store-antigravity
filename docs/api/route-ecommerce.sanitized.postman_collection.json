@@ -1,0 +1,1396 @@
+{
+  "info": {
+    "_postman_id": "{{collectionId}}",
+    "name": "Route E-commerce App",
+    "description": "**baseUrl:**\n\n[https://ecommerce.routemisr.com](https://ecommerce.routemisr.com)\n\n[Route](https://www.facebook.com/Routelearning)\n\n<img src=\"https://content.pstmn.io/{{postmanAssetId}}/cm91dGUucG5n\" width=\"270\" height=\"313\">",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "35117577"
+  },
+  "item": [
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/categories",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "categories"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "Books",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get specific category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/categories/{{categoryId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "categories",
+                "{{categoryId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "SubCategories",
+      "item": [
+        {
+          "name": "Get All SubCategories",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/subcategories",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "subcategories"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get specific SubCategory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/subcategories/{{subcategoryId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "subcategories",
+                "{{subcategoryId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All SubCategories On Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/categories/{{categoryId}}/subcategories",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "categories",
+                "{{categoryId}}",
+                "subcategories"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Brands",
+      "item": [
+        {
+          "name": "Get All Brands",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/brands",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "brands"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get specific brand",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/brands/{{brandId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "brands",
+                "{{brandId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/products",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "-price",
+                  "disabled": true
+                },
+                {
+                  "key": "fields",
+                  "value": "title,price",
+                  "description": "select fields",
+                  "disabled": true
+                },
+                {
+                  "key": "price[gte]",
+                  "value": "100",
+                  "description": "filtering",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "new",
+                  "disabled": true
+                },
+                {
+                  "key": "brand",
+                  "value": "{{brandId}}",
+                  "disabled": true
+                },
+                {
+                  "key": "price[lte]",
+                  "value": "13",
+                  "disabled": true
+                },
+                {
+                  "key": "category[in]",
+                  "value": "{{categoryId}}",
+                  "disabled": true
+                },
+                {
+                  "key": "category[in]",
+                  "value": "{{categoryId}}",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get specific Product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/products/{{productId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Signup",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"JWT\", pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"{{fullName}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"rePassword\": \"{{passwordConfirmation}}\",\n    \"phone\": \"{{phone}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/auth/signup",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "signin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"JWT\", pm.response.json().token);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/auth/signin",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "signin"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{email}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "forgotPasswords"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Reset Code",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"resetCode\": \"{{resetCode}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "verifyResetCode"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Logged user password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"currentPassword\": \"{{currentPassword}}\",\n    \"password\": \"{{password}}\",\n    \"rePassword\": \"{{passwordConfirmation}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/users/changeMyPassword",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "changeMyPassword"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{email}}\",\n    \"newPassword\": \"{{newPassword}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/auth/resetPassword",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "resetPassword"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Logged user data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"{{fullName}}\",\n    \"email\": \"{{email}}\",\n    \"phone\": \"{{phone}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/users/updateMe/",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "updateMe",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{BaseUrl}}/api/v1/users",
+              "host": [
+                "{{BaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "a",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Wishlist",
+      "item": [
+        {
+          "name": "Add product to wishlist",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"productId\": \"{{productId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/wishlist",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "wishlist"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove product from wishlist",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/wishlist/{{productId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "wishlist",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get logged user wishlist",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/wishlist",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "wishlist"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User Addresses",
+      "item": [
+        {
+          "name": "Add address",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"{{addressLabel}}\",\n    \"details\": \"{{addressDetails}}\",\n    \"phone\": \"{{phone}}\",\n    \"city\": \"{{city}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/addresses",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "addresses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove address",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BaseUrl}}/api/v1/addresses/{{addressId}}",
+              "host": [
+                "{{BaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "addresses",
+                "{{addressId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get specific address",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/addresses/{{addressId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "addresses",
+                "{{addressId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get logged user addresses",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BaseUrl}}/api/v1/addresses",
+              "host": [
+                "{{BaseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "addresses"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "Add Product To Cart",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"productId\": \"{{productId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/cart",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cart"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update cart product quantity",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"count\": \"{{quantity}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/cart/{{productId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cart",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Logged user cart",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/cart",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cart"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove specific cart Item",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/cart/{{productId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cart",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Clear user cart",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/cart",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "cart"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create Cash Order",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"shippingAddress\": {\n        \"details\": \"{{addressDetails}}\",\n        \"phone\": \"{{phone}}\",\n        \"city\": \"{{city}}\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/orders/{{cartId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "{{cartId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllOrders",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/orders/",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getUserOrders",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/orders/user/{{userId}}",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "user",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Checkout session",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{JWT}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"shippingAddress\": {\n        \"details\": \"{{addressDetails}}\",\n        \"phone\": \"{{phone}}\",\n        \"city\": \"{{city}}\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://ecommerce.routemisr.com/api/v1/orders/checkout-session/{{cartId}}?url=http://localhost:3000",
+              "protocol": "https",
+              "host": [
+                "ecommerce",
+                "routemisr",
+                "com"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "checkout-session",
+                "{{cartId}}"
+              ],
+              "query": [
+                {
+                  "key": "url",
+                  "value": "{{checkoutReturnUrl}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://route-ecommerce.vercel.app/",
+      "type": "string"
+    },
+    {
+      "key": "URL",
+      "value": "https://route-ecommerce.onrender.com/"
+    }
+  ]
+}
