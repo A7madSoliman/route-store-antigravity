@@ -78,7 +78,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F04 — Inspect product list and detail endpoints
 
-- **Status:** Planned.
+- **Status:** Complete; both anonymous product GETs returned HTTP `200` on 2026-07-31, the detail ID matched the first list product `_id`, and both sanitized records are summarized in `docs/api/examples/products/F04_SUMMARY.md`.
 - **Outcome:** Base product list/detail shapes and safe identifiers are known.
 - **Work:** Inspect `GET /products`, choose a product ID returned by that response, then inspect `GET /products/{id}`. Record status, envelope, fields and types actually observed, pagination, image data, price/totals semantics, and safe not-found behavior without inventing fields.
 - **Verification:** Sanitized list/detail evidence exists and product decisions in `DECISIONS.md` reference the captures.
@@ -744,8 +744,8 @@ The request names and endpoint spellings below are preserved from `API_INVENTORY
 | 5 | Get All SubCategories On Category | `GET /categories/{id}/subcategories` | F03 | C06 | Verified anonymous public read with category-list-derived ID; F03 evidence |
 | 6 | Get All Brands | `GET /brands` | F03 | C08, C02 | Verified anonymous public read; F03 evidence |
 | 7 | Get specific brand | `GET /brands/{id}` | F03 | C08 | Verified anonymous public read with list-derived ID; F03 evidence |
-| 8 | Get All Products | `GET /products` | F04, F05 | C03, C02, C09 | Planned public inspection |
-| 9 | Get specific Product | `GET /products/{id}` | F04 | C04 | Planned public inspection |
+| 8 | Get All Products | `GET /products` | F04, F05 | C03, C02, C09 | Verified anonymous base read; F04 evidence; query behavior pending F05 |
+| 9 | Get specific Product | `GET /products/{id}` | F04 | C04 | Verified anonymous read with list-derived ID; F04 evidence |
 | 10 | Signup | `POST /auth/signup` | F06 | A02 | Dedicated test account required |
 | 11 | signin | `POST /auth/signin` | F06 | A03 | Dedicated test account required |
 | 12 | Forgot Password | `POST /auth/forgotPasswords` | F07 | A05 | Dedicated inbox/account required |
