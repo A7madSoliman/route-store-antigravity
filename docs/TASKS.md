@@ -251,16 +251,16 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### D09 — Install approved dependencies
 
-- **Status:** Planned; on 2026-07-31 Vite was safely pinned from `8.0.0` to exact `8.0.16`, removing its five observed advisories. The targeted install, reconciliation install, clean `npm ls --depth=0`, lint, and production build—including Next.js's TypeScript phase—passed. The sandboxed build first failed only because the existing Google fonts could not be fetched, then passed unchanged with network access. No standalone type-check script exists, so none was invented or run. The post-remediation full audit still reports 12 high-severity dependency/path findings and `npm audit --omit=dev` reports three: an unresolved development-only ESLint/minimatch/brace-expansion path plus production Next/PostCSS and optional Next/Sharp paths. No compatible stable upstream resolution is currently available, no risk is accepted, and no automatic/forced fix, override, prerelease, downgrade, or suppression was used. D09 remains incomplete, `ARCH-006`/`ARCH-007` remain Provisional, and D10 stays blocked.
+- **Status:** Planned and blocked; on 2026-07-31 the approved install, clean `npm ls --depth=0`, lint, and production build passed, and Vite was safely pinned to `8.0.16`. No standalone type-check or test script existed during that installation review, so neither script was invented. The full JSON audit metadata still reports 12 high-severity vulnerable-package records and the production-only JSON audit reports three through `next@16.2.12`: aggregate Next, `postcss@8.4.31` below the common `8.5.18` safe floor, and optional `sharp@0.34.5` below `0.35.0`. Nine development records trace to the ESLint/Minimatch/`brace-expansion@1.1.18` chain. The project will wait for a stable Next release that supplies both patched transitive versions, declares compatible React 19 peers and a Node engine satisfied by Node 24, passes strict TypeScript validation, and has a matching stable `eslint-config-next`. No risk exception, override, prerelease, downgrade, removal, forced fix, or suppression is approved; `ARCH-006`/`ARCH-007` remain Provisional and D10 stays blocked.
 - **Outcome:** Only the D08-approved packages are present and the lockfile is reproducible.
 - **Work:** Install runtime and development dependencies in separate reviewed commands; do not bundle unrelated code changes.
-- **Verification:** Install completes from the lockfile; lint and build pass; an existing standalone type-check script passes when available; dependency audit findings are reviewed and the documented security gate passes.
+- **Verification:** Install completes from the lockfile; `npm ls --depth=0`, lint, `npm exec tsc -- --noEmit`, and build pass; the production audit has no high-severity records; any remaining development-only records have an explicit reviewed disposition.
 - **Commit:** `build: install approved project dependencies`
 - **Dependencies:** D08.
 
 ### D10 — Configure environments and secret handling
 
-- **Status:** Planned.
+- **Status:** Planned; blocked until D09 completes its dependency-security gate.
 - **Outcome:** Development, test, preview, and production configuration are explicit and fail safely when missing.
 - **Work:** Add a non-secret example environment file, validate environment variables at the server boundary, document local values, keep test-account credentials out of client bundles, and define the verified API base/return URL configuration.
 - **Verification:** Missing/invalid configuration fails with a safe message; client output contains no token or private variable; `.env.local` remains ignored.

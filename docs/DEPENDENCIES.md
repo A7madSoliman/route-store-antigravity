@@ -133,15 +133,40 @@ D09 must run the runtime and development installs as separate reviewed commands,
 
 ### 8.1 D09 security review
 
-The 2026-07-31 remediation pinned direct development dependency Vite from `8.0.0` to `8.0.16`, which is inside D08's original Vite 8 range and is the first Vite 8 release patched for all five observed Vite advisories. The reconciliation install, clean top-level dependency tree, lint, and production build passed. No Vite advisory remains in the resulting audit.
+The 2026-07-31 remediation pinned direct development dependency Vite from `8.0.0` to `8.0.16`, which is inside D08's original Vite 8 range and is the first Vite 8 release patched for all five advisories observed during D09. The reconciliation install, clean top-level dependency tree, lint, and production build passed. Vite is not a source of the remaining findings.
 
-D09 remains incomplete because the post-remediation audit still reports 12 high-severity dependency/path findings:
+The current `npm audit --json` metadata reports 12 high-severity vulnerable-package records. The production-only JSON audit reports three records: the direct Next package as an aggregate record and the two vulnerable packages it introduces. The 12 records collapse to five distinct underlying advisories: three for PostCSS, one for Sharp, and one for `brace-expansion`. In this run, npm's human-readable audit output listed only the three production records, so the JSON metadata is the source for the full-tree count and development records below.
 
-- **Development-only:** `eslint@9.39.5 → minimatch@3.1.5 → brace-expansion@1.1.18`. [GHSA-mh99-v99m-4gvg](https://github.com/advisories/GHSA-mh99-v99m-4gvg) affects all published `brace-expansion` 1.x releases. ESLint `10.8.0` would move to a patched major, but the installed `eslint-plugin-import@2.32.0`, `eslint-plugin-jsx-a11y@6.10.2`, and `eslint-plugin-react@7.37.5` peer ranges stop at ESLint 9. No major override or incompatible ESLint upgrade is approved.
-- **Production:** `next@16.2.12 → postcss@8.4.31` remains below the common safe PostCSS `8.5.18` floor for [GHSA-qx2v-qp2m-jg93](https://github.com/advisories/GHSA-qx2v-qp2m-jg93), [GHSA-6g55-p6wh-862q](https://github.com/advisories/GHSA-6g55-p6wh-862q), and [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849). Stable Next `16.2.12` pins `8.4.31`; a transitive override is not approved.
-- **Optional production:** `next@16.2.12 → sharp@0.34.5` remains below the `0.35.0` patch floor for [GHSA-f88m-g3jw-g9cj](https://github.com/advisories/GHSA-f88m-g3jw-g9cj). Next's current stable range cannot select that patched major; a transitive override is not approved.
+#### Production findings
 
-`npm audit --omit=dev` reports three high-severity production-path findings. The available Next `16.3.0-preview.10` is not an approved stable replacement and still uses a PostCSS version affected by two of the observed advisories. D09 used no automatic/forced audit fix, dependency override, prerelease framework, downgrade, or risk suppression. A compatible stable upstream resolution is required before the security gate can pass.
+| Audit node | Installed version and path | Advisory evidence and safe floor | Runtime role and current reachability | Minimum safe remediation |
+|---|---|---|---|---|
+| `next` | Direct runtime dependency `next@16.2.12` | The audit node is an aggregate of the PostCSS and Sharp findings below; it has no separate advisory in this audit. npm's suggested `next@9.3.3` downgrade is incompatible with this Next 16 App Router and React 19 project. | Next is the application framework and server runtime. It cannot be removed without replacing the approved architecture. | A compatible stable Next release that resolves both transitive findings. |
+| `postcss` | `next@16.2.12 → postcss@8.4.31`; Next pins this exact version | [GHSA-qx2v-qp2m-jg93](https://github.com/advisories/GHSA-qx2v-qp2m-jg93) is patched in `8.5.10`; [GHSA-6g55-p6wh-862q](https://github.com/advisories/GHSA-6g55-p6wh-862q) in `8.5.12`; [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849) in `8.5.18`. The common safe floor is `8.5.18`. | Next uses PostCSS while processing application CSS during development/build. Current inputs are repository and dependency CSS; no request path accepting user-supplied CSS is present. The finding still affects the production dependency tree and build/CI trust boundary. | A stable Next release declaring PostCSS `>=8.5.18`; do not override Next's published dependency contract. |
+| `sharp` | `next@16.2.12 → sharp@0.34.5`; installed optional runtime dependency | [GHSA-f88m-g3jw-g9cj](https://github.com/advisories/GHSA-f88m-g3jw-g9cj) affects versions below `0.35.0`; the patch floor is `0.35.0`. | Next uses Sharp for self-hosted image optimization. The current page passes only local SVGs to `next/image`, and `next.config.ts` has no remote image allowlist, so an untrusted decoder input is not currently evidenced. API raster media planned by `UI_SPEC.md` makes this relevant before catalog implementation. | A stable Next release declaring Sharp `>=0.35.0`; do not remove the image optimizer required by the intended media architecture. |
+
+React `19.2.4`, React DOM `19.2.4`, Zod `4.4.3`, and Vite `8.0.16` do not introduce these production findings.
+
+#### Development-only findings
+
+The other nine audit records—`@eslint/config-array`, `@eslint/eslintrc`, `brace-expansion`, `eslint`, `eslint-config-next`, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, `eslint-plugin-react`, and `minimatch`—propagate from one advisory through ESLint and the lint plugins installed by `eslint-config-next`:
+
+`eslint@9.39.5` or its plugins → `minimatch@3.1.5` → `brace-expansion@1.1.18`
+
+[GHSA-mh99-v99m-4gvg](https://github.com/advisories/GHSA-mh99-v99m-4gvg) affects `brace-expansion <=5.0.7`; there is no patched 1.x release. ESLint `10.8.0` moves its own dependency path to a patched major, but the installed `eslint-plugin-import@2.32.0`, `eslint-plugin-jsx-a11y@6.10.2`, and `eslint-plugin-react@7.37.5` advertise support only through ESLint 9 and retain Minimatch 3 paths. Upgrading ESLint alone would violate peer contracts and would not remove every affected path. These records are absent from `npm audit --omit=dev` and cannot reach the application runtime. The current static lint configuration and CLI supply no untrusted glob input, but a malicious repository glob or lint-configuration change could still exhaust developer or CI memory. The risk remains documented rather than ignored.
+
+#### Remediation decision and recheck gate
+
+No stable, contract-compatible remediation is available on 2026-07-31. The project will wait for a stable Next release instead of using an automatic or forced audit fix, transitive override, prerelease framework, incompatible downgrade, dependency removal, suppression, or implicit risk acceptance. D09 therefore remains incomplete and D10 remains blocked.
+
+Reopen the dependency decision only after a stable Next release simultaneously:
+
+- declares PostCSS `>=8.5.18`;
+- declares Sharp `>=0.35.0`;
+- declares a React 19-compatible peer range and a Node engine satisfied by the project's Node 24 baseline;
+- has a matching stable `eslint-config-next` release.
+
+The future review must approve exact matching Next/ESLint-config versions, run a clean install and dependency-tree inspection, produce no high-severity production audit findings, and pass lint, `npm exec tsc -- --noEmit`, and production build. Remaining development-only findings may coexist with D09 completion only after their exact paths and reachability are rechecked and their disposition is explicitly recorded; this record grants no security exception.
 
 ## 9. Open questions
 
