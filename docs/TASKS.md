@@ -69,7 +69,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F03 — Inspect public taxonomy and brand endpoints
 
-- **Status:** Planned.
+- **Status:** Complete; all seven anonymous taxonomy and brand GETs returned HTTP `200` on 2026-07-31, have sanitized evidence records, and are accounted for in `docs/api/examples/F03_SUMMARY.md`.
 - **Outcome:** Seven public GET contracts for categories, subcategories, and brands have sanitized evidence.
 - **Work:** Inspect list/detail categories, list/detail subcategories, category subcategories, and list/detail brands. Use IDs returned by their own list endpoints, send no GET body, and record list envelopes, detail shapes, pagination, not-found behavior where safe, and anonymous access status.
 - **Verification:** Seven request records exist; every example is sanitized; `API-002`, `API-004`, and relevant query decisions are updated.
@@ -737,13 +737,13 @@ The request names and endpoint spellings below are preserved from `API_INVENTORY
 
 | # | Request | Method and normalized path | Live-verification milestone | Implementation milestone | Current gate |
 |---:|---|---|---|---|---|
-| 1 | Get All Categories | `GET /categories` | F03 | C05, C02 | Planned public inspection |
-| 2 | Get specific category | `GET /categories/{id}` | F03 | C06 | Planned public inspection |
-| 3 | Get All SubCategories | `GET /subcategories` | F03 | C07 | Planned public inspection |
-| 4 | Get specific SubCategory | `GET /subcategories/{id}` | F03 | C07 | Planned public inspection |
-| 5 | Get All SubCategories On Category | `GET /categories/{id}/subcategories` | F03 | C06 | Planned public inspection |
-| 6 | Get All Brands | `GET /brands` | F03 | C08, C02 | Planned public inspection |
-| 7 | Get specific brand | `GET /brands/{id}` | F03 | C08 | Planned public inspection |
+| 1 | Get All Categories | `GET /categories` | F03 | C05, C02 | Verified anonymous public read; F03 evidence |
+| 2 | Get specific category | `GET /categories/{id}` | F03 | C06 | Verified anonymous public read with list-derived ID; F03 evidence |
+| 3 | Get All SubCategories | `GET /subcategories` | F03 | C07 | Verified anonymous public read; F03 evidence |
+| 4 | Get specific SubCategory | `GET /subcategories/{id}` | F03 | C07 | Verified anonymous public read with list-derived ID; F03 evidence |
+| 5 | Get All SubCategories On Category | `GET /categories/{id}/subcategories` | F03 | C06 | Verified anonymous public read with category-list-derived ID; F03 evidence |
+| 6 | Get All Brands | `GET /brands` | F03 | C08, C02 | Verified anonymous public read; F03 evidence |
+| 7 | Get specific brand | `GET /brands/{id}` | F03 | C08 | Verified anonymous public read with list-derived ID; F03 evidence |
 | 8 | Get All Products | `GET /products` | F04, F05 | C03, C02, C09 | Planned public inspection |
 | 9 | Get specific Product | `GET /products/{id}` | F04 | C04 | Planned public inspection |
 | 10 | Signup | `POST /auth/signup` | F06 | A02 | Dedicated test account required |
