@@ -251,7 +251,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### D09 — Install approved dependencies
 
-- **Status:** Planned.
+- **Status:** Planned; the approved packages installed, the reconciliation install, lint, production build (including Next.js's TypeScript phase), and clean top-level dependency tree passed on 2026-07-31. No standalone type-check script exists, so none was invented or run. `npm audit` reported 13 high-severity findings including direct Vite `8.0.0` advisories, so D09 remains incomplete pending the `ARCH-006`/`ARCH-007` dependency review; no audit fix was run.
 - **Outcome:** Only the D08-approved packages are present and the lockfile is reproducible.
 - **Work:** Install runtime and development dependencies in separate reviewed commands; do not bundle unrelated code changes.
 - **Verification:** Install completes from the lockfile; build, lint, and type checking pass; dependency audit findings are reviewed.
