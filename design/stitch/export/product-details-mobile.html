@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stratus Tech Parka - Nexa Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e1e2ed",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "on-secondary-fixed": "#131b2e",
+                    "secondary": "#565e74",
+                    "primary": "#004ac6",
+                    "outline": "#737686",
+                    "background": "#faf8ff",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "surface-dim": "#d9d9e5",
+                    "on-primary-container": "#eeefff",
+                    "on-background": "#191b23",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#ffede6",
+                    "surface-container-high": "#e7e7f3",
+                    "primary-container": "#2563eb",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-tint": "#0053db",
+                    "on-secondary-container": "#5c647a",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "tertiary": "#943700",
+                    "surface-bright": "#faf8ff",
+                    "secondary-container": "#dae2fd",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#434655",
+                    "surface": "#faf8ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-primary-fixed": "#00174b",
+                    "surface-container-highest": "#e1e2ed",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#360f00",
+                    "surface-container-low": "#f3f3fe",
+                    "secondary-fixed": "#dae2fd",
+                    "inverse-on-surface": "#f0f0fb",
+                    "on-surface": "#191b23",
+                    "outline-variant": "#c3c6d7",
+                    "tertiary-container": "#bc4800",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "inverse-surface": "#2e3039",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-container": "#ededf9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-desktop": "40px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "xl": "48px",
+                    "max-width": "1280px",
+                    "margin-mobile": "16px",
+                    "2xl": "80px"
+            },
+            "fontFamily": {
+                    "h4": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "caption": ["Inter"],
+                    "button": ["Inter"],
+                    "body-md": ["Inter"],
+                    "h2": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "h3": ["Inter"],
+                    "h1-desktop": ["Inter"]
+            },
+            "fontSize": {
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .skeleton {
+            background: linear-gradient(90deg, #f3f3fe 25%, #e1e2ed 50%, #f3f3fe 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite linear;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background max-w-[390px] mx-auto min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full max-w-[390px] z-50 bg-surface flex justify-between items-center px-4 h-16 transition-opacity duration-200">
+<button class="w-10 h-10 flex items-center justify-center hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<span class="font-h3 text-h3 font-bold text-primary">Nexa Store</span>
+<button class="w-10 h-10 flex items-center justify-center hover:opacity-80 transition-opacity relative">
+<span class="material-symbols-outlined text-primary">shopping_cart</span>
+<span class="absolute top-1 right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">2</span>
+</button>
+</header>
+<main class="pt-16">
+<!-- Image Gallery -->
+<section class="relative aspect-[3/4] w-full overflow-hidden bg-surface-container-low">
+<div class="flex h-full w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+<div class="flex-shrink-0 w-full h-full snap-center">
+<img class="w-full h-full object-cover" data-alt="A high-end editorial product shot of a sleek, dark navy Stratus Tech Parka. The garment features minimalist waterproof zippers and a structured high collar, presented against a clean, soft grey studio background with professional, diffused lighting. The aesthetic is modern and premium, reflecting the brand's commitment to quiet luxury and functional design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj8nHmiq7OnY76AsLwtZRDEAsjZx3BcnP5Pmux7HJedbl6TaZKEt4JntNgtVg6xg3KK0RL_3H5pKswT99GUlMCKFpBFLeQajZpy7blqOzrxr_3NLkdjcckEWd9gPBzLsRoE7Q9Td6mKDhWhkTQ6PKme4Sud3qQyE4pE2zHeAqR5snrHrb66NLtNCfNWOeAGJbLZ7HEt4m-8nlN5kbJHTut4LLPmX1aBMscafkBiraEPekMwuNRUCbhhA"/>
+</div>
+<div class="flex-shrink-0 w-full h-full snap-center">
+<img class="w-full h-full object-cover" data-alt="A detailed close-up shot of the technical fabric and matte black hardware of the Stratus Tech Parka. The image highlights the fine weave of the high-performance water-resistant material and a laser-cut pocket detail. Soft side lighting emphasizes the texture and quality of the construction within a bright, airy studio setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiUX1Pu0Ysaq0nqKMJJkRw04SGmDVhUYtvi_vZUwi98qwieLF1_smAA_6-fkbVDQa1qjmAc9Tk9JKMVBR_eWiDDSosskAPEdeWiUietJFuGNpqLh6F2dHtpv2un_2LtK_DrWn-8-TO0wBkT_3cGY2JsN0iQrAPAflQzjtNVzYUNgVZialPzfAnJK0DPwao7ErYu55Hwf_exP7_e9wiqSrS8ot7X989iIF8wjr8FexKNRyx81bMoaPuNg"/>
+</div>
+</div>
+<!-- Indicators -->
+<div class="absolute bottom-4 left-0 w-full flex justify-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+</section>
+<!-- Product Content -->
+<section class="px-margin-mobile pt-6 pb-2">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="font-caption text-caption text-primary uppercase tracking-wider mb-1">Stratus Technical</p>
+<h1 class="font-h2 text-h2 text-on-background">Stratus Tech Parka</h1>
+</div>
+<button class="p-2 rounded-full bg-surface-container hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">favorite</span>
+</button>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star_half</span>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">(124 Reviews)</span>
+</div>
+<div class="flex items-baseline gap-3 mb-6">
+<span class="font-h3 text-h3 text-on-background font-bold">$295.00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant line-through">$350.00</span>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded font-button text-[12px] uppercase">15% Off</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Engineered for the urban explorer, the Stratus Tech Parka combines advanced weatherproofing with a sharp, tailored silhouette. Features a breathable mesh lining and seam-sealed construction.
+            </p>
+</section>
+<!-- Loading Skeleton Section (Demo State) -->
+<section class="px-margin-mobile mt-8 space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="font-caption text-caption text-on-surface-variant italic">Simulated Detail Loading...</span>
+</div>
+<div class="h-4 w-3/4 skeleton rounded"></div>
+<div class="h-4 w-full skeleton rounded"></div>
+<div class="h-4 w-5/6 skeleton rounded"></div>
+</section>
+<!-- Accordions -->
+<section class="mt-8 border-t border-outline-variant">
+<details class="group border-b border-outline-variant">
+<summary class="flex justify-between items-center py-4 px-margin-mobile list-none cursor-pointer focus:outline-none">
+<span class="font-button text-button text-on-surface uppercase">Product Description</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-margin-mobile pb-6 font-body-sm text-body-sm text-on-surface-variant">
+<ul class="list-disc ml-4 space-y-2">
+<li>Water-repellent 3-layer laminated fabric</li>
+<li>Adjustable storm hood with stiffened peak</li>
+<li>Articulated sleeves for enhanced movement</li>
+<li>Concealed interior chest pocket</li>
+</ul>
+</div>
+</details>
+<details class="group border-b border-outline-variant">
+<summary class="flex justify-between items-center py-4 px-margin-mobile list-none cursor-pointer focus:outline-none">
+<span class="font-button text-button text-on-surface uppercase">Delivery Information</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-margin-mobile pb-6 font-body-sm text-body-sm text-on-surface-variant">
+                    Standard shipping: 3-5 business days. Express shipping: 1-2 business days. International delivery available.
+                </div>
+</details>
+<details class="group border-b border-outline-variant">
+<summary class="flex justify-between items-center py-4 px-margin-mobile list-none cursor-pointer focus:outline-none">
+<span class="font-button text-button text-on-surface uppercase">Returns Policy</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-margin-mobile pb-6 font-body-sm text-body-sm text-on-surface-variant">
+                    Free returns within 30 days. Items must be in original condition with tags attached.
+                </div>
+</details>
+</section>
+<!-- Related Products -->
+<section class="mt-12 mb-12">
+<h2 class="px-margin-mobile font-h4 text-h4 mb-4">Complete the Look</h2>
+<div class="flex gap-4 overflow-x-auto px-margin-mobile hide-scrollbar snap-x">
+<!-- Item 1 -->
+<div class="flex-shrink-0 w-40 snap-start group">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-2 bg-surface-container-low shadow-sm group-hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Product photography of sleek, tapered black technical trousers. The image features a minimalist presentation against a soft-lit, neutral studio background, maintaining the high-end, premium aesthetic of the brand with crisp, clean lines and professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZPL3SpsqV2LhpPOx3bDI0cg155Yd4d4zJ0A0Xu0aSOUA_Gzslq-JgGF3raQGmW8Zah6cEA22I9uTGo0pdqw_iRJI9WNhm6idGkJnjwR4z5UCJMa-8ugcKEEaBZr7DX-PpYGEih3Yzc8TyivQMwKZE5QnCAIgU9-gD8t5yohLrnr-5ESLmnZc-9UZcg-OAXBDyNr0zmX0IL4EUMwywYX94m52Ac_tZ4zZ3QxqvoLyCNA3K6ZbGQjfbhA"/>
+</div>
+<p class="font-button text-[12px] truncate">Tech Cargo Pants</p>
+<p class="font-body-sm text-body-sm text-secondary font-bold">$145.00</p>
+</div>
+<!-- Item 2 -->
+<div class="flex-shrink-0 w-40 snap-start group">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-2 bg-surface-container-low shadow-sm group-hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="A premium close-up of a structured charcoal grey merino wool beanie. The product is photographed in a minimalist studio setting with soft, high-key lighting that creates a clean and professional look, showcasing the fine knit texture and quality finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzFkNlpTzVhhaqeaZAhtfwwI-bgeC5iPQTocrk5dFAaejAG16el6ep_QFnDlZ9_yyRiyyFLmbOtASvUjI5FtkagIAYce2LNgP-hDsbtyIqW8Vsy-0jzlSximPc2lwBR8bIe7YZG2kwGjOzSn8-aXNEXE_B9P5O3c5kJaeD-99rM0kXxDwkCC4hziNBOk0_rVurlKx3ZiNrmLwmMZePsJJQzxnq_DAlXsrQ12Wpv2UbVcYmhrguefLV9g"/>
+</div>
+<p class="font-button text-[12px] truncate">Merino Watch Cap</p>
+<p class="font-body-sm text-body-sm text-secondary font-bold">$55.00</p>
+</div>
+<!-- Item 3 -->
+<div class="flex-shrink-0 w-40 snap-start group">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-2 bg-surface-container-low shadow-sm group-hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Minimalist product shot of all-black waterproof sneakers with a chunky sole. The footwear is displayed in a bright, modern studio with soft diffused lighting, highlighting the technical materials and professional design language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuZqHQIMMD0dqR3Mq4-5KF4AcvLSkC-u00dgacCM8wFpzTmW_HFLbbEjJ__m4OtlADGD3lP9YIAvh3WPRAdPhATiX_mA140x3s729fhF6D3BAsPZb5-kFsFFH6x3YX53VnlYH_y53CryK0fMpjYo2juGt5riDDiLRixxJjHJJf7g0BL7MnyRmNCASWMaFPRYZ5vBheWtuUGWO9FddlLJelGuW5vrJ7mDuADphbdixSRumyUclby4QEqw"/>
+</div>
+<p class="font-button text-[12px] truncate">Nimbus Trainers</p>
+<p class="font-body-sm text-body-sm text-secondary font-bold">$180.00</p>
+</div>
+<!-- Item 4 -->
+<div class="flex-shrink-0 w-40 snap-start group">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-2 bg-surface-container-low shadow-sm group-hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="A sophisticated black technical crossbody bag with matte buckles and straps. The image is captured in a minimalist, high-contrast studio environment, using soft white lighting to emphasize its clean aesthetic and functional form." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVeK2P5M5HTvosWmickOLAJjvWFerdhLEow5EEM53zjrcjI55tE_OV0bo2ApUi8djDXdTsWkt2roaer0eVQMDrO0Ea67Km_bfmlNGVjgswnC4_0KuVqU6wuW8CFjGzl2mYZqEnmm4pIj2az8EAlzb4SnYojjuVdsZ_xJNcs0noLjidb3rY9z-wrp74TAwWrkbF3uE-WqUnp5sBQg5mrCDebtWTMO0JIm43sJQ-XcHMfqzgir-oVSZQcA"/>
+</div>
+<p class="font-button text-[12px] truncate">Orbit Sling Bag</p>
+<p class="font-body-sm text-body-sm text-secondary font-bold">$90.00</p>
+</div>
+</div>
+</section>
+<!-- Product Not Found State (Illustrative Section) -->
+<section class="mt-8 border-t border-dashed border-outline p-margin-mobile bg-surface-container-low mx-4 rounded-xl">
+<div class="flex flex-col items-center text-center py-6">
+<span class="material-symbols-outlined text-[48px] text-outline mb-4">inventory_2</span>
+<h3 class="font-h4 text-h4 mb-2">Simulated Error State</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">This parka is currently unavailable in 'Ice Blue'.</p>
+<button class="text-primary font-button border-b border-primary py-1">Notify me when available</button>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Bar -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest shadow-[0_-2px_10px_rgba(15,23,42,0.05)] max-w-[390px] left-1/2 -translate-x-1/2 px-4 py-4 flex gap-4 items-center">
+<div class="flex-shrink-0">
+<p class="font-caption text-caption text-on-surface-variant">Total Price</p>
+<p class="font-h3 text-h3 text-on-background font-bold">$295.00</p>
+</div>
+<button class="flex-grow bg-primary text-white font-button py-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all" id="add-to-cart">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+            ADD TO CART
+        </button>
+</div>
+<script>
+        // Micro-interaction for Add to Cart
+        const addToCartBtn = document.getElementById('add-to-cart');
+        addToCartBtn.addEventListener('click', () => {
+            const originalText = addToCartBtn.innerHTML;
+            addToCartBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-bounce">check_circle</span> ADDED!';
+            addToCartBtn.classList.replace('bg-primary', 'bg-tertiary-container');
+            
+            setTimeout(() => {
+                addToCartBtn.innerHTML = originalText;
+                addToCartBtn.classList.replace('bg-tertiary-container', 'bg-primary');
+            }, 2000);
+        });
+
+        // Horizontal scroll sync for indicator (Simplified)
+        const gallery = document.querySelector('.snap-x');
+        const indicators = document.querySelectorAll('.rounded-full');
+        gallery.addEventListener('scroll', () => {
+            const index = Math.round(gallery.scrollLeft / gallery.clientWidth);
+            indicators.forEach((dot, i) => {
+                dot.classList.toggle('bg-primary', i === index);
+                dot.classList.toggle('bg-outline-variant', i !== index);
+            });
+        });
+    </script>
+</body></html>

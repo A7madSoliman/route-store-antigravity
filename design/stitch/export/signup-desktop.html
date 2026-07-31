@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Your Account | Nexa Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "tertiary-fixed": "#ffdbcd",
+                  "surface-variant": "#e1e2ed",
+                  "primary": "#004ac6",
+                  "tertiary-fixed-dim": "#ffb596",
+                  "on-tertiary-fixed-variant": "#7d2d00",
+                  "surface-tint": "#0053db",
+                  "on-primary": "#ffffff",
+                  "on-primary-fixed-variant": "#003ea8",
+                  "on-secondary-fixed": "#131b2e",
+                  "secondary-container": "#dae2fd",
+                  "inverse-on-surface": "#f0f0fb",
+                  "on-error-container": "#93000a",
+                  "on-secondary-fixed-variant": "#3f465c",
+                  "secondary": "#565e74",
+                  "primary-fixed": "#dbe1ff",
+                  "on-secondary-container": "#5c647a",
+                  "primary-fixed-dim": "#b4c5ff",
+                  "on-tertiary": "#ffffff",
+                  "surface-container-lowest": "#ffffff",
+                  "background": "#faf8ff",
+                  "on-secondary": "#ffffff",
+                  "surface-container": "#ededf9",
+                  "error-container": "#ffdad6",
+                  "inverse-primary": "#b4c5ff",
+                  "on-error": "#ffffff",
+                  "tertiary-container": "#bc4800",
+                  "surface-dim": "#d9d9e5",
+                  "error": "#ba1a1a",
+                  "surface-bright": "#faf8ff",
+                  "surface": "#faf8ff",
+                  "inverse-surface": "#2e3039",
+                  "outline": "#737686",
+                  "surface-container-highest": "#e1e2ed",
+                  "primary-container": "#2563eb",
+                  "on-tertiary-container": "#ffede6",
+                  "on-background": "#191b23",
+                  "on-tertiary-fixed": "#360f00",
+                  "on-surface-variant": "#434655",
+                  "surface-container-low": "#f3f3fe",
+                  "secondary-fixed-dim": "#bec6e0",
+                  "on-surface": "#191b23",
+                  "on-primary-container": "#eeefff",
+                  "outline-variant": "#c3c6d7",
+                  "tertiary": "#943700",
+                  "on-primary-fixed": "#00174b",
+                  "secondary-fixed": "#dae2fd",
+                  "surface-container-high": "#e7e7f3"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "gutter": "24px",
+                  "unit": "4px",
+                  "md": "16px",
+                  "sm": "8px",
+                  "2xl": "80px",
+                  "xs": "4px",
+                  "margin-desktop": "40px",
+                  "lg": "24px",
+                  "xl": "48px",
+                  "max-width": "1280px",
+                  "margin-mobile": "16px"
+          },
+          "fontFamily": {
+                  "h2": ["Inter"],
+                  "button": ["Inter"],
+                  "h1-desktop": ["Inter"],
+                  "h3": ["Inter"],
+                  "h4": ["Inter"],
+                  "h1-mobile": ["Inter"],
+                  "body-md": ["Inter"],
+                  "body-sm": ["Inter"],
+                  "caption": ["Inter"],
+                  "body-lg": ["Inter"]
+          },
+          "fontSize": {
+                  "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                  "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                  "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                  "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                  "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                  "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                  "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                  "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                  "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #2563eb;
+    }
+    .strength-meter {
+      height: 4px;
+      transition: all 0.3s ease;
+    }
+    .shadow-level-1 { box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05); }
+    .shadow-level-2 { box-shadow: 0 10px 15px rgba(15, 23, 42, 0.1); }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar (Simplified for Auth Flow) -->
+<header class="sticky top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 max-w-max-width mx-auto bg-surface/80 backdrop-blur-md">
+<div class="font-h3 text-h3 font-bold text-primary tracking-tight">Nexa Store</div>
+<div class="flex items-center gap-md">
+<span class="font-body-sm text-on-surface-variant hidden md:block">Already have an account?</span>
+<a class="font-button text-button text-primary hover:underline px-md py-sm transition-all" href="#">Login</a>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex items-center justify-center px-margin-mobile py-2xl relative overflow-hidden">
+<!-- Atmospheric Background Decoration -->
+<div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+<!-- Registration Card -->
+<div class="w-full max-w-[480px] bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-xl shadow-level-2 z-10">
+<div class="mb-xl text-center">
+<h1 class="font-h2 text-h2 text-on-surface mb-xs">Create Account</h1>
+<p class="font-body-md text-on-surface-variant">Join our premium retail experience.</p>
+</div>
+<form class="space-y-lg" id="registrationForm">
+<!-- Full Name -->
+<div class="space-y-xs">
+<label class="block font-caption text-caption text-on-surface-variant ml-1" for="fullName">Full Name</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px] group-focus-within:text-primary transition-colors">person</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-[1.5px] border-outline-variant rounded-lg font-body-sm transition-all focus:border-primary" id="fullName" placeholder="Enter your full name" type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div class="space-y-xs">
+<label class="block font-caption text-caption text-on-surface-variant ml-1" for="email">Email Address</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px] group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-[1.5px] border-outline-variant rounded-lg font-body-sm transition-all focus:border-primary" id="email" placeholder="example@nexa.com" type="email"/>
+</div>
+<p class="hidden text-error font-caption text-[11px] mt-1 ml-1" id="emailValidation">Please enter a valid email address.</p>
+</div>
+<!-- Password Cluster -->
+<div class="space-y-sm">
+<div class="space-y-xs">
+<label class="block font-caption text-caption text-on-surface-variant ml-1" for="password">Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px] group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full pl-10 pr-10 py-3 bg-surface-container-low border-[1.5px] border-outline-variant rounded-lg font-body-sm transition-all focus:border-primary" id="password" placeholder="At least 8 characters" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface" onclick="togglePassword('password', this)" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Password Strength Meter -->
+<div class="px-1 space-y-xs">
+<div class="flex gap-1 h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="strength-meter w-1/4 bg-surface-container-high" id="strength-1"></div>
+<div class="strength-meter w-1/4 bg-surface-container-high" id="strength-2"></div>
+<div class="strength-meter w-1/4 bg-surface-container-high" id="strength-3"></div>
+<div class="strength-meter w-1/4 bg-surface-container-high" id="strength-4"></div>
+</div>
+<div class="flex justify-between items-center">
+<p class="font-caption text-[11px] text-on-surface-variant" id="strength-text">Password Strength</p>
+<p class="font-caption text-[11px] text-on-surface-variant">Min. 8 characters</p>
+</div>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-xs">
+<label class="block font-caption text-caption text-on-surface-variant ml-1" for="confirmPassword">Confirm Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px] group-focus-within:text-primary transition-colors">lock_reset</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-[1.5px] border-outline-variant rounded-lg font-body-sm transition-all focus:border-primary" id="confirmPassword" placeholder="Repeat your password" type="password"/>
+</div>
+<p class="hidden text-error font-caption text-[11px] mt-1 ml-1" id="passwordMatchValidation">Passwords do not match.</p>
+</div>
+<!-- Terms & Conditions -->
+<div class="flex items-start gap-md pt-sm">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary/20 cursor-pointer" id="terms" type="checkbox"/>
+</div>
+<label class="font-body-sm text-on-surface-variant cursor-pointer select-none" for="terms">
+            I agree to the <a class="text-primary font-medium hover:underline" href="#">Terms &amp; Conditions</a> and <a class="text-primary font-medium hover:underline" href="#">Privacy Policy</a>.
+          </label>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-button text-button hover:bg-on-primary-fixed-variant active:scale-[0.98] transition-all shadow-md mt-md" type="submit">
+          Create Account
+        </button>
+</form>
+<div class="mt-xl flex items-center justify-center gap-md">
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+<span class="font-caption text-on-surface-variant">Or continue with</span>
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+</div>
+<!-- Social Auth -->
+<div class="mt-lg grid grid-cols-2 gap-md">
+<button class="flex items-center justify-center gap-sm py-3 bg-surface-container border border-outline-variant/50 rounded-lg font-button text-button hover:bg-surface-container-high transition-all">
+<img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbk-qzMaBwn5QkCpybm-JOj3zI01za-Pf-hv--dsK7YmzNvqh_JYgg3cAa6Uh8Sdl9_sIIO2AXoJU7FbKB6ArnBX_MgWkjRZKsxcRQzcjW2VSHeoUiMvU_G1029PsRSVyj4mlsp-ogH65pqvXpwyQStV0nDeP5KXclv-enK4C2JsyoCsfXJmD6jQlkENUZZuH_6XvYLE2mc5fbilbu5f5T50eQLEiEJ5Cmb1YtT6CKVFN44MDs6PJ-Mg"/>
+          Google
+        </button>
+<button class="flex items-center justify-center gap-sm py-3 bg-surface-container border border-outline-variant/50 rounded-lg font-button text-button hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+          Apple
+        </button>
+</div>
+</div>
+</main>
+<!-- Footer (Simplified for Auth) -->
+<footer class="w-full py-xl px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-highest/30 mt-auto">
+<p class="font-caption text-caption text-on-surface-variant">© 2024 Nexa Store. All rights reserved.</p>
+<div class="flex gap-lg">
+<a class="font-caption text-on-surface-variant hover:text-primary transition-all" href="#">Help Center</a>
+<a class="font-caption text-on-surface-variant hover:text-primary transition-all" href="#">Support</a>
+</div>
+</footer>
+<script>
+    // Password Visibility Toggle
+    function togglePassword(inputId, btn) {
+      const input = document.getElementById(inputId);
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
+    // Password Strength Logic
+    const passwordInput = document.getElementById('password');
+    const strengthText = document.getElementById('strength-text');
+    const meters = [
+      document.getElementById('strength-1'),
+      document.getElementById('strength-2'),
+      document.getElementById('strength-3'),
+      document.getElementById('strength-4')
+    ];
+
+    passwordInput.addEventListener('input', () => {
+      const val = passwordInput.value;
+      let score = 0;
+
+      if (val.length > 7) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+
+      meters.forEach((m, i) => {
+        m.className = 'strength-meter w-1/4';
+        if (i < score) {
+          if (score === 1) m.classList.add('bg-error');
+          if (score === 2) m.classList.add('bg-tertiary');
+          if (score === 3) m.classList.add('bg-primary-container');
+          if (score === 4) m.classList.add('bg-green-500');
+        } else {
+          m.classList.add('bg-surface-container-high');
+        }
+      });
+
+      const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+      strengthText.textContent = val.length > 0 ? labels[score - 1] || 'Weak' : 'Password Strength';
+    });
+
+    // Form Interactivity & Validation Micro-interactions
+    const registrationForm = document.getElementById('registrationForm');
+    registrationForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email');
+      const pass = document.getElementById('password');
+      const confirmPass = document.getElementById('confirmPassword');
+      const terms = document.getElementById('terms');
+
+      let isValid = true;
+
+      // Basic Visual Validation Feedbacks
+      if (!email.value.includes('@')) {
+        document.getElementById('emailValidation').classList.remove('hidden');
+        email.classList.add('border-error');
+        isValid = false;
+      } else {
+        document.getElementById('emailValidation').classList.add('hidden');
+        email.classList.remove('border-error');
+      }
+
+      if (pass.value !== confirmPass.value) {
+        document.getElementById('passwordMatchValidation').classList.remove('hidden');
+        confirmPass.classList.add('border-error');
+        isValid = false;
+      } else {
+        document.getElementById('passwordMatchValidation').classList.add('hidden');
+        confirmPass.classList.remove('border-error');
+      }
+
+      if (!terms.checked) {
+        alert("Please accept the Terms and Conditions to proceed.");
+        isValid = false;
+      }
+
+      if (isValid) {
+        const btn = e.submitter;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Creating Account...';
+        btn.disabled = true;
+        
+        // Mocking API call
+        setTimeout(() => {
+          btn.innerHTML = 'Welcome to Nexa!';
+          btn.classList.replace('bg-primary', 'bg-green-600');
+          setTimeout(() => {
+             window.location.reload(); // Simulate redirect
+          }, 1500);
+        }, 2000);
+      }
+    });
+
+    // Input focus sound effect / visual flair logic could go here
+  </script>
+</body></html>

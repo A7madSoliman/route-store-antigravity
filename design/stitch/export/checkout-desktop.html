@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | Nexa Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { font-variation-settings: 'FILL' 1; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#943700",
+                    "surface-dim": "#d9d9e5",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-background": "#191b23",
+                    "secondary": "#565e74",
+                    "on-primary-fixed": "#00174b",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "surface-container-low": "#f3f3fe",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "inverse-on-surface": "#f0f0fb",
+                    "outline": "#737686",
+                    "on-secondary-container": "#5c647a",
+                    "surface-variant": "#e1e2ed",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#dae2fd",
+                    "on-secondary-fixed": "#131b2e",
+                    "surface-container-highest": "#e1e2ed",
+                    "background": "#faf8ff",
+                    "on-tertiary-fixed": "#360f00",
+                    "surface": "#faf8ff",
+                    "primary-container": "#2563eb",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "outline-variant": "#c3c6d7",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-container-high": "#e7e7f3",
+                    "primary-fixed": "#dbe1ff",
+                    "on-surface": "#191b23",
+                    "on-surface-variant": "#434655",
+                    "surface-tint": "#0053db",
+                    "on-tertiary-container": "#ffede6",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "surface-container": "#ededf9",
+                    "secondary-container": "#dae2fd",
+                    "inverse-surface": "#2e3039",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#eeefff",
+                    "error-container": "#ffdad6",
+                    "primary": "#004ac6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "2xl": "80px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "max-width": "1280px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xl": "48px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "h2": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "h1-desktop": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h4": ["Inter"],
+                    "h3": ["Inter"],
+                    "button": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24 md:pb-0">
+<!-- TopNavBar (JSON Anchor) -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-lg py-sm max-w-max-width mx-auto bg-surface shadow-sm w-full">
+<div class="font-h3 text-h3 font-bold text-primary">Nexa Store</div>
+<div class="flex items-center gap-md">
+<button class="cursor-pointer active:opacity-80 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</button>
+</div>
+</header>
+<main class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Stepper -->
+<div class="flex items-center justify-center mb-xl">
+<div class="flex items-center w-full max-w-2xl">
+<div class="flex flex-col items-center flex-1 gap-xs">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-caption text-caption text-on-surface">Cart</span>
+</div>
+<div class="h-[2px] flex-1 bg-primary"></div>
+<div class="flex flex-col items-center flex-1 gap-xs">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-caption text-caption text-on-surface">Shipping</span>
+</div>
+<div class="h-[2px] flex-1 bg-primary"></div>
+<div class="flex flex-col items-center flex-1 gap-xs">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container ring-4 ring-primary-container/20 flex items-center justify-center font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<span class="font-caption text-caption text-primary font-bold">Payment</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column: Checkout Details -->
+<div class="lg:col-span-8 space-y-xl">
+<!-- Shipping Summary -->
+<section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-h4 text-h4 text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined">local_shipping</span>
+                            Shipping Address
+                        </h2>
+<button class="text-primary font-button hover:underline">Change</button>
+</div>
+<div class="flex gap-md items-start">
+<div class="p-sm bg-surface-container-high rounded-lg">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Alex Rivera</p>
+<p class="text-secondary text-body-sm">2482 Quiet Path Court, Unit 12B</p>
+<p class="text-secondary text-body-sm">San Francisco, CA 94103</p>
+<p class="text-secondary text-body-sm">+1 (555) 012-3456</p>
+</div>
+</div>
+</section>
+<!-- Payment Method -->
+<section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<h2 class="font-h4 text-h4 text-on-surface mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined">credit_card</span>
+                        Payment Method
+                    </h2>
+<div class="space-y-md">
+<!-- Card Option -->
+<label class="flex items-center justify-between p-md rounded-lg border-2 border-primary bg-primary-container/5 cursor-pointer transition-all">
+<div class="flex items-center gap-md">
+<input checked="" class="w-5 h-5 text-primary border-outline focus:ring-primary" name="payment" type="radio"/>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-6 bg-surface-container-high rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[18px]">credit_card</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Credit / Debit Card</p>
+<p class="text-caption text-secondary">Ending in 4242 • Exp 12/26</p>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</label>
+<!-- PayPal Option -->
+<label class="flex items-center justify-between p-md rounded-lg border-2 border-outline-variant hover:border-primary/50 cursor-pointer transition-all">
+<div class="flex items-center gap-md">
+<input class="w-5 h-5 text-primary border-outline focus:ring-primary" name="payment" type="radio"/>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-6 bg-surface-container-high rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[18px]">account_balance_wallet</span>
+</div>
+<p class="font-bold text-on-surface">PayPal</p>
+</div>
+</div>
+</label>
+<!-- COD Option -->
+<label class="flex items-center justify-between p-md rounded-lg border-2 border-outline-variant hover:border-primary/50 cursor-pointer transition-all">
+<div class="flex items-center gap-md">
+<input class="w-5 h-5 text-primary border-outline focus:ring-primary" name="payment" type="radio"/>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-6 bg-surface-container-high rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[18px]">payments</span>
+</div>
+<p class="font-bold text-on-surface">Cash on Delivery</p>
+</div>
+</div>
+</label>
+</div>
+</section>
+<!-- Condensed Cart List -->
+<section class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-h4 text-h4 text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined">shopping_basket</span>
+                            Review Items (3)
+                        </h2>
+<button class="text-primary font-button hover:underline">Edit Cart</button>
+</div>
+<div class="divide-y divide-outline-variant/30">
+<!-- Item 1 -->
+<div class="py-md flex gap-md">
+<div class="w-20 h-20 bg-surface-container-high rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A high-end, premium minimalist smartphone with a matte titanium finish resting on a clean white surface. The lighting is bright and neutral, emphasizing the sleek industrial design and the subtle textures of the metal. The aesthetic is modern, professional, and sophisticated, fitting a luxury electronics brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbZU7JATBeV1yH2UtJAR9AzeXC_o9cflU2OLgXhpe65y6j8dKub-fadjxDS5mGsr3kb5ZeUkjsDUDROy22Q1AWHqRSpGWJgjDSJvL_ox4X2J5HFpOKjdYg47dUOjp6QYclCevkDKmq2LpQMCi47zQknhiBQ59EwNZl1UMWSGDweb7IZb44MG47YXtv_26RcG48my8w7L6oYGZ44SZhz5yMINbjkbG6OyzjO_PoVO0481rpatIyrbN15w"/>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-on-surface">Nexa Pro Smartphone</h3>
+<p class="text-caption text-secondary mb-xs">Color: Midnight Black | Storage: 256GB</p>
+<div class="flex justify-between items-center">
+<span class="text-secondary font-bold">$999.00</span>
+<span class="text-on-surface-variant text-body-sm">Qty: 1</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="py-md flex gap-md">
+<div class="w-20 h-20 bg-surface-container-high rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A pair of elegant over-ear noise-cancelling headphones in a soft slate gray color. The headphones are showcased in a minimalist studio environment with soft, diffused top-down lighting that highlights their smooth curves and premium padding. The overall vibe is calm, technologically advanced, and high-quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFgSh1G1RD0SLEceZ6wMSC7NGoiXLXJ-a6oPQbsiw2ktx0vl0tlWKH7JI2VLuN0PPyQbXoV57M1xdgkTpq_4fvTzbbvcY2xxHmXX91A2XEf4xHUziHRGdY9eIFnZsyc7hKJPAwA-54RWgofq67RTRJH2c2tn6NAFmVldVgb77kYZ6sletvFhSixq3yS4ybLrBnFMvIZLfmQhoFiN_yfO7CAXLaE-UIrrnwwUgfz0NTvohyh6Rg5VblOA"/>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-on-surface">SonicWave ANC Headphones</h3>
+<p class="text-caption text-secondary mb-xs">Limited Edition Gray</p>
+<div class="flex justify-between items-center">
+<span class="text-secondary font-bold">$249.00</span>
+<span class="text-on-surface-variant text-body-sm">Qty: 1</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Summary Sidebar -->
+<aside class="lg:col-span-4">
+<div class="sticky top-24 space-y-md">
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-lg border border-outline-variant/30">
+<h2 class="font-h3 text-h3 text-on-surface mb-lg">Order Summary</h2>
+<div class="space-y-sm mb-lg">
+<div class="flex justify-between text-body-md text-secondary">
+<span>Subtotal</span>
+<span>$1,248.00</span>
+</div>
+<div class="flex justify-between text-body-md text-secondary">
+<span>Shipping</span>
+<span class="text-tertiary">FREE</span>
+</div>
+<div class="flex justify-between text-body-md text-secondary">
+<span>Estimated Tax</span>
+<span>$87.36</span>
+</div>
+<div class="h-[1px] bg-outline-variant/30 my-md"></div>
+<div class="flex justify-between font-h3 text-h3 text-on-surface">
+<span>Total</span>
+<span>$1,335.36</span>
+</div>
+</div>
+<div class="space-y-md">
+<button class="w-full bg-primary text-on-primary py-md rounded-lg font-button text-button shadow-md hover:brightness-90 transition-all active:scale-[0.98] flex items-center justify-center gap-sm">
+                                Place Order
+                                <span class="material-symbols-outlined text-[18px]">shopping_cart_checkout</span>
+</button>
+<p class="text-caption text-center text-secondary-fixed-dim px-md">
+                                By placing your order, you agree to Nexa Store's 
+                                <a class="underline" href="#">Terms of Service</a> and 
+                                <a class="underline" href="#">Privacy Policy</a>.
+                            </p>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="flex flex-col gap-sm p-md bg-surface-container/50 rounded-xl">
+<div class="flex items-center gap-sm text-body-sm text-secondary">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">security</span>
+                            Secure encrypted checkout
+                        </div>
+<div class="flex items-center gap-sm text-body-sm text-secondary">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">package_2</span>
+                            30-day money back guarantee
+                        </div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer (JSON Anchor) -->
+<footer class="w-full py-xl px-lg flex flex-col items-center gap-md bg-surface-container-low border-t border-outline-variant">
+<div class="font-h4 text-h4 text-on-surface">Nexa Store</div>
+<div class="flex gap-lg flex-wrap justify-center">
+<a class="text-secondary hover:text-primary transition-colors font-caption text-caption" href="#">Privacy Policy</a>
+<a class="text-secondary hover:text-primary transition-colors font-caption text-caption" href="#">Terms of Service</a>
+<a class="text-secondary hover:text-primary transition-colors font-caption text-caption" href="#">Help Center</a>
+</div>
+<p class="text-secondary font-caption text-caption opacity-70">© 2024 Nexa Store. All rights reserved. Secure Checkout.</p>
+</footer>
+<!-- BottomNavBar for Mobile (JSON Anchor) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-[0_-2px_4px_rgba(15,23,42,0.05)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="font-caption text-caption">Shop</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-caption text-caption">Cart</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-caption text-caption">Saved</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-caption text-caption">Account</span>
+</div>
+</nav>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('label').forEach(label => {
+            label.addEventListener('click', () => {
+                // Reset all borders
+                document.querySelectorAll('label').forEach(l => {
+                    l.classList.remove('border-primary', 'bg-primary-container/5');
+                    l.classList.add('border-outline-variant');
+                });
+                // Highlight active
+                label.classList.remove('border-outline-variant');
+                label.classList.add('border-primary', 'bg-primary-container/5');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Saved Addresses | Nexa Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f3f3fe",
+                        "surface-container": "#ededf9",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface": "#faf8ff",
+                        "primary-container": "#2563eb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-surface": "#2e3039",
+                        "surface-variant": "#e1e2ed",
+                        "on-surface-variant": "#434655",
+                        "primary": "#004ac6",
+                        "background": "#faf8ff",
+                        "outline-variant": "#c3c6d7",
+                        "secondary-container": "#dae2fd",
+                        "outline": "#737686",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-bright": "#faf8ff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#dae2fd",
+                        "inverse-on-surface": "#f0f0fb",
+                        "surface-container-highest": "#e1e2ed",
+                        "on-tertiary-container": "#ffede6",
+                        "tertiary": "#943700",
+                        "surface-container-high": "#e7e7f3",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#bc4800",
+                        "surface-tint": "#0053db",
+                        "surface-dim": "#d9d9e5",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#565e74",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-primary-container": "#eeefff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-surface": "#191b23",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "on-background": "#191b23"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "2xl": "80px",
+                        "md": "16px",
+                        "xl": "48px",
+                        "unit": "4px",
+                        "max-width": "1280px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "margin-desktop": "40px",
+                        "xs": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "h3": ["Inter"],
+                        "caption": ["Inter"],
+                        "h4": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "button": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "h1-desktop": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "h3": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "h4": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "button": ["14px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "h2": ["30px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "h1-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "h1-desktop": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-shadow { box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05); }
+        .custom-shadow-hover:hover { box-shadow: 0 10px 15px rgba(15, 23, 42, 0.1); }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-margin-desktop max-w-max-width mx-auto w-full h-20 bg-surface shadow-sm">
+<div class="flex items-center gap-xl">
+<h1 class="font-h3 text-h3 font-bold text-primary">Nexa Store</h1>
+<nav class="hidden md:flex gap-lg">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shop</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Categories</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sale</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined p-sm hover:opacity-80 transition-opacity" data-icon="search">search</button>
+<button class="material-symbols-outlined p-sm hover:opacity-80 transition-opacity" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined p-sm hover:opacity-80 transition-opacity text-primary" data-icon="person">person</button>
+</div>
+</header>
+<div class="max-w-max-width mx-auto flex min-h-[calc(100vh-80px)]">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-20 bottom-0 p-lg space-y-md h-screen w-64 hidden lg:flex flex-col bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-md mb-xl">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a smiling man named Alex, wearing a navy blue blazer, set against a clean, softly lit studio background with neutral grey tones. The lighting is bright and high-key, reflecting a modern, premium light-mode aesthetic that fits a high-end corporate or retail environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK-zPzInjRAJxlXm2uiI2QPy_tHEkMLpqbFm5j-_O5kwKfgd-gfZ8gdaK2oxE6zz75_aQF-wxyGV0ZBq5OVupcj7KbMEIzCAHjq1vjTew2nV-DUBxldNjJSkVGJP5ylgdbbDXP1_moHQ8UQUYmK8_EvBjAISh-dAPH83U7LG7IZ1bekXGMem9_BEvPh33y0pMdvRIqrOdUQjqCu5sigU1Ekevsc1gKIY9bJWekpK_iJFH3ozMB0CU3-A"/>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-semibold text-on-surface">Welcome back, Alex</p>
+<p class="font-caption text-caption text-on-surface-variant">Premium Member</p>
+</div>
+</div>
+<nav class="flex-1 space-y-sm">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-sm text-body-sm">Overview</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="package">package</span>
+<span class="font-body-sm text-body-sm">Orders</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-body-sm text-body-sm">Profile</span>
+</a>
+<a class="flex items-center gap-md p-md bg-secondary-container text-on-secondary-container font-semibold rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-body-sm">Addresses</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-body-sm text-body-sm">Wishlist</span>
+</a>
+</nav>
+<button class="mt-auto flex items-center gap-md p-md text-error hover:bg-error-container rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-sm text-body-sm font-semibold">Log Out</span>
+</button>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 p-margin-desktop">
+<div class="flex justify-between items-end mb-2xl">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface mb-xs">Saved Addresses</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your shipping and billing locations for faster checkout.</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-md rounded-lg font-button text-button flex items-center gap-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                    Add New Address
+                </button>
+</div>
+<!-- Address Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-lg">
+<!-- Home Address Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl custom-shadow custom-shadow-hover transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-sm bg-primary-container text-on-primary-container px-sm py-xs rounded text-[10px] uppercase font-bold tracking-wider">
+<span class="material-symbols-outlined text-[14px]" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+                                Home
+                            </div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded font-caption text-caption">Default</span>
+</div>
+<h4 class="font-h4 text-h4 text-on-surface mb-sm">Alex Henderson</h4>
+<div class="space-y-unit text-on-surface-variant font-body-sm text-body-sm">
+<p>1280 Luxury Circle, Apt 402</p>
+<p>Beverly Hills, CA 90210</p>
+<p>United States</p>
+<p class="mt-md flex items-center gap-xs"><span class="material-symbols-outlined text-sm" data-icon="call">call</span> +1 (555) 012-3456</p>
+</div>
+</div>
+<div class="mt-xl pt-md border-t border-outline-variant flex justify-end gap-md">
+<button class="text-primary font-button text-button flex items-center gap-xs hover:underline transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+                            Edit
+                        </button>
+<button class="text-error font-button text-button flex items-center gap-xs hover:underline transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+                            Remove
+                        </button>
+</div>
+</div>
+<!-- Work Address Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl custom-shadow custom-shadow-hover transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-sm bg-surface-container-highest text-on-surface px-sm py-xs rounded text-[10px] uppercase font-bold tracking-wider">
+<span class="material-symbols-outlined text-[14px]" data-icon="work" style="font-variation-settings: 'FILL' 1;">work</span>
+                                Work
+                            </div>
+</div>
+<h4 class="font-h4 text-h4 text-on-surface mb-sm">Alex Henderson</h4>
+<div class="space-y-unit text-on-surface-variant font-body-sm text-body-sm">
+<p>800 Corporate Plaza</p>
+<p>Suite 1200, Finance Dept</p>
+<p>New York, NY 10001</p>
+<p class="mt-md flex items-center gap-xs"><span class="material-symbols-outlined text-sm" data-icon="call">call</span> +1 (555) 987-6543</p>
+</div>
+</div>
+<div class="mt-xl pt-md border-t border-outline-variant flex justify-end gap-md">
+<button class="text-primary font-button text-button flex items-center gap-xs hover:underline transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+                            Edit
+                        </button>
+<button class="text-error font-button text-button flex items-center gap-xs hover:underline transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="delete">delete</span>
+                            Remove
+                        </button>
+</div>
+</div>
+<!-- Add New Empty State Card -->
+<button class="border-2 border-dashed border-outline-variant p-lg rounded-xl flex flex-col items-center justify-center gap-md group hover:border-primary hover:bg-primary/5 transition-all duration-300 min-h-[280px]">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-primary" data-icon="add_location_alt">add_location_alt</span>
+</div>
+<div class="text-center">
+<p class="font-h4 text-h4 text-on-surface">Add New Address</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Store an additional shipping location</p>
+</div>
+</button>
+</div>
+<!-- Announcement Card -->
+<section class="mt-2xl relative rounded-2xl overflow-hidden h-64 flex items-center">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist high-angle architectural shot of a modern fulfillment center. Soft morning light streams through glass skylights, illuminating pristine white surfaces and organized storage systems. The overall aesthetic is calm, professional, and efficient, using a light-mode color palette of soft blues and crisp whites to emphasize reliability and speed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL0H1D_gUgvnGexQyv7Iu9aSbEe-EhKkW60m5BDNPQgiNYQCvmqxe39sUbglHZRJNLgY44auPYtTXPvSLBOuJNfWMfjEMoE5y9mqatD4lDbSJXZ3itZqOm66bX606UAWRyUDmpugMYeLaKMVbVC3TAop7AHnyy7V8E0G3yeUCBlLlDDhuWLicQQzhTKnYH6lo_1EjIuyabLPM48BDuxpcqTba_lmIUBbzbF0rtRn5TBM8kh0BH5sQTug"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
+</div>
+<div class="relative z-10 px-xl max-w-lg">
+<h3 class="font-h3 text-h3 text-on-surface mb-sm">Swift Shipping Globally</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Your saved addresses are synced across all devices for a seamless 1-click checkout experience.</p>
+<a class="text-primary font-button text-button flex items-center gap-xs hover:gap-md transition-all" href="#">
+                        View Shipping Policy
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-2xl bg-surface-container-highest py-xl px-margin-desktop max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-lg">
+<h4 class="font-h4 text-h4 font-bold text-primary">Nexa Store</h4>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Shipping Info</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contact Us</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Nexa Store. All rights reserved.</p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-margin-mobile bg-surface border-t border-outline-variant lg:hidden shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="package">package</span>
+<span class="font-caption text-caption">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-caption text-caption">Wishlist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-caption text-caption">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span class="font-caption text-caption">Menu</span>
+</a>
+</nav>
+<script>
+        // Simple hover micro-interaction for address cards
+        document.querySelectorAll('.custom-shadow-hover').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

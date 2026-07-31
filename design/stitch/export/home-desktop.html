@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexa Store | Premium Shopping Experience</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .product-card:hover .quick-add {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Custom contrast adjustments for accessibility */
+        .text-on-surface-variant {
+            color: #434655; /* Ensuring AA compliance against surface-container-low */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed": "#00174b",
+                        "on-surface": "#191b23",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#131b2e",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "secondary": "#565e74",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface-variant": "#434655",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d9d9e5",
+                        "surface-container": "#ededf9",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b4c5ff",
+                        "on-tertiary-container": "#ffede6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface": "#faf8ff",
+                        "surface-container-highest": "#e1e2ed",
+                        "tertiary-fixed": "#ffdbcd",
+                        "inverse-surface": "#2e3039",
+                        "tertiary": "#943700",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-variant": "#e1e2ed",
+                        "outline": "#737686",
+                        "on-background": "#191b23",
+                        "secondary-container": "#dae2fd",
+                        "primary": "#004ac6",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-high": "#e7e7f3",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "tertiary-container": "#bc4800",
+                        "on-primary-container": "#eeefff",
+                        "background": "#faf8ff",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f0f0fb",
+                        "surface-container-low": "#f3f3fe",
+                        "on-secondary-container": "#5c647a",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#dae2fd",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "max-width": "1280px",
+                        "md": "16px",
+                        "2xl": "80px",
+                        "xl": "48px"
+                    },
+                    "fontFamily": {
+                        "h4": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Inter"],
+                        "body-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h2": ["Inter"],
+                        "button": ["Inter"],
+                        "h1-desktop": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.04em", "fontWeight": "700"}],
+                        "h1-desktop": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+<!-- Announcement Bar -->
+<div class="bg-primary text-on-primary py-2.5 px-gutter text-center font-button text-[11px] uppercase tracking-widest">
+    Free shipping on orders over $100 | Shop the New Season Collection
+</div>
+<!-- Header / TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-lg border-b border-outline-variant/30 h-20 flex items-center transition-all duration-300">
+<nav class="flex justify-between items-center px-gutter max-w-max-width mx-auto w-full gap-xl">
+<div class="flex items-center gap-12">
+<a class="font-h3 text-h3 font-extrabold text-primary tracking-tighter" href="#">Nexa Store</a>
+<ul class="hidden xl:flex items-center gap-8 font-button text-[13px] uppercase">
+<li><a class="text-on-surface border-b-2 border-primary pb-1" href="#">New Arrivals</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">Categories</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">Brands</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">Promotions</a></li>
+</ul>
+</div>
+<div class="flex-1 max-w-xl mx-8 hidden lg:block">
+<div class="relative group">
+<input class="w-full pl-11 pr-4 py-2.5 rounded-full border-none bg-surface-container-high focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-on-surface-variant/60 transition-all outline-none" placeholder="Search for luxury essentials..." type="text"/>
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:bg-surface-container-high rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:bg-surface-container-high rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:bg-surface-container-high rounded-full transition-all active:scale-95 relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1 right-1 w-4 h-4 bg-primary text-on-primary text-[9px] font-bold flex items-center justify-center rounded-full">3</span>
+</button>
+</div>
+<button class="md:hidden p-2"><span class="material-symbols-outlined">menu</span></button>
+</div>
+</nav>
+</header>
+<main class="mt-20">
+<!-- Hero Section -->
+<section class="relative w-full h-[750px] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBdjNfFiAownER1xHbKBGSYyI6A-upLp2uCLGaoYdk6WOy1lmyJcevA2uXVtPMrSkGiNn7ceR7WX3R8C4N2GbPk7XM0BJRY3jliuBb50fVxTMiw0f36BiMi4iWoB4GX4rP5ABig9izzjDQMmKvJotrHzSklyd3AxO8S_B0D1FVE8TG_ei4IVFBYWeTQS62n35GrOuRH7X1FLEBuVuaVa_2TMVaVdc6ZJLBoeoAPvzkc5A0CBdodHX_O4w')"></div>
+<div class="absolute inset-0 bg-black/30"></div>
+<div class="relative max-w-max-width mx-auto px-gutter h-full flex flex-col justify-center items-start text-on-primary">
+<span class="font-button text-[11px] bg-primary text-on-primary px-4 py-1.5 rounded-full mb-6 tracking-[0.2em] uppercase">2024 Premiere Collection</span>
+<h1 class="font-h1-desktop text-h1-desktop max-w-3xl mb-6">Redefining the <br/>Modern Wardrobe.</h1>
+<p class="font-body-lg text-body-lg max-w-xl mb-12 opacity-95 leading-relaxed">Experience a curated selection of high-end essentials where craftsmanship meets cutting-edge technological design.</p>
+<div class="flex flex-wrap gap-4">
+<button class="px-10 py-5 bg-primary text-on-primary font-button uppercase rounded-lg hover:bg-primary/90 transition-all shadow-xl hover:shadow-primary/20 active:scale-95">Explore Collection</button>
+<button class="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/40 text-on-primary font-button uppercase rounded-lg hover:bg-white/20 transition-all active:scale-95">View Lookbook</button>
+</div>
+</div>
+</section>
+<!-- Featured Categories (Bento Grid) -->
+<section class="py-2xl max-w-max-width mx-auto px-gutter">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface">Curated Categories</h2>
+<p class="text-on-surface-variant font-body-md mt-2">Precision-selected for the discerning individual.</p>
+</div>
+<a class="text-primary font-button uppercase text-[12px] border-b-2 border-primary/20 hover:border-primary pb-1 transition-all" href="#">View All Collections</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[650px]">
+<!-- Large Card -->
+<div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl shadow-sm cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKcI1iNKVgRwyiqweFJGjdH5bwhylxL2-nhxJ0zol2deYLVTjvuGtdKfk9YuLQY8a87SBNaBqEcBV2xbpE836KU8PKVFmE-A1nv6vTBMHfAfi-0d5oY8i3Y8JLyJmdY7F5Y7Of-TUP93UISLROhfy2QwlbjV_CpVnuwYn1_zk19hgrylOJUISwQ5EbYAOEhSw04qjMcAssB6DUAUzRDaTz-Bfh21hx669VU2Rd30v2amkoiCXvYRgVxQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-colors"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="text-white font-h2 text-h2 mb-2">Designer Fashion</h3>
+<p class="text-white/80 font-body-sm tracking-wide">Elevated Seasonal Aesthetics</p>
+</div>
+</div>
+<!-- Small Cards -->
+<div class="relative group overflow-hidden rounded-2xl shadow-sm cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAIAT-08vaY55E-yoNzeHtU6vtLBGMza60UONOeOr6TdD51tYAlJEd-C-L-XIwAxxCdf_FfpvuKOt-CWdnA-YeMIQ-v8mrjQ-n64ZHSeKmOK9gxUG9cz2spWWtHsbUH9nW_mw0vrWJXBx8hA_SH2pieupeg64ymxcqYlSNHVsjMtowxrUIvylXcGx_TN5sEe3ALC86sf-KM0CTaSvtfu9izFicbmbJYXRVCgND73K0SD9Q5SOYN5QfmiA')"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute bottom-6 left-6">
+<h4 class="text-white font-h4 text-h4">Electronics</h4>
+</div>
+</div>
+<div class="relative group overflow-hidden rounded-2xl shadow-sm cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCE3sWRuBOeVocEDDL2_zF-a7kJ2nHGrCwyFmyNXd4bPghqVcTTU0sZpVcB2DBjGkdR8AgBpflJdfSfLL6JnE7LHIc3gay9NSHpGNBujnydizhBvrxvUdJ08BF41lv2DswwCkCmsN_22jUhuHEeIx7fJC3A-3b99ZrFSotHMFWazAPJmX3oddJ8FnMBAK-YaXGCVRHMzP4iBWVIvCEGuSXK5Ag-4z7c9spoFCa3RgNJl5OFpYKllIOvsg')"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute bottom-6 left-6">
+<h4 class="text-white font-h4 text-h4">Home &amp; Living</h4>
+</div>
+</div>
+<!-- Wide Card -->
+<div class="md:col-span-2 relative group overflow-hidden rounded-2xl shadow-sm cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC2Md7mhkC0fiJEaFJCmo0saaAfG8kriSAZ2cdTqk1fV8dX26iWOC-DvAIymo5tuWWmSlwjG0KV7i1LN1YYU1l-S7hGUvIwDv_0VWc3AnKFIIQ-ezQ5kyWeVw0avhTPMk-vSs6hBjNJbdxaX-AcWQUx5UDdX9iFF3RP14xLVc0IeeKZIota6N4UaF_o-2AJRL0BBVpjtOELIovi5cA6eJzvnALhq5LQvQcrYmkX47pgrmeY3-02wH2a2A')"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+<div class="absolute bottom-6 left-6">
+<h4 class="text-white font-h4 text-h4">Beauty &amp; Grooming</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Brands -->
+<section class="bg-surface-container-low py-16 overflow-hidden border-y border-outline-variant/30">
+<div class="max-w-max-width mx-auto px-gutter mb-10">
+<p class="font-button text-[10px] text-secondary/70 uppercase tracking-[0.3em] text-center">World-Class Luxury Partners</p>
+</div>
+<div class="flex items-center justify-between gap-12 px-gutter max-w-max-width mx-auto opacity-50 hover:opacity-100 transition-opacity">
+<div class="h-10 px-6 flex items-center justify-center font-extrabold text-xl tracking-tighter text-on-surface">LUMIÈRE</div>
+<div class="h-10 px-6 flex items-center justify-center font-extrabold text-xl tracking-tighter text-on-surface">AETERNA</div>
+<div class="h-10 px-6 flex items-center justify-center font-extrabold text-xl tracking-tighter text-on-surface">NORDIC</div>
+<div class="h-10 px-6 flex items-center justify-center font-extrabold text-xl tracking-tighter text-on-surface">ELEVATE</div>
+<div class="h-10 px-6 flex items-center justify-center font-extrabold text-xl tracking-tighter text-on-surface">VANTAGE</div>
+<div class="h-10 px-6 flex items-center justify-center font-extrabold text-xl tracking-tighter text-on-surface">MODERN</div>
+</div>
+</section>
+<!-- Trending Products -->
+<section class="py-2xl max-w-max-width mx-auto px-gutter">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface">Trending Now</h2>
+<p class="text-on-surface-variant font-body-md mt-2">The most sought-after pieces of the season.</p>
+</div>
+<div class="flex gap-3">
+<button class="w-12 h-12 flex items-center justify-center border border-outline/30 rounded-full hover:bg-surface-container-high transition-all"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline/30 rounded-full hover:bg-surface-container-high transition-all"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<script>
+                const products = [
+                    { name: "Urban Shell Parka", price: "$249.00", rating: "4.8", tag: "New Arrival", img: "High-end technical parka" },
+                    { name: "Solis Smart Watch", price: "$399.00", rating: "4.9", tag: "Hot", img: "Titanium smart watch" },
+                    { name: "Linear Desk Lamp", price: "$120.00", rating: "4.7", tag: "", img: "Architectural lamp" },
+                    { name: "Vanguard Tote", price: "$180.00", rating: "4.6", tag: "Limited", img: "Designer leather tote" },
+                    { name: "Azure Wireless Buds", price: "$159.00", rating: "4.8", tag: "", img: "Deep navy earbuds" },
+                    { name: "Merino Wool Knit", price: "$135.00", rating: "4.7", tag: "Sale", img: "Texture wool sweater" },
+                    { name: "Era Canvas Sneaker", price: "$95.00", rating: "4.5", tag: "", img: "White canvas sneakers" },
+                    { name: "Horizon Glass Vase", price: "$75.00", rating: "4.9", tag: "Exclusive", img: "Frosted glass vase" }
+                ];
+
+                document.write(products.map(p => `
+                    <div class="product-card group relative bg-surface-container-lowest rounded-xl overflow-hidden border border-transparent hover:border-outline-variant/30 transition-all duration-500">
+                        <div class="aspect-[4/5] overflow-hidden relative bg-surface-container-low">
+                            <div class="w-full h-full bg-slate-200 animate-pulse group-hover:scale-110 transition-transform duration-700"></div>
+                            <div class="absolute inset-0 bg-on-surface/5 group-hover:bg-transparent transition-colors"></div>
+                            ${p.tag ? `<span class="absolute top-4 left-4 z-10 ${p.tag === 'Sale' ? 'bg-error' : 'bg-primary'} text-on-primary text-[10px] font-button uppercase tracking-widest px-3 py-1 rounded-sm shadow-md">${p.tag}</span>` : ''}
+                            
+                            <div class="quick-add absolute bottom-0 inset-x-0 p-4 translate-y-full opacity-0 transition-all duration-300 z-20">
+                                <button class="w-full py-3 bg-white text-on-surface font-button uppercase text-[12px] rounded-lg shadow-xl hover:bg-primary hover:text-white transition-all active:scale-95">Add To Bag</button>
+                            </div>
+                            
+                            <button class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm text-on-surface-variant hover:text-error transition-all shadow-sm opacity-0 group-hover:opacity-100">
+                                <span class="material-symbols-outlined text-[20px]">favorite</span>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start gap-4 mb-2">
+                                <h4 class="font-h4 text-[16px] text-on-surface leading-snug group-hover:text-primary transition-colors">${p.name}</h4>
+                                <div class="flex items-center gap-1 text-primary shrink-0">
+                                    <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1">star</span>
+                                    <span class="text-[12px] font-bold">${p.rating}</span>
+                                </div>
+                            </div>
+                            <p class="font-h3 text-[18px] text-on-surface font-black tracking-tight">${p.price}</p>
+                            <p class="text-[12px] text-on-surface-variant mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Quick View</p>
+                        </div>
+                    </div>
+                `).join(''));
+            </script>
+</div>
+</section>
+<!-- Promotional Banner -->
+<section class="py-16">
+<div class="max-w-max-width mx-auto px-gutter">
+<div class="relative w-full h-[450px] rounded-3xl overflow-hidden bg-primary-container flex items-center shadow-2xl shadow-primary/10">
+<div class="absolute inset-0 bg-cover bg-right" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_htnZJpUbvHJRut8tVVgDipDJym4j88AqIHgH1HZ7nk6MLvc8op-An8jZ-Ri25B5WiBTqrAKDTx10Zy-JCzUiu2CWkMkyTJL1_3xd-Su9GV5CSHcwd18W72XCblESpzmEWXXjU7c7tycNL9-hhOxcjHzJ5Yi_olPL-Ee5B7R5VYWdNptdlTCfkxws8zBoOJKlr-KMG4l5xfXAt1MWfyLwTfK3o2PMsT_43nIW0HXtgon-oOW8fDZckg')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/90 to-transparent"></div>
+<div class="relative z-10 px-16 max-w-2xl">
+<span class="text-on-primary-container/70 font-button uppercase text-[11px] tracking-widest mb-4 block">Limited Time Exclusive</span>
+<h2 class="font-h1-desktop text-h1-desktop text-on-primary-container mb-6">Summer Refresh</h2>
+<p class="font-h3 text-h3 text-on-primary-container/90 mb-10 leading-relaxed">Enjoy <span class="text-white font-black underline">20% OFF</span> our entire premiere collection. Elevate your season today.</p>
+<div class="flex items-center gap-8">
+<button class="px-10 py-4 bg-on-primary-container text-primary-container font-button uppercase rounded-xl hover:bg-white transition-all shadow-lg active:scale-95">Claim Discount</button>
+<div class="flex flex-col">
+<p class="text-on-primary-container/60 font-caption uppercase text-[10px] tracking-widest">Use Code</p>
+<p class="text-on-primary-container font-h4 text-xl tracking-tighter">NEXA20</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Benefits Section -->
+<section class="py-2xl bg-surface-container-lowest">
+<div class="max-w-max-width mx-auto px-gutter">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="flex flex-col items-center text-center p-10 bg-surface-container-low rounded-2xl group hover:bg-primary transition-all duration-500 hover:-translate-y-2">
+<span class="material-symbols-outlined text-[48px] text-primary mb-6 group-hover:text-on-primary transition-colors">local_shipping</span>
+<h4 class="font-h4 text-h4 mb-3 group-hover:text-on-primary transition-colors">Free Shipping</h4>
+<p class="text-on-surface-variant group-hover:text-on-primary/70 transition-colors font-body-sm px-4">Complimentary express shipping on orders over $100.</p>
+</div>
+<div class="flex flex-col items-center text-center p-10 bg-surface-container-low rounded-2xl group hover:bg-primary transition-all duration-500 hover:-translate-y-2">
+<span class="material-symbols-outlined text-[48px] text-primary mb-6 group-hover:text-on-primary transition-colors">support_agent</span>
+<h4 class="font-h4 text-h4 mb-3 group-hover:text-on-primary transition-colors">Concierge Care</h4>
+<p class="text-on-surface-variant group-hover:text-on-primary/70 transition-colors font-body-sm px-4">24/7 dedicated support for our premium clientele.</p>
+</div>
+<div class="flex flex-col items-center text-center p-10 bg-surface-container-low rounded-2xl group hover:bg-primary transition-all duration-500 hover:-translate-y-2">
+<span class="material-symbols-outlined text-[48px] text-primary mb-6 group-hover:text-on-primary transition-colors">verified_user</span>
+<h4 class="font-h4 text-h4 mb-3 group-hover:text-on-primary transition-colors">Secure Checkout</h4>
+<p class="text-on-surface-variant group-hover:text-on-primary/70 transition-colors font-body-sm px-4">Military-grade encryption for total transaction peace of mind.</p>
+</div>
+<div class="flex flex-col items-center text-center p-10 bg-surface-container-low rounded-2xl group hover:bg-primary transition-all duration-500 hover:-translate-y-2">
+<span class="material-symbols-outlined text-[48px] text-primary mb-6 group-hover:text-on-primary transition-colors">rebase_edit</span>
+<h4 class="font-h4 text-h4 mb-3 group-hover:text-on-primary transition-colors">Simple Returns</h4>
+<p class="text-on-surface-variant group-hover:text-on-primary/70 transition-colors font-body-sm px-4">Hassle-free 30-day return window on all purchases.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="py-2xl border-t border-outline-variant/20 bg-surface">
+<div class="max-w-max-width mx-auto px-gutter">
+<div class="bg-on-surface text-surface rounded-3xl p-16 flex flex-col xl:flex-row items-center justify-between gap-12 relative overflow-hidden shadow-2xl">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
+<div class="max-w-xl relative z-10">
+<h2 class="font-h1-desktop text-4xl mb-6">Stay Ahead of the Curve</h2>
+<p class="text-surface-variant/80 font-body-md text-lg leading-relaxed">Join our inner circle for priority access to new launches, private sales, and curated lifestyle editorials.</p>
+</div>
+<form class="w-full max-w-lg flex gap-3 relative z-10">
+<input class="flex-1 bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-surface focus:ring-2 focus:ring-primary focus:bg-white/10 outline-none transition-all placeholder:text-surface-variant/40" placeholder="Your email address" type="email"/>
+<button class="px-10 py-4 bg-primary text-on-primary font-button uppercase text-[12px] rounded-xl hover:bg-primary/90 transition-all shadow-lg active:scale-95" type="submit">Join Now</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest w-full pt-20 pb-10 border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 px-gutter max-w-max-width mx-auto">
+<div class="flex flex-col gap-6">
+<h4 class="font-h3 text-h3 font-black text-primary tracking-tighter">Nexa Store</h4>
+<p class="text-on-surface-variant font-body-sm leading-relaxed max-w-xs">The global destination for refined fashion and avant-garde technology essentials since 2018.</p>
+<div class="flex gap-4 mt-4">
+<a class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-outline-variant/40 text-on-surface-variant hover:text-primary hover:border-primary transition-all" href="#"><span class="material-symbols-outlined text-[20px]">public</span></a>
+<a class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-outline-variant/40 text-on-surface-variant hover:text-primary hover:border-primary transition-all" href="#"><span class="material-symbols-outlined text-[20px]">alternate_email</span></a>
+<a class="w-11 h-11 flex items-center justify-center rounded-full bg-white border border-outline-variant/40 text-on-surface-variant hover:text-primary hover:border-primary transition-all" href="#"><span class="material-symbols-outlined text-[20px]">video_library</span></a>
+</div>
+</div>
+<div>
+<h5 class="font-button text-[11px] uppercase tracking-[0.2em] mb-8 text-on-surface font-black">Shop Departments</h5>
+<ul class="flex flex-col gap-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">New Arrivals</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Seasonal Bestsellers</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Accessories</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Digital Gift Cards</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-button text-[11px] uppercase tracking-[0.2em] mb-8 text-on-surface font-black">Client Services</h5>
+<ul class="flex flex-col gap-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Contact Specialist</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Shipping &amp; Deliveries</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Returns &amp; Exchanges</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Track My Order</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-button text-[11px] uppercase tracking-[0.2em] mb-8 text-on-surface font-black">Corporate</h5>
+<ul class="flex flex-col gap-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Our Philosophy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Ethical Sustainability</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Terms of Service</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-sm" href="#">Careers</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-max-width mx-auto px-gutter mt-20 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="font-body-sm text-on-surface-variant/60">© 2024 Nexa Store International. All rights reserved.</p>
+<div class="flex gap-10 items-center opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined">payments</span>
+<span class="material-symbols-outlined">credit_card</span>
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+</div>
+</footer>
+<script>
+    // Interactive Navbar highlight on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('h-16', 'shadow-lg');
+            header.querySelector('nav').classList.replace('gap-xl', 'gap-lg');
+        } else {
+            header.classList.remove('h-16', 'shadow-lg');
+            header.querySelector('nav').classList.replace('gap-lg', 'gap-xl');
+        }
+    });
+</script>
+</body></html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add Shipping Address | Nexa Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#943700",
+                    "surface-dim": "#d9d9e5",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-background": "#191b23",
+                    "secondary": "#565e74",
+                    "on-primary-fixed": "#00174b",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "surface-container-low": "#f3f3fe",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "inverse-on-surface": "#f0f0fb",
+                    "outline": "#737686",
+                    "on-secondary-container": "#5c647a",
+                    "surface-variant": "#e1e2ed",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#dae2fd",
+                    "on-secondary-fixed": "#131b2e",
+                    "surface-container-highest": "#e1e2ed",
+                    "background": "#faf8ff",
+                    "on-tertiary-fixed": "#360f00",
+                    "surface": "#faf8ff",
+                    "primary-container": "#2563eb",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "outline-variant": "#c3c6d7",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-container-high": "#e7e7f3",
+                    "primary-fixed": "#dbe1ff",
+                    "on-surface": "#191b23",
+                    "on-surface-variant": "#434655",
+                    "surface-tint": "#0053db",
+                    "on-tertiary-container": "#ffede6",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "surface-container": "#ededf9",
+                    "secondary-container": "#dae2fd",
+                    "inverse-surface": "#2e3039",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#eeefff",
+                    "error-container": "#ffdad6",
+                    "primary": "#004ac6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "2xl": "80px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "max-width": "1280px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xl": "48px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "h2": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "h1-desktop": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h4": ["Inter"],
+                    "h3": ["Inter"],
+                    "button": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf8ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .form-input-ring:focus {
+            box-shadow: 0 0 0 2px #004ac6;
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="sticky top-0 z-50 flex justify-between items-center px-lg py-sm max-w-max-width mx-auto bg-surface shadow-sm">
+<div class="font-h3 text-h3 font-bold text-primary">Nexa Store</div>
+<div class="flex items-center gap-md">
+<button class="cursor-pointer active:opacity-80 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="min-h-[calc(100vh-140px)] flex items-center justify-center py-2xl px-md">
+<div class="max-w-[640px] w-full bg-surface-container-lowest rounded-xl shadow-lg p-xl border border-outline-variant/30">
+<!-- Header Section -->
+<div class="mb-xl text-center md:text-left">
+<h1 class="font-h2 text-h2 text-on-surface mb-xs">Shipping Details</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Please provide a valid shipping address to ensure smooth delivery of your order.</p>
+</div>
+<!-- Address Form -->
+<form action="#" class="space-y-lg" method="POST">
+<!-- Full Name -->
+<div class="flex flex-col gap-xs">
+<label class="font-button text-button text-on-surface-variant" for="full_name">Full Name</label>
+<input class="w-full h-12 px-md bg-surface-container-low border-1.5 border-outline-variant rounded-lg font-body-md text-body-md form-input-ring transition-all outline-none" id="full_name" name="full_name" placeholder="Johnathan Doe" required="" type="text"/>
+</div>
+<!-- Street Address -->
+<div class="flex flex-col gap-xs">
+<label class="font-button text-button text-on-surface-variant" for="street">Street Address</label>
+<input class="w-full h-12 px-md bg-surface-container-low border-1.5 border-outline-variant rounded-lg font-body-md text-body-md form-input-ring transition-all outline-none" id="street" name="street" placeholder="123 Commerce Avenue" required="" type="text"/>
+</div>
+<!-- City & State -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-button text-button text-on-surface-variant" for="city">City</label>
+<input class="w-full h-12 px-md bg-surface-container-low border-1.5 border-outline-variant rounded-lg font-body-md text-body-md form-input-ring transition-all outline-none" id="city" name="city" placeholder="New York" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-button text-button text-on-surface-variant" for="state">State / Province</label>
+<select class="w-full h-12 px-md bg-surface-container-low border-1.5 border-outline-variant rounded-lg font-body-md text-body-md form-input-ring transition-all outline-none appearance-none" id="state" name="state" required="">
+<option disabled="" selected="" value="">Select State</option>
+<option value="NY">New York</option>
+<option value="CA">California</option>
+<option value="TX">Texas</option>
+<option value="FL">Florida</option>
+</select>
+</div>
+</div>
+<!-- Zip Code & Phone -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-button text-button text-on-surface-variant" for="zip">Zip Code</label>
+<input class="w-full h-12 px-md bg-surface-container-low border-1.5 border-outline-variant rounded-lg font-body-md text-body-md form-input-ring transition-all outline-none" id="zip" name="zip" placeholder="10001" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-button text-button text-on-surface-variant" for="phone">Phone Number</label>
+<input class="w-full h-12 px-md bg-surface-container-low border-1.5 border-outline-variant rounded-lg font-body-md text-body-md form-input-ring transition-all outline-none" id="phone" name="phone" placeholder="+1 (555) 000-0000" required="" type="tel"/>
+</div>
+</div>
+<!-- Set as Default -->
+<div class="flex items-center gap-md py-xs">
+<label class="relative flex items-center cursor-pointer group">
+<input class="peer sr-only" id="default_address" name="default_address" type="checkbox"/>
+<div class="w-6 h-6 border-2 border-outline-variant rounded-md peer-checked:bg-primary peer-checked:border-primary transition-all flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm opacity-0 peer-checked:opacity-100" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="ml-3 font-body-md text-body-md text-on-surface select-none">Set as default shipping address</span>
+</label>
+</div>
+<!-- Form Actions -->
+<div class="flex flex-col md:flex-row items-center gap-md pt-lg">
+<button class="w-full md:w-auto px-xl h-12 bg-primary text-on-primary font-button text-button rounded-lg hover:bg-on-primary-fixed-variant transition-all active:scale-[0.98] shadow-sm" type="submit">
+                        Save &amp; Continue
+                    </button>
+<a class="w-full md:w-auto text-center font-button text-button text-secondary hover:text-primary transition-colors cursor-pointer active:opacity-80 px-md py-2" href="#">
+                        Cancel
+                    </a>
+</div>
+</form>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg flex flex-col items-center gap-md bg-surface-container-low border-t border-outline-variant">
+<div class="font-h4 text-h4 text-on-surface">Nexa Store</div>
+<div class="flex gap-lg flex-wrap justify-center">
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+<p class="font-caption text-caption text-secondary">© 2024 Nexa Store. All rights reserved. Secure Checkout.</p>
+</footer>
+<!-- Mobile Bottom Navigation (Hidden on Desktop) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-lg">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="font-caption text-caption">Shop</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-caption text-caption">Cart</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-caption text-caption">Saved</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-caption text-caption">Account</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for form inputs
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label').style.color = '#004ac6';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('label').style.color = '';
+            });
+        });
+
+        // Form submission prevention for demo purposes
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log('Form data ready for processing');
+            // Logic for "Save & Continue" would go here
+        });
+    </script>
+</body></html>

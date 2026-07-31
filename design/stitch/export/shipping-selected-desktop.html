@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexa Store - Shipping Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#943700",
+                    "surface-dim": "#d9d9e5",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-background": "#191b23",
+                    "secondary": "#565e74",
+                    "on-primary-fixed": "#00174b",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "surface-container-low": "#f3f3fe",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "inverse-on-surface": "#f0f0fb",
+                    "outline": "#737686",
+                    "on-secondary-container": "#5c647a",
+                    "surface-variant": "#e1e2ed",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#dae2fd",
+                    "on-secondary-fixed": "#131b2e",
+                    "surface-container-highest": "#e1e2ed",
+                    "background": "#faf8ff",
+                    "on-tertiary-fixed": "#360f00",
+                    "surface": "#faf8ff",
+                    "primary-container": "#2563eb",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "outline-variant": "#c3c6d7",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-container-high": "#e7e7f3",
+                    "primary-fixed": "#dbe1ff",
+                    "on-surface": "#191b23",
+                    "on-surface-variant": "#434655",
+                    "surface-tint": "#0053db",
+                    "on-tertiary-container": "#ffede6",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "surface-container": "#ededf9",
+                    "secondary-container": "#dae2fd",
+                    "inverse-surface": "#2e3039",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#eeefff",
+                    "error-container": "#ffdad6",
+                    "primary": "#004ac6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "2xl": "80px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "max-width": "1280px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xl": "48px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "h2": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "h1-desktop": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h4": ["Inter"],
+                    "h3": ["Inter"],
+                    "button": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .stepper-line {
+            height: 2px;
+            flex-grow: 1;
+            background-color: theme('colors.outline-variant');
+        }
+        .stepper-line.active {
+            background-color: theme('colors.primary');
+        }
+        .address-card:hover .action-links {
+            opacity: 1;
+        }
+        @media (min-width: 768px) {
+            .action-links { opacity: 0; transition: opacity 0.2s ease; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md flex flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-lg py-sm max-w-max-width mx-auto bg-surface shadow-sm w-full">
+<div class="font-h3 text-h3 font-bold text-primary">Nexa Store</div>
+<div class="flex items-center gap-md">
+<button class="cursor-pointer active:opacity-80 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">lock</span>
+</button>
+</div>
+</header>
+<main class="flex-grow max-w-max-width mx-auto w-full px-md md:px-lg py-xl">
+<!-- Checkout Stepper -->
+<div class="max-w-3xl mx-auto mb-2xl">
+<div class="flex items-center justify-between">
+<!-- Step 1: Cart -->
+<div class="flex flex-col items-center gap-xs">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-caption text-caption text-secondary">Cart</span>
+</div>
+<div class="stepper-line active mx-4"></div>
+<!-- Step 2: Shipping -->
+<div class="flex flex-col items-center gap-xs">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-button ring-4 ring-primary-fixed">
+                        2
+                    </div>
+<span class="font-caption text-caption text-primary font-bold">Shipping</span>
+</div>
+<div class="stepper-line mx-4"></div>
+<!-- Step 3: Payment -->
+<div class="flex flex-col items-center gap-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-outline flex items-center justify-center font-button">
+                        3
+                    </div>
+<span class="font-caption text-caption text-outline">Payment</span>
+</div>
+</div>
+</div>
+<!-- Section Title -->
+<div class="mb-lg">
+<h1 class="font-h2 text-h2 text-on-surface mb-xs">Select Shipping Address</h1>
+<p class="font-body-md text-secondary">Choose where you'd like your order to be delivered.</p>
+</div>
+<!-- Address Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Add New Address Button (Dashed) -->
+<button class="flex flex-col items-center justify-center gap-md border-2 border-dashed border-outline-variant rounded-xl p-xl bg-surface-container-low hover:bg-surface-container hover:border-primary transition-all group min-h-[240px]">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary">add</span>
+</div>
+<span class="font-button text-button text-on-surface-variant group-hover:text-primary">Add New Address</span>
+</button>
+<!-- Address Card 1 (Default/Selected) -->
+<div class="address-card relative border-2 border-primary rounded-xl p-lg bg-surface shadow-md flex flex-col justify-between min-h-[240px]">
+<div>
+<div class="flex justify-between items-start mb-md">
+<span class="bg-primary-container text-on-primary-container font-caption text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">Default</span>
+<div class="action-links flex gap-md">
+<button class="text-primary hover:underline font-button text-caption transition-colors">Edit</button>
+<button class="text-error hover:underline font-button text-caption transition-colors">Delete</button>
+</div>
+</div>
+<h3 class="font-h4 text-h4 text-on-surface mb-xs">Alex Thompson</h3>
+<p class="font-body-sm text-on-surface-variant">
+                        4820 Highland Avenue<br/>
+                        Apt 4B, Manhattan<br/>
+                        New York, NY 10012<br/>
+                        United States
+                    </p>
+<p class="font-body-sm text-on-surface-variant mt-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                        +1 (555) 012-3456
+                    </p>
+</div>
+<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-button hover:bg-on-primary-fixed-variant active:scale-[0.98] transition-all mt-lg">
+                    Deliver Here
+                </button>
+</div>
+<!-- Address Card 2 -->
+<div class="address-card relative border border-outline-variant rounded-xl p-lg bg-surface hover:shadow-lg transition-all flex flex-col justify-between min-h-[240px]">
+<div>
+<div class="flex justify-end items-start mb-md">
+<div class="action-links flex gap-md">
+<button class="text-primary hover:underline font-button text-caption transition-colors">Edit</button>
+<button class="text-error hover:underline font-button text-caption transition-colors">Delete</button>
+</div>
+</div>
+<h3 class="font-h4 text-h4 text-on-surface mb-xs">Work - Alex T.</h3>
+<p class="font-body-sm text-on-surface-variant">
+                        Nexa Corp HQ, Suite 900<br/>
+                        1200 Innovation Drive<br/>
+                        San Francisco, CA 94105<br/>
+                        United States
+                    </p>
+<p class="font-body-sm text-on-surface-variant mt-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                        +1 (555) 987-6543
+                    </p>
+</div>
+<button class="w-full bg-secondary text-on-secondary py-sm rounded-lg font-button hover:bg-on-secondary-fixed transition-all mt-lg">
+                    Deliver Here
+                </button>
+</div>
+<!-- Address Card 3 -->
+<div class="address-card relative border border-outline-variant rounded-xl p-lg bg-surface hover:shadow-lg transition-all flex flex-col justify-between min-h-[240px]">
+<div>
+<div class="flex justify-end items-start mb-md">
+<div class="action-links flex gap-md">
+<button class="text-primary hover:underline font-button text-caption transition-colors">Edit</button>
+<button class="text-error hover:underline font-button text-caption transition-colors">Delete</button>
+</div>
+</div>
+<h3 class="font-h4 text-h4 text-on-surface mb-xs">Sarah Jenkins (Gift)</h3>
+<p class="font-body-sm text-on-surface-variant">
+                        892 Pinecrest Road<br/>
+                        Seattle, WA 98101<br/>
+                        United States
+                    </p>
+<p class="font-body-sm text-on-surface-variant mt-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                        +1 (555) 444-2211
+                    </p>
+</div>
+<button class="w-full bg-secondary text-on-secondary py-sm rounded-lg font-button hover:bg-on-secondary-fixed transition-all mt-lg">
+                    Deliver Here
+                </button>
+</div>
+</div>
+<!-- Decorative Spacer -->
+<div class="h-2xl"></div>
+<!-- Delivery Map Preview (Bento Component) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<div class="lg:col-span-2 rounded-2xl overflow-hidden bg-surface-variant relative h-80 shadow-sm border border-outline-variant">
+<div class="absolute inset-0 z-0 bg-cover bg-center opacity-60 grayscale hover:grayscale-0 transition-all duration-700" data-alt="A sophisticated, high-contrast overhead satellite map view of New York City streets in a light mode aesthetic. The map features clean white roads against subtle pale gray buildings, with primary blue pins highlighting key locations. The style is professional and minimalist, emphasizing geometric precision and urban architectural planning. Soft natural light illuminates the scene, giving it a premium architectural rendering feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7CcBn8V-4g-8468d85J9793medhJr17e3P5dWRdaQ4JWmruVPh0RNwSIsz8wb7MzMnJkWIL9ySG0AGIvIAjwhfh4vBihi8_1HQnURa-R0cIr1ABqNBp4G45NpiVK37eP39ERhCNClYCdSFhX7MxlChIOFq-EnhKh1oLHoQxwls4ssigKxDNFRQQ_asujGmnuScLv-hrX_G58LGz6vQbz9JeDk9PfFt252h920nHh6RVvihLJfXPV-7Q')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim/80 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-lg left-lg right-lg flex justify-between items-end">
+<div class="bg-surface/90 backdrop-blur-md p-md rounded-xl border border-outline-variant">
+<h4 class="font-h4 text-h4 text-on-surface">Coverage Zone</h4>
+<p class="font-caption text-secondary">Available for 1-hour express delivery in your area.</p>
+</div>
+<div class="flex gap-sm">
+<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+<span class="material-symbols-outlined">my_location</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant flex flex-col justify-center">
+<div class="flex items-center gap-md mb-lg">
+<div class="w-12 h-12 bg-tertiary-fixed text-tertiary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">local_shipping</span>
+</div>
+<div>
+<h4 class="font-h4 text-h4">Secure Shipping</h4>
+<p class="font-caption text-secondary">Real-time GPS tracking</p>
+</div>
+</div>
+<ul class="space-y-md">
+<li class="flex gap-md">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="font-body-sm text-on-surface-variant">Standard Delivery: 2-3 Business Days (Free)</span>
+</li>
+<li class="flex gap-md">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<span class="font-body-sm text-on-surface-variant">Express Delivery: Within 24 hours ($12.99)</span>
+</li>
+<li class="flex gap-md">
+<span class="material-symbols-outlined text-primary">box</span>
+<span class="font-body-sm text-on-surface-variant">Signature required for high-value items</span>
+</li>
+</ul>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg flex flex-col items-center gap-md bg-surface-container-low border-t border-outline-variant">
+<div class="font-h4 text-h4 text-on-surface">Nexa Store</div>
+<div class="flex gap-lg flex-wrap justify-center">
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+<p class="font-caption text-caption text-secondary text-center">© 2024 Nexa Store. All rights reserved. Secure Checkout.</p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-[0_-2px_4px_rgba(15,23,42,0.05)] border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-caption text-caption">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-caption text-caption">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-caption text-caption">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-caption text-caption">Account</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for Deliver Here buttons
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.innerText === 'Deliver Here') {
+                btn.addEventListener('click', function() {
+                    this.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined animate-spin">progress_activity</span> Processing...</span>';
+                    this.disabled = true;
+                    setTimeout(() => {
+                        this.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined">check</span> Confirmed</span>';
+                        this.classList.replace('bg-primary', 'bg-tertiary-container');
+                        this.classList.replace('bg-secondary', 'bg-tertiary-container');
+                    }, 1000);
+                });
+            }
+        });
+    </script>
+</body></html>

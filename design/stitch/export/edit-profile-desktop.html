@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Profile | Nexa Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f3f3fe",
+                    "surface-container": "#ededf9",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface": "#faf8ff",
+                    "primary-container": "#2563eb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "inverse-surface": "#2e3039",
+                    "surface-variant": "#e1e2ed",
+                    "on-surface-variant": "#434655",
+                    "primary": "#004ac6",
+                    "background": "#faf8ff",
+                    "outline-variant": "#c3c6d7",
+                    "secondary-container": "#dae2fd",
+                    "outline": "#737686",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#dbe1ff",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "surface-bright": "#faf8ff",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#dae2fd",
+                    "inverse-on-surface": "#f0f0fb",
+                    "surface-container-highest": "#e1e2ed",
+                    "on-tertiary-container": "#ffede6",
+                    "tertiary": "#943700",
+                    "surface-container-high": "#e7e7f3",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "surface-tint": "#0053db",
+                    "surface-dim": "#d9d9e5",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#565e74",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-primary-container": "#eeefff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-surface": "#191b23",
+                    "on-secondary-container": "#5c647a",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "on-background": "#191b23"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "2xl": "80px",
+                    "md": "16px",
+                    "xl": "48px",
+                    "unit": "4px",
+                    "max-width": "1280px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "margin-desktop": "40px",
+                    "xs": "4px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "h3": ["Inter"],
+                    "caption": ["Inter"],
+                    "h4": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "button": ["Inter"],
+                    "h2": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h1-desktop": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #faf8ff;
+            color: #191b23;
+            -webkit-font-smoothing: antialiased;
+        }
+        .bento-card {
+            background: #ffffff;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05);
+        }
+        .bento-card:hover {
+            box-shadow: 0 10px 15px rgba(15, 23, 42, 0.1);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar Shell -->
+<nav class="sticky top-0 z-50 flex justify-between items-center px-margin-desktop max-w-max-width mx-auto w-full h-20 bg-surface dark:bg-inverse-surface shadow-sm">
+<div class="flex items-center gap-xl">
+<span class="font-h3 text-h3 font-bold text-primary dark:text-inverse-primary tracking-tight">Nexa Store</span>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Shop</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Categories</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Sale</a>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="material-symbols-outlined text-primary p-xs hover:opacity-80 transition-opacity active:scale-95">search</button>
+<button class="material-symbols-outlined text-primary p-xs hover:opacity-80 transition-opacity active:scale-95">shopping_bag</button>
+<button class="material-symbols-outlined text-primary p-xs hover:opacity-80 transition-opacity active:scale-95">person</button>
+</div>
+</nav>
+<div class="max-w-max-width mx-auto flex min-h-[calc(100vh-80px)]">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-20 bottom-0 p-lg space-y-md h-screen w-64 hidden lg:flex flex-col bg-surface-container-lowest dark:bg-surface-container-low shadow-sm">
+<div class="mb-xl px-sm">
+<div class="flex items-center gap-md mb-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young adult with a friendly expression, set against a clean, soft-lit studio background. The lighting is bright and airy, reflecting a premium modern lifestyle aesthetic. The color palette consists of soft neutrals and cool blues that align with the Nexa Store brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHFMDXqdJ7H1fhyo2ChCzoOGnIwNGJIO2EwkPW3tWqLnLEumkSslfQhonHGLeJKcoXC0dTg3e-H5CL6nb_INzXnyYlwhvria-ggFpxfKDDiTX7XzxkMHbfhp3sM1Wt2NCs1PjJvjPH5nVpCV1EQmscqE4IElcVRCo8vSRGDKDwpWU4owWHhYg3yMU9cVP9zQWh1faDc97aNfnNMtWExQgWhzhgqu0hWVTC2PZEdHlFmkrcG7hPCD8YbA"/>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-semibold text-on-surface">Welcome back, Alex</p>
+<p class="font-caption text-caption text-on-surface-variant">Premium Member</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm text-body-sm">Overview</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">package</span>
+<span class="font-body-sm text-body-sm">Orders</span>
+</a>
+<a class="flex items-center gap-md p-md bg-secondary-container text-on-secondary-container font-semibold rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-body-sm text-body-sm">Profile</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-body-sm text-body-sm">Addresses</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-body-sm text-body-sm">Wishlist</span>
+</a>
+</nav>
+<div class="pt-lg border-t border-outline-variant">
+<button class="w-full text-left flex items-center gap-md p-md text-error hover:bg-error-container rounded-lg transition-all duration-200">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-sm text-body-sm">Log Out</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 lg:ml-64 px-margin-mobile md:px-margin-desktop py-xl">
+<header class="mb-2xl">
+<h1 class="font-h1-desktop text-h1-desktop mb-xs text-on-surface">Edit Profile</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Manage your account information and preferences.</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg items-start">
+<!-- Profile Image Bento Card -->
+<section class="md:col-span-4 bento-card p-xl rounded-xl">
+<div class="flex flex-col items-center text-center">
+<div class="relative group cursor-pointer mb-lg">
+<div class="w-40 h-40 rounded-full overflow-hidden border-4 border-surface-container-high shadow-sm relative">
+<img class="w-full h-full object-cover" data-alt="A close-up studio photograph of a premium member's avatar, featuring a sleek, professional look. The background is a soft, out-of-focus high-end retail interior with subtle blue lighting. The overall mood is sophisticated, clean, and trustworthy, perfectly mirroring a high-end corporate e-commerce visual style." id="profile-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbnhVpBk0xjdHoIWO80iDH6zE5JSivexzLDvMxPwytp7fJTpHX4rK595scGxy1gzf3BE-veF5eYJcgizaMfkNeazbJSMF8TFVl_0iZ8H2E5nu_tPolQZdO3NoGvwj_uRc71jJGhnKKor_Z01TmpyoVhS1TNd8MDKeT8BVonEapAMqTa4-8R92dS0DcgyRwdDiz7BgyggSMon-T-gkI3bEM8e_Le8Yn0_NLNu7nTnsXJut4XPi2JGnGDQ"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity text-white">
+<span class="material-symbols-outlined text-h3 mb-xs">photo_camera</span>
+<span class="font-caption text-caption">Change Photo</span>
+</div>
+</div>
+<button class="absolute bottom-1 right-1 bg-primary text-white p-sm rounded-full shadow-lg transition-transform active:scale-95">
+<span class="material-symbols-outlined text-body-sm">edit</span>
+</button>
+</div>
+<h3 class="font-h4 text-h4 text-on-surface mb-xs">Alex Johnson</h3>
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-widest font-bold">Member Since 2021</p>
+<div class="mt-xl w-full">
+<div class="p-md rounded-lg bg-surface-container-low text-left">
+<p class="font-caption text-caption text-on-secondary-fixed-variant mb-xs">Storage Used</p>
+<div class="h-1.5 w-full bg-outline-variant rounded-full overflow-hidden mb-xs">
+<div class="h-full bg-primary w-[45%]"></div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">450MB of 1GB used</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Profile Form Bento Card -->
+<section class="md:col-span-8 bento-card p-xl rounded-xl">
+<form class="space-y-xl" onsubmit="event.preventDefault();">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
+<div class="space-y-sm">
+<label class="font-button text-button text-on-surface-variant block" for="full_name">Full Name</label>
+<input class="w-full px-md py-sm rounded-lg border-1.5 border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary bg-surface transition-all" id="full_name" placeholder="Enter your full name" type="text" value="Alex Johnson"/>
+</div>
+<div class="space-y-sm">
+<label class="font-button text-button text-on-surface-variant block" for="email">Email Address</label>
+<input class="w-full px-md py-sm rounded-lg border-1.5 border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary bg-surface transition-all" id="email" placeholder="Enter your email" type="email" value="alex.j@example.com"/>
+</div>
+<div class="space-y-sm">
+<label class="font-button text-button text-on-surface-variant block" for="phone">Phone Number</label>
+<input class="w-full px-md py-sm rounded-lg border-1.5 border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary bg-surface transition-all" id="phone" placeholder="Enter phone number" type="tel" value="+1 (555) 123-4567"/>
+</div>
+<div class="space-y-sm">
+<label class="font-button text-button text-on-surface-variant block" for="country">Country</label>
+<select class="w-full px-md py-sm rounded-lg border-1.5 border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary bg-surface transition-all appearance-none" id="country">
+<option>United States</option>
+<option>United Kingdom</option>
+<option>Canada</option>
+<option>Germany</option>
+</select>
+</div>
+</div>
+<div class="space-y-sm pt-md">
+<label class="font-button text-button text-on-surface-variant block">Bio</label>
+<textarea class="w-full px-md py-sm rounded-lg border-1.5 border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary bg-surface transition-all" placeholder="Tell us a little about yourself..." rows="4">Tech enthusiast and premium member at Nexa. Exploring the latest trends in modern design.</textarea>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-lg pt-xl border-t border-outline-variant">
+<a class="text-primary hover:underline font-button text-button transition-colors flex items-center gap-xs" href="#">
+<span class="material-symbols-outlined text-body-sm">lock_reset</span>
+                                Change Password
+                            </a>
+<div class="flex items-center gap-md w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-xl py-sm rounded-lg border-1.5 border-outline text-on-surface font-button text-button hover:bg-surface-container-high transition-colors" type="button">
+                                    Cancel
+                                </button>
+<button class="flex-1 sm:flex-none px-xl py-sm rounded-lg bg-primary text-white font-button text-button hover:opacity-90 active:scale-95 transition-all shadow-sm" type="submit">
+                                    Save Changes
+                                </button>
+</div>
+</div>
+</form>
+</section>
+<!-- Preferences / Security Bento Card -->
+<section class="md:col-span-12 grid grid-cols-1 sm:grid-cols-3 gap-lg">
+<div class="bento-card p-lg rounded-xl flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">notifications_active</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-semibold">Notification Preferences</p>
+<p class="font-caption text-caption text-on-surface-variant">Manage your alerts</p>
+</div>
+</div>
+<div class="bento-card p-lg rounded-xl flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">security</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-semibold">Security Settings</p>
+<p class="font-caption text-caption text-on-surface-variant">2FA and sessions</p>
+</div>
+</div>
+<div class="bento-card p-lg rounded-xl flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-semibold">Payment Methods</p>
+<p class="font-caption text-caption text-on-surface-variant">Visa ending in 4242</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Footer Shell -->
+<footer class="w-full mt-2xl py-xl px-margin-desktop max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-lg bg-surface-container-highest dark:bg-inverse-surface">
+<span class="font-h4 text-h4 font-bold text-primary">Nexa Store</span>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Shipping Info</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contact Us</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Nexa Store. All rights reserved.</p>
+</footer>
+<!-- BottomNavBar Shell (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-margin-mobile bg-surface lg:hidden border-t border-outline-variant shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">package</span>
+<span class="font-caption text-caption">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-caption text-caption">Wishlist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-caption text-caption">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-caption text-caption">Menu</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and Toast logic
+        const saveBtn = document.querySelector('button[type="submit"]');
+        saveBtn.addEventListener('click', (e) => {
+            const originalText = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Saving...';
+            saveBtn.disabled = true;
+            
+            setTimeout(() => {
+                saveBtn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Saved!';
+                saveBtn.classList.remove('bg-primary');
+                saveBtn.classList.add('bg-green-600');
+                
+                setTimeout(() => {
+                    saveBtn.innerHTML = originalText;
+                    saveBtn.classList.remove('bg-green-600');
+                    saveBtn.classList.add('bg-primary');
+                    saveBtn.disabled = false;
+                }, 2000);
+            }, 1200);
+        });
+
+        // Sticky Nav subtle opacity shift on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('backdrop-blur-md', 'bg-surface/90');
+            } else {
+                nav.classList.remove('backdrop-blur-md', 'bg-surface/90');
+            }
+        });
+    </script>
+</body></html>

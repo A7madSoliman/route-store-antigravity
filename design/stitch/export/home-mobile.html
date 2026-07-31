@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Ensure minimum touch target for interactive elements */
+        button, a, input {
+            min-height: 44px;
+            min-width: 44px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed": "#00174b",
+                        "on-surface": "#191b23",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#131b2e",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "secondary": "#565e74",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface-variant": "#434655",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d9d9e5",
+                        "surface-container": "#ededf9",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b4c5ff",
+                        "on-tertiary-container": "#ffede6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface": "#faf8ff",
+                        "surface-container-highest": "#e1e2ed",
+                        "tertiary-fixed": "#ffdbcd",
+                        "inverse-surface": "#2e3039",
+                        "tertiary": "#943700",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-variant": "#e1e2ed",
+                        "outline": "#737686",
+                        "on-background": "#191b23",
+                        "secondary-container": "#dae2fd",
+                        "primary": "#004ac6",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-high": "#e7e7f3",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "tertiary-container": "#bc4800",
+                        "on-primary-container": "#eeefff",
+                        "background": "#faf8ff",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f0f0fb",
+                        "surface-container-low": "#f3f3fe",
+                        "on-secondary-container": "#5c647a",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#dae2fd",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "max-width": "1280px",
+                        "md": "16px",
+                        "2xl": "80px",
+                        "xl": "48px"
+                    },
+                    "fontFamily": {
+                        "h4": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Inter"],
+                        "body-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h2": ["Inter"],
+                        "button": ["Inter"],
+                        "h1-desktop": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface overflow-x-hidden selection:bg-primary/10">
+<!-- Announcement Bar -->
+<div class="bg-primary text-on-primary py-2 px-4 text-center sticky top-0 z-[60]">
+<p class="font-caption text-[11px] font-bold uppercase tracking-wider">Free shipping on orders over $100</p>
+</div>
+<!-- TopNavBar Refined for Mobile -->
+<header class="fixed top-8 w-full z-50 bg-white/95 backdrop-blur-md border-b border-surface-container-highest h-16 flex items-center px-4 justify-between transition-all duration-300" id="mainHeader">
+<div class="flex items-center gap-1">
+<button aria-label="Menu" class="w-11 h-11 flex items-center justify-center -ml-2 active:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+</button>
+<h1 class="font-h3 text-[22px] font-extrabold text-primary tracking-tight">Nexa Store</h1>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Search" class="w-11 h-11 flex items-center justify-center active:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface">search</span>
+</button>
+<div class="relative">
+<button aria-label="Cart" class="w-11 h-11 flex items-center justify-center active:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface">shopping_cart</span>
+<span class="absolute top-1.5 right-1.5 bg-error text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold border-2 border-white">2</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="px-4 mb-10">
+<div class="relative h-[480px] w-full rounded-2xl overflow-hidden shadow-sm">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A high-fashion editorial photograph of a model wearing a premium navy blue coat, standing in a minimalist concrete architectural space with dramatic sunlight. The lighting is crisp and cinematic, casting sharp shadows that emphasize the professional and luxury mood of the Nexa Store brand. The color palette is dominated by deep blues, cool grays, and bright whites." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYh9pxg2hEoWgkKoK76okXO1-N8O-U0BS4gnHBQu9AokUhKDF4opqz3D9YWn83KWAJuclaZ9YIwE2An9YJOaiKFxRN1K_jQ65FVXxN-Rbbjxvjuo80RuM4JN-xQf-sJ252IXOOj9F9Ypz0IpRh293w9jx6SjfYFmpYw39RkcpirqSfTC4gJ0JQR6zU1gyTFad69VywJBKxeCUJxiPXXSkYdyw2l9iHilaAclX5lW6xwIkqJq0-lBbVWQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-6 flex flex-col items-start gap-3">
+<span class="bg-primary text-on-primary px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-widest">New Season</span>
+<h2 class="text-white font-h1-mobile text-h1-mobile leading-tight">Elevate Your Everyday Style</h2>
+<p class="text-white/90 font-body-md text-body-md max-w-[300px]">Experience premium quality and timeless design with our latest arrivals.</p>
+<button class="w-full sm:w-auto bg-primary text-white h-12 px-10 rounded-xl font-button text-button shadow-lg active:scale-[0.98] transition-all mt-2">
+                        Shop Now
+                    </button>
+</div>
+</div>
+</section>
+<!-- Improved Category Section -->
+<section class="mb-12">
+<div class="px-4 flex justify-between items-center mb-6">
+<h3 class="font-h2 text-[22px] font-bold">Shop Categories</h3>
+<a class="text-primary font-bold text-sm flex items-center gap-1" href="#">View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+<div class="flex overflow-x-auto gap-5 px-4 pb-2 hide-scrollbar">
+<div class="flex-shrink-0 w-24 flex flex-col gap-3 items-center">
+<div class="w-24 h-24 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-surface-container-highest ring-offset-2">
+<div class="w-full h-full bg-cover bg-center" data-alt="A close-up shot of high-end accessories including a leather watch and designer sunglasses on a clean marble surface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtXCmDaCdB8SACkLj5FTHPffVwExljkMZVQoLAXn6LNkCn7_5zLMLThkPZ8kQjq_54xuRRxruWNh9xyNrllS62zzPiPwsmy3Tts0oSy95mvNwy0FrGdMOLkv5winfUJs4M2KT4_Ap4m3fVxkSa_6ryGNqkfUE0YndS-UreqXZus2bIHOE-qlvpWI4fL6PS6ANVTzg7W20aFZ93tnwv3Kyd-TXACngH6yAtHryhNhCSHG0MNyi6mVmK4Q')"></div>
+</div>
+<span class="text-center font-bold text-[13px] text-on-surface">Accessories</span>
+</div>
+<div class="flex-shrink-0 w-24 flex flex-col gap-3 items-center">
+<div class="w-24 h-24 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-surface-container-highest ring-offset-2">
+<div class="w-full h-full bg-cover bg-center" data-alt="A perfectly folded stack of premium cotton t-shirts in neutral tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHN-VjIYG5izdK7Dff_vruoK8p8AtBJZ9WL0zYMpVmVM6Ke0O4Uwg-YMKwv7p4tBq9EASGHYmFJZThbz4iDdVF_3jyOpEKvugyRI27cuRrWoQLTq0kJXFBlPoeGakZoNvtByPDrvDmykE_Jdq3vhOq_NrIUg9n3GfI_3vHG4yqH0sVgZPDo8o0dYQuF4YCPoBfxaTwelHS57XAqt3FC-xJFKtqz6RlE433-hLIJ9kBE-O_s3n5GM0Pbw')"></div>
+</div>
+<span class="text-center font-bold text-[13px] text-on-surface text-nowrap">Men's Wear</span>
+</div>
+<div class="flex-shrink-0 w-24 flex flex-col gap-3 items-center">
+<div class="w-24 h-24 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-surface-container-highest ring-offset-2">
+<div class="w-full h-full bg-cover bg-center" data-alt="A stylish woman's silk dress hanging on a wooden hanger." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_OKIA8REF6HA9vBx1jfXYTUpR9ZHNIsnzyKBrEhnVl_0sKad8dONJ7ZolgU0Fhr25bJXM1Nw0Y4hKoIIrifDl98ppozJXi3qjCTL-ijpB3exfnVs8m6zCzIw0FGBC8GoVWxiGkuHNfAbd0wSfpmuSRjeMq81I6eyIkwDn70DmQ4bcSXf98yibNVmuvUnUdZRHsjNmjJOKr74vRGklzw_hqud-O0V--M2gzl815-PnIkT_UInfZvcSQw')"></div>
+</div>
+<span class="text-center font-bold text-[13px] text-on-surface">Women's</span>
+</div>
+<div class="flex-shrink-0 w-24 flex flex-col gap-3 items-center">
+<div class="w-24 h-24 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-surface-container-highest ring-offset-2">
+<div class="w-full h-full bg-cover bg-center" data-alt="A minimalist display of sleek modern footwear." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDe_yEBWfJI5W56uCw3ELtOz7EuZfBVweWfGc2VF5z5oVyAIrottY65Gps7dYnLx7zGynrDovSNet6ENDxqotatfp6Py5tPQ49QB0uXDCcTznSui6WXbEBiIDb7DVhauXAcFSJZcXki0-6B4hOipf2sWLBLE1NQR7FOFc_CxEJiao3zEJ5XgM4v65f3XoDkKokl1eWrnWS6CiLdRfnf0oLtXVZKVYbUf9gRLTHnzjJuJ9Fpv9lcI6EXxQ')"></div>
+</div>
+<span class="text-center font-bold text-[13px] text-on-surface">Footwear</span>
+</div>
+</div>
+</section>
+<!-- Promotional Banner Improved CTA -->
+<section class="px-4 mb-12">
+<div class="bg-[#943700] text-on-tertiary-container rounded-2xl p-7 flex flex-col items-center text-center gap-3 relative overflow-hidden shadow-md">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+<div class="absolute bottom-0 left-0 w-20 h-20 bg-white/5 rounded-full -ml-8 -mb-8"></div>
+<span class="font-button text-[10px] uppercase font-bold tracking-widest bg-white/20 text-white px-3 py-1 rounded-full backdrop-blur-sm">Summer Sale</span>
+<h4 class="font-h3 text-h3 font-bold text-white leading-tight">Up to 40% Off Essentials</h4>
+<p class="font-body-sm text-body-sm text-white/90">Limited time offer on selected collections.</p>
+<button class="bg-white text-[#943700] h-11 px-8 rounded-full font-bold text-sm mt-3 active:bg-surface-container-low transition-all">Shop the Sale</button>
+</div>
+</section>
+<!-- Trending Products Refined -->
+<section class="px-4 mb-12">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-h2 text-[22px] font-bold">Trending Now</h3>
+<div class="flex gap-2">
+<button aria-label="Previous" class="w-11 h-11 rounded-full border border-outline-variant flex items-center justify-center active:bg-surface-container-low"><span class="material-symbols-outlined text-[20px]">arrow_back</span></button>
+<button aria-label="Next" class="w-11 h-11 rounded-full border border-outline-variant flex items-center justify-center active:bg-surface-container-low"><span class="material-symbols-outlined text-[20px]">arrow_forward</span></button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Product Card 1 -->
+<div class="flex flex-col group h-full">
+<div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-surface-container-low mb-3 shadow-sm">
+<div class="absolute top-2 right-2 z-10">
+<button aria-label="Add to wishlist" class="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center active:scale-90 shadow-sm">
+<span class="material-symbols-outlined text-[20px] text-on-surface">favorite</span>
+</button>
+</div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A studio product shot of a high-end minimalist leather tote bag." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsgpSM13uYuPmh-WiljtTq1ORHHRWKAQFvQ8pyO38bjnUeUKn_iPZJBERAlLJu-zd0VQXZVmaIR6x-WQVeO_jqxXw-X5T05U8Y8eLYmdPNA5BNPirNuK0CQp4_S6TsPDJJwK1q7z_kkQal_Ig2JL-6khrfm9D2dIEeOtin5ar3S0QAe0PprUmFvBq9clic2S0oVAlGqmlQsyBDVOyX15AeRe4I9JiJoU8HqIA0b6bOSU0aUxLVM9mkXA"/>
+</div>
+<div class="flex flex-col gap-1.5 px-1 flex-grow">
+<span class="font-bold text-[11px] text-on-surface-variant/80 uppercase tracking-tight">Accessories</span>
+<h5 class="font-bold text-[15px] text-on-surface leading-snug line-clamp-2">Premium Leather Tote Bag</h5>
+<div class="flex items-center gap-2 mt-auto">
+<span class="text-primary font-extrabold text-[16px]">$189.00</span>
+<span class="text-on-surface-variant/60 line-through text-[12px]">$240.00</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="flex flex-col group h-full">
+<div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-surface-container-low mb-3 shadow-sm">
+<div class="absolute top-2 left-2 z-10">
+<span class="bg-primary text-white px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">New</span>
+</div>
+<div class="absolute top-2 right-2 z-10">
+<button aria-label="Add to wishlist" class="w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center active:scale-90 shadow-sm">
+<span class="material-symbols-outlined text-[20px] text-on-surface">favorite</span>
+</button>
+</div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A detailed commercial shot of a high-tech sleek smartwatch." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVk5ZG7-VG6THEsjMhTRw-NtGHAOvQ21OnXXJR1daxenSjw6QglCnm8zn_c9pdeng1GqfKd8jk7HUhwgOfiYAqeEzEnQowkR68wKr2qV_2anNhDsgbaU3r84BJOyY71uSOhk6zeX-YBiHf-xvOIJye38ej9VLH9SqGJI7khbkyBQ7wB5nD1yOcE6nD5L-Vr586QpWLkKa7h0Jy-lbrs17L7EBNKamrvZvl-405r3PWaOGsybDABwe-FA"/>
+</div>
+<div class="flex flex-col gap-1.5 px-1 flex-grow">
+<span class="font-bold text-[11px] text-on-surface-variant/80 uppercase tracking-tight">Tech Gear</span>
+<h5 class="font-bold text-[15px] text-on-surface leading-snug line-clamp-2">Nova Smartwatch Series G2</h5>
+<div class="flex items-center gap-2 mt-auto">
+<span class="text-primary font-extrabold text-[16px]">$349.00</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Benefits Section Improved Spacing -->
+<section class="bg-surface-container-low px-4 py-12 mb-12">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-5">
+<div class="w-14 h-14 rounded-2xl bg-primary-container/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-[28px]">local_shipping</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">Express Delivery</h6>
+<p class="font-body-sm text-[13px] text-on-surface-variant">Next day shipping on prime orders.</p>
+</div>
+</div>
+<div class="flex items-center gap-5">
+<div class="w-14 h-14 rounded-2xl bg-secondary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary text-[28px]">verified_user</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">Secure Checkout</h6>
+<p class="font-body-sm text-[13px] text-on-surface-variant">PCI-compliant payment security.</p>
+</div>
+</div>
+<div class="flex items-center gap-5">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-fixed/30 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary text-[28px]">published_with_changes</span>
+</div>
+<div>
+<h6 class="font-bold text-on-surface">30-Day Returns</h6>
+<p class="font-body-sm text-[13px] text-on-surface-variant">No-questions-asked return policy.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter Section High Contrast -->
+<section class="px-4 mb-16">
+<div class="bg-on-surface text-surface rounded-3xl p-8 flex flex-col gap-5 text-center shadow-xl">
+<h3 class="font-h3 text-h3 font-bold text-white">Join the Nexa Elite</h3>
+<p class="font-body-sm text-[14px] text-white/70">Early access to collections and exclusive member-only offers.</p>
+<div class="flex flex-col gap-3 mt-4">
+<input class="bg-white/10 border border-white/20 rounded-xl px-4 h-12 text-white placeholder:text-white/40 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-center" placeholder="Enter your email" type="email"/>
+<button class="bg-primary text-white h-12 rounded-xl font-bold text-sm active:scale-[0.98] transition-all">Subscribe Now</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Improved Usability -->
+<footer class="bg-surface-container-highest dark:bg-on-surface pt-12 pb-24 px-4">
+<div class="flex flex-col gap-10">
+<div class="flex flex-col gap-4">
+<h2 class="font-h3 text-h3 font-extrabold text-primary dark:text-white">Nexa Store</h2>
+<p class="font-body-sm text-[14px] text-on-surface-variant dark:text-surface-variant leading-relaxed">Modern retail redefined. We bring you premium lifestyle products with a focus on quality and design.</p>
+</div>
+<!-- Mobile Accordion Links -->
+<div class="flex flex-col border-t border-outline-variant/30">
+<details class="group">
+<summary class="flex justify-between items-center py-5 list-none cursor-pointer outline-none">
+<span class="font-bold text-sm uppercase tracking-wider text-on-surface dark:text-white">Shop</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="pb-5 flex flex-col gap-4 pl-1">
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">New Arrivals</a>
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">Best Sellers</a>
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">Men's Selection</a>
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">Women's Collection</a>
+</div>
+</details>
+<details class="group border-t border-outline-variant/30">
+<summary class="flex justify-between items-center py-5 list-none cursor-pointer outline-none">
+<span class="font-bold text-sm uppercase tracking-wider text-on-surface dark:text-white">Support</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="pb-5 flex flex-col gap-4 pl-1">
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">Shipping Information</a>
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">Returns &amp; Exchanges</a>
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">Frequently Asked Questions</a>
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">Contact Customer Care</a>
+</div>
+</details>
+<details class="group border-t border-outline-variant/30">
+<summary class="flex justify-between items-center py-5 list-none cursor-pointer outline-none">
+<span class="font-bold text-sm uppercase tracking-wider text-on-surface dark:text-white">Legal</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="pb-5 flex flex-col gap-4 pl-1">
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">Privacy Policy</a>
+<a class="text-sm text-on-surface-variant dark:text-surface-variant" href="#">Terms of Service</a>
+</div>
+</details>
+</div>
+<div class="flex gap-5 mt-4">
+<a aria-label="Facebook" class="w-12 h-12 rounded-full bg-white dark:bg-surface-variant flex items-center justify-center text-primary active:scale-90 transition-transform shadow-sm" href="#"><span class="material-symbols-outlined">public</span></a>
+<a aria-label="Email" class="w-12 h-12 rounded-full bg-white dark:bg-surface-variant flex items-center justify-center text-primary active:scale-90 transition-transform shadow-sm" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a aria-label="Share" class="w-12 h-12 rounded-full bg-white dark:bg-surface-variant flex items-center justify-center text-primary active:scale-90 transition-transform shadow-sm" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+<div class="pt-10 border-t border-outline-variant/30 text-center">
+<p class="font-caption text-[11px] font-medium text-on-surface-variant/60 uppercase tracking-widest">© 2024 Nexa Store. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation Bar Refined -->
+<nav class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-lg border-t border-surface-container-highest h-[72px] flex items-center justify-around z-50 px-2 pb-safe">
+<button class="flex flex-col items-center justify-center gap-1 text-primary w-16">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-16 opacity-70">
+<span class="material-symbols-outlined">storefront</span>
+<span class="text-[10px] font-bold">Shop</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-16 opacity-70">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px] font-bold">Wishlist</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-16 opacity-70">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Account</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 text-on-surface-variant w-16 opacity-70">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-[10px] font-bold">Cart</span>
+</button>
+</nav>
+<script>
+        // Simple header scroll interaction
+        let lastScrollTop = 0;
+        const header = document.getElementById('mainHeader');
+        
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+            lastScrollTop = scrollTop;
+        });
+
+        // Toggle mobile drawer placeholder logic
+        document.querySelectorAll('button[aria-label="Menu"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Navigation menu opening...');
+            });
+        });
+    </script>
+</body></html>

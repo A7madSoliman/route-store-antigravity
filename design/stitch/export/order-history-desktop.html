@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexa Store - Order History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f3f3fe",
+                    "surface-container": "#ededf9",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface": "#faf8ff",
+                    "primary-container": "#2563eb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "inverse-surface": "#2e3039",
+                    "surface-variant": "#e1e2ed",
+                    "on-surface-variant": "#434655",
+                    "primary": "#004ac6",
+                    "background": "#faf8ff",
+                    "outline-variant": "#c3c6d7",
+                    "secondary-container": "#dae2fd",
+                    "outline": "#737686",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#dbe1ff",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "surface-bright": "#faf8ff",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#dae2fd",
+                    "inverse-on-surface": "#f0f0fb",
+                    "surface-container-highest": "#e1e2ed",
+                    "on-tertiary-container": "#ffede6",
+                    "tertiary": "#943700",
+                    "surface-container-high": "#e7e7f3",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "surface-tint": "#0053db",
+                    "surface-dim": "#d9d9e5",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#565e74",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-primary-container": "#eeefff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-surface": "#191b23",
+                    "on-secondary-container": "#5c647a",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "on-background": "#191b23"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "2xl": "80px",
+                    "md": "16px",
+                    "xl": "48px",
+                    "unit": "4px",
+                    "max-width": "1280px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "margin-desktop": "40px",
+                    "xs": "4px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "h3": ["Inter"],
+                    "caption": ["Inter"],
+                    "h4": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "button": ["Inter"],
+                    "h2": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h1-desktop": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .order-card-shadow {
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05);
+            transition: all 0.2s ease-in-out;
+        }
+        .order-card-shadow:hover {
+            box-shadow: 0 10px 15px rgba(15, 23, 42, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-margin-desktop max-w-max-width mx-auto w-full h-20 bg-surface shadow-sm">
+<div class="font-h3 text-h3 font-bold text-primary">Nexa Store</div>
+<nav class="hidden md:flex items-center space-x-xl">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Shop</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Categories</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Sale</a>
+</nav>
+<div class="flex items-center space-x-lg">
+<button class="p-xs text-primary hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="p-xs text-primary hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="p-xs text-primary hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</header>
+<div class="flex-1 max-w-max-width mx-auto w-full flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-20 bottom-0 p-lg space-y-md h-screen w-64 hidden lg:flex flex-col bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-md mb-lg">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a modern customer with a friendly expression. The lighting is bright and clean, characteristic of a high-end commercial photo. Soft shadows and a neutral background emphasize the professional yet approachable vibe of a premium membership profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLS2aLJJmgOJHOKs3Mn7jX7D5OqY5k3FzSTgSFc3v_r9x5E2_H7111ilAyq5onlIMb44EF91u51998HXq0_PRytVRwpLLlP0KxIOf7lkXZoqkK4bvPkLSIyJorSuKmYGtg4BU9S2Anyb43P47nlzD-FW7j-g-Xkw9OfdWTUJayVe4doCmiY3EsrW6GhteZ11SRM9-q4EEmrlZrPfOUZ6lbVvqdhPvLI8RAHuzH8TRVLQU8phiyyKJcpw"/>
+</div>
+<div>
+<h4 class="font-h4 text-h4 font-bold text-on-surface text-[14px]">Welcome back, Alex</h4>
+<p class="text-on-surface-variant text-[12px]">Premium Member</p>
+</div>
+</div>
+<nav class="space-y-sm flex-1">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-sm text-body-sm">Overview</span>
+</a>
+<!-- Active Item: Orders -->
+<a class="flex items-center gap-md p-md bg-secondary-container text-on-secondary-container font-semibold rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="package">package</span>
+<span class="font-body-sm text-body-sm">Orders</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-body-sm text-body-sm">Profile</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-body-sm">Addresses</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-body-sm text-body-sm">Wishlist</span>
+</a>
+</nav>
+<button class="flex items-center gap-md p-md text-error hover:bg-error-container rounded-lg transition-all duration-200 mt-auto">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-button text-button">Log Out</span>
+</button>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 p-margin-desktop">
+<div class="mb-xl">
+<h1 class="font-h1-desktop text-h1-desktop mb-xs text-on-surface">Order History</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Manage and track your recent purchases.</p>
+</div>
+<!-- Bento Grid of Orders -->
+<div class="grid grid-cols-1 gap-lg">
+<!-- Order Card 1: Delivered -->
+<div class="order-card-shadow bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex items-center gap-lg">
+<div class="w-20 h-20 rounded-lg bg-surface-variant flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist high-end leather bag showcased against a clean, architectural concrete backdrop. The lighting is soft and directional, highlighting the premium texture of the leather. The composition is editorial and balanced, conveying a sense of modern luxury and craft." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZXrJ264YuPAgjuv7njTC_uQO7pPpXZpCzqxrAdY1VUBt1EVoRDkhFv_ifkI3s6yPHgw5oiMSJzDw6btDn6ViW6ehHpMaT1_QV2ehdMdn0UNB1NUR04-yHy9XWL5ZrBatvCuV1qOo2Oj_arzYaJfUYELrEgS845kmUNSlhC66WgZezW-qY7qtDrHeRMhpKuYYzTggJrlpYlgXtxImpQd7tL1K3FKJjNUpzCJmQXPX7ZhhowAWsbzjWsw"/>
+</div>
+<div>
+<p class="text-caption font-caption text-on-surface-variant mb-unit">Order #NX-98421</p>
+<h4 class="font-h4 text-h4 text-on-surface mb-unit">Premium Leather Tote</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Purchased on Oct 12, 2024</p>
+</div>
+</div>
+<div class="flex flex-col md:items-end gap-xs">
+<span class="inline-flex items-center px-sm py-xs rounded bg-surface-container-high text-primary font-bold text-caption">
+<span class="material-symbols-outlined mr-unit scale-75" data-icon="check_circle">check_circle</span>
+                            Delivered
+                        </span>
+<p class="text-h4 font-h4 text-secondary font-bold">$249.00</p>
+</div>
+<div class="md:border-l border-outline-variant md:pl-lg">
+<button class="w-full md:w-auto px-lg py-md rounded-lg border-1.5 border-outline bg-transparent text-on-surface font-button text-button hover:bg-surface-container-low transition-colors active:scale-95">
+                            View Details
+                        </button>
+</div>
+</div>
+<!-- Order Card 2: In Transit -->
+<div class="order-card-shadow bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex items-center gap-lg">
+<div class="w-20 h-20 rounded-lg bg-surface-variant flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A pair of sleek, modern wireless headphones presented in a dark, atmospheric setting. Subtle blue rim lighting defines the curves of the hardware. The scene is futuristic and high-tech, emphasizing superior build quality and contemporary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGpB0CSEUSi3Ff2i52Dj0bu5O4ZVCOvzpWjH_i4rk0zHohPAnzuQ1mdU7yY-wyyvac51bVQ00EBdm5rOXRCmc3hreoQ0lVT7DYbz8umoZAVJ9wPEKYGfnrpeILV_dgQVOZ82HAX7yvghjDLQIZeBFDfaMxkRtQowiPt3I_dfHCor-WiIlqT6127DRS7whzLbXhUtC_23_v13qsWwtZftP0T8PNjjAMADOVMRnGzvu3JJKtZ9uN0CiJTw"/>
+</div>
+<div>
+<p class="text-caption font-caption text-on-surface-variant mb-unit">Order #NX-98415</p>
+<h4 class="font-h4 text-h4 text-on-surface mb-unit">Sonic Pro Headphones</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Purchased on Oct 14, 2024</p>
+</div>
+</div>
+<div class="flex flex-col md:items-end gap-xs">
+<span class="inline-flex items-center px-sm py-xs rounded bg-secondary-container text-on-secondary-container font-bold text-caption">
+<span class="material-symbols-outlined mr-unit scale-75" data-icon="local_shipping">local_shipping</span>
+                            In Transit
+                        </span>
+<p class="text-h4 font-h4 text-secondary font-bold">$320.00</p>
+</div>
+<div class="md:border-l border-outline-variant md:pl-lg">
+<button class="w-full md:w-auto px-lg py-md rounded-lg border-1.5 border-outline bg-transparent text-on-surface font-button text-button hover:bg-surface-container-low transition-colors active:scale-95">
+                            View Details
+                        </button>
+</div>
+</div>
+<!-- Order Card 3: Processing -->
+<div class="order-card-shadow bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="flex items-center gap-lg">
+<div class="w-20 h-20 rounded-lg bg-surface-variant flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist smart watch with a matte black strap resting on a polished marble surface. The lighting is diffused and elegant, highlighting the high-resolution digital display. The overall feel is one of quiet luxury and functional sophistication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrOL7aGZe1clnGF98P3n_ZgRyMaiBAAqkyoBxsH4Xt3ejuRiFTNW9J-ihgRd5DFwi7x1rKBZmyIdJbpsSzJPrV-7RFUdvVjCf1Bg1h33JPt6qw7hchbzTTCDRPMG04cywxE-3PxQ5-bG8s2lsLd4NMsrGx0ypJYJo__1AqVotmxqjrNpwnIoz8CWofyrb-O0KGOM3vfHnYLgNIUcX83DBwSzmHyXFUbJYYI7tfq0v89vBUScNVPiPwAg"/>
+</div>
+<div>
+<p class="text-caption font-caption text-on-surface-variant mb-unit">Order #NX-98402</p>
+<h4 class="font-h4 text-h4 text-on-surface mb-unit">Edge Smartwatch Gen 4</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Purchased on Oct 15, 2024</p>
+</div>
+</div>
+<div class="flex flex-col md:items-end gap-xs">
+<span class="inline-flex items-center px-sm py-xs rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-bold text-caption">
+<span class="material-symbols-outlined mr-unit scale-75" data-icon="sync">sync</span>
+                            Processing
+                        </span>
+<p class="text-h4 font-h4 text-secondary font-bold">$189.50</p>
+</div>
+<div class="md:border-l border-outline-variant md:pl-lg">
+<button class="w-full md:w-auto px-lg py-md rounded-lg border-1.5 border-outline bg-transparent text-on-surface font-button text-button hover:bg-surface-container-low transition-colors active:scale-95">
+                            View Details
+                        </button>
+</div>
+</div>
+</div>
+<!-- Empty State Illustration (Hidden by default, shown for demo purpose if list was empty) -->
+<div class="hidden flex-col items-center justify-center py-2xl text-center" id="empty-state">
+<span class="material-symbols-outlined text-6xl text-outline-variant mb-md" style="font-size: 64px;">shopping_cart_off</span>
+<h3 class="font-h3 text-h3 text-on-surface mb-sm">No orders yet</h3>
+<p class="text-on-surface-variant mb-lg">Start shopping to fill your order history!</p>
+<button class="px-xl py-md bg-primary text-on-primary rounded-lg font-button text-button hover:opacity-90 transition-opacity">
+                    Shop Now
+                </button>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-2xl bg-surface-container-highest">
+<div class="w-full py-xl px-margin-desktop max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="font-h4 text-h4 font-bold text-primary">Nexa Store</div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-colors" href="#">Shipping Info</a>
+<a class="text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-colors" href="#">Contact Us</a>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm">
+                © 2024 Nexa Store. All rights reserved.
+            </div>
+</div>
+</footer>
+<!-- BottomNavBar for Mobile -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-margin-mobile bg-surface lg:hidden border-t border-outline-variant shadow-lg">
+<div class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-caption text-caption">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-bold active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="package">package</span>
+<span class="font-caption text-caption">Orders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-caption text-caption">Wishlist</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-caption text-caption">Profile</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span class="font-caption text-caption">Menu</span>
+</div>
+</nav>
+<script>
+        // Simple interaction for the "View Details" buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(this.textContent.trim() === 'View Details') {
+                    // Logic for opening a modal or navigating to a detail page
+                    console.log('Navigating to order details...');
+                    this.classList.add('opacity-50');
+                    setTimeout(() => this.classList.remove('opacity-50'), 500);
+                }
+            });
+        });
+    </script>
+</body></html>

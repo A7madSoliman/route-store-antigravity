@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nexa Store | Customer Account Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 24px;
+        }
+        /* Custom scrollbar for side nav */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e1e2ed;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#f3f3fe",
+                      "surface-container": "#ededf9",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "surface": "#faf8ff",
+                      "primary-container": "#2563eb",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed": "#00174b",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "inverse-surface": "#2e3039",
+                      "surface-variant": "#e1e2ed",
+                      "on-surface-variant": "#434655",
+                      "primary": "#004ac6",
+                      "background": "#faf8ff",
+                      "outline-variant": "#c3c6d7",
+                      "secondary-container": "#dae2fd",
+                      "outline": "#737686",
+                      "on-error": "#ffffff",
+                      "primary-fixed": "#dbe1ff",
+                      "on-secondary-fixed": "#131b2e",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "surface-bright": "#faf8ff",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#dae2fd",
+                      "inverse-on-surface": "#f0f0fb",
+                      "surface-container-highest": "#e1e2ed",
+                      "on-tertiary-container": "#ffede6",
+                      "tertiary": "#943700",
+                      "surface-container-high": "#e7e7f3",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "tertiary-container": "#bc4800",
+                      "surface-tint": "#0053db",
+                      "surface-dim": "#d9d9e5",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "on-tertiary": "#ffffff",
+                      "secondary": "#565e74",
+                      "on-tertiary-fixed": "#360f00",
+                      "on-primary-container": "#eeefff",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffdbcd",
+                      "on-surface": "#191b23",
+                      "on-secondary-container": "#5c647a",
+                      "on-primary": "#ffffff",
+                      "inverse-primary": "#b4c5ff",
+                      "on-background": "#191b23"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "2xl": "80px",
+                      "md": "16px",
+                      "xl": "48px",
+                      "unit": "4px",
+                      "max-width": "1280px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "margin-desktop": "40px",
+                      "xs": "4px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "body-sm": ["Inter"],
+                      "h3": ["Inter"],
+                      "caption": ["Inter"],
+                      "h4": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "button": ["Inter"],
+                      "h2": ["Inter"],
+                      "h1-mobile": ["Inter"],
+                      "h1-desktop": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                      "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-margin-desktop max-w-max-width mx-auto w-full h-20 bg-surface dark:bg-inverse-surface shadow-sm">
+<div class="flex items-center gap-xl">
+<h1 class="font-h3 text-h3 font-bold text-primary dark:text-inverse-primary">Nexa Store</h1>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Shop</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Categories</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Sale</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined p-sm hover:opacity-80 transition-opacity text-on-surface" data-icon="search">search</button>
+<button class="material-symbols-outlined p-sm hover:opacity-80 transition-opacity text-on-surface" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined p-sm bg-secondary-container text-on-secondary-container rounded-full" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</button>
+</div>
+</header>
+<div class="max-w-max-width mx-auto flex min-h-[calc(100vh-80px)]">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-20 bottom-0 p-lg space-y-md h-screen w-64 hidden lg:flex flex-col bg-surface-container-lowest dark:bg-surface-container-low shadow-sm border-r border-outline-variant/30">
+<div class="px-md py-lg mb-md">
+<div class="flex items-center gap-sm mb-xs">
+<div class="w-10 h-10 rounded-full bg-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional, high-resolution portrait of a stylish male customer in a modern, light-filled architectural setting. He is wearing high-end smart-casual attire. The background is a blurred minimalist office with clean white walls and soft natural sunlight, echoing a premium, quiet luxury aesthetic. The color palette is neutral with soft blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIX33FBzYp3KqNoxoDPHssunT2Gu3qAxhz8RzDefQ6vsam2sCtYPsXdgcMu0XRTxYKrohRXyk68KmSwFeph7O6hUiNze_N-cMXj6eSyvtsxoc9qgGniNPTX5o8Scp9cHMKfng-2iiO8NSijSpK0sQKwk0snesQEnJAgTRyoD6hLa_224y_dkDBcwOBuQEyFFQCSFq44dLSoOKqTmaB1ifY2Q8YKTbGfwnCtz7eiV7vJuWu9uCQ8eY1Bw"/>
+</div>
+<div>
+<p class="font-h4 text-h4 font-bold text-on-surface truncate">Alex</p>
+<p class="font-caption text-caption text-on-surface-variant">Premium Member</p>
+</div>
+</div>
+</div>
+<nav class="flex-grow space-y-xs overflow-y-auto custom-scrollbar">
+<!-- Overview is Active -->
+<a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container font-semibold rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="dashboard">dashboard</span>
+<span class="font-body-sm text-body-sm">Overview</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="package">package</span>
+<span class="font-body-sm text-body-sm">Orders</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-body-sm text-body-sm">Profile</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-body-sm text-body-sm">Addresses</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-body-sm text-body-sm">Wishlist</span>
+</a>
+</nav>
+<div class="pt-xl mt-auto border-t border-outline-variant/30">
+<button class="w-full flex items-center justify-center gap-sm py-md text-error hover:bg-error-container/20 rounded-lg transition-colors font-button text-button">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Log Out
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 flex-grow px-margin-mobile md:px-margin-desktop py-xl">
+<header class="mb-xl">
+<h2 class="font-h2 text-h2 text-on-surface">Welcome back, Alex</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-xs">Here's what's happening with your account today.</p>
+</header>
+<!-- Bento Grid Dashboard -->
+<div class="bento-grid">
+<!-- Loyalty Points Balance -->
+<div class="col-span-12 md:col-span-8 lg:col-span-5 bg-primary text-on-primary rounded-xl p-xl shadow-lg relative overflow-hidden flex flex-col justify-between h-full">
+<div class="relative z-10">
+<p class="font-caption text-caption opacity-80 uppercase tracking-wider mb-sm">Current Balance</p>
+<h3 class="text-[48px] font-bold leading-none mb-md">24,850</h3>
+<p class="font-body-sm text-body-sm bg-white/20 inline-block px-sm py-xs rounded-lg backdrop-blur-md">Points available to spend</p>
+</div>
+<div class="relative z-10 mt-xl flex gap-md">
+<button class="flex-grow bg-white text-primary px-lg py-md rounded-lg font-button text-button hover:bg-surface transition-colors">Redeem Points</button>
+<button class="bg-white/10 hover:bg-white/20 p-md rounded-lg transition-colors material-symbols-outlined" data-icon="history">history</button>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+</div>
+<!-- Profile Quick Links -->
+<div class="col-span-12 md:col-span-4 lg:col-span-3 bg-surface-container-low rounded-xl p-lg flex flex-col justify-between border border-outline-variant/50">
+<h4 class="font-h4 text-h4 text-on-surface">Manage Account</h4>
+<ul class="space-y-md mt-md">
+<li>
+<a class="flex items-center justify-between group" href="#">
+<span class="font-body-md text-body-md text-on-surface">Edit Profile</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between group" href="#">
+<span class="font-body-md text-body-md text-on-surface">Settings</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between group" href="#">
+<span class="font-body-md text-body-md text-on-surface">Notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+</li>
+</ul>
+<div class="mt-xl pt-md border-t border-outline-variant">
+<p class="font-caption text-caption text-on-surface-variant">Last login: Today, 09:42 AM</p>
+</div>
+</div>
+<!-- Wishlist Summary -->
+<div class="col-span-12 lg:col-span-4 bg-surface rounded-xl p-lg shadow-sm border border-outline-variant/30 flex flex-col">
+<div class="flex justify-between items-center mb-md">
+<h4 class="font-h4 text-h4 text-on-surface">Wishlist (4)</h4>
+<a class="text-primary font-button text-button hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-2 gap-md flex-grow">
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-lg overflow-hidden mb-sm bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="High-end leather designer messenger bag in a rich cognac color, placed on a white marble surface. The lighting is soft and directional, highlighting the texture of the grain. Minimalist lifestyle product photography with a clean, high-contrast aesthetic in light-mode." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBngjbnP1AdZLjuxkPLaxL2CDWEzxjEsfLIZtBmWpVaEj2nWlfC_6NI9cz7xWtvHYO3LomN_sPfYmzjP1e71fL7Ga0p72hk7NcJH1aZdm0ngNPQUctDqucsGip4aSKn-ugCsqCt1R9KrzrFPlS5LF1RL9VlDWMV7KHvePpq9YEAHjiRJvqyfVMhZ8p_5fJTlcR8chdHg4_e_gT_XbtQqJaUuNpIDDogRUIgPMMsOU4GpYgRJzoWUcaHuA"/>
+</div>
+<p class="font-caption text-caption font-bold truncate">Leather Messenger</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-lg overflow-hidden mb-sm bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Minimalist titanium wristwatch with a dark slate dial and mesh strap. Shot against a neutral gray background with sharp shadow play. Premium retail aesthetic, focusing on metallic textures and precision engineering. Part of a luxury modern consumer collection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo0Xv-VgmgCt4gS8R1SUffJL4waX-Jl_0Fci7vwrQLUFgVbdRZ77cBVIdzQMMi3qCe10idO-slz3C3Rjc6IOjuAz8brhKB17xiB01yqkEdwLuBqZ2Gw-oIq0_9bRRpwM6j4msJbbeaQaNzAgCk2lt4S9uaa7OCpPWeQk_ckAKhAejacFoWe6TYax6JJGHtDvYQ8jYNRo28Gd2kvZcG93XYqsx806GjhrfiJ3PxNDC4peb9BsRrvrEvlQ"/>
+</div>
+<p class="font-caption text-caption font-bold truncate">Titanium Chrono</p>
+</div>
+</div>
+</div>
+<!-- Recent Orders -->
+<div class="col-span-12 bg-surface rounded-xl p-xl shadow-sm border border-outline-variant/30">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h4 class="font-h3 text-h3 text-on-surface">Recent Orders</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">A summary of your three most recent purchases</p>
+</div>
+<button class="px-lg py-md border-1.5 border-outline rounded-lg font-button text-button hover:bg-surface-container transition-colors">View All Orders</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full">
+<thead>
+<tr class="text-left border-b border-outline-variant/50">
+<th class="pb-md font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Order ID</th>
+<th class="pb-md font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="pb-md font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider">Date</th>
+<th class="pb-md font-body-sm text-body-sm text-on-surface-variant uppercase tracking-wider text-right">Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="py-lg font-body-md text-body-md font-semibold text-on-surface">#NX-90234</td>
+<td class="py-lg">
+<span class="inline-flex items-center gap-xs px-sm py-xs bg-secondary-container text-on-secondary-container rounded-lg text-[12px] font-bold">
+<span class="w-1.5 h-1.5 bg-on-secondary-container rounded-full animate-pulse"></span>
+                                            In Transit
+                                        </span>
+</td>
+<td class="py-lg font-body-sm text-body-sm text-on-surface-variant">Nov 24, 2024</td>
+<td class="py-lg font-body-md text-body-md font-bold text-right text-secondary">$1,249.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="py-lg font-body-md text-body-md font-semibold text-on-surface">#NX-89512</td>
+<td class="py-lg">
+<span class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container-highest text-on-surface-variant rounded-lg text-[12px] font-bold">
+                                            Delivered
+                                        </span>
+</td>
+<td class="py-lg font-body-sm text-body-sm text-on-surface-variant">Nov 18, 2024</td>
+<td class="py-lg font-body-md text-body-md font-bold text-right text-secondary">$430.50</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="py-lg font-body-md text-body-md font-semibold text-on-surface">#NX-88200</td>
+<td class="py-lg">
+<span class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container-highest text-on-surface-variant rounded-lg text-[12px] font-bold">
+                                            Delivered
+                                        </span>
+</td>
+<td class="py-lg font-body-sm text-body-sm text-on-surface-variant">Nov 05, 2024</td>
+<td class="py-lg font-body-md text-body-md font-bold text-right text-secondary">$2,100.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-2xl bg-surface-container-highest dark:bg-inverse-surface">
+<div class="w-full py-xl px-margin-desktop max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-lg">
+<h4 class="font-h4 text-h4 font-bold text-primary">Nexa Store</h4>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Shipping Info</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contact Us</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Nexa Store. All rights reserved.</p>
+</div>
+</footer>
+<!-- BottomNavBar for Mobile -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-margin-mobile bg-surface lg:hidden shadow-lg border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="package">package</span>
+<span class="font-caption text-caption">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-caption text-caption">Wishlist</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="person">person</span>
+<span class="font-caption text-caption">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span class="font-caption text-caption">Menu</span>
+</a>
+</nav>
+<script>
+        // Simple interactivity for demonstration
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', () => {
+                const orderId = row.querySelector('td')?.innerText;
+                if (orderId) console.log(`Viewing details for ${orderId}`);
+            });
+        });
+    </script>
+</body></html>

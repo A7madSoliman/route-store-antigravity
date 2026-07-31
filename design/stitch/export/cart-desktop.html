@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Your Cart | Nexa Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#943700",
+                        "surface-dim": "#d9d9e5",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-background": "#191b23",
+                        "secondary": "#565e74",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#bc4800",
+                        "surface-container-low": "#f3f3fe",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "inverse-on-surface": "#f0f0fb",
+                        "outline": "#737686",
+                        "on-secondary-container": "#5c647a",
+                        "surface-variant": "#e1e2ed",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#dae2fd",
+                        "on-secondary-fixed": "#131b2e",
+                        "surface-container-highest": "#e1e2ed",
+                        "background": "#faf8ff",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface": "#faf8ff",
+                        "primary-container": "#2563eb",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "outline-variant": "#c3c6d7",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container-high": "#e7e7f3",
+                        "primary-fixed": "#dbe1ff",
+                        "on-surface": "#191b23",
+                        "on-surface-variant": "#434655",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-container": "#ededf9",
+                        "secondary-container": "#dae2fd",
+                        "inverse-surface": "#2e3039",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#eeefff",
+                        "error-container": "#ffdad6",
+                        "primary": "#004ac6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "2xl": "80px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "max-width": "1280px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "48px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h1-desktop": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "h4": ["Inter"],
+                        "h3": ["Inter"],
+                        "button": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .item-row:hover .remove-btn { opacity: 1; }
+        @media (max-width: 768px) {
+            .desktop-only { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-lg py-sm max-w-max-width mx-auto bg-surface shadow-sm">
+<div class="font-h3 text-h3 font-bold text-primary">Nexa Store</div>
+<div class="flex items-center gap-md">
+<button class="cursor-pointer active:opacity-80 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="cursor-pointer active:opacity-80 text-primary font-bold border-b-2 border-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+</button>
+<button class="cursor-pointer active:opacity-80 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">lock</span>
+</button>
+</div>
+</header>
+<main class="max-w-max-width mx-auto px-lg py-xl">
+<!-- Cart Header -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h1 class="font-h1-desktop text-h1-desktop text-on-surface">Your Cart</h1>
+<p class="font-body-md text-body-md text-secondary">Review your items before proceeding to secure checkout.</p>
+</div>
+<button class="font-button text-button text-error hover:underline cursor-pointer active:opacity-80" onclick="toggleEmptyState()">
+                Clear Cart
+            </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start" id="cart-content">
+<!-- Items List -->
+<div class="lg:col-span-8 space-y-lg">
+<!-- Item 1: Stratus Tech Parka -->
+<div class="item-row flex gap-lg p-lg bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant transition-all hover:shadow-md">
+<div class="w-32 h-40 md:w-48 md:h-60 flex-shrink-0 bg-surface-variant rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="A professional studio product shot of a high-end Stratus Tech Parka in a sleek charcoal grey. The jacket is displayed against a clean, minimalist off-white background, highlighting its technical fabric texture and waterproof zippers. The lighting is soft and even, emphasizing a modern, professional, and luxury outdoor apparel aesthetic consistent with a premium ecommerce store." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl31yjkt797JRa3sctekTBWWzkvm-nmAvYGbaKsHw-EwTgoDtwqbY38JdIyxRiDzW7BtNtfArPjztrcHqx2FjbuMhCV8I_CXGm6j7RuzkxRO8qyY3da67D5u6riEC1c8dl3_LTpxKI7RXnIQ7HL34K6iUeuJT7_vpo4RfET03QqyU1Zr12Aj2Oqt6dfk_lv9YDqbJzO1HXEYNFAg2cLX54qKK_sKzlRNTqi4wNtelysvV7HGMZPUaBJw"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div class="flex justify-between">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Stratus Tech Parka</h3>
+<p class="font-caption text-caption text-secondary">Size: Large | Color: Obsidian</p>
+</div>
+<span class="font-h4 text-h4 text-secondary font-bold">$285.00</span>
+</div>
+<div class="flex items-center justify-between mt-md">
+<div class="flex items-center border border-outline-variant rounded-lg bg-surface overflow-hidden">
+<button class="px-3 py-2 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">remove</span></button>
+<span class="px-4 font-body-md text-body-md font-bold">1</span>
+<button class="px-3 py-2 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+<button class="remove-btn md:opacity-0 flex items-center gap-xs text-error font-button text-button transition-opacity">
+<span class="material-symbols-outlined">delete</span>
+<span class="hidden md:inline">Remove</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2: Merino Crewneck -->
+<div class="item-row flex gap-lg p-lg bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant transition-all hover:shadow-md">
+<div class="w-32 h-40 md:w-48 md:h-60 flex-shrink-0 bg-surface-variant rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="A detailed flat-lay photograph of a premium Merino Crewneck sweater in a soft navy blue hue. The knit pattern is visible, showcasing high-quality natural fibers. The setting is clean and bright, utilizing soft-box lighting to create a high-contrast, professional retail look. The aesthetic is 'Quiet Luxury', focused on textile quality and minimalist design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjdAkSP-WjliXWMMnH3Jgzv-6SM8EsSvGDa84-CN08LZcDeBMaoGN09iiVHJ3qw4TY2oL4_gjptoKJXscJSYCfFUk7IKY5q2ZjjNCJwKTfOpda79O4AXttFi6vau0Q2EMblBaG629BjzQTTkCKk1fxVJcS9afT54YwsGAoUMKytyclZCa8i_4GWCRNHpnkRMekfK-Nvnc1IdqOsEK9U6wVa3EFz5gYUg0Qp1pQhqy1vlpLT7psDbKP2Q"/>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div class="flex justify-between">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Merino Crewneck</h3>
+<p class="font-caption text-caption text-secondary">Size: Medium | Color: Navy</p>
+</div>
+<span class="font-h4 text-h4 text-secondary font-bold">$120.00</span>
+</div>
+<div class="flex items-center justify-between mt-md">
+<div class="flex items-center border border-outline-variant rounded-lg bg-surface overflow-hidden">
+<button class="px-3 py-2 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">remove</span></button>
+<span class="px-4 font-body-md text-body-md font-bold">2</span>
+<button class="px-3 py-2 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+<button class="remove-btn md:opacity-0 flex items-center gap-xs text-error font-button text-button transition-opacity">
+<span class="material-symbols-outlined">delete</span>
+<span class="hidden md:inline">Remove</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Order Summary -->
+<aside class="lg:col-span-4 sticky top-24">
+<div class="bg-surface-container rounded-xl p-lg shadow-lg border border-outline-variant">
+<h2 class="font-h3 text-h3 text-on-surface mb-md">Order Summary</h2>
+<div class="space-y-sm mb-lg">
+<div class="flex justify-between font-body-md text-body-md text-secondary">
+<span>Subtotal</span>
+<span>$525.00</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md text-secondary">
+<span>Shipping Estimate</span>
+<span class="text-tertiary">Calculated at next step</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md text-secondary">
+<span>Taxes</span>
+<span>$42.00</span>
+</div>
+<div class="pt-sm border-t border-outline-variant flex justify-between font-h4 text-h4 text-on-surface font-bold">
+<span>Total</span>
+<span>$567.00</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-md rounded-lg font-button text-button hover:bg-on-primary-fixed-variant active:scale-[0.98] transition-all shadow-md">
+                        Proceed to Checkout
+                    </button>
+<div class="mt-lg flex items-center justify-center gap-xs text-secondary font-caption text-caption">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>Secure SSL Encrypted Checkout</span>
+</div>
+</div>
+<div class="mt-md p-lg bg-primary-container/10 rounded-xl border border-primary-container/20">
+<p class="font-body-sm text-body-sm text-on-primary-fixed-variant">
+<strong>Nexa Rewards:</strong> You're earning 567 points on this purchase!
+                    </p>
+</div>
+</aside>
+</div>
+<!-- Empty Cart State (Hidden by default) -->
+<div class="hidden flex-col items-center justify-center py-2xl text-center" id="empty-state">
+<div class="w-24 h-24 bg-surface-container-high rounded-full flex items-center justify-center mb-lg">
+<span class="material-symbols-outlined text-primary text-[48px]">shopping_bag</span>
+</div>
+<h2 class="font-h2 text-h2 text-on-surface mb-xs">Your cart is empty</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-xl max-w-md">Looks like you haven't added anything to your cart yet. Explore our latest collections and find something you love.</p>
+<button class="px-xl py-md bg-primary text-on-primary rounded-lg font-button text-button hover:bg-on-primary-fixed-variant transition-all" onclick="toggleEmptyState()">
+                Shop Now
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg flex flex-col items-center gap-md bg-surface-container-low border-t border-outline-variant mt-2xl">
+<div class="font-h4 text-h4 text-on-surface font-bold">Nexa Store</div>
+<div class="flex gap-md">
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-secondary hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+<p class="font-caption text-caption text-secondary text-center">© 2024 Nexa Store. All rights reserved. Secure Checkout.</p>
+</footer>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-[0_-2px_4px_rgba(15,23,42,0.05)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-caption text-caption">Shop</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-caption text-caption">Cart</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-caption text-caption">Saved</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">person</span>
+<span class="font-caption text-caption">Account</span>
+</div>
+</nav>
+<script>
+        function toggleEmptyState() {
+            const cartContent = document.getElementById('cart-content');
+            const emptyState = document.getElementById('empty-state');
+            const clearBtn = document.querySelector('.text-error');
+            const headerInfo = document.querySelector('h1 + p');
+            
+            if (cartContent.classList.contains('hidden')) {
+                cartContent.classList.remove('hidden');
+                cartContent.classList.add('grid');
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
+                clearBtn.style.display = 'block';
+                headerInfo.style.display = 'block';
+            } else {
+                cartContent.classList.add('hidden');
+                cartContent.classList.remove('grid');
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+                clearBtn.style.display = 'none';
+                headerInfo.style.display = 'none';
+            }
+        }
+
+        // Add subtle animation for hover interactions
+        document.querySelectorAll('.item-row').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'translateY(-2px)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

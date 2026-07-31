@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Details | Nexa Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f3f3fe",
+                    "surface-container": "#ededf9",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface": "#faf8ff",
+                    "primary-container": "#2563eb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "inverse-surface": "#2e3039",
+                    "surface-variant": "#e1e2ed",
+                    "on-surface-variant": "#434655",
+                    "primary": "#004ac6",
+                    "background": "#faf8ff",
+                    "outline-variant": "#c3c6d7",
+                    "secondary-container": "#dae2fd",
+                    "outline": "#737686",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#dbe1ff",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "surface-bright": "#faf8ff",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#dae2fd",
+                    "inverse-on-surface": "#f0f0fb",
+                    "surface-container-highest": "#e1e2ed",
+                    "on-tertiary-container": "#ffede6",
+                    "tertiary": "#943700",
+                    "surface-container-high": "#e7e7f3",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "surface-tint": "#0053db",
+                    "surface-dim": "#d9d9e5",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#565e74",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-primary-container": "#eeefff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-surface": "#191b23",
+                    "on-secondary-container": "#5c647a",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "on-background": "#191b23"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "2xl": "80px",
+                    "md": "16px",
+                    "xl": "48px",
+                    "unit": "4px",
+                    "max-width": "1280px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "margin-desktop": "40px",
+                    "xs": "4px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "h3": ["Inter"],
+                    "caption": ["Inter"],
+                    "h4": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "button": ["Inter"],
+                    "h2": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h1-desktop": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .order-step-active { color: #004ac6; }
+        .order-step-line { position: relative; }
+        .order-step-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 100%;
+            height: 2px;
+            background-color: #e1e2ed;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-margin-desktop max-w-max-width mx-auto w-full h-20 bg-surface dark:bg-inverse-surface shadow-sm">
+<div class="font-h3 text-h3 font-bold text-primary dark:text-inverse-primary">Nexa Store</div>
+<nav class="hidden md:flex gap-xl">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shop</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Categories</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sale</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary p-2 transition-all duration-200 active:scale-95 hover:opacity-80">search</button>
+<button class="material-symbols-outlined text-primary p-2 transition-all duration-200 active:scale-95 hover:opacity-80">shopping_bag</button>
+<button class="material-symbols-outlined text-primary p-2 transition-all duration-200 active:scale-95 hover:opacity-80">person</button>
+</div>
+</header>
+<main class="flex max-w-max-width mx-auto min-h-[calc(100vh-80px)]">
+<!-- SideNavBar (Desktop Only) -->
+<aside class="fixed left-0 top-20 bottom-0 p-lg space-y-md h-screen w-64 hidden lg:flex flex-col bg-surface-container-lowest dark:bg-surface-container-low shadow-sm z-40">
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young man named Alex, wearing a neutral gray sweater, with a clean and bright corporate aesthetic background. The lighting is soft and even, highlighting a friendly and trustworthy expression suitable for a premium member profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBL30woHOT4lNyjYaNV1ze4LzZkJs_e0oj4ui0fEQgwwYrg4KPCvUboesssYXluNQfTFFju4EYAHtgmKEUoSCc3Kd5-Z166VNldIgF-Uxl_dB9h7YAXxtDttAkFLNYp5nKanl273o8wfd9RSufk8RNaYEYxTVCKkYk431beI1OiOF2YRtviF7Onqs404g8ZeaKV14eM5idDlwVz8vBSJ-cG8Z7941Z9kUgOWjRxS6q5vTXEXgoRDbEug"/>
+</div>
+<div>
+<p class="font-h4 text-h4 font-bold text-on-surface leading-tight">Alex</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Premium Member</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs flex-grow">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm text-body-sm">Overview</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container font-semibold rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">package</span>
+<span class="font-body-sm text-body-sm">Orders</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-sm text-body-sm">Profile</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-body-sm text-body-sm">Addresses</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-body-sm text-body-sm">Wishlist</span>
+</a>
+</nav>
+<button class="mt-auto flex items-center justify-center gap-sm p-sm border border-outline rounded-lg text-secondary font-button text-button hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">logout</span>
+                Log Out
+            </button>
+</aside>
+<!-- Main Content Area -->
+<section class="flex-grow lg:ml-64 p-margin-desktop">
+<!-- Breadcrumbs -->
+<div class="mb-lg flex items-center gap-xs text-on-surface-variant font-caption text-caption">
+<a class="hover:text-primary" href="#">Account</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Orders</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Order #NX-882910</span>
+</div>
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-xl">
+<div>
+<h1 class="font-h2 text-h2 text-on-surface">Order Details</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Placed on Oct 24, 2024 • 14:32 PM</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm border-1.5 border-outline rounded-lg font-button text-button text-on-surface hover:bg-surface-container-high transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined">receipt</span>
+                        Download Invoice
+                    </button>
+<button class="px-md py-sm bg-primary text-on-primary rounded-lg font-button text-button hover:opacity-90 transition-opacity">
+                        Buy Again
+                    </button>
+</div>
+</div>
+<!-- Order Status Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-2xl">
+<!-- Status & Timeline Card -->
+<div class="lg:col-span-2 p-lg bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant">
+<div class="flex items-center justify-between mb-xl">
+<h3 class="font-h4 text-h4 text-on-surface">Shipment Progress</h3>
+<div class="bg-secondary-container text-on-secondary-container px-md py-1 rounded-full font-caption text-caption">
+                            In Transit
+                        </div>
+</div>
+<!-- Visual Timeline -->
+<div class="relative flex justify-between items-start mb-md px-lg">
+<!-- Horizontal Line -->
+<div class="absolute top-4 left-16 right-16 h-0.5 bg-outline-variant z-0">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+<!-- Step 1: Ordered -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<p class="font-caption text-caption font-bold text-on-surface">Ordered</p>
+<p class="font-caption text-[10px] text-on-surface-variant">Oct 24</p>
+</div>
+<!-- Step 2: Shipped -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</div>
+<p class="font-caption text-caption font-bold text-on-surface">Shipped</p>
+<p class="font-caption text-[10px] text-on-surface-variant">Oct 26</p>
+</div>
+<!-- Step 3: Out for Delivery -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant text-on-surface-variant flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[18px]">home_pin</span>
+</div>
+<p class="font-caption text-caption font-bold text-on-surface-variant">Out for Delivery</p>
+<p class="font-caption text-[10px] text-on-surface-variant">Pending</p>
+</div>
+<!-- Step 4: Delivered -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline-variant text-on-surface-variant flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</div>
+<p class="font-caption text-caption font-bold text-on-surface-variant">Delivered</p>
+<p class="font-caption text-[10px] text-on-surface-variant">Pending</p>
+</div>
+</div>
+<!-- Tracking Info -->
+<div class="mt-xl p-md bg-surface-container rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">distance</span>
+<div>
+<p class="font-caption text-caption text-on-surface-variant">Tracking Number</p>
+<p class="font-body-md text-body-md font-semibold text-primary underline cursor-pointer">NX-TRK-7718293301</p>
+</div>
+</div>
+<button class="text-primary font-button text-button hover:underline">Track on Carrier Site</button>
+</div>
+</div>
+<!-- Shipping & Payment Details -->
+<div class="space-y-lg">
+<!-- Shipping Address Card -->
+<div class="p-lg bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant">
+<h4 class="font-body-md text-body-md font-bold text-on-surface mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+                            Shipping Address
+                        </h4>
+<div class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">
+<p class="font-semibold text-on-surface">Alex Thompson</p>
+<p>412 High Street, Suite 500</p>
+<p>San Francisco, CA 94103</p>
+<p>United States</p>
+<p class="mt-sm">+1 (555) 012-3456</p>
+</div>
+</div>
+<!-- Payment Summary Card -->
+<div class="p-lg bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant">
+<h4 class="font-body-md text-body-md font-bold text-on-surface mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">credit_card</span>
+                            Payment Method
+                        </h4>
+<div class="flex items-center gap-md">
+<div class="w-10 h-6 bg-secondary-fixed-dim rounded flex items-center justify-center font-bold text-[10px] text-on-secondary-fixed">VISA</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm">
+<p class="text-on-surface">Visa ending in 4421</p>
+<p>Exp: 10/26</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Items List -->
+<div class="mb-2xl">
+<h3 class="font-h3 text-h3 text-on-surface mb-lg">Order Items (3)</h3>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container border-b border-outline-variant">
+<tr>
+<th class="px-lg py-md font-button text-button text-on-surface-variant uppercase tracking-wider">Product</th>
+<th class="px-lg py-md font-button text-button text-on-surface-variant uppercase tracking-wider">Quantity</th>
+<th class="px-lg py-md font-button text-button text-on-surface-variant uppercase tracking-wider">Price</th>
+<th class="px-lg py-md font-button text-button text-on-surface-variant uppercase tracking-wider text-right">Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Item 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="A premium minimalist noise-cancelling headphone in matte slate blue, presented in a clean studio environment with soft architectural shadows. The image focuses on the high-quality textures of the leather ear pads and the brushed metal headband, reflecting a luxury tech aesthetic consistent with Nexa Store." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDHvKRxuJQX3UF7ya0A6WnSx3yHL_B-zmswD0EHVW1E2Mu0RiNZGjIRlACM3SrMyAwJFXzM5N7gzCmb4Y0jY-vUySV7JKCkxeNX3LQ1v75tAajQDAo9nYLFepCRE3QMhN6zmTWVhPPVdFq78t39TsF7zcAamGJY2XwBGC7mhuWihKRJuJ9O36Rc8ZlLtjg7--QOJ-0g5bh5YldscdyPqJ9YcpkXMeiZVkR62yQrxhpIH-qZv551LUxqQ"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Pro Wireless Noise-Cancelling Headphones</p>
+<p class="font-caption text-caption text-on-surface-variant">Color: Slate Blue • Size: OS</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">1</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">$299.00</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-primary text-right">$299.00</td>
+</tr>
+<!-- Item 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="A sleek ergonomic mechanical keyboard with a low-profile aluminum frame and customizable RGB lighting peeking through charcoal-colored keycaps. The photography is sharp and modern, emphasizing the industrial design and premium materials, set against a neutral, high-end desk workspace background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe8R5lGV25NVHaNFqkk-Mh2D-4FaqzDJyZktJ0we7eCsKBTgqf8_qKpgXSXaQ-K3NskUGMImI8bJLQUZsjUiwSPJLUXXiVY-rfeTh6wjQ6xuXljDR-Ppb3g15zjeLb07cWZei1AM8e9Tb5B9WQqt9F3n2Cyzn3jnUhR_kd9sBA7oFjixFjYMExY2B_nF9YClrPFwbdNYRixN_vIUxrV_HG0fvW0DHOKKG31EMxkUBrJg0I414B7QvfFw"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Mechanical Key-X Keyboard</p>
+<p class="font-caption text-caption text-on-surface-variant">Switch: Brown • Layout: US</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">1</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">$149.00</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-primary text-right">$149.00</td>
+</tr>
+<!-- Item 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="A high-quality vegan leather desk mat in a soft charcoal gray, showing clean stitching and a smooth surface. An elegant designer mouse is placed at the edge of the mat, lit by cool natural light. The aesthetic is professional and organized, targeting a productive office environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzZxQ4UvdlMgyrz_s_rZi9bFt7CiF3XHy7w-z6eaBapeRFcTaLdgfynm-CxDleQjE1Gkk0abhTAuw_16I3QRRKeRFspluibnUaOlZ9gO-F8n920v6ozJPNjTpTgsJQchQn25Z0F74J4Kxs5cFHcvLY4yyQ3blwJyauD79nZBYySonxT6o-aHxEJRHq2t-8ofxQXhvmmbPTsbmozVLEnZEKxk6UwoK92KYcKS3G_ZK8Nf1PqmymMDyVEA"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">ErgoDesk Vegan Leather Mat</p>
+<p class="font-caption text-caption text-on-surface-variant">Color: Charcoal • Material: Synthetic Leather</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">2</td>
+<td class="px-lg py-md font-body-md text-body-md text-on-surface">$45.00</td>
+<td class="px-lg py-md font-body-md text-body-md font-bold text-primary text-right">$90.00</td>
+</tr>
+</tbody>
+</table>
+<!-- Order Totals -->
+<div class="p-lg bg-surface-container-low border-t border-outline-variant flex flex-col items-end">
+<div class="w-full md:w-80 space-y-sm">
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Subtotal</span>
+<span>$538.00</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Shipping (Express)</span>
+<span class="text-primary font-semibold">FREE</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Estimated Tax</span>
+<span>$43.04</span>
+</div>
+<div class="pt-md border-t border-outline-variant flex justify-between font-h4 text-h4 font-bold text-on-surface">
+<span>Order Total</span>
+<span class="text-primary">$581.04</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Section for Support -->
+<div class="flex flex-col md:flex-row items-center justify-between p-xl bg-surface-container-highest rounded-xl border border-outline-variant gap-lg">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-bold text-on-surface">Need help with your order?</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Our customer support team is available 24/7.</p>
+</div>
+</div>
+<div class="flex gap-md">
+<button class="px-lg py-md border-1.5 border-outline rounded-lg font-button text-button text-on-surface hover:bg-surface-container-lowest transition-colors">Return Item</button>
+<button class="px-lg py-md bg-on-surface text-surface rounded-lg font-button text-button hover:opacity-90 transition-opacity">Contact Support</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-2xl bg-surface-container-highest dark:bg-inverse-surface py-xl px-margin-desktop max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="font-h4 text-h4 font-bold text-primary">Nexa Store</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Shipping Info</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contact Us</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Nexa Store. All rights reserved.</p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-margin-mobile bg-surface lg:hidden border-t border-outline-variant shadow-lg">
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined">home</span>
+<span class="font-caption text-caption">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary font-bold active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">package</span>
+<span class="font-caption text-caption">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-caption text-caption">Wishlist</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined">person</span>
+<span class="font-caption text-caption">Profile</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-high transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-caption text-caption">Menu</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for item rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', () => {
+                // Potential navigation to product page logic here
+            });
+        });
+    </script>
+</body></html>

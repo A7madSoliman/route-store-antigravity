@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Nexa Store</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdbcd",
+                    "surface-variant": "#e1e2ed",
+                    "primary": "#004ac6",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "surface-tint": "#0053db",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-secondary-fixed": "#131b2e",
+                    "secondary-container": "#dae2fd",
+                    "inverse-on-surface": "#f0f0fb",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "secondary": "#565e74",
+                    "primary-fixed": "#dbe1ff",
+                    "on-secondary-container": "#5c647a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#faf8ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#ededf9",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#b4c5ff",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#bc4800",
+                    "surface-dim": "#d9d9e5",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#faf8ff",
+                    "surface": "#faf8ff",
+                    "inverse-surface": "#2e3039",
+                    "outline": "#737686",
+                    "surface-container-highest": "#e1e2ed",
+                    "primary-container": "#2563eb",
+                    "on-tertiary-container": "#ffede6",
+                    "on-background": "#191b23",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-surface-variant": "#434655",
+                    "surface-container-low": "#f3f3fe",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "on-surface": "#191b23",
+                    "on-primary-container": "#eeefff",
+                    "outline-variant": "#c3c6d7",
+                    "tertiary": "#943700",
+                    "on-primary-fixed": "#00174b",
+                    "secondary-fixed": "#dae2fd",
+                    "surface-container-high": "#e7e7f3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "2xl": "80px",
+                    "xs": "4px",
+                    "margin-desktop": "40px",
+                    "lg": "24px",
+                    "xl": "48px",
+                    "max-width": "1280px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "h2": ["Inter"],
+                    "button": ["Inter"],
+                    "h1-desktop": ["Inter"],
+                    "h3": ["Inter"],
+                    "h4": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .spinner {
+            animation: rotate 2s linear infinite;
+            width: 20px;
+            height: 20px;
+        }
+        .spinner .path {
+            stroke: currentColor;
+            stroke-linecap: round;
+            animation: dash 1.5s ease-in-out infinite;
+        }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+        @keyframes dash {
+            0% { stroke-dasharray: 1, 150; stroke-dashoffset: 0; }
+            50% { stroke-dasharray: 90, 150; stroke-dashoffset: -35; }
+            100% { stroke-dasharray: 90, 150; stroke-dashoffset: -124; }
+        }
+        /* Custom Transition for the Error Alert */
+        .alert-shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center p-md">
+<!-- Login Container -->
+<main class="w-full max-w-[440px] flex flex-col gap-lg items-center animate-fade-in">
+<!-- Brand Logo Anchor -->
+<div class="mb-sm text-center">
+<h1 class="font-h3 text-h3 font-bold text-primary tracking-tight">Nexa Store</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Premium Retail Experience</p>
+</div>
+<!-- Main Card -->
+<div class="bg-surface border border-outline-variant rounded-xl shadow-sm w-full overflow-hidden">
+<!-- Global Server Error Message Alert (Initially Visible for Demo) -->
+<div class="bg-error-container text-on-error-container p-md flex items-start gap-sm border-b border-error/10 alert-shake" id="errorAlert">
+<span class="material-symbols-outlined text-[20px]" data-icon="report">report</span>
+<div class="flex-1">
+<p class="font-caption text-caption font-bold">Authentication Error</p>
+<p class="font-caption text-caption opacity-90 leading-tight">Unable to connect to the authentication server. Please try again later.</p>
+</div>
+<button class="hover:bg-on-error-container/10 rounded p-xs transition-colors" onclick="document.getElementById('errorAlert').style.display='none'">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+<div class="p-lg md:p-xl flex flex-col gap-lg">
+<header class="flex flex-col gap-xs">
+<h2 class="font-h2 text-h2 text-on-surface">Sign In</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Welcome back! Please enter your details.</p>
+</header>
+<form class="flex flex-col gap-md" id="loginForm" onsubmit="handleLogin(event)">
+<!-- Email Field -->
+<div class="flex flex-col gap-xs">
+<label class="font-caption text-caption text-on-surface-variant" for="email">Email Address</label>
+<div class="relative group">
+<span class="absolute left-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors material-symbols-outlined" data-icon="mail">mail</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline-variant" id="email" name="email" placeholder="name@example.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between items-end">
+<label class="font-caption text-caption text-on-surface-variant" for="password">Password</label>
+<a class="font-caption text-caption text-primary font-bold hover:underline" href="#">Forgot Password?</a>
+</div>
+<div class="relative group">
+<span class="absolute left-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors material-symbols-outlined" data-icon="lock">lock</span>
+<input class="w-full pl-xl pr-xl py-sm bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline-variant" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-md top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined" data-icon="visibility" id="visibilityIcon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Sign In Button -->
+<button class="mt-sm w-full bg-primary-container text-on-primary py-sm rounded-lg font-button text-button hover:bg-primary transition-all active:scale-[0.98] flex items-center justify-center gap-sm" id="submitBtn" type="submit">
+<span id="btnText">Sign In</span>
+<svg class="spinner hidden" id="btnSpinner" viewbox="0 0 50 50">
+<circle class="path" cx="25" cy="25" fill="none" r="20" stroke-width="5"></circle>
+</svg>
+</button>
+</form>
+<!-- Divider -->
+<div class="flex items-center gap-md">
+<div class="h-[1px] flex-1 bg-outline-variant"></div>
+<span class="font-caption text-caption text-outline">OR</span>
+<div class="h-[1px] flex-1 bg-outline-variant"></div>
+</div>
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-md">
+<button class="flex items-center justify-center gap-sm py-sm border border-outline-variant rounded-lg hover:bg-surface-container-low transition-all active:scale-[0.98]">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.26.81-.58z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="font-button text-button text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-sm py-sm bg-on-secondary-fixed text-on-secondary rounded-lg hover:opacity-90 transition-all active:scale-[0.98]">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.702z"></path>
+</svg>
+<span class="font-button text-button">Apple</span>
+</button>
+</div>
+</div>
+<!-- Footer of Card -->
+<div class="bg-surface-container-low px-lg py-md border-t border-outline-variant flex justify-center items-center gap-xs">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Don't have an account?</p>
+<a class="font-body-sm text-body-sm text-primary font-bold hover:underline" href="#">Register now</a>
+</div>
+</div>
+<!-- Secondary Navigation Links -->
+<div class="flex gap-lg">
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('password');
+            const icon = document.getElementById('visibilityIcon');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                icon.innerText = 'visibility_off';
+            } else {
+                pwdInput.type = 'password';
+                icon.innerText = 'visibility';
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const text = document.getElementById('btnText');
+            const spinner = document.getElementById('btnSpinner');
+            
+            // Start Loading State
+            btn.disabled = true;
+            text.classList.add('opacity-0');
+            spinner.classList.remove('hidden');
+            
+            // Simulate API Call
+            setTimeout(() => {
+                // End Loading State
+                btn.disabled = false;
+                text.classList.remove('opacity-0');
+                spinner.classList.add('hidden');
+                
+                // Show Alert as if login failed (since it's a demo)
+                const alert = document.getElementById('errorAlert');
+                alert.style.display = 'flex';
+                alert.classList.remove('alert-shake');
+                void alert.offsetWidth; // Trigger reflow
+                alert.classList.add('alert-shake');
+            }, 2000);
+        }
+    </script>
+</body></html>

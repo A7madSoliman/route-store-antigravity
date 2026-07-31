@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=390, initial-scale=1.0" name="viewport"/>
+<title>Nexa Store | Men's Apparel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e1e2ed",
+                        "secondary-container": "#dae2fd",
+                        "surface-container-highest": "#e1e2ed",
+                        "tertiary-fixed": "#ffdbcd",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-secondary-container": "#5c647a",
+                        "surface-dim": "#d9d9e5",
+                        "outline-variant": "#c3c6d7",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#bc4800",
+                        "surface": "#faf8ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary": "#943700",
+                        "secondary": "#565e74",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191b23",
+                        "primary-container": "#2563eb",
+                        "secondary-fixed": "#dae2fd",
+                        "primary": "#004ac6",
+                        "on-tertiary-container": "#ffede6",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#434655",
+                        "outline": "#737686",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#eeefff",
+                        "surface-container": "#ededf9",
+                        "surface-container-low": "#f3f3fe",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-fixed": "#131b2e",
+                        "inverse-primary": "#b4c5ff",
+                        "background": "#faf8ff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "surface-tint": "#0053db",
+                        "inverse-surface": "#2e3039",
+                        "surface-container-high": "#e7e7f3",
+                        "on-background": "#191b23",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "xs": "4px",
+                        "2xl": "80px",
+                        "max-width": "1280px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "48px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "button": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h2": ["Inter"],
+                        "h4": ["Inter"],
+                        "h3": ["Inter"],
+                        "h1-desktop": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { width: 390px; margin: 0 auto; min-height: 100vh; overflow-x: hidden; background-color: #faf8ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
+        .skeleton { animation: skeleton-pulse 1.5s ease-in-out infinite; background: linear-gradient(90deg, #f3f3fe 25%, #ffffff 50%, #f3f3fe 75%); background-size: 200% 100%; }
+        @keyframes skeleton-pulse { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .bottom-sheet { transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bottom-sheet.open { transform: translateY(0); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface sticky top-0 z-40 shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full max-w-max-width mx-auto">
+<h1 class="font-h3 text-h3 font-bold text-primary">Nexa Store</h1>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer">shopping_cart</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">person</span>
+</div>
+</div>
+</header>
+<!-- Context Bar (Sticky under header) -->
+<div class="sticky top-16 z-30 bg-surface px-margin-mobile py-sm border-b border-surface-variant flex gap-sm items-center">
+<button class="flex-1 flex items-center justify-center gap-xs bg-surface-container-low border border-outline-variant py-2 rounded-lg font-button text-button text-on-surface-variant hover:bg-surface-variant transition-all active:scale-95" onclick="toggleFilters()">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+            Filters
+        </button>
+<button class="flex-1 flex items-center justify-center gap-xs bg-surface-container-low border border-outline-variant py-2 rounded-lg font-button text-button text-on-surface-variant hover:bg-surface-variant transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+            Sort
+        </button>
+</div>
+<main class="px-margin-mobile py-md">
+<!-- Breadcrumbs & Title -->
+<nav class="flex items-center gap-xs mb-xs text-on-surface-variant">
+<span class="font-caption text-caption">Home</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="font-caption text-caption text-primary">Men's Apparel</span>
+</nav>
+<h2 class="font-h1-mobile text-h1-mobile mb-xs">Men's Apparel</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-lg">Showing 24 results</p>
+<!-- Product Grid -->
+<div class="grid grid-cols-2 gap-gutter mb-xl">
+<!-- Product Item 1 -->
+<div class="flex flex-col group">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden mb-sm shadow-sm">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A professional studio photograph of a premium men's tailored charcoal wool coat. The lighting is sophisticated and directional, creating deep shadows and high-contrast textures that emphasize the quality of the fabric. The overall aesthetic is high-end luxury retail, following a minimalist and modern architectural style with a clean, light-mode background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDqL7cxV3ZVIQ0dADN182tRs1fABdXY_cpAKmL-u7-MH_NlTXgCChMpz3PFB66MZyEvvYO-SarRfc99esppacvzlnK5cZwVNW1auojN5ynlpKIUNXGSXRxvf0qW60X832Gy4peh9KBvBChHHweDrBysxXxj-H90RlV2FWjwwaeasTtd5qx5vkdRMHqBOe_Ty4MknTkro0j7tnP1vR_AoZbkArxwVNWwOkfgmckHlXnBfQwbzYiVZkwwQ"/>
+<span class="absolute top-2 left-2 bg-primary text-on-primary px-2 py-0.5 rounded font-caption text-caption">New</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Outerwear</p>
+<h3 class="font-body-md text-body-md font-semibold truncate">Wool Car Coat</h3>
+<p class="font-body-md text-body-md font-bold text-secondary mt-1">$249.00</p>
+</div>
+<!-- Product Item 2 -->
+<div class="flex flex-col group">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden mb-sm shadow-sm">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A detailed editorial shot of a men's ivory cashmere sweater layered over a crisp white shirt. The image features soft, ambient lighting that enhances the luxurious softness of the knitwear. The color palette is composed of warm whites and creams, set against a neutral, high-key studio background that communicates a sense of quiet luxury and premium quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnOoOVD6MNzsKRS_fNoSGlOT83dd-oiAZDWiT_XUyif3h1Mv_IcL-psBjJ5FZujz5Cv1MogELGdSght9fGR8B_ta2I4j_JKiBt6hc3sr1oGLsS8GOul2Xj0cUF3fpUbfUPjv7cTw4fMFewztxYu5rUM9y2P3eAvT7yeXKYCmtK_EmVmE6IHURBH8L4FsUqo5NxDnkxH3ZG4f36nLQjZG7t17V6h4dNbBudIVTqOuBcwk4nKCmMfvStsA"/>
+<span class="absolute top-2 left-2 bg-error text-on-error px-2 py-0.5 rounded font-caption text-caption">Sale</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Knitwear</p>
+<h3 class="font-body-md text-body-md font-semibold truncate">Cashmere Crewneck</h3>
+<div class="flex gap-2 items-center">
+<p class="font-body-md text-body-md font-bold text-secondary mt-1">$159.00</p>
+<p class="font-caption text-caption text-outline line-through">$220.00</p>
+</div>
+</div>
+<!-- Product Item 3 -->
+<div class="flex flex-col group">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden mb-sm shadow-sm">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A crisp, high-resolution product image of a pair of dark indigo raw denim jeans displayed on a minimalist white pedestal. The lighting is bright and even, highlighting the orange stitching and premium hardware details. The scene is clean and professional, embodying a modern, upscale ecommerce visual language with high clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4DyZiQDrECSZ7jOg3JY-0a8n6-QjpgJf6dW32LN6Wmol8Zdl4JvZa2H31v30Us-4r6aPMFu44Qg0IsFRTlwHK-U-O9wANYMpuQm1bT4aFDeta-vPyF2b7uJRhRV25IS1tl-okaLUhb8BTHVVzrw0v4z0ulBTy5muNPaWZa9kkEnIgwZrjq-P6CsLCxi6hcJ6YngB6K9qT4AxuX7zJIk6dEJ0UfgK8JFiVs4_PlakkMGO5WtOFFznHdA"/>
+</div>
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Denim</p>
+<h3 class="font-body-md text-body-md font-semibold truncate">Slim-Fit Selvedge</h3>
+<p class="font-body-md text-body-md font-bold text-secondary mt-1">$135.00</p>
+</div>
+<!-- Product Item 4 -->
+<div class="flex flex-col group">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden mb-sm shadow-sm">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A fashion-forward photo of a men's structured navy blue blazer. The garment is perfectly fitted, showing off its modern silhouette. The background is a soft gray concrete wall, providing a modern urban context. Lighting is crisp and professional, showcasing the subtle sheen of the high-grade wool blend fabric." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2oOnVLgSMQtjx0ZdwoZ7ferrH2iPI5Jbn06Avh2FP2HS0QkiGsQCsil-_J-KdcyQs-N654o4DqWxQDTRJ6vQ1CYojnDDsiBImSfb84eCwkAGrdM_XYmm3_uOCXOd2gXnzYkR0MmRc6qcO4gjps7SlVJ3O2h_3Lss69OXabQ2nyFILn1OhmEzIXlLed1v-bpyi8Y48mSPIb_IodyU3Jkn4Sc85cxzXiFGeITSAsnJrzsdhDjJH1ZkaYA"/>
+</div>
+<p class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Tailoring</p>
+<h3 class="font-body-md text-body-md font-semibold truncate">Modern Fit Blazer</h3>
+<p class="font-body-md text-body-md font-bold text-secondary mt-1">$299.00</p>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-md mb-2xl">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex items-center gap-sm">
+<span class="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-on-primary font-button text-button">1</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-full text-on-surface-variant font-button text-button">2</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-full text-on-surface-variant font-button text-button">3</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant active:bg-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Skeleton State Section -->
+<div class="pt-xl border-t border-surface-variant mb-xl">
+<h3 class="font-h4 text-h4 mb-md">Skeleton View</h3>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="flex flex-col">
+<div class="aspect-[3/4] rounded-lg skeleton mb-sm"></div>
+<div class="h-4 w-1/2 skeleton mb-2"></div>
+<div class="h-5 w-3/4 skeleton mb-2"></div>
+<div class="h-5 w-1/3 skeleton"></div>
+</div>
+<div class="flex flex-col">
+<div class="aspect-[3/4] rounded-lg skeleton mb-sm"></div>
+<div class="h-4 w-1/2 skeleton mb-2"></div>
+<div class="h-5 w-3/4 skeleton mb-2"></div>
+<div class="h-5 w-1/3 skeleton"></div>
+</div>
+</div>
+</div>
+<!-- No Results State -->
+<div class="py-2xl text-center flex flex-col items-center justify-center bg-surface-container-lowest rounded-xl border-2 border-dashed border-outline-variant px-margin-mobile">
+<span class="material-symbols-outlined text-[64px] text-outline-variant mb-md">inventory_2</span>
+<h3 class="font-h4 text-h4 text-on-surface mb-xs">No Results Found</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-lg">Try adjusting your filters or search terms to find what you're looking for.</p>
+<button class="bg-primary text-on-primary px-xl py-3 rounded-lg font-button text-button" onclick="toggleFilters()">Clear All Filters</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-secondary-fixed text-on-secondary-fixed py-xl">
+<div class="flex flex-col gap-xl px-margin-mobile items-center text-center">
+<h2 class="font-h4 text-h4 font-bold">Nexa Store</h2>
+<div class="flex flex-wrap justify-center gap-md font-caption text-caption opacity-80">
+<span>Privacy Policy</span>
+<span>Terms of Service</span>
+<span>Shipping & Returns</span>
+<span>Contact Us</span>
+</div>
+<p class="font-caption text-caption opacity-60">© 2024 Nexa Store. All rights reserved.</p>
+</div>
+</footer>
+<!-- Bottom Sheet (Filter Drawer) -->
+<div class="fixed inset-0 bg-black/40 z-50 transition-opacity opacity-0 pointer-events-none" id="filterOverlay" onclick="toggleFilters()"></div>
+<div class="bottom-sheet fixed bottom-0 left-0 right-0 bg-surface z-[60] rounded-t-2xl max-h-[90vh] overflow-hidden flex flex-col" id="filterSheet">
+<div class="w-12 h-1 bg-surface-variant rounded-full mx-auto my-3"></div>
+<div class="px-margin-mobile flex justify-between items-center mb-md">
+<div>
+<h3 class="font-h4 text-h4">Filters</h3>
+<p class="font-caption text-caption text-on-surface-variant">Refine your selection</p>
+</div>
+<button class="text-primary font-button text-button">Clear All</button>
+</div>
+<div class="flex-1 overflow-y-auto px-margin-mobile flex flex-col gap-lg pb-2xl no-scrollbar">
+<!-- Category -->
+<div class="flex flex-col gap-sm">
+<span class="font-button text-button uppercase text-on-surface-variant text-[12px] tracking-widest">Category</span>
+<div class="flex flex-col gap-2">
+<label class="flex items-center justify-between py-2">
+<span class="font-body-md text-body-md">Shirts & Tops</span>
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between py-2">
+<span class="font-body-md text-body-md">Outerwear</span>
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between py-2">
+<span class="font-body-md text-body-md">Pants</span>
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Price Range -->
+<div class="flex flex-col gap-sm">
+<span class="font-button text-button uppercase text-on-surface-variant text-[12px] tracking-widest">Price Range</span>
+<div class="pt-md pb-xs">
+<div class="relative h-1 bg-surface-variant rounded-full">
+<div class="absolute left-1/4 right-1/4 h-full bg-primary"></div>
+<div class="absolute left-1/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-sm"></div>
+<div class="absolute right-1/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-sm"></div>
+</div>
+<div class="flex justify-between mt-md">
+<span class="font-body-sm text-body-sm border border-outline-variant rounded px-3 py-1">$50</span>
+<span class="font-body-sm text-body-sm border border-outline-variant rounded px-3 py-1">$500</span>
+</div>
+</div>
+</div>
+<!-- Brands -->
+<div class="flex flex-col gap-sm">
+<span class="font-button text-button uppercase text-on-surface-variant text-[12px] tracking-widest">Brand</span>
+<div class="flex flex-wrap gap-xs">
+<span class="px-4 py-2 bg-secondary-container text-on-secondary-container rounded-full font-body-sm text-body-sm border border-primary/20">Nexa Studio</span>
+<span class="px-4 py-2 bg-surface-container-low text-on-surface-variant rounded-full font-body-sm text-body-sm border border-outline-variant">Aura Essentials</span>
+<span class="px-4 py-2 bg-surface-container-low text-on-surface-variant rounded-full font-body-sm text-body-sm border border-outline-variant">Primal Wear</span>
+<span class="px-4 py-2 bg-surface-container-low text-on-surface-variant rounded-full font-body-sm text-body-sm border border-outline-variant">Evo Tech</span>
+</div>
+</div>
+<!-- Sustainability -->
+<div class="flex items-center justify-between py-2 border-t border-surface-variant mt-sm">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-tertiary">eco</span>
+<span class="font-body-md text-body-md">Sustainably Made</span>
+</div>
+<div class="w-10 h-5 bg-surface-variant rounded-full relative">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+</div>
+<div class="p-margin-mobile border-t border-surface-variant bg-surface sticky bottom-0">
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-button text-button shadow-lg active:scale-95 transition-transform" onclick="toggleFilters()">
+                View 24 Results
+            </button>
+</div>
+</div>
+<script>
+        function toggleFilters() {
+            const sheet = document.getElementById('filterSheet');
+            const overlay = document.getElementById('filterOverlay');
+            const isOpening = !sheet.classList.contains('open');
+            
+            if (isOpening) {
+                sheet.classList.add('open');
+                overlay.classList.add('opacity-100');
+                overlay.classList.remove('pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            } else {
+                sheet.classList.remove('open');
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('pointer-events-none');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+</body></html>

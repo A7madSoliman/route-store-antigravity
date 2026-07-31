@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Account Overview | Nexa Store</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f3f3fe",
+                    "surface-container": "#ededf9",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface": "#faf8ff",
+                    "primary-container": "#2563eb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "inverse-surface": "#2e3039",
+                    "surface-variant": "#e1e2ed",
+                    "on-surface-variant": "#434655",
+                    "primary": "#004ac6",
+                    "background": "#faf8ff",
+                    "outline-variant": "#c3c6d7",
+                    "secondary-container": "#dae2fd",
+                    "outline": "#737686",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#dbe1ff",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "surface-bright": "#faf8ff",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#dae2fd",
+                    "inverse-on-surface": "#f0f0fb",
+                    "surface-container-highest": "#e1e2ed",
+                    "on-tertiary-container": "#ffede6",
+                    "tertiary": "#943700",
+                    "surface-container-high": "#e7e7f3",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "surface-tint": "#0053db",
+                    "surface-dim": "#d9d9e5",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#565e74",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-primary-container": "#eeefff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-surface": "#191b23",
+                    "on-secondary-container": "#5c647a",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "on-background": "#191b23"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "2xl": "80px",
+                    "md": "16px",
+                    "xl": "48px",
+                    "unit": "4px",
+                    "max-width": "1280px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "margin-desktop": "40px",
+                    "xs": "4px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "h3": ["Inter"],
+                    "caption": ["Inter"],
+                    "h4": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "button": ["Inter"],
+                    "h2": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h1-desktop": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "h4": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "button": ["14px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "h1-desktop": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #faf8ff;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .account-item:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-sm h-16">
+<div class="flex justify-between items-center px-margin-mobile h-full w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 duration-200 hover:bg-surface-container-low p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-h3 text-h3 text-primary tracking-tight">Nexa Store</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="active:scale-95 duration-200 hover:bg-surface-container-low p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-24 px-margin-mobile max-w-md mx-auto">
+<!-- Hero Section: Identity & Loyalty -->
+<section class="mb-lg">
+<div class="bg-primary-container p-lg rounded-xl shadow-[0_2px_4px_rgba(15,23,42,0.05)] text-on-primary-container relative overflow-hidden">
+<div class="relative z-10 flex items-center gap-md">
+<div class="w-16 h-16 rounded-full border-2 border-primary-fixed-dim overflow-hidden shadow-lg bg-surface">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly young adult with a welcoming smile, shot with soft, high-key lighting that emphasizes a clean and modern ecommerce brand identity. The background is a minimalist, light gray textured wall that creates a premium, luxury aesthetic. The person is wearing stylish, neutral-colored clothing, fitting the corporate modern movement of a high-end retail experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCVjCJATIGeXN-lfJ2YcFkn9939jwRuOzYedLf3V_PNO14B6wV1XREu34lHm4fxXPPX5f6_U8b2uPrXfKimb8EoyCjUF8K4NXMbbzbatx9RrB6mV92TugflJ7fufO3hLoEhw-wlWXLnJriTdmuhRoR8LdQBGPKjixtqRz0B6uVCBN2DpbKb7LBy7Asr0xvP1fmvEhSB4grx7j9Iad3Xfie7VETHg7-KW6hLSD7DVyPhYiul0xaq_w76w"/>
+</div>
+<div>
+<h2 class="font-h4 text-h4-mobile">Alex Sterling</h2>
+<p class="font-caption text-caption opacity-90">Premium Member since 2022</p>
+</div>
+</div>
+<div class="mt-lg pt-lg border-t border-white/10 flex justify-between items-end relative z-10">
+<div>
+<p class="font-caption text-caption uppercase tracking-wider opacity-80 mb-1">Nexa Rewards</p>
+<p class="font-h2 text-h2 leading-none">2,450 <span class="text-body-sm font-normal">pts</span></p>
+</div>
+<button class="bg-surface-container-lowest text-primary px-4 py-2 rounded-lg font-button text-button shadow-sm active:scale-95 transition-transform">
+                        Redeem
+                    </button>
+</div>
+<!-- Subtle Decorative Background Pattern -->
+<div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/5 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 left-0 -ml-4 -mb-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl"></div>
+</div>
+</section>
+<!-- Quick Stats / Bento Mini -->
+<div class="bento-grid mb-lg">
+<div class="bg-surface p-md rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-1">
+<span class="material-symbols-outlined text-primary mb-1">local_shipping</span>
+<span class="font-h4 text-h4-mobile">2</span>
+<span class="font-caption text-on-surface-variant">Active Orders</span>
+</div>
+<div class="bg-surface p-md rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-1">
+<span class="material-symbols-outlined text-tertiary mb-1">favorite</span>
+<span class="font-h4 text-h4-mobile">14</span>
+<span class="font-caption text-on-surface-variant">Saved Items</span>
+</div>
+</div>
+<!-- Account Sections List -->
+<section class="space-y-sm">
+<h3 class="font-h4 text-h4-mobile px-1 mb-md">Account Settings</h3>
+<a class="account-item flex items-center justify-between p-md bg-surface border border-outline-variant/20 rounded-xl hover:bg-surface-container-low transition-all duration-200" href="#">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">package_2</span>
+</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Orders</p>
+<p class="font-caption text-on-surface-variant">Track, return, or buy again</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</a>
+<a class="account-item flex items-center justify-between p-md bg-surface border border-outline-variant/20 rounded-xl hover:bg-surface-container-low transition-all duration-200" href="#">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Profile</p>
+<p class="font-caption text-on-surface-variant">Personal info and password</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</a>
+<a class="account-item flex items-center justify-between p-md bg-surface border border-outline-variant/20 rounded-xl hover:bg-surface-container-low transition-all duration-200" href="#">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Addresses</p>
+<p class="font-caption text-on-surface-variant">Manage shipping locations</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</a>
+<a class="account-item flex items-center justify-between p-md bg-surface border border-outline-variant/20 rounded-xl hover:bg-surface-container-low transition-all duration-200" href="#">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Payments</p>
+<p class="font-caption text-on-surface-variant">Cards and digital wallets</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</a>
+<a class="account-item flex items-center justify-between p-md bg-surface border border-outline-variant/20 rounded-xl hover:bg-surface-container-low transition-all duration-200" href="#">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+<div>
+<p class="font-body-md font-semibold text-on-surface">Notifications</p>
+<p class="font-caption text-on-surface-variant">Email and push preferences</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</a>
+</section>
+<!-- Danger Zone -->
+<section class="mt-xl pt-lg border-t border-outline-variant/30">
+<button class="w-full flex items-center justify-center gap-sm p-md text-error font-button border border-error/20 rounded-xl hover:bg-error-container/10 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">logout</span>
+                Sign Out
+            </button>
+<p class="text-center font-caption text-outline mt-md">App Version 2.4.1</p>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 px-margin-mobile bg-surface shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-caption text-caption">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-caption text-caption">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-caption text-caption">Orders</span>
+</a>
+<!-- Active Tab: Account -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-caption text-caption">Account</span>
+</a>
+</nav>
+<script>
+        // Simple touch interaction for items
+        document.querySelectorAll('.account-item').forEach(item => {
+            item.addEventListener('touchstart', () => {
+                item.classList.add('bg-surface-container');
+            });
+            item.addEventListener('touchend', () => {
+                item.classList.remove('bg-surface-container');
+            });
+        });
+
+        // Toggle sticky header elevation on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+    </script>
+</body></html>
