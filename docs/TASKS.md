@@ -233,7 +233,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### D07 — Decide application architecture and folder structure
 
-- **Status:** Planned.
+- **Status:** Complete; `docs/ARCHITECTURE.md` defines the root-level App Router structure, maps all 26 approved/conditional routes, and `DECISIONS.md` resolves `ARCH-001` and `ARCH-002`.
 - **Outcome:** Route groups, server/client boundaries, API adapters, feature folders, shared UI, validation, session, test, and fixture locations are decision-complete before code moves.
 - **Work:** Read the relevant local Next 16 docs and document a concrete folder tree using existing App Router conventions. Keep protected tokens server-confined unless evidence forces a reviewed alternative.
 - **Verification:** `DECISIONS.md` resolves `ARCH-001` and `ARCH-002`; every planned route and shared component has one intended home.
