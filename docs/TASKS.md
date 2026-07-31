@@ -242,7 +242,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### D08 — Select dependencies
 
-- **Status:** Complete; `docs/DEPENDENCIES.md` records one runtime and ten development packages with reviewed ranges, compatibility, impact, first use, and rejected alternatives, while `DECISIONS.md` resolves `ARCH-003`, `ARCH-005`, `ARCH-006`, and `ARCH-007`.
+- **Status:** Complete; `docs/DEPENDENCIES.md` records one runtime and ten development packages with reviewed versions/ranges, compatibility, impact, first use, and rejected alternatives. D08 initially resolved `ARCH-003`, `ARCH-005`, `ARCH-006`, and `ARCH-007`; D09's later audit evidence reopened only `ARCH-006` and `ARCH-007` without invalidating the completed selection milestone.
 - **Outcome:** Every proposed package has a concrete need, current compatibility evidence, and a documented alternative.
 - **Work:** Audit existing Next/React/Tailwind/TypeScript dependencies; decide runtime validation, forms, testing, and browser-testing packages. Prefer platform/framework capabilities and the smallest dependency set.
 - **Verification:** `DECISIONS.md` records package names, versions/ranges, purpose, server/client impact, and rejected alternatives; no package is installed yet.
@@ -251,10 +251,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### D09 — Install approved dependencies
 
-- **Status:** Planned; the approved packages installed, the reconciliation install, lint, production build (including Next.js's TypeScript phase), and clean top-level dependency tree passed on 2026-07-31. No standalone type-check script exists, so none was invented or run. `npm audit` reported 13 high-severity findings including direct Vite `8.0.0` advisories, so D09 remains incomplete pending the `ARCH-006`/`ARCH-007` dependency review; no audit fix was run.
+- **Status:** Planned; on 2026-07-31 Vite was safely pinned from `8.0.0` to exact `8.0.16`, removing its five observed advisories. The targeted install, reconciliation install, clean `npm ls --depth=0`, lint, and production build—including Next.js's TypeScript phase—passed. The sandboxed build first failed only because the existing Google fonts could not be fetched, then passed unchanged with network access. No standalone type-check script exists, so none was invented or run. The post-remediation full audit still reports 12 high-severity dependency/path findings and `npm audit --omit=dev` reports three: an unresolved development-only ESLint/minimatch/brace-expansion path plus production Next/PostCSS and optional Next/Sharp paths. No compatible stable upstream resolution is currently available, no risk is accepted, and no automatic/forced fix, override, prerelease, downgrade, or suppression was used. D09 remains incomplete, `ARCH-006`/`ARCH-007` remain Provisional, and D10 stays blocked.
 - **Outcome:** Only the D08-approved packages are present and the lockfile is reproducible.
 - **Work:** Install runtime and development dependencies in separate reviewed commands; do not bundle unrelated code changes.
-- **Verification:** Install completes from the lockfile; build, lint, and type checking pass; dependency audit findings are reviewed.
+- **Verification:** Install completes from the lockfile; lint and build pass; an existing standalone type-check script passes when available; dependency audit findings are reviewed and the documented security gate passes.
 - **Commit:** `build: install approved project dependencies`
 - **Dependencies:** D08.
 
