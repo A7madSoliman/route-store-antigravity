@@ -51,7 +51,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F01 — Repository conventions and AGENTS.md
 
-- **Status:** Planned.
+- **Status:** Complete; the expanded root `AGENTS.md` was committed in `d026ea5` and satisfies the F01 verification outcome.
 - **Outcome:** Future Codex sessions and contributors follow the same small-commit, safety, structure, and verification rules.
 - **Work:** Expand `AGENTS.md` with repository layout, documentation precedence, generated/ignored files, naming, command, test, API-safety, and commit conventions. Require milestone-specific reading from the local Next 16 App Router docs, beginning with project structure, layouts/pages, Server and Client Components, data fetching, mutations, error handling, route handlers, authentication, and environment variables.
 - **Verification:** A new session can identify the next milestone, permitted files, required local docs, and verification commands without guessing.
@@ -60,7 +60,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F02 — Controlled live-verification procedure
 
-- **Status:** Planned.
+- **Status:** Complete; `docs/API_VERIFICATION.md` and the sanitized 2026-07-31 `GET /categories` evidence satisfy the F02 verification requirements.
 - **Outcome:** API observations are repeatable, sanitized, and safe without relying on unavailable external review.
 - **Work:** Document the local request procedure, evidence template, redaction checklist, test-account naming, before/after snapshots, cleanup steps, rate limits, and stop conditions. Use Postman, curl, or another already available client; install no application dependency for inspection.
 - **Verification:** A dry run against a harmless public GET records method, URL, status, timing, selected safe headers, sanitized body shape, and a `DECISIONS.md` update without storing credentials.
