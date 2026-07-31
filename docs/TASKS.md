@@ -87,7 +87,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F05 — Verify product query behavior
 
-- **Status:** Planned.
+- **Status:** Complete; all nine candidate product query parameters and the four practical combinations have Supported, Unsupported, or documented Unresolved outcomes in `docs/api/examples/products/F05_QUERY_MATRIX.md`.
 - **Outcome:** Only working product queries are eligible for UI controls.
 - **Work:** Test one query at a time among `limit`, `page`, `keyword`, `sort`, `fields`, `price[gte]`, `price[lte]`, `brand`, and `category[in]`; then test only combinations needed by the approved UI. Record accepted values, invalid behavior, and repeated-category encoding.
 - **Verification:** A parameter matrix distinguishes confirmed, unsupported, and unresolved queries; requests contain only collection-listed keys.
@@ -744,7 +744,7 @@ The request names and endpoint spellings below are preserved from `API_INVENTORY
 | 5 | Get All SubCategories On Category | `GET /categories/{id}/subcategories` | F03 | C06 | Verified anonymous public read with category-list-derived ID; F03 evidence |
 | 6 | Get All Brands | `GET /brands` | F03 | C08, C02 | Verified anonymous public read; F03 evidence |
 | 7 | Get specific brand | `GET /brands/{id}` | F03 | C08 | Verified anonymous public read with list-derived ID; F03 evidence |
-| 8 | Get All Products | `GET /products` | F04, F05 | C03, C02, C09 | Verified anonymous base read; F04 evidence; query behavior pending F05 |
+| 8 | Get All Products | `GET /products` | F04, F05 | C03, C02, C09 | Verified anonymous base read and classified query behavior; F04/F05 evidence |
 | 9 | Get specific Product | `GET /products/{id}` | F04 | C04 | Verified anonymous read with list-derived ID; F04 evidence |
 | 10 | Signup | `POST /auth/signup` | F06 | A02 | Dedicated test account required |
 | 11 | signin | `POST /auth/signin` | F06 | A03 | Dedicated test account required |
