@@ -4,7 +4,7 @@
 
 This document records milestone D08. It selects the minimum packages needed by the architecture in `docs/ARCHITECTURE.md`; it does not install packages, change configuration, or create application or test code.
 
-Evidence was reviewed on 2026-07-31 from the installed Next.js 16 documentation, official project documentation, and npm registry metadata. Approved versions are explicit reviewed ranges rather than the unbounded `latest` tag. The lockfile produced by D09 will record the exact installed versions.
+Evidence was reviewed on 2026-07-31 from the installed Next.js 16 documentation, official project documentation, and npm registry metadata. Approved versions are explicit reviewed ranges or exact versions rather than the unbounded `latest` tag. The D09 lockfile records the exact installed versions.
 
 ## 2. Existing dependency audit
 
@@ -26,7 +26,7 @@ The repository has no `engines` field in `package.json`. The inspected workstati
 
 There is no direct runtime validator, form manager, unit/component runner, DOM test environment, interaction test helper, browser test runner, accessibility scanner, HTTP client, state library, icon package, authentication framework, or CSS component framework.
 
-Review note: `npm ls --depth=0` reports five undeclared, extraneous WASM-support directories under the local `node_modules` tree (`@emnapi/core`, `@emnapi/runtime`, `@emnapi/wasi-threads`, `@napi-rs/wasm-runtime`, and `@tybys/wasm-util`). They are absent from `package.json` and `package-lock.json`, are not D08-approved dependencies, and were neither added nor removed by this milestone. D09 must rely on the reviewed manifest/lockfile and report whether its reproducible installation removes these local leftovers.
+Review note: D08 found five undeclared, extraneous WASM-support directories in the local `node_modules` tree. D09's reconciliation install removed the extraneous top-level state; the 2026-07-31 `npm ls --depth=0` result is clean and contains only declared direct packages.
 
 ## 3. Evaluation summary
 
@@ -76,7 +76,7 @@ All packages in this section are test/build-time tools and must not be imported 
 | Package | Approved range | Purpose | First required | Compatibility evidence | Bundle/runtime impact | Why existing tools are insufficient | Rejected alternative |
 |---|---:|---|---|---|---|---|---|
 | `vitest` | `^4.1.10` | Unit and synchronous component test runner | C00 | Supports Node `^20`, `^22`, or `>=24`; current Node is `24.12.0`; supports Vite 6–8 | Development only; no application bundle impact | No test runner or test script exists | Jest would require a second transformation/configuration path without a project-specific benefit |
-| `vite` | `^8.0.0` | Explicit Vite peer for the React test plugin and Vitest configuration | C00 | Requires Node `^20.19.0` or `>=22.12.0`; current Node qualifies; installed `@types/node` `20.19.43` satisfies its peer range | Development only | Relying on peer auto-installation would hide a direct toolchain contract | A transitive-only Vite is less explicit and less reproducible |
+| `vite` | `8.0.16` | Explicit Vite peer for the React test plugin and Vitest configuration | C00 | First Vite 8 release patched for all five advisories observed in D09; requires Node `^20.19.0` or `>=22.12.0`; current Node qualifies; Vitest accepts Vite 6–8 and `@vitejs/plugin-react` accepts Vite 8 | Development only | Relying on peer auto-installation would hide a direct toolchain contract | A transitive-only Vite is less explicit and less reproducible |
 | `@vitejs/plugin-react` | `^6.0.5` | React JSX transformation for Vitest | C00 | Requires Vite 8; React Compiler/Babel peers are optional | Development only | The installed Next.js Vitest guide uses the React plugin for React tests | Manual JSX transform configuration adds maintenance without benefit |
 | `jsdom` | `^29.1.1` | Browser-like DOM for component tests | C00 | Supports Node `^20.19.0`, `^22.13.0`, or `>=24.0.0`; current Node qualifies | Development only; no real-browser guarantee | Node does not provide the DOM needed by React component tests | happy-dom is not needed; jsdom is the documented Next.js path and offers sufficient fidelity |
 | `@testing-library/react` | `^16.3.2` | Render React components and query them through accessible semantics | C00 | Peers support React/React DOM 18 or 19 and the installed React typings | Development only | React DOM alone provides no ergonomic user-focused component test API | Raw DOM/container assertions encourage implementation-coupled tests |
@@ -108,7 +108,8 @@ These commands are documentation for milestone D09. Do not execute them during D
 
 ```powershell
 npm install "zod@^4.4.3"
-npm install --save-dev "vitest@^4.1.10" "vite@^8.0.0" "@vitejs/plugin-react@^6.0.5" "jsdom@^29.1.1" "@testing-library/react@^16.3.2" "@testing-library/dom@^10.4.1" "@testing-library/user-event@^14.6.1" "vite-tsconfig-paths@^6.1.1" "@playwright/test@^1.62.1" "@axe-core/playwright@^4.12.1"
+npm install --save-dev "vitest@^4.1.10" "@vitejs/plugin-react@^6.0.5" "jsdom@^29.1.1" "@testing-library/react@^16.3.2" "@testing-library/dom@^10.4.1" "@testing-library/user-event@^14.6.1" "vite-tsconfig-paths@^6.1.1" "@playwright/test@^1.62.1" "@axe-core/playwright@^4.12.1"
+npm install --save-dev --save-exact "vite@8.0.16"
 npm exec playwright install
 ```
 
@@ -129,6 +130,18 @@ D09 must run the runtime and development installs as separate reviewed commands,
 - Vitest/jsdom do not support meaningful unit coverage of all async Server Components. Those flows belong in Playwright per the installed Next.js guidance.
 - axe finds only automatically detectable issues. Manual accessibility testing remains mandatory.
 - jsdom's optional canvas peer is intentionally absent; tests must mock or avoid canvas behavior unless a later approved feature proves the need.
+
+### 8.1 D09 security review
+
+The 2026-07-31 remediation pinned direct development dependency Vite from `8.0.0` to `8.0.16`, which is inside D08's original Vite 8 range and is the first Vite 8 release patched for all five observed Vite advisories. The reconciliation install, clean top-level dependency tree, lint, and production build passed. No Vite advisory remains in the resulting audit.
+
+D09 remains incomplete because the post-remediation audit still reports 12 high-severity dependency/path findings:
+
+- **Development-only:** `eslint@9.39.5 → minimatch@3.1.5 → brace-expansion@1.1.18`. [GHSA-mh99-v99m-4gvg](https://github.com/advisories/GHSA-mh99-v99m-4gvg) affects all published `brace-expansion` 1.x releases. ESLint `10.8.0` would move to a patched major, but the installed `eslint-plugin-import@2.32.0`, `eslint-plugin-jsx-a11y@6.10.2`, and `eslint-plugin-react@7.37.5` peer ranges stop at ESLint 9. No major override or incompatible ESLint upgrade is approved.
+- **Production:** `next@16.2.12 → postcss@8.4.31` remains below the common safe PostCSS `8.5.18` floor for [GHSA-qx2v-qp2m-jg93](https://github.com/advisories/GHSA-qx2v-qp2m-jg93), [GHSA-6g55-p6wh-862q](https://github.com/advisories/GHSA-6g55-p6wh-862q), and [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849). Stable Next `16.2.12` pins `8.4.31`; a transitive override is not approved.
+- **Optional production:** `next@16.2.12 → sharp@0.34.5` remains below the `0.35.0` patch floor for [GHSA-f88m-g3jw-g9cj](https://github.com/advisories/GHSA-f88m-g3jw-g9cj). Next's current stable range cannot select that patched major; a transitive override is not approved.
+
+`npm audit --omit=dev` reports three high-severity production-path findings. The available Next `16.3.0-preview.10` is not an approved stable replacement and still uses a PostCSS version affected by two of the observed advisories. D09 used no automatic/forced audit fix, dependency override, prerelease framework, downgrade, or risk suppression. A compatible stable upstream resolution is required before the security gate can pass.
 
 ## 9. Open questions
 
