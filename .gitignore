@@ -41,4 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # Raw API files containing test credentials
-docs/api/raw/
+docs/api/raw/.vs/
