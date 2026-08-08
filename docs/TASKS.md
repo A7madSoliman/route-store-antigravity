@@ -258,9 +258,17 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 - **Commit:** `build: install approved project dependencies`
 - **Dependencies:** D08.
 
+### D09A — Install newly approved server-only dependency
+
+- **Status:** Complete; installed exact runtime dependency `server-only@0.0.1` without changing unrelated direct dependencies. The dependency tree, package manifests, full and production audits, strict TypeScript check, lint, and network-enabled production build passed. Full audit retains only the documented development-only high `js-yaml` finding; production audit reports zero vulnerabilities. D10 remains Planned and unstarted.
+- **Outcome:** The architecture-required server-only import guard is available for D10 without adding a direct Nano ID dependency, override, or unrelated package.
+- **Verification:** `server-only@0.0.1` is installed under `dependencies`; Next, ESLint config, React, and React DOM remain unchanged; production audit has zero vulnerabilities; TypeScript, lint, and build pass. No test script exists.
+- **Commit:** `build: install server-only dependency`
+- **Dependencies:** D08A, D09.
+
 ### D10 — Configure environments and secret handling
 
-- **Status:** Planned; blocked until D09 completes its dependency-security gate.
+- **Status:** Planned; blocked until D09A completes its dependency-installation and verification gate.
 - **Outcome:** Development, test, preview, and production configuration are explicit and fail safely when missing.
 - **Work:** Add a non-secret example environment file, validate environment variables at the server boundary, document local values, keep test-account credentials out of client bundles, and define the verified API base/return URL configuration.
 - **Verification:** Missing/invalid configuration fails with a safe message; client output contains no token or private variable; `.env.local` remains ignored.
