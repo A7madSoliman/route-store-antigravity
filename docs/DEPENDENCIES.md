@@ -66,8 +66,9 @@ Sources: installed Next.js Vitest, Playwright, and Cypress guides; [Vitest guide
 | Package | Approved range | Purpose | First required | Compatibility evidence | Server/client impact | Why existing tools are insufficient | Rejected alternatives |
 |---|---:|---|---|---|---|---|---|
 | `zod` | `^4.4.3` | Parse unknown API responses, server environment input, and Server Action input; infer validated wire types before adapters run | D10 for environment validation; C01 for API response validation | Zod 4 is stable, supports TypeScript 5.5+ strict mode, has zero dependencies, and matches installed TypeScript `5.9.3`; the installed Next.js form guide demonstrates Zod for server validation | Runtime package, but imports are restricted to `.server.ts` schema/environment/action modules guarded by `server-only`; no client-bundle inclusion is approved | TypeScript and Next.js do not validate untrusted JSON at runtime | Valibot is viable but its client bundle advantage is irrelevant here; manual guards are too repetitive and drift-prone |
+| `server-only` | `0.0.1` | Mark server-only roots so accidental Client Component imports fail at build time | D09A installation; D10 environment module | Stable latest package; zero dependencies and peers; installed Next.js 16.3.0 guidance recommends `import "server-only"` for this boundary and recognizes the marker internally | Runtime dependency required to resolve the explicit server-only import; marker has no application payload or browser feature | The architecture requires the explicit import guard; relying only on Server Component conventions would weaken accidental-import protection | Omitting the marker and relying on framework conventions alone |
 
-Zod is the only newly approved production dependency.
+Zod and `server-only` are the newly approved production dependencies. D08A approves `server-only@0.0.1` documentation-only; D09A must install and verify it before D10 begins.
 
 ## 5. Approved development dependencies
 

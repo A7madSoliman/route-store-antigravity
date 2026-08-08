@@ -242,7 +242,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### D08 — Select dependencies
 
-- **Status:** Complete; `docs/DEPENDENCIES.md` records one runtime and ten development packages with reviewed versions/ranges, compatibility, impact, first use, and rejected alternatives. D08 initially resolved `ARCH-003`, `ARCH-005`, `ARCH-006`, and `ARCH-007`; D09's later audit evidence reopened only `ARCH-006` and `ARCH-007` without invalidating the completed selection milestone.
+- **Status:** Complete; `docs/DEPENDENCIES.md` records the reviewed runtime and development packages with versions/ranges, compatibility, impact, first use, and rejected alternatives. D08 initially resolved `ARCH-003`, `ARCH-005`, `ARCH-006`, and `ARCH-007`; D09's later audit evidence reopened only `ARCH-006` and `ARCH-007` without invalidating the completed selection milestone. D08A amends `ARCH-007` to approve exact runtime dependency `server-only@0.0.1` for the architecture-required server-only import guard; this amendment is documentation-only, and D09A must install and verify it before D10 resumes.
 - **Outcome:** Every proposed package has a concrete need, current compatibility evidence, and a documented alternative.
 - **Work:** Audit existing Next/React/Tailwind/TypeScript dependencies; decide runtime validation, forms, testing, and browser-testing packages. Prefer platform/framework capabilities and the smallest dependency set.
 - **Verification:** `DECISIONS.md` records package names, versions/ranges, purpose, server/client impact, and rejected alternatives; no package is installed yet.
