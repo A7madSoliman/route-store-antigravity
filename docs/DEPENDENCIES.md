@@ -157,16 +157,18 @@ The other nine audit records—`@eslint/config-array`, `@eslint/eslintrc`, `brac
 
 #### Remediation decision and recheck gate
 
-No stable, contract-compatible remediation is available on 2026-07-31. The project will wait for a stable Next release instead of using an automatic or forced audit fix, transitive override, prerelease framework, incompatible downgrade, dependency removal, suppression, or implicit risk acceptance. D09 therefore remains incomplete and D10 remains blocked.
+The 2026-08-08 stable-release review installed `next@16.3.0` and matching `eslint-config-next@16.3.0`. The candidate is stable (`latest`, with separate preview and canary tags), supports React 19 and Node 24, declares `postcss@8.5.23` and `sharp ^0.35.3`, and satisfies the documented framework compatibility gate. The standard `npm update nanoid` command refreshed the existing lockfile's valid `^3.3.16` resolution from `nanoid@3.3.16` to patched `nanoid@3.3.18` without changing `package.json`, adding a direct dependency, or adding an override. The production-only audit now reports zero vulnerabilities. The full audit retains one development-only high `js-yaml` record (`GHSA-5p4m-2wfm-xmqj`), which is explicitly documented and does not reach the application runtime. D09's production security gate is complete.
 
-Reopen the dependency decision only after a stable Next release simultaneously:
+The project used no automatic or forced audit fix, transitive override, direct Nano ID pinning, prerelease framework, incompatible downgrade, dependency removal, suppression, or implicit risk acceptance.
+
+The D09 dependency decision is resolved because a reproducible project install now resolves Nano ID to `>=3.3.17` under Next's declared PostCSS range, while satisfying:
 
 - declares PostCSS `>=8.5.18`;
 - declares Sharp `>=0.35.0`;
 - declares a React 19-compatible peer range and a Node engine satisfied by the project's Node 24 baseline;
 - has a matching stable `eslint-config-next` release.
 
-The future review must approve exact matching Next/ESLint-config versions, run a clean install and dependency-tree inspection, produce no high-severity production audit findings, and pass lint, `npm exec tsc -- --noEmit`, and production build. Remaining development-only findings may coexist with D09 completion only after their exact paths and reachability are rechecked and their disposition is explicitly recorded; this record grants no security exception.
+The completed review approved exact matching Next/ESLint-config versions, inspected the dependency tree, produced no high-severity production audit findings, and passed lint, `npm exec tsc -- --noEmit`, and production build. The remaining development-only `js-yaml` finding has an explicit reviewed disposition and grants no security exception.
 
 ## 9. Open questions
 
