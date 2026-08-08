@@ -279,7 +279,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C00 — Implement design tokens and shared storefront shell
 
-- **Status:** Planned.
+- **Status:** Complete — browser verification passed at 390px, 639px, 768px, 1024px, and 1440px on 2026-08-09 after fixing mobile footer safe-area coverage and applying the 1280px page max-width utility; keyboard menu, navigation semantics, accessibility landmarks/focus behavior, no-overflow, and runtime font-loading checks passed. Vitest (20/20), TypeScript, lint, and production build also passed.
 - **Outcome:** The approved typography, colors, spacing, container, header, footer, and responsive shell render once for reuse.
 - **Work:** Implement `UI_SPEC.md` tokens and storefront primitives without API data; keep Client Components limited to interactive controls.
 - **Verification:** Visual comparison at approved phone/desktop sizes, keyboard navigation, lint, type check, and component tests pass.
