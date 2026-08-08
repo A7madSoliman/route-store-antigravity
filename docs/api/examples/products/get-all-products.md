@@ -119,6 +119,12 @@ The response contained `40` products. The representative product's `images` arra
 | `$.data[0].updatedAt` | string | Value replaced; format not generalized |
 | `$.data[0].id` | string | Value replaced; relationship to `_id` unverified |
 
+## F04A media-host observation
+
+On `2026-08-08T21:33:34Z`, this endpoint was read again only to inspect the already-documented `product.imageCover`, `product.images[]`, `product.category.image`, and `product.brand.image` roles. Every inspected value across those four roles was an absolute HTTPS URL using hostname `ecommerce.routemisr.com` and origin `https://ecommerce.routemisr.com`.
+
+The response remained in process memory. F04A retained no complete media URL, media path, product text, catalog identifier, or raw response body. No redirect, failed request, invalid JSON, non-HTTPS media value, or inconsistent media-role evidence occurred. This observation applies only to this F04A `GET /products` read and does not freshly reverify product detail or any other catalog endpoint.
+
 ## Before state, cleanup, and after state
 
 Not applicable — Safe public read. The request made no state change.
@@ -129,7 +135,7 @@ Not applicable — Safe public read. The request made no state change.
 - Error and not-found statuses and envelopes remain unverified.
 - Field optionality, nullability, ordering, stability, and numeric semantics remain unverified.
 - Currency, discount behavior, stock guarantees, rating range, and identifier alias semantics remain unverified.
-- Media host/path stability and availability remain unverified.
+- F04A retained only the observed media hostname/origin; media paths, future host stability, and availability remain unverified.
 
 ## Related decisions
 

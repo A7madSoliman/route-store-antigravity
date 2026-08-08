@@ -66,6 +66,12 @@ The observed response contained `40` items; only the first item's structure is r
 | `$.data[0].createdAt` | string | Value replaced; format not generalized |
 | `$.data[0].updatedAt` | string | Value replaced; format not generalized |
 
+## F04A media-host observation
+
+On `2026-08-08T21:33:34Z`, this endpoint was read again only to inspect the already-documented `brand.image` role. Every inspected value was an absolute HTTPS URL using hostname `ecommerce.routemisr.com` and origin `https://ecommerce.routemisr.com`.
+
+The response remained in process memory. F04A retained no complete media URL, media path, brand value, identifier, or raw response body. No redirect, failed request, invalid JSON, non-HTTPS media value, or inconsistent media-role evidence occurred. This observation applies only to this F04A `GET /brands` read and does not freshly reverify any other catalog endpoint.
+
 ## Before state, cleanup, and after state
 
 Not applicable — Safe public read. The request made no state change.
@@ -74,7 +80,7 @@ Not applicable — Safe public read. The request made no state change.
 
 - Pagination and keyword inputs, defaults, bounds, and later-page behavior remain unverified.
 - Invalid-ID, not-found, error, optionality, and rate-limit behavior remain unverified.
-- Image host/path stability remains unverified.
+- F04A retained only the observed media hostname/origin; media paths, future host stability, and availability remain unverified.
 
 ## Related decisions
 

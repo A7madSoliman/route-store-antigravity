@@ -85,6 +85,15 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 - **Commit:** `docs: capture product API evidence`
 - **Dependencies:** F02.
 
+### F04A — Verify public catalog media hosts
+
+- **Status:** Complete; three anonymous, bodyless, no-query reads on `2026-08-08T21:33:34Z` observed only HTTPS media from `ecommerce.routemisr.com` across the documented category, brand, product cover/gallery, and nested product category/brand image roles. No redirect, failed request, invalid JSON, non-HTTPS media, or inconsistent role evidence occurred.
+- **Outcome:** C01 has a narrowly evidenced hostname allowlist for public catalog media without retaining complete media URLs or raw responses.
+- **Work:** Read only `GET /categories`, `GET /brands`, and `GET /products`; retain only unique media hostname/origin and field-role evidence in `docs/api/examples/F04A_MEDIA_HOSTS.md`. Do not imply that F04A freshly reverified the other six catalog endpoints.
+- **Verification:** The three canonical list records and aggregate summary contain no complete media URL/path, catalog identifier, product/customer data, credential, or raw response body; `API-009` and the architecture media boundary approve only HTTPS `ecommerce.routemisr.com` values.
+- **Commit:** `docs: verify public catalog media host`
+- **Dependencies:** F03, F04.
+
 ### F05 — Verify product query behavior
 
 - **Status:** Complete; all nine candidate product query parameters and the four practical combinations have Supported, Unsupported, or documented Unresolved outcomes in `docs/api/examples/products/F05_QUERY_MATRIX.md`.

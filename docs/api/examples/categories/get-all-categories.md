@@ -64,6 +64,12 @@ The live response contained `10` category items. This record intentionally retai
 | `$.data[0].createdAt` | string | Value replaced with `<timestamp>`; exact format is not generalized |
 | `$.data[0].updatedAt` | string | Value replaced with `<timestamp>`; exact format is not generalized |
 
+## F04A media-host observation
+
+On `2026-08-08T21:33:34Z`, this endpoint was read again only to inspect the already-documented `category.image` role. Every inspected value was an absolute HTTPS URL using hostname `ecommerce.routemisr.com` and origin `https://ecommerce.routemisr.com`.
+
+The response remained in process memory. F04A retained no complete media URL, media path, category value, identifier, or raw response body. No redirect, failed request, invalid JSON, non-HTTPS media value, or inconsistent media-role evidence occurred. This observation applies only to this F04A `GET /categories` read and does not freshly reverify any other catalog endpoint.
+
 ## Before state, cleanup, and after state
 
 Not applicable — Safe public read. The request made no state change.
@@ -75,7 +81,7 @@ Not applicable — Safe public read. The request made no state change.
 - Field optionality, nullability, stability, and semantics across other category records remain unverified.
 - Pagination defaults, accepted query values, bounds, and behavior beyond this no-query response remain unverified.
 - Rate-limit behavior and cache behavior remain unverified; no related safe header was recorded.
-- The media URL value and its host were deliberately not retained.
+- F04A retained only the observed media hostname/origin; media paths, future host stability, and availability remain unverified.
 
 ## Related decisions
 

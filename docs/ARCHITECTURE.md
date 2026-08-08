@@ -467,10 +467,10 @@ No public environment module is created until an actual non-sensitive browser va
 API media remains response data:
 
 - Accept only syntactically valid absolute HTTPS URLs.
-- Require membership in a configured host allowlist before producing a renderable domain media value.
+- Require the exact hostname `ecommerce.routemisr.com` before producing a renderable public catalog media value. F04A observed that hostname for the documented media roles in `GET /categories`, `GET /brands`, and `GET /products`; it did not freshly reverify the other six catalog endpoints.
 - Return `null` for invalid/unapproved media so the UI can use its approved neutral fallback or omit the slot.
 - Do not copy API product, category, brand, cart, wishlist, checkout, or order media into `public/`.
-- Exact allowed hosts and Next Image configuration remain pending because sanitized evidence intentionally does not retain host values.
+- C01 may configure Next Image for HTTPS media from that exact hostname only. Other schemes or hosts remain unapproved until separately verified; protected-domain media remains gated by its own verification milestone.
 
 Only D04-approved brand, marketing, decorative, and empty-state images belong under `public/images`. Icons are local inline SVG React components under `components/icons`, not a runtime icon dependency.
 
@@ -513,7 +513,6 @@ D07 deliberately does not decide:
 - exact environment-variable names and values;
 - public catalog cache durations;
 - deployment provider and final runtime topology;
-- API media host values;
 - unverified authentication identity/role fields or protected response contracts;
 - conditional customer-order and admin route activation.
 
