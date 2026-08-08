@@ -268,10 +268,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### D10 — Configure environments and secret handling
 
-- **Status:** Planned; blocked until D09A completes its dependency-installation and verification gate.
+- **Status:** Complete; required server-only environment configuration is validated and documented without adding dependencies or application features.
 - **Outcome:** Development, test, preview, and production configuration are explicit and fail safely when missing.
-- **Work:** Add a non-secret example environment file, validate environment variables at the server boundary, document local values, keep test-account credentials out of client bundles, and define the verified API base/return URL configuration.
-- **Verification:** Missing/invalid configuration fails with a safe message; client output contains no token or private variable; `.env.local` remains ignored.
+- **Work:** Add `.env.example`, validate `ECOMMERCE_API_BASE_URL` and `APP_ORIGIN` at the server boundary with Zod and `server-only`, document the contract in `docs/ENVIRONMENT.md`, keep test-account credentials out of client bundles, and define the verified API base/return-origin configuration.
+- **Verification:** Focused environment validation covers valid values, missing variables, malformed/relative URLs, wrong API host/path, API trailing-slash normalization, origin credentials/path/query/fragment rejection, insecure external HTTP rejection, localhost HTTP acceptance, and safe errors. TypeScript, lint, production build, production audit, `.env.local` ignore behavior, and targeted client-output checks pass. No private environment value appears in client assets.
 - **Commit:** `build: configure validated environments`
 - **Dependencies:** D07, D09; public API decisions from F03–F05.
 
