@@ -11,7 +11,11 @@ Filesystem validation on 2026-07-31 found:
 - 69 remote image occurrences across 20 exports;
 - 69 unique Stitch-hosted URLs and 69 unique SHA-256 fingerprints.
 
-No production source, license, or provenance record exists for the four required static raster roles. Therefore this audit creates no production asset files, and D04 remains incomplete. The 69-reference ledger in section 7 audits exported references; it is not a claim that all 69 placements are approved functionality or visible in the selected screenshot state.
+On 2026-08-08, four project-generated PNG originals were supplied in the authorized external D04 source set with permission for production use in this project. They were generated through ChatGPT/OpenAI image generation on 2026-08-08; the model/version is unavailable and unverified. The supplied provenance states that no third-party image or Stitch binary was uploaded or used as source material. This records the supplied project-use approval without asserting broader ownership or license terms.
+
+The repository-local WebPs were encoded with Sharp 0.35.3 at quality 85 without upscaling or retained metadata. They are not downloads or derivatives of the Stitch-hosted references. The corrected `STATIC-002-home-hero-mobile-source.png` supersedes every earlier mobile-hero candidate; files named `REJECTED-*` and the previous `STATIC-002` source are not authorized production sources.
+
+All four final files decode successfully and passed the responsive browser crops recorded in section 3. D04 is complete. The 69-reference ledger in section 7 audits exported references; it is not a claim that all 69 placements are approved functionality or visible in the selected screenshot state.
 
 ## 2. Classification and readiness
 
@@ -22,20 +26,31 @@ No production source, license, or provenance record exists for the four required
 | C — Code-native vector/CSS | Interface icons, simple empty-state symbols, wordmark text, gradients, and geometric decoration | Implement later as inline SVG React components, text, or CSS; D04 creates no files |
 | D — Deferred or unsupported | Avatars, maps, provider marks, and unsupported feature art | Omit or use the documented non-image fallback until the relevant product/data gate passes |
 
-Readiness values are `Blocked`, `API-owned`, `Code-owned`, and `Deferred`. `Ready` is reserved for a checked-in, validated file with approved provenance; there are no `Ready` entries in this audit.
+Readiness values are `Ready`, `Blocked`, `API-owned`, `Code-owned`, and `Deferred`. `Ready` is reserved for a repository-local, validated file with approved provenance.
 
 ## 3. Static local candidates
 
-Paths below are reserved destinations, not existing files. `<approved-ext>` is unresolved until an original file is supplied and its encoding is inspected; do not rename a file to a format it does not contain.
+The source checksum identifies the authorized project-generated PNG; the final checksum identifies the repository WebP. All four final files are sRGB, three-channel, non-alpha WebPs with no embedded profile. Browser checks used the approved CSS `cover` alignment and gradient behavior rather than changing layout or object position to rescue a crop.
+
+Preferred dimensions are quality targets rather than automatic acceptance floors. A below-preferred source is accepted only when it contains the minimum native crop, needs no localization-time enlargement, passes the required browser crops, and records its responsive tradeoff:
+
+| ID | Preferred source | Minimum native acceptance | Accepted evidence and tradeoff |
+|---|---|---|---|
+| `STATIC-001` | 2560×1500, approximately 128:75 | Long edge at least 1600 px; ratio within about 2% of 128:75; enough native pixels for 1600×750 | 1635×962 source accepted without resize. It passed through 1920×750; browser scaling above the 1635 px native width was reviewed and its softness remained acceptable. |
+| `STATIC-002` | 1080×1440, 3:4 | Approximately 640×853 with a viable portrait crop for the documented phone frame | Corrected 1085×1449 source meets the preferred target and passed the full mobile range without resize. |
+| `STATIC-003` | 2464×900, approximately 2.74:1 | Native crop at least 1232×450 | The below-preferred 1672×941 source supplied an approved native 1672×611 crop, exceeding the minimum without enlargement; both desktop crops passed. |
+| `STATIC-004` | 1920×512, approximately 3.75:1 | Native crop at least 944×256 | The below-preferred 1763×892 source supplied an approved native 1763×470 crop, exceeding the minimum without enlargement; compact and narrow responsive crops passed. |
+
+All four roles are decorative because adjacent text owns their meaning. Prefer CSS backgrounds; if a semantic image element is required by the implementation, use an empty alternative and keep it out of the accessibility tree.
 
 | ID and role | Screenshot/export evidence | Intended path | Dimensions and format | Render and responsive behavior | Semantics, fallback, and reuse | Source, license, readiness |
 |---|---|---|---|---|---|---|
-| `STATIC-001` Desktop home hero | `home-desktop`; export line 175; screenshot bitmap 392×1600 (**Observed**, rescaled) | `public/images/marketing/home-hero-desktop.<approved-ext>` | Original pixels/format unknown (**Uncertain**); export frame height 750 CSS px (**Code-derived**) | Full-bleed cover, centered focal area, dark overlay, left copy-safe zone; desktop-only artwork | Decorative background because adjacent heading/copy conveys the message; no raster substitute; do not reuse as mobile hero | Stitch URL is art direction only; origin and license absent; **Blocked** |
-| `STATIC-002` Mobile home hero | `home-mobile`; export line 161; screenshot bitmap 207×1600 (**Observed**, rescaled) | `public/images/marketing/home-hero-mobile.<approved-ext>` | Original pixels/format unknown (**Uncertain**); export frame height 480 CSS px (**Code-derived**) | Portrait cover, centered model/focal area, bottom gradient and copy-safe zone; distinct mobile art direction, not a blind crop of desktop | Decorative background; no raster substitute; reuse only for the mobile hero | Stitch URL is art direction only; origin and license absent; **Blocked** |
-| `STATIC-003` Desktop home promotion background | `home-desktop`; export line 305 | `public/images/marketing/home-promotion-summer-refresh.<approved-ext>` | Original pixels/format unknown (**Uncertain**); export frame height 450 CSS px (**Code-derived**) | Very wide cover aligned right with a left blue copy-safe gradient; desktop use only because mobile promotion is CSS-only | Decorative background with empty alternative; no fallback image. The asset does not approve a coupon, discount, sale route, or CTA behavior excluded by `PRD.md` | Stitch URL is art direction only; origin and license absent; **Blocked** |
-| `STATIC-004` Fulfillment-center banner | `saved-addresses-desktop`; export line 262; screenshot bitmap 1600×1535 (**Observed**, rescaled) | `public/images/decorative/fulfillment-center-banner.<approved-ext>` | Original pixels/format unknown (**Uncertain**); export frame height 256 CSS px and very-wide crop (**Code-derived**) | Cover with center focal area and left-to-right surface gradient preserving the left copy zone; mobile behavior is unpaired and **Uncertain** | Decorative with empty alt because adjacent copy owns meaning; use a tonal surface if absent; do not reuse as category/order media | Stitch URL is art direction only; origin and license absent; **Blocked** |
+| `STATIC-001` Desktop home hero | `home-desktop`; export line 175; screenshot bitmap 392×1600 (**Observed**, rescaled) | `public/images/marketing/home-hero-desktop.webp` | Final: 1635×962 `image/webp`, 106,074 bytes; SHA-256 `78f9d6cc81a5259a0bc34ba1c1a56ddc2961b9bfd39abd007f4b1a4c029b6d97`; complete source preserved with no crop or resize; decode **PASS** | Centered full-bleed cover with dark overlay passed at 768×750, 1024×750, 1280×750, 1600×750, and 1920×750; focal subject, left copy-safe zone, and above-native-width softness remained acceptable | Decorative background with empty alternative because adjacent heading/copy conveys the message; no raster substitute; do not reuse as mobile hero | Authorized project-generated `STATIC-001-home-hero-desktop-source.png`: 1635×962 `image/png`, 1,869,823 bytes, SHA-256 `a54117a9987e2d1e2a9bc5a90c187b5b58129a920e851da5b34691f0e0ee1672`; project production-use permission supplied 2026-08-08; **Ready** |
+| `STATIC-002` Mobile home hero | `home-mobile`; export line 161; screenshot bitmap 207×1600 (**Observed**, rescaled) | `public/images/marketing/home-hero-mobile.webp` | Final: 1085×1449 `image/webp`, 71,602 bytes; SHA-256 `92f23648a7477bb540d724110afc2c887c8ef3892428095ad40269fa5add1989`; complete corrected source preserved with no crop or resize; decode **PASS** | Default-centered portrait cover with bottom gradient passed at 358×480, 390×480, 607×480, and 639×480 (last base/mobile width before `sm ≥640`); headroom, face, balance, lower copy region, sharpness, and artifact checks passed | Decorative background with empty alternative; no raster substitute; reuse only for the mobile hero; contains no text, logo, CTA, or UI | Corrected authorized project-generated `STATIC-002-home-hero-mobile-source.png`: 1085×1449 `image/png`, 1,663,003 bytes, SHA-256 `c42de8f931af209de7f74fc2fc76cdff2d83464873125769a8134c2bb447ea94`; project production-use permission supplied 2026-08-08; previous and `REJECTED-*` sources excluded; **Ready** |
+| `STATIC-003` Desktop home promotion background | `home-desktop`; export line 305 | `public/images/marketing/home-promotion-summer-refresh.webp` | Final: 1672×611 `image/webp`, 80,974 bytes; SHA-256 `943303e76651bd7edfa95aeb079f1b5582fbf34075f3f446925d31eb86407202`; native crop `left: 0, top: 40, width: 1672, height: 611`, no resize; decode **PASS** | Right-centered cover with left blue gradient passed at 1024×450 and 1232×450; right focal subject and left copy region remained intact | Decorative background with empty alternative; no fallback image. The asset does not approve a coupon, discount, sale route, or CTA behavior excluded by `PRD.md` | Authorized project-generated `STATIC-003-home-promotion-summer-refresh-source.png`: 1672×941 `image/png`, 2,077,613 bytes, SHA-256 `e84a6e44288ee6ae693d7d5495807f0f9ad98d2f17c9b3d87ecf00816dc5aa90`; project production-use permission supplied 2026-08-08; **Ready** |
+| `STATIC-004` Fulfillment-center banner | `saved-addresses-desktop`; export line 262; screenshot bitmap 1600×1535 (**Observed**, rescaled) | `public/images/decorative/fulfillment-center-banner.webp` | Final: 1763×470 `image/webp`, 107,466 bytes; SHA-256 `6bdba794d5bdac6f414576d17d9ba5c4f50fd5b432903784d744eaa67a9c1eab`; native crop `left: 0, top: 211, width: 1763, height: 470`, no resize; decode **PASS** | Centered cover with left-to-right surface gradient passed at 944×256 and in the recorded compact-desktop and narrow-center responsive checks; fulfillment imagery stayed coherent and no meaningful or prominent text, signage, or logo survived | Decorative with empty alt because adjacent copy owns meaning; use a tonal surface if absent; do not reuse as category/order media; mobile behavior remains unpaired and **Uncertain** | Authorized project-generated `STATIC-004-fulfillment-center-banner-source.png`: 1763×892 `image/png`, 1,985,112 bytes, SHA-256 `5f57572836b02df8dc81d6e019646b67e7d9efd8e1d260a1773c3f5c3aca12ab`; project production-use permission supplied 2026-08-08; **Ready** |
 
-Before any row becomes `Ready`, record the supplier/original, license or permission, checksum, actual MIME type, pixel dimensions, file size, and tested crop. Do not upscale, recompress, or download the Stitch reference as a substitute.
+Every `Ready` row records the supplied original and project-use permission, source and final checksum, actual MIME type, pixel dimensions, file size, and tested crop. Localization must not upscale. One reviewed optimization encode from an approved original is permitted; repeated lossy recompression is prohibited. Never download a Stitch reference as a production substitute.
 
 ## 4. API-driven media responsibilities
 
@@ -96,13 +111,13 @@ Each reference is identified by export basename and one-based source line plus t
 | `REMOTE-011` | `checkout-desktop:255` | `8b41d3b2478d` | Checkout summary item 2 | B — cart/checkout API media |
 | `REMOTE-012` | `edit-profile-desktop:155` | `9a3066d79e6d` | Account-shell avatar | D — unsupported avatar |
 | `REMOTE-013` | `edit-profile-desktop:204` | `d9fc013e8c67` | Profile-edit preview/avatar upload | D — unsupported avatar/upload |
-| `REMOTE-014` | `home-desktop:175` | `50e77ddff239` | Desktop home hero | A — `STATIC-001`; blocked on source/license |
+| `REMOTE-014` | `home-desktop:175` | `50e77ddff239` | Desktop home hero | A — `STATIC-001`; **Ready** local production asset; Stitch URL remains art direction only |
 | `REMOTE-015` | `home-desktop:199` | `749f3d653434` | Designer Fashion category bento | B — category API media |
 | `REMOTE-016` | `home-desktop:208` | `84350af36b4a` | Electronics category bento | B — category API media |
 | `REMOTE-017` | `home-desktop:215` | `a3f42132bfb6` | Home & Living category bento | B — category API media |
 | `REMOTE-018` | `home-desktop:223` | `920d8b59dde4` | Beauty & Grooming category bento | B — category API media |
-| `REMOTE-019` | `home-desktop:305` | `7348374a11e7` | Desktop promotion background | A — `STATIC-003`; blocked and functionally non-authoritative |
-| `REMOTE-020` | `home-mobile:161` | `60177063f956` | Mobile home hero | A — `STATIC-002`; blocked on source/license |
+| `REMOTE-019` | `home-desktop:305` | `7348374a11e7` | Desktop promotion background | A — `STATIC-003`; **Ready** local production asset; functionally non-authoritative |
+| `REMOTE-020` | `home-mobile:161` | `60177063f956` | Mobile home hero | A — `STATIC-002`; **Ready** local production asset; Stitch URL remains art direction only |
 | `REMOTE-021` | `home-mobile:182` | `81aeb34fbacf` | Accessories category rail | B — category API media |
 | `REMOTE-022` | `home-mobile:188` | `365b3156881b` | Men’s Wear category rail | B — category API media |
 | `REMOTE-023` | `home-mobile:194` | `cc9e89803db1` | Women’s category rail | B — category API media |
@@ -142,7 +157,7 @@ Each reference is identified by export basename and one-based source line plus t
 | `REMOTE-057` | `products-mobile:181` | `940fb5c56425` | Mobile product card 3 | B — product API media |
 | `REMOTE-058` | `products-mobile:190` | `1a688ea095fe` | Mobile product card 4 | B — product API media |
 | `REMOTE-059` | `saved-addresses-desktop:143` | `a59079742027` | Saved-addresses account avatar | D — unsupported avatar |
-| `REMOTE-060` | `saved-addresses-desktop:262` | `8a2f5cbb0c21` | Fulfillment-center banner | A — `STATIC-004`; blocked on source/license |
+| `REMOTE-060` | `saved-addresses-desktop:262` | `8a2f5cbb0c21` | Fulfillment-center banner | A — `STATIC-004`; **Ready** local production asset; Stitch URL remains art direction only |
 | `REMOTE-061` | `shipping-selected-desktop:266` | `da90acf98398` | Delivery-zone map preview | D — deferred; not a static asset |
 | `REMOTE-062` | `signup-desktop:232` | `e40cfa8deba6` | Google social-auth mark | D — visible export defect; social auth deferred |
 | `REMOTE-063` | `wishlist-desktop:154` | `f10a255016f2` | Wishlist account avatar | D — unsupported avatar |
@@ -157,12 +172,6 @@ Ledger totals: 4 class-A static candidates, 53 class-B API-driven references, no
 
 ## 8. Completion gate
 
-D04 remains `Planned` because `STATIC-001` through `STATIC-004` have no approved production source or reuse record. To complete D04 later:
+D04 is `Complete`. `STATIC-001` through `STATIC-004` have authorized project-specific sources, repository-local production WebPs, recorded source and final checksums, verified MIME/dimensions/size, successful decode checks, and passing approved browser crops. The CSS-cover validation did not require a layout or object-position exception. No Stitch-hosted URL or API-driven media was copied locally.
 
-1. Supply licensed originals or explicit production-reuse approval for each still-required static role.
-2. Reconfirm whether the promotion and fulfillment roles remain in product scope before localizing them.
-3. Add only approved files to the reserved architecture paths, recording checksum, MIME type, dimensions, size, crop, and license.
-4. Validate raster decoding and responsive crops; validate any approved standalone SVG for a `viewBox`, accessible behavior, and absence of scripts or external references.
-5. Confirm every `Ready` path exists and that no Stitch-hosted URL or API-driven media was copied locally.
-
-No empty asset directory, placeholder raster, logo file, avatar, map, provider mark, or interface-icon component is required while this gate is open.
+No empty asset directory, placeholder raster, logo file, avatar, map, provider mark, or interface-icon component was added. Deferred and API-owned media remain governed by their existing gates.

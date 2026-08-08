@@ -4,7 +4,7 @@
 
 This is a beginner-to-advanced learning path. Complete one milestone, run its verification, update `DECISIONS.md` when evidence changes, and make one focused commit before starting the next milestone. Release headings group related capabilities; they do not require every milestone in an earlier release to finish before an unrelated vertical can begin.
 
-Use this vertical execution path for the current repository, where D00–D06 artifacts already exist except the still-planned static-asset work in D04:
+Use this vertical execution path for the current repository:
 
 `F00–F05 → D07–D10 → C00–C09 → F06 → A00–A04 → F07 → A05–A07 → F08 → A08–A09 → F09 → W01–W03 → F10 → W04–W08 → F11 → X01–X04 → F12 → X05–X08 → O00–O02 if approved → F13 → conditional admin → testing/deployment`
 
@@ -206,7 +206,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### D04 — Export and localize production assets
 
-- **Status:** Planned — the audit is complete, but four required static raster roles lack an approved production source and reuse/license record; see `docs/ASSET_MANIFEST.md`.
+- **Status:** Complete — four authorized project-generated static sources were encoded as validated local WebPs, all required responsive browser crops passed on 2026-08-08, and provenance plus final metadata are recorded in `docs/ASSET_MANIFEST.md`.
 - **Outcome:** Approved standalone static marketing, decorative, logo, empty-state, and SVG files exist locally without turning API media, code-native interface icons, or unsupported avatars into repository assets.
 - **Work:** Maintain `docs/ASSET_MANIFEST.md`, then acquire, name, size, optimize, and license-check only approved standalone static files. Do not copy or localize product, category, brand, cart, wishlist, checkout, or order media; those use verified API response fields in their matching adapters. Do not source profile avatars without a verified field. Interface icons remain future inline SVG React components under `components/icons` and are created only during their matching UI milestone.
 - **Verification:** All 69 exported remote references have a classified manifest entry. Every asset marked `Ready` has an existing local approved source, responsive crop, actual dimensions, MIME/format, license/source, and content/decorative classification; no remote Stitch URL, local API-media copy, sample avatar, invented placeholder, or empty asset directory is required. Keep D04 incomplete while a required static role is `Blocked`.
