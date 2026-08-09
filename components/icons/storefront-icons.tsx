@@ -6,6 +6,7 @@ export type StorefrontIconName =
   | "categories"
   | "chevron-down"
   | "close"
+  | "devices"
   | "heart"
   | "home"
   | "menu"
@@ -61,6 +62,12 @@ export function StorefrontIcon({ name, size = 24, ...props }: StorefrontIconProp
         <>
           <path d="m6 6 12 12" {...common} />
           <path d="m18 6-12 12" {...common} />
+        </>
+      )}
+      {name === "devices" && (
+        <>
+          <rect x="3.5" y="5" width="11" height="8" rx="1" {...common} />
+          <path d="M7 19h4M9 13v6M17.5 9.5h3v7h-3z" {...common} />
         </>
       )}
       {name === "heart" && (

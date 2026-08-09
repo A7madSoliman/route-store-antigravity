@@ -1,19 +1,27 @@
-import { PageContainer } from "@/components/layout/page-container";
+import { Suspense } from "react";
+import { HomeBrands, HomeCategories, HomeProducts } from "@/features/home/home-catalog-sections.server";
+import { loadHomeData } from "@/features/home/home-data.server";
+import { HomeBenefitGrid } from "@/features/home/components/home-benefit-grid";
+import { HomeHero } from "@/features/home/components/home-hero";
+import { HomePromotionBanner } from "@/features/home/components/home-promotion-banner";
+import { HomeSectionSkeleton } from "@/features/home/components/home-section-state";
+import { NewsletterPromo } from "@/features/home/components/newsletter-promo";
+
+export const dynamic = "force-dynamic";
 
 export default function ShopHomePage() {
+  const data = loadHomeData();
+
   return (
-    <PageContainer className="py-16 md:py-20">
-      <section aria-labelledby="storefront-shell-title" className="max-w-2xl">
-        <p className="mb-3 text-caption font-medium uppercase tracking-[0.08em] text-text-muted">
-          Storefront foundation
-        </p>
-        <h1 id="storefront-shell-title" className="text-display-mobile md:text-display-desktop">
-          Nexa Store
-        </h1>
-        <p className="mt-4 max-w-xl text-body text-text-secondary">
-          The shared storefront shell is ready for the approved product experiences.
-        </p>
-      </section>
-    </PageContainer>
+    <>
+      <HomeHero />
+      <Suspense fallback={<HomeSectionSkeleton label="categories" />}><HomeCategories data={data.categories} /></Suspense>
+      <div className="hidden md:block"><Suspense fallback={<HomeSectionSkeleton label="brands" />}><HomeBrands data={data.brands} /></Suspense></div>
+      <div className="md:hidden"><HomePromotionBanner /></div>
+      <Suspense fallback={<HomeSectionSkeleton label="products" />}><HomeProducts data={data.products} /></Suspense>
+      <div className="hidden md:block"><HomePromotionBanner /></div>
+      <HomeBenefitGrid />
+      <NewsletterPromo />
+    </>
   );
 }

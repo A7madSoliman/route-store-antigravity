@@ -306,7 +306,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C02 — Implement the homepage
 
-- **Status:** Planned.
+- **Status:** Complete; the 2026-08-09 browser gate verified live public catalog data, responsive layouts at 390, 639, 640, 768, 1024, and 1440 pixels, secure Next Image rendering, keyboard/accessibility behavior, and no document-level horizontal overflow.
 - **Outcome:** `/` is an explicit responsive storefront using approved sections and verified public data.
 - **Work:** Implement static hero/promotion art, API-driven categories/brands/products, benefits, a static `NewsletterPromo`, loading/empty/error states, and route-backed navigation. Preserve newsletter styling and copy without rendering a form, email input, or submit action.
 - **Verification:** Homepage tests cover successful and partial API failures, missing media fields, and the absence of newsletter form semantics; visual and keyboard checks match desktop/mobile references; no unsupported route is linked.

@@ -1,0 +1,3 @@
+export function NewsletterPromo() {
+  return <section aria-labelledby="newsletter-title" className="bg-inverse-surface py-14 text-inverse-text md:py-20"><div className="mx-auto max-w-page-max px-gutter-mobile text-center sm:px-gutter-tablet lg:px-gutter-desktop"><p className="text-caption font-semibold uppercase tracking-[0.14em] text-white/65">Nexa Store</p><h2 className="mt-3 text-heading-2" id="newsletter-title">Stay in the loop</h2><p className="mx-auto mt-4 max-w-xl text-body-large text-white/75">Discover store updates, seasonal inspiration, and new ways to explore the catalog.</p></div></section>;
+}
