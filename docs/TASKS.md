@@ -315,7 +315,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C03 — Implement product listing
 
-- **Status:** Planned.
+- **Status:** Complete; the 2026-08-09 browser gate verified live baseline and exact page-2 catalog reads, 2/3/4-column responsive grids at 390, 639, 640, 768, 1024, and 1440 pixels, secure Next Image rendering, breadcrumb/pagination semantics, shell clearance, and no document-level horizontal overflow.
 - **Outcome:** `/products` displays the verified product list with loading, empty, error, and ready states.
 - **Work:** Add the listing adapter, responsive grid/cards, page heading, basic navigation, and verified pagination only if F05 confirmed it.
 - **Verification:** Fixture/route tests cover every state and generated requests use only confirmed query keys.

@@ -35,6 +35,11 @@ describe("homepage sections", () => {
     expect(screen.getAllByRole("link").find((link) => link.getAttribute("href") === "/products/product%2Fone")).not.toBeUndefined();
   });
 
+  it("keeps homepage product cards in their existing rail layout", () => {
+    const { container } = render(<HomeProductSection state={{ status: "ready", items: [product] }} />);
+    expect(container.querySelector("li")?.className).toContain("min-w-[72vw]");
+  });
+
   it("keeps newsletter presentation static", () => {
     render(<NewsletterPromo />);
     expect(screen.queryByRole("form")).toBeNull();

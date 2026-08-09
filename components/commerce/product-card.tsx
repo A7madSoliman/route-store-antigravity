@@ -3,9 +3,13 @@ import Link from "next/link";
 import { StorefrontIcon } from "@/components/icons/storefront-icons";
 import type { ProductSummary } from "@/types/product";
 
-export function ProductCard({ product }: { product: ProductSummary }) {
+type ProductCardLayout = "rail" | "grid";
+
+export function ProductCard({ product, layout = "rail" }: { product: ProductSummary; layout?: ProductCardLayout }) {
+  const isRail = layout === "rail";
+
   return (
-    <li className="min-w-[72vw] snap-start sm:min-w-[45vw] md:min-w-0">
+    <li className={isRail ? "min-w-[72vw] snap-start sm:min-w-[45vw] md:min-w-0" : "min-w-0"}>
       <Link className="group block rounded-xl focus-visible:ring-2 focus-visible:ring-brand-primary" href={`/products/${encodeURIComponent(product.id)}`}>
         <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface-low">
           {product.imageUrl ? (
@@ -13,7 +17,7 @@ export function ProductCard({ product }: { product: ProductSummary }) {
               alt={product.title}
               className="object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               fill
-              sizes="(max-width: 767px) 72vw, (max-width: 1023px) 45vw, 23vw"
+              sizes={isRail ? "(max-width: 767px) 72vw, (max-width: 1023px) 45vw, 23vw" : "(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 25vw"}
               src={product.imageUrl}
             />
           ) : (
