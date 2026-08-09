@@ -1,0 +1,7 @@
+{
+  "results": 1,
+  "metadata": { "currentPage": 1, "numberOfPages": 1, "limit": 40 },
+  "data": [
+    { "_id": "category-fixture-1", "name": "Fixture Category", "slug": "fixture-category", "image": "https://ecommerce.routemisr.com/fixtures/category.webp" }
+  ]
+}

@@ -297,10 +297,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C01 — Implement public API transport and adapters
 
-- **Status:** Planned.
-- **Outcome:** Public GETs use one typed request boundary with runtime validation and safe errors.
-- **Work:** Implement exact base/path composition, no-body GET behavior, timeouts/cancellation, redaction, response adapters, verified API-media normalization, and sanitized fixtures for enabled public endpoints. Do not embed remote Stitch URLs or local copies of category, brand, or product media.
-- **Verification:** Tests cover success, malformed payload, missing/invalid media fields, not found, network failure, and exact URLs without exposing raw third-party errors.
+- **Status:** Complete; the nine verified anonymous catalog reads use one server-only transport, Zod response validation, domain adapters, the narrow F04A media allowlist, safe normalized errors, a `10_000` ms timeout, and no retries. Vitest passed 63 tests, TypeScript, lint, and the production build passed on 2026-08-09.
+- **Outcome:** Public catalog data crosses one typed server boundary without exposing raw upstream envelopes or unapproved media.
+- **Work:** Implemented exact base/path composition, bodyless GET behavior, the F05 product-query allowlist, safe error normalization, operation-specific schemas, domain adapters, and sanitized fixtures for all nine verified public reads. Public reads preserve the existing explicitly uncached policy with `cache: "no-store"`; no remote Stitch URLs or local API-media copies were added.
+- **Verification:** Tests cover exact URLs and query serialization, no GET body, success, empty data, malformed payloads, missing/invalid media, not found, redirects, non-2xx, invalid JSON, network/abort/timeout failures, redaction, server-only boundaries, and all nine endpoint paths. Normal tests use mocked fetch and make no live API request.
 - **Commit:** `feat(api): add public catalog transport and adapters`
 - **Dependencies:** D10, F03–F05, `ARCH-001`, `ARCH-003`.
 

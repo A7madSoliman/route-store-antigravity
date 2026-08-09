@@ -1,0 +1,7 @@
+{
+  "results": 1,
+  "metadata": { "currentPage": 1, "numberOfPages": 1, "limit": 40 },
+  "data": [
+    { "_id": "brand-fixture-1", "name": "Fixture Brand", "slug": "fixture-brand", "image": "https://ecommerce.routemisr.com/fixtures/brand.webp" }
+  ]
+}

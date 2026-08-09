@@ -1,0 +1,16 @@
+{
+  "data": {
+    "_id": "product-detail-fixture-1",
+    "title": "Fixture Detail Product",
+    "slug": "fixture-detail-product",
+    "description": "A sanitized detail fixture.",
+    "price": 2379,
+    "imageCover": "https://ecommerce.routemisr.com/fixtures/detail-cover.webp",
+    "images": ["https://ecommerce.routemisr.com/fixtures/detail-gallery.webp"],
+    "subcategory": [
+      { "_id": "subcategory-fixture-2", "name": "Detail Subcategory", "slug": "detail-subcategory", "category": "category-fixture-2" }
+    ],
+    "category": { "_id": "category-fixture-2", "name": "Detail Category", "slug": "detail-category", "image": "https://ecommerce.routemisr.com/fixtures/detail-category.webp" },
+    "brand": { "_id": "brand-fixture-2", "name": "Detail Brand", "slug": "detail-brand", "image": "https://ecommerce.routemisr.com/fixtures/detail-brand.webp" }
+  }
+}

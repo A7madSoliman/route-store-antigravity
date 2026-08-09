@@ -1,0 +1,7 @@
+{
+  "results": 1,
+  "metadata": { "currentPage": 1, "numberOfPages": 1, "limit": 40 },
+  "data": [
+    { "_id": "category-subcategory-fixture-1", "name": "Scoped Subcategory", "slug": "scoped-subcategory", "category": "category-detail-fixture-1" }
+  ]
+}
