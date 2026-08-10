@@ -333,7 +333,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C05 — Implement category directory
 
-- **Status:** Planned.
+- **Status:** Complete; the 2026-08-10 browser gate verified live category data, contained mobile rail behavior, responsive desktop grid behavior, encoded category-detail links, accessible names/focus, secure Next Image media, and intact storefront shell integration at 390/639/640/768/1024/1440px.
 - **Outcome:** `/categories` lists verified category data with all standard states.
 - **Work:** Add category-list adapter and responsive cards/navigation.
 - **Verification:** Route and adapter tests cover success, empty, malformed, and failed responses.
