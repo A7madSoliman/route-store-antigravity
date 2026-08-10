@@ -6,7 +6,7 @@ vi.mock("@/lib/api/endpoints/public/products.server", () => ({ getProducts: vi.f
 
 import { getProducts } from "@/lib/api/endpoints/public/products.server";
 import { PublicApiError } from "@/lib/api/errors.server";
-import { isExactPageTwo, loadProductListing } from "@/features/catalog/product-listing-data.server";
+import { getExactBrandId, isExactPageTwo, loadProductListing } from "@/features/catalog/product-listing-data.server";
 
 const category = { id: "category-1", name: "Category", slug: "category", imageUrl: null } as const;
 const brand = { id: "brand-1", name: "Brand", slug: "brand", imageUrl: null } as const;
@@ -32,6 +32,19 @@ describe("C03 product listing query parsing", () => {
   ])("accepts page two only for the exact single query: %o", (searchParams, expected) => {
     expect(isExactPageTwo(searchParams)).toBe(expected);
   });
+
+  it.each([
+    [{ brand: "brand/one" }, "brand/one"],
+    [{}, null],
+    [{ brand: "" }, null],
+    [{ brand: "   " }, null],
+    [{ brand: ["brand/one"] }, null],
+    [{ brand: ["brand/one", "brand/two"] }, null],
+    [{ brand: "brand/one", page: "2" }, null],
+    [{ brand: "brand/one", sort: "price" }, null],
+  ])("accepts only one non-empty scalar brand query: %o", (searchParams, expected) => {
+    expect(getExactBrandId(searchParams)).toBe(expected);
+  });
 });
 
 describe("C03 product listing loader", () => {
@@ -52,6 +65,22 @@ describe("C03 product listing loader", () => {
     await expect(loadProductListing({ page: "2" })).resolves.toMatchObject({ status: "ready" });
     expect(getProducts).toHaveBeenCalledOnce();
     expect(getProducts).toHaveBeenCalledWith({ kind: "page", page: 2 });
+  });
+
+  it("calls only the verified brand query for the exact brand view", async () => {
+    vi.mocked(getProducts).mockResolvedValue(catalogPage());
+
+    await expect(loadProductListing({ brand: "brand/id with space" })).resolves.toMatchObject({ status: "ready" });
+    expect(getProducts).toHaveBeenCalledOnce();
+    expect(getProducts).toHaveBeenCalledWith({ kind: "brand", brandId: "brand/id with space" });
+  });
+
+  it("does not combine unsupported brand query shapes", async () => {
+    vi.mocked(getProducts).mockResolvedValue(catalogPage());
+
+    await expect(loadProductListing({ brand: "brand/id", page: "2" })).resolves.toMatchObject({ status: "ready" });
+    expect(getProducts).toHaveBeenCalledOnce();
+    expect(getProducts).toHaveBeenCalledWith();
   });
 
   it("keeps ready and empty results distinct", async () => {

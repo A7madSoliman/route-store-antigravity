@@ -360,10 +360,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C08 — Implement brand directory and detail
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** `/brands` and `/brands/[brandId]` render verified brand data.
 - **Work:** Add list/detail adapters and connect brand product filtering only when F05 confirms serialization.
-- **Verification:** Tests cover brand states and exact optional filter links; GETs send no body.
+- **Verification:** Automated tests cover brand ready/empty/error states, exact-once encoded detail and product-filter links, baseline page-two behavior, unsupported query fallback, safe API errors, and not-found handling; GETs send no body. Live browser verification observed the safe unavailable `/brands` state at 390, 639, 640, 768, 1024, and 1440 pixels, with stable shell/footer geometry, mobile navigation through 640, desktop shell from 768, and no document overflow. A synthetic opaque brand ID was classified upstream as unavailable and rendered the safe unavailable detail state. `/products` and `/products?page=2` rendered without environment/runtime errors while the upstream catalog was unavailable. No live brand item was exposed, so live brand count, media, ready directory/detail rendering, live brand links, live `/products?brand=` navigation/results, and live custom not-found behavior are not claimed. Source review verifies the corresponding ready/link/query/not-found branches, server-only C01 access, exact single-scalar `?brand=` handling, and no C09 filter UI.
 - **Commit:** `feat(catalog): add brand routes`
 - **Dependencies:** C01, F03, F05 for product filtering.
 

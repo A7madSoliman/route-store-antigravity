@@ -17,11 +17,20 @@ export function isExactPageTwo(searchParams: ProductListingSearchParams): boolea
   return keys.length === 1 && keys[0] === "page" && searchParams.page === "2";
 }
 
+export function getExactBrandId(searchParams: ProductListingSearchParams): string | null {
+  const keys = Object.keys(searchParams);
+  const brand = searchParams.brand;
+  return keys.length === 1 && keys[0] === "brand" && typeof brand === "string" && brand.trim().length > 0 ? brand : null;
+}
+
 export async function loadProductListing(searchParams: ProductListingSearchParams): Promise<ProductListingState> {
   try {
-    const page = await (isExactPageTwo(searchParams)
-      ? getProducts({ kind: "page", page: 2 })
-      : getProducts());
+    const brandId = getExactBrandId(searchParams);
+    const page = await (brandId !== null
+      ? getProducts({ kind: "brand", brandId })
+      : isExactPageTwo(searchParams)
+        ? getProducts({ kind: "page", page: 2 })
+        : getProducts());
 
     return page.items.length === 0 ? { status: "empty" } : { status: "ready", page };
   } catch (error: unknown) {
