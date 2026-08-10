@@ -351,10 +351,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C07 — Implement subcategory directory and detail
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** `/subcategories` and `/subcategories/[subcategoryId]` render verified data without inventing product association.
 - **Work:** Add list/detail adapters and states; include product links only when a verified filter supports them.
-- **Verification:** Route tests cover list/detail success, empty, not found, malformed, and failure.
+- **Verification:** Route tests cover list/detail success, empty, not found, malformed, and failure. Browser verification confirmed the live global empty state at `/subcategories`, responsive and shell behavior at 390, 639, 640, 768, 1024, and 1440 pixels, and synthetic opaque-ID not-found behavior. Current upstream global subcategory data exposed no live ready/detail item; non-empty directory rendering, exactly-once encoded detail links, detail identity, and known error/not-found states are covered by automated tests. No live detail verification is claimed.
 - **Commit:** `feat(catalog): add subcategory routes`
 - **Dependencies:** C01, F03.
 
