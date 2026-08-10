@@ -342,10 +342,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C06 — Implement category detail and category subcategories
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** `/categories/[categoryId]` composes category detail and scoped subcategories.
 - **Work:** Fetch both verified endpoints, handle independent failure/empty states, and link products only if category filter encoding is confirmed.
-- **Verification:** Tests cover valid, not-found, empty-subcategory, partial-failure, and filter-link cases.
+- **Verification:** Tests cover valid, not-found, empty-subcategory, partial-failure, and filter-link cases. Browser verification confirmed live category identity and category-scoped products, truthful empty-subcategory behavior across all 10 currently rendered categories, synthetic category not-found behavior, and responsive layouts at 390, 639, 640, 768, 1024, and 1440 pixels. No current upstream category exposed a non-empty subcategory collection; non-empty subcategory presentation, semantic links, and encoded future `/subcategories/{id}` href behavior are covered by domain-safe automated tests. This is an upstream data limitation, not a live-link verification claim.
 - **Commit:** `feat(catalog): add category detail`
 - **Dependencies:** C03, C05, F03, F05 for product filtering.
 
