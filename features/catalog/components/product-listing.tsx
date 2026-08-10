@@ -32,7 +32,7 @@ function ProductListingPagination({ state }: { state: Extract<ProductListingStat
 export function ProductListing({ state }: { state: ProductListingState }) {
   return (
     <PageContainer className="py-8 pb-[calc(var(--spacing-bottom-nav)+var(--spacing-8))] md:py-12 md:pb-16">
-      <Breadcrumbs />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Products" }]} />
       <div className="mt-5 max-w-2xl">
         <h1 className="text-display-mobile text-text-primary md:text-display-desktop">Products</h1>
         <p className="mt-3 text-body text-text-secondary">Browse the current catalog.</p>

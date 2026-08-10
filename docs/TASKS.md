@@ -324,7 +324,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C04 — Implement product detail
 
-- **Status:** Planned.
+- **Status:** Complete; the 2026-08-10 browser gate verified a live five-image product detail, responsive 390/639/640/768/1024/1440 layouts, mobile dot and desktop thumbnail gallery controls, keyboard image selection, secure Next Image media, and a format-valid synthetic upstream not-found response with safe recovery UI.
 - **Outcome:** `/products/[productId]` renders only verified product fields and approved media behavior.
 - **Work:** Add detail adapter, API-driven gallery, price/content, not-found/error/loading states, and an add-one purchase placeholder for later authenticated work. Mark the screenshot quantity selector deferred; do not render an active product-detail `QuantityStepper` or imply that POST accepts `count`.
 - **Verification:** Tests cover valid, missing, malformed, and failed responses; unverified ratings/variants and product-detail quantity controls are absent or clearly deferred.
