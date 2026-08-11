@@ -105,10 +105,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F06 — Create the dedicated test account and verify session acquisition
 
-- **Status:** Planned.
+- **Status:** Complete; on 2026-08-11 a fresh synthetic project-only account was created with `POST /auth/signup` (`201`), correct sign-in and final reacquisition both returned `200` with nonempty top-level tokens, duplicate signup returned `409`, and the one owned-account invalid-password observation returned `401`. Sanitized evidence is recorded in `docs/api/examples/auth/signup.md` and `docs/api/examples/auth/signin.md`; the final token remains only in ignored local storage, and no protected request was made, so `AUTH-002` remains provisional.
 - **Outcome:** Signup/sign-in can be tested without personal or collection credentials.
 - **Work:** Create a synthetic project-only inbox/account, call signup with fresh values, sign in, record sanitized success/error shapes, and keep the issued token only in a local ignored environment. Record whether user identity or role data accompanies the token.
-- **Verification:** The test account can sign in; no secret appears in Git status, shell history committed to the repo, fixtures, or documentation; token field/header observations update PRD A3/A4 decisions.
+- **Verification:** The dedicated account remained usable through final sign-in; secret-literal, JWT-pattern, and credential-header scans passed; only the two auth evidence files plus `DECISIONS.md` and `TASKS.md` changed. Token acquisition updates PRD A3 evidence, while PRD A4 remains provisional because F06 intentionally performed no protected probe.
 - **Commit:** `docs: verify dedicated test account authentication`
 - **Dependencies:** F02.
 
