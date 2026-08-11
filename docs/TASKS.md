@@ -389,10 +389,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A01 — Implement the shared auth shell and form primitives
 
-- **Status:** Planned.
+- **Status:** Complete; the approved verification-contract amendment records that A01 owns shared component, accessibility, interaction, responsive-structure, automated-gate, and focused-security verification. Focused component tests, full Vitest, TypeScript, ESLint, production build, unchanged public route classification, diff checks, and secret/scope review passed. A01 owns no reachable route, so its route-level browser gate is **Not Applicable** and no browser pass is claimed. The first mandatory route-level browser verification of the shared shell/primitives belongs to A02 on the real `/sign-up` route at 390, 639, 640, 768, 1024, and 1440 pixels; A03 owns `/sign-in` browser verification against its approved evidence. A02 and A03 remain Planned/unstarted.
 - **Outcome:** Auth pages share approved responsive structure, fields, errors, pending states, and accessible announcements.
-- **Work:** Build the auth shell, labeled fields, password reveal, strength display only when rules are verified, form error summary, and submit-pending behavior. Do not implement the screenshot terms checkbox or Terms/Privacy links without an explicit product/legal requirement and approved destinations.
-- **Verification:** Keyboard, focus, validation announcement, and mobile/desktop visual tests pass; no unsupported terms-consent control or placeholder legal link is present.
+- **Work:** Build the shared auth route-group layout, auth shell, labeled fields, password reveal, form error/status presentation, submit-pending behavior, and focused component tests. StrengthMeter is deferred while `AUTH-003` remains open. Do not implement the screenshot terms checkbox or Terms/Privacy links without an explicit product/legal requirement and approved destinations. Do not create `/sign-up`, `/sign-in`, aliases, preview/debug routes, fixture routes, actions, API requests, redirects, or session usage.
+- **Verification:** Focused component rendering, keyboard interaction, focus/accessibility semantics, field/error associations, validation/error announcement behavior, password visibility, pending-state behavior, responsive structure/style contracts, full automated project gates, and focused diff/security review pass. A01 route-level browser verification is **Not Applicable** because the final A01 tree has no reachable route; this is not a browser pass. No unsupported terms-consent control or placeholder legal link is present.
 - **Commit:** `feat(auth): add auth shell and form primitives`
 - **Dependencies:** C00, D10, F06.
 
