@@ -28,14 +28,15 @@ export function ProductListing({ view }: { view: ProductListingViewModel }) {
     <PageContainer className="relative py-8 pb-[calc(var(--spacing-bottom-nav)+var(--spacing-8))] md:py-12 md:pb-16">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Products" }]} />
       <div className="mt-5 max-w-2xl"><h1 className="text-display-mobile text-text-primary md:text-display-desktop">Products</h1><p className="mt-3 text-body text-text-secondary">Browse the current catalog.</p></div>
-      <CatalogControls key={productListingHref(view.query)} query={view.query} categories={categories} categoryStatus={categoryStatus} brands={brands} brandStatus={brandStatus} />
-      <FilterChipList query={view.query} categories={categories} brands={brands} />
-      {view.products.status === "ready" && <p aria-live="polite" className="mt-5 text-body-small text-text-secondary">Showing {view.products.page.total} products</p>}
-      <section aria-label="Products" className="mt-8 lg:pl-[17.5rem]">
-        {view.products.status === "ready" && <><ProductGrid layout="catalog">{view.products.page.items.map((product) => <ProductCard key={product.id} layout="grid" product={product} />)}</ProductGrid><ProductListingPagination state={view.products} enabled={!filtered} /></>}
-        {view.products.status === "empty" && <div aria-live="polite" className="rounded-xl border border-outline-subtle bg-card px-6 py-10 text-center" role="status"><h2 className="text-heading-3 text-text-primary">{filtered ? "No matching products." : "No products are available right now."}</h2><p className="mt-2 text-body-small text-text-secondary">{filtered ? "Try clearing a filter or choosing a different option." : "Please check back later."}</p>{filtered && <Link className="mt-5 inline-flex min-h-11 items-center rounded-md bg-brand-primary px-5 text-button text-on-primary" href="/products">Clear all filters</Link>}</div>}
-        {view.products.status === "error" && <div aria-live="polite" className="rounded-xl border border-error bg-error-container px-6 py-10 text-center" role="alert"><h2 className="text-heading-3 text-error-text">Products are unavailable right now.</h2><p className="mt-2 text-body-small text-text-secondary">Please try again later.</p></div>}
-      </section>
+      <CatalogControls key={productListingHref(view.query)} query={view.query} categories={categories} categoryStatus={categoryStatus} brands={brands} brandStatus={brandStatus}>
+        <FilterChipList query={view.query} categories={categories} brands={brands} />
+        {view.products.status === "ready" && <p aria-live="polite" className="mt-5 text-body-small text-text-secondary">Showing {view.products.page.total} products</p>}
+        <section aria-label="Products" className="mt-8">
+          {view.products.status === "ready" && <><ProductGrid layout="catalog">{view.products.page.items.map((product) => <ProductCard key={product.id} layout="grid" product={product} />)}</ProductGrid><ProductListingPagination state={view.products} enabled={!filtered} /></>}
+          {view.products.status === "empty" && <div aria-live="polite" className="rounded-xl border border-outline-subtle bg-card px-6 py-10 text-center" role="status"><h2 className="text-heading-3 text-text-primary">{filtered ? "No matching products." : "No products are available right now."}</h2><p className="mt-2 text-body-small text-text-secondary">{filtered ? "Try clearing a filter or choosing a different option." : "Please check back later."}</p>{filtered && <Link className="mt-5 inline-flex min-h-11 items-center rounded-md bg-brand-primary px-5 text-button text-on-primary" href="/products">Clear all filters</Link>}</div>}
+          {view.products.status === "error" && <div aria-live="polite" className="rounded-xl border border-error bg-error-container px-6 py-10 text-center" role="alert"><h2 className="text-heading-3 text-error-text">Products are unavailable right now.</h2><p className="mt-2 text-body-small text-text-secondary">Please try again later.</p></div>}
+        </section>
+      </CatalogControls>
     </PageContainer>
   );
 }

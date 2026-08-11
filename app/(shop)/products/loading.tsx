@@ -8,7 +8,7 @@ export default function ProductsLoading() {
         <div className="h-4 w-28 rounded bg-surface-high" />
         <div className="mt-5 h-10 w-40 rounded bg-surface-high" />
         <div className="mt-3 h-6 w-64 max-w-full rounded bg-surface-high" />
-        <div className="mt-8 lg:pl-[17.5rem]"><ProductGridSkeleton layout="catalog" /></div>
+        <div className="mt-8 lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:items-start lg:gap-6"><div aria-hidden="true" className="hidden lg:block" /><ProductGridSkeleton layout="catalog" /></div>
         <span className="sr-only">Loading products</span>
       </section>
     </PageContainer>

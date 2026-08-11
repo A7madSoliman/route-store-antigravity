@@ -31,6 +31,17 @@ describe("C09 product listing presentation", () => {
     expect(screen.queryByText(/sustainab|color|rating/i)).toBeNull();
   });
 
+  it("places the sidebar and server result subtree under one catalog layout", () => {
+    render(<ProductListing view={readyView} />);
+    const aside = screen.getByRole("complementary", { name: "Product filters" });
+    const products = screen.getByRole("region", { name: "Products" });
+    const layout = aside.parentElement;
+    expect(layout).not.toBeNull();
+    expect(layout?.className).toContain("lg:grid-cols-[16rem_minmax(0,1fr)]");
+    expect(layout?.contains(products)).toBe(true);
+    expect(products.className).not.toContain("lg:pl-[17.5rem]");
+  });
+
   it("suppresses pagination for filtered states and renders a removable chip", () => {
     render(<ProductListing view={{ ...readyView, query: { kind: "brand", brandId: "brand-1" } }} />);
     expect(screen.queryByRole("link", { name: "Page 2" })).toBeNull();

@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { CatalogControls } from "@/features/catalog/components/catalog-controls";
 
@@ -28,6 +28,41 @@ describe("C09 catalog controls", () => {
     expect(push).toHaveBeenCalledWith("/products?sort=price", { scroll: false });
   });
 
+  it("commits desktop category changes without the dialog Apply action", () => {
+    render(<CatalogControls {...props} />);
+    const aside = screen.getByRole("complementary", { name: "Product filters" });
+    fireEvent.click(within(aside).getByRole("checkbox", { name: /^Category$/ }));
+    expect(push).toHaveBeenCalledWith("/products?category%5Bin%5D=category-1", { scroll: false });
+  });
+
+  it("keeps dialog category changes draft-only until Apply", () => {
+    render(<CatalogControls {...props} />);
+    fireEvent.click(screen.getByRole("button", { name: "Filters" }));
+    const dialog = screen.getByRole("dialog", { name: "Filters" });
+    fireEvent.click(within(dialog).getByRole("checkbox", { name: /^Category$/ }));
+    expect(push).not.toHaveBeenCalled();
+    fireEvent.click(within(dialog).getByRole("button", { name: "Apply filters" }));
+    expect(push).toHaveBeenCalledWith("/products?category%5Bin%5D=category-1", { scroll: false });
+  });
+
+  it("discards dialog drafts when closed before Apply", () => {
+    render(<CatalogControls {...props} />);
+    fireEvent.click(screen.getByRole("button", { name: "Filters" }));
+    const dialog = screen.getByRole("dialog", { name: "Filters" });
+    fireEvent.click(within(dialog).getByRole("checkbox", { name: /^Category$/ }));
+    fireEvent.click(within(dialog).getByRole("button", { name: "Close filters" }));
+    fireEvent.click(screen.getByRole("button", { name: "Filters" }));
+    expect((within(screen.getByRole("dialog", { name: "Filters" })).getByRole("checkbox", { name: /^Category$/ }) as HTMLInputElement).checked).toBe(false);
+    expect(push).not.toHaveBeenCalled();
+  });
+
+  it("commits desktop brand selection immediately", () => {
+    render(<CatalogControls {...props} />);
+    const aside = screen.getByRole("complementary", { name: "Product filters" });
+    fireEvent.change(within(aside).getByRole("combobox", { name: "Brand" }), { target: { value: "brand-2" } });
+    expect(push).toHaveBeenCalledWith("/products?brand=brand-2", { scroll: false });
+  });
+
   it("does not offer sort controls for standalone brand state", () => {
     render(<CatalogControls {...props} query={{ kind: "brand", brandId: "brand-1" }} />);
     expect(screen.queryByRole("combobox", { name: "Sort products" })).toBeNull();
@@ -35,8 +70,8 @@ describe("C09 catalog controls", () => {
 
   it("retains the category when replacing a category brand", () => {
     render(<CatalogControls {...props} query={{ kind: "category-brand", categoryId: "category-1", brandId: "brand-1" }} />);
-    fireEvent.change(screen.getAllByRole("combobox", { name: "Brand" })[0], { target: { value: "brand-2" } });
-    fireEvent.click(screen.getByRole("button", { name: "Apply filters", hidden: true }));
+    const aside = screen.getByRole("complementary", { name: "Product filters" });
+    fireEvent.change(within(aside).getByRole("combobox", { name: "Brand" }), { target: { value: "brand-2" } });
     expect(push).toHaveBeenCalledWith("/products?category%5Bin%5D=category-1&brand=brand-2", { scroll: false });
   });
 
