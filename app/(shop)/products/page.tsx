@@ -7,5 +7,5 @@ type ProductsPageProps = {
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const state = await loadProductListing(await searchParams);
-  return <ProductListing state={state} />;
+  return <ProductListing view={state} />;
 }

@@ -369,10 +369,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### C09 — Implement verified search, sort, filters, and pagination
 
-- **Status:** Conditional on F05.
+- **Status:** Complete.
 - **Outcome:** The catalog exposes only controls proven to work and keeps their state in shareable URLs.
-- **Work:** Add confirmed query controls one small control at a time using a central serializer; unsupported controls remain absent.
-- **Verification:** Parameterized tests cover encoding, invalid values, clearing, back/forward navigation, combinations, and repeated categories if supported.
+- **Work:** Added a finite server-side URL-state parser and exhaustive mapping into the unchanged C01 `ProductQuery` allowlist; added verified sort, price, category, brand, category-plus-sort, category-plus-brand, filter-chip, and responsive filter controls. Search, fields, arbitrary pagination, limit/page-size UI, unsupported combinations, color, sustainability, ratings, and subcategory filtering remain absent.
+- **Verification:** `vitest` passed 251 tests across 36 files; TypeScript, lint, and production build passed. Automated coverage includes every supported canonical state, URL-sensitive IDs, repeated ordered categories, malformed/unsupported fallback, option partial failures, clearing/transitions, legal control replacement, and server-only boundaries. Browser verification passed at 390, 639, 640, 768, 1024, and 1440 pixels with no document overflow, responsive filter/dialog behavior, sort URL navigation, unsupported keyword absence, safe unsupported-query fallback, baseline-only pagination, and dialog close/focus behavior. The upstream catalog was unavailable during the live gate, so ready-state live product/category/brand filtering results and live option labels are not claimed; source and fixture tests cover those branches truthfully.
 - **Commit:** `feat(catalog): add verified catalog controls`
 - **Dependencies:** C03, F05.
 

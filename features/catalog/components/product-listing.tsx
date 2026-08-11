@@ -3,61 +3,39 @@ import { ProductCard } from "@/components/commerce/product-card";
 import { ProductGrid } from "@/components/commerce/product-grid";
 import { PageContainer } from "@/components/layout/page-container";
 import { Breadcrumbs } from "@/components/navigation/breadcrumbs";
-import type { ProductListingState } from "@/features/catalog/product-listing-data.server";
+import { CatalogControls } from "@/features/catalog/components/catalog-controls";
+import { FilterChipList } from "@/features/catalog/components/filter-chip-list";
+import { productListingHref } from "@/features/catalog/product-listing-query";
+import type { ProductListingViewModel, ProductListingState } from "@/features/catalog/product-listing-data.server";
 
-function ProductListingPagination({ state }: { state: Extract<ProductListingState, { status: "ready" }> }) {
+function ProductListingPagination({ state, enabled }: { state: Extract<ProductListingState, { status: "ready" }>; enabled: boolean }) {
+  if (!enabled) return null;
   const { pagination } = state.page;
-
-  if (pagination.currentPage === 1 && pagination.nextPage === 2) {
-    return (
-      <nav aria-label="Product pages" className="mt-10 flex items-center justify-center gap-2">
-        <span aria-current="page" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md bg-brand-primary px-3 text-button text-on-primary">1</span>
-        <Link aria-label="Page 2" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-outline-subtle px-3 text-button text-text-primary" href="/products?page=2">2</Link>
-      </nav>
-    );
-  }
-
-  if (pagination.currentPage === 2 && pagination.prevPage === 1) {
-    return (
-      <nav aria-label="Product pages" className="mt-10 flex items-center justify-center gap-2">
-        <Link aria-label="Page 1" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-outline-subtle px-3 text-button text-text-primary" href="/products">1</Link>
-        <span aria-current="page" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md bg-brand-primary px-3 text-button text-on-primary">2</span>
-      </nav>
-    );
-  }
-
+  if (pagination.currentPage === 1 && pagination.nextPage === 2) return <nav aria-label="Product pages" className="mt-10 flex items-center justify-center gap-2"><span aria-current="page" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md bg-brand-primary px-3 text-button text-on-primary">1</span><Link aria-label="Page 2" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-outline-subtle px-3 text-button text-text-primary" href="/products?page=2" scroll={false}>2</Link></nav>;
+  if (pagination.currentPage === 2 && pagination.prevPage === 1) return <nav aria-label="Product pages" className="mt-10 flex items-center justify-center gap-2"><Link aria-label="Page 1" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-outline-subtle px-3 text-button text-text-primary" href="/products" scroll={false}>1</Link><span aria-current="page" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md bg-brand-primary px-3 text-button text-on-primary">2</span></nav>;
   return null;
 }
 
-export function ProductListing({ state }: { state: ProductListingState }) {
+function options(state: ProductListingViewModel["categories"]): readonly { id: string; name: string }[] { return state.status === "ready" ? state.items : []; }
+
+export function ProductListing({ view }: { view: ProductListingViewModel }) {
+  const categories = options(view.categories);
+  const brands = options(view.brands);
+  const filtered = view.query.kind !== "baseline" && view.query.kind !== "page-two";
+  const categoryStatus = view.categories.status;
+  const brandStatus = view.brands.status;
   return (
-    <PageContainer className="py-8 pb-[calc(var(--spacing-bottom-nav)+var(--spacing-8))] md:py-12 md:pb-16">
+    <PageContainer className="relative py-8 pb-[calc(var(--spacing-bottom-nav)+var(--spacing-8))] md:py-12 md:pb-16">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Products" }]} />
-      <div className="mt-5 max-w-2xl">
-        <h1 className="text-display-mobile text-text-primary md:text-display-desktop">Products</h1>
-        <p className="mt-3 text-body text-text-secondary">Browse the current catalog.</p>
-      </div>
-
-      {state.status === "ready" && (
-        <section aria-label="Products" className="mt-8">
-          <ProductGrid>{state.page.items.map((product) => <ProductCard key={product.id} layout="grid" product={product} />)}</ProductGrid>
-          <ProductListingPagination state={state} />
-        </section>
-      )}
-
-      {state.status === "empty" && (
-        <section aria-live="polite" className="mt-8 rounded-xl border border-outline-subtle bg-card px-6 py-10 text-center" role="status">
-          <h2 className="text-heading-3 text-text-primary">No products are available right now.</h2>
-          <p className="mt-2 text-body-small text-text-secondary">Please check back later.</p>
-        </section>
-      )}
-
-      {state.status === "error" && (
-        <section aria-live="polite" className="mt-8 rounded-xl border border-error bg-error-container px-6 py-10 text-center" role="alert">
-          <h2 className="text-heading-3 text-error-text">Products are unavailable right now.</h2>
-          <p className="mt-2 text-body-small text-text-secondary">Please try again later.</p>
-        </section>
-      )}
+      <div className="mt-5 max-w-2xl"><h1 className="text-display-mobile text-text-primary md:text-display-desktop">Products</h1><p className="mt-3 text-body text-text-secondary">Browse the current catalog.</p></div>
+      <CatalogControls key={productListingHref(view.query)} query={view.query} categories={categories} categoryStatus={categoryStatus} brands={brands} brandStatus={brandStatus} />
+      <FilterChipList query={view.query} categories={categories} brands={brands} />
+      {view.products.status === "ready" && <p aria-live="polite" className="mt-5 text-body-small text-text-secondary">Showing {view.products.page.total} products</p>}
+      <section aria-label="Products" className="mt-8 lg:pl-[17.5rem]">
+        {view.products.status === "ready" && <><ProductGrid layout="catalog">{view.products.page.items.map((product) => <ProductCard key={product.id} layout="grid" product={product} />)}</ProductGrid><ProductListingPagination state={view.products} enabled={!filtered} /></>}
+        {view.products.status === "empty" && <div aria-live="polite" className="rounded-xl border border-outline-subtle bg-card px-6 py-10 text-center" role="status"><h2 className="text-heading-3 text-text-primary">{filtered ? "No matching products." : "No products are available right now."}</h2><p className="mt-2 text-body-small text-text-secondary">{filtered ? "Try clearing a filter or choosing a different option." : "Please check back later."}</p>{filtered && <Link className="mt-5 inline-flex min-h-11 items-center rounded-md bg-brand-primary px-5 text-button text-on-primary" href="/products">Clear all filters</Link>}</div>}
+        {view.products.status === "error" && <div aria-live="polite" className="rounded-xl border border-error bg-error-container px-6 py-10 text-center" role="alert"><h2 className="text-heading-3 text-error-text">Products are unavailable right now.</h2><p className="mt-2 text-body-small text-text-secondary">Please try again later.</p></div>}
+      </section>
     </PageContainer>
   );
 }
