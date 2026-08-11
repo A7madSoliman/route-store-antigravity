@@ -29,11 +29,14 @@ const serverRoots = [
   "lib/api/endpoints/public/categories.server.ts",
   "lib/api/endpoints/public/subcategories.server.ts",
   "lib/api/endpoints/public/brands.server.ts",
+  "lib/api/endpoints/public/signup.server.ts",
+  "lib/api/schemas/signup-response.schema.server.ts",
   "lib/media/api-image.server.ts",
   "lib/auth/session-codec.server.ts",
   "lib/auth/session.server.ts",
   "lib/auth/require-session.server.ts",
   "lib/auth/return-to.server.ts",
+  "features/auth/sign-up-form.schema.server.ts",
 ];
 
 describe("C01 server boundaries", () => {

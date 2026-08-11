@@ -41,6 +41,34 @@ function isAbortLike(error: unknown): boolean {
   );
 }
 
+export async function publicPostJson(
+  pathSegments: readonly string[],
+  body: Record<string, string>,
+): Promise<{ status: number; body: unknown }> {
+  const environment = getServerEnvironment();
+  const url = buildUrl(environment.ecommerceApiBaseUrl, pathSegments);
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
+      credentials: "omit",
+      redirect: "manual",
+      cache: "no-store",
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(requestTimeoutMs),
+    });
+  } catch {
+    throw new PublicApiError("unavailable");
+  }
+  if (!response.ok) throw new PublicApiError("upstream-failure", response.status);
+  try {
+    return { status: response.status, body: await response.json() };
+  } catch {
+    throw new PublicApiError("invalid-response", response.status);
+  }
+}
+
 export async function publicGet(
   pathSegments: readonly string[],
   searchParams?: URLSearchParams,

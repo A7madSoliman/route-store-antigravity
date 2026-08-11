@@ -398,10 +398,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A02 — Implement sign-up
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** `/sign-up` submits exactly `name`, `email`, `password`, `rePassword`, and `phone`.
 - **Work:** Add verified client/server validation, signup adapter, duplicate/error states, session establishment, and safe destination handling. Submit only the five API-backed fields; terms consent remains deferred and is not added to the request.
-- **Verification:** Tests cover the exact five-field body, verified rules, success, duplicate account, malformed response, pending state, redaction, and absence of unsupported consent fields.
+- **Verification:** Automated checks pass (47 test files, 335 tests, TypeScript, ESLint, production build, and diff check). The adapter serializes exactly the five observed fields, validates only the observed nonempty token, classifies duplicate/rejected/unavailable/invalid responses safely, and never exposes passwords, tokens, or raw upstream bodies. The mandatory browser gate was run manually at 390, 639, 640, 768, 1024, and 1440px on the real route using only a local password-mismatch submission; no `/auth/signup` request was observed. The route has no overflow, exposes the correct responsive copy/link placement, includes phone, and has accessible labels/toggles/focus behavior. No live signup or protected API probe was performed.
 - **Commit:** `feat(auth): add sign-up flow`
 - **Dependencies:** A00, A01, F06.
 

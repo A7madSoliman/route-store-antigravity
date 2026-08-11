@@ -66,7 +66,7 @@ Route groups organize layouts and ownership; they do not provide authorization. 
 | Group | Responsibility | Shared shell |
 |---|---|---|
 | `app/(shop)` | Anonymous catalog discovery and product details | Storefront shell |
-| `app/(auth)` | Pre-authentication and recovery forms | Auth shell |
+| `app/(auth)` | Pre-authentication and recovery forms | Page-owned `AuthShell`; the route-group layout is a neutral pass-through so each page supplies its own responsive header/footer slots. |
 | `app/(account)` | Authenticated profile, address, wishlist, and conditional order-history views | Account shell with responsive sidebar/navigation |
 | `app/(checkout)` | Cart, checkout phases, payment return, and the checkout-styled new-address screen | Responsive checkout shell |
 | `app/(admin)` | Conditional read-only admin candidates | No directory or shell until the admin authorization gate passes |

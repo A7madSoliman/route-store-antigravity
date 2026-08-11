@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 
 import { PublicApiError } from "@/lib/api/errors.server";
-import { publicGet } from "@/lib/api/transport/public-request.server";
+import { publicGet, publicPostJson } from "@/lib/api/transport/public-request.server";
 
 const fetchMock = vi.fn();
 
@@ -77,5 +77,37 @@ describe("public GET transport", () => {
     await expect(publicGet(["products", " "])).rejects.toMatchObject({ code: "invalid-request" });
     await expect(publicGet([])).rejects.toMatchObject({ code: "invalid-request" });
     expect(fetchMock).not.toHaveBeenCalled();
+  });
+});
+
+describe("public POST JSON transport", () => {
+  it("sends the exact safe request shape once", async () => {
+    fetchMock.mockResolvedValue(new Response(JSON.stringify({ token: "synthetic" }), { status: 201 }));
+    await expect(publicPostJson(["auth", "signup"], { name: "N", email: "E", password: "P", rePassword: "P", phone: "1" })).resolves.toMatchObject({ status: 201 });
+    expect(fetchMock).toHaveBeenCalledOnce();
+    const [url, init] = fetchMock.mock.calls[0] as [URL, RequestInit];
+    expect(url.toString()).toBe("https://ecommerce.routemisr.com/api/v1/auth/signup");
+    expect(init).toMatchObject({ method: "POST", credentials: "omit", redirect: "manual", cache: "no-store", body: JSON.stringify({ name: "N", email: "E", password: "P", rePassword: "P", phone: "1" }) });
+    expect(init.headers).toEqual({ Accept: "application/json", "Content-Type": "application/json" });
+    expect(init.headers).not.toHaveProperty("token");
+    expect(init.headers).not.toHaveProperty("Authorization");
+    expect(init.signal).toBeInstanceOf(AbortSignal);
+  });
+
+  it("does not read non-success bodies and never retries", async () => {
+    const response = new Response("submitted customer data", { status: 409 });
+    const bodySpy = vi.spyOn(response, "json");
+    fetchMock.mockResolvedValue(response);
+    await expect(publicPostJson(["auth", "signup"], { name: "N", email: "E", password: "P", rePassword: "P", phone: "1" })).rejects.toMatchObject({ status: 409 });
+    expect(bodySpy).not.toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenCalledOnce();
+  });
+
+  it("maps invalid success JSON and timeout safely", async () => {
+    fetchMock.mockResolvedValue(new Response("not-json", { status: 201 }));
+    await expect(publicPostJson(["auth", "signup"], { name: "N", email: "E", password: "P", rePassword: "P", phone: "1" })).rejects.toMatchObject({ code: "invalid-response" });
+    fetchMock.mockRejectedValue(new DOMException("timed out", "TimeoutError"));
+    await expect(publicPostJson(["auth", "signup"], { name: "N", email: "E", password: "P", rePassword: "P", phone: "1" })).rejects.toMatchObject({ code: "unavailable" });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 });
