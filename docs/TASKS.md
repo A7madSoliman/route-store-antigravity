@@ -380,7 +380,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A00 — Implement the session boundary
 
-- **Status:** Planned.
+- **Status:** Complete; A00 implemented the server-only AES-GCM session codec, sealed HttpOnly cookie boundary, safe session reads/writes/clears, token-free session summary, provisional protected GET transport, and implemented-route returnTo normalizer. Focused security tests, full validation, public-route regression comparison, and secret scans passed; AUTH-002 remains provisional and no live protected request was made.
 - **Outcome:** Tokens, identity, expiry, redirects, and local session clearing follow recorded decisions without leaking to logs or URLs or claiming server-side logout.
 - **Work:** Implement the selected server/client session boundary, custom `token` header injection, redaction, invalid-session handling, and local sign-out that clears only the application session. Do not claim token revocation or sign-out from all devices.
 - **Verification:** Tests prove protected requests receive the exact header, public requests do not, local sign-out removes application-session access, unsafe return URLs are rejected, and secrets remain server-confined where decided.

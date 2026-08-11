@@ -215,7 +215,7 @@ lib/
   auth/
     session.server.ts
     require-session.server.ts
-    return-to.ts
+    return-to.server.ts
   env/
     server.ts
   media/
@@ -395,12 +395,11 @@ A future Route Handler is considered only for an approved external callback, web
 
 ## 10. Session and navigation security
 
-`lib/auth` exposes a stable server-side interface for creating, reading, requiring, and deleting the local application session. The storage implementation remains provisional until F06 supplies token evidence and D08/deployment work selects necessary support.
+`lib/auth` exposes a stable server-side interface for creating, reading, requiring, and deleting the local application session. A00 selects an encrypted and authenticated stateless cookie backed by a 32-byte server-only AES-GCM key; deployment provisioning and operational key rotation remain T06 concerns.
 
-The permitted implementations are:
+The selected implementation is:
 
-- an encrypted and authenticated HttpOnly cookie containing a minimal session payload; or
-- a server-side session record referenced by an opaque HttpOnly cookie.
+- an encrypted and authenticated HttpOnly cookie containing only a version and raw upstream token.
 
 The third-party token may exist only inside that server-controlled implementation and protected transport. It must never appear in local storage, session storage, client-readable cookies, serialized props, URLs, analytics, browser logs, or a `NEXT_PUBLIC_` environment variable.
 
@@ -416,14 +415,14 @@ Session rules:
 
 ### 10.1 Safe `returnTo`
 
-`lib/auth/return-to.ts` owns one allowlist-based normalizer:
+`lib/auth/return-to.server.ts` owns one allowlist-based normalizer:
 
 - Accept only a string beginning with one `/`.
 - Reject schemes, hosts, protocol-relative `//` values, backslashes, control characters, and fragments.
 - Resolve against the application origin and require the resolved origin to remain unchanged.
-- Match only an implemented route from `ROUTES.md`; conditional routes are excluded until shipped.
+- Match only an implemented route from `ROUTES.md`; conditional and planned-but-unimplemented routes are excluded until shipped.
 - Preserve query parameters only when that destination explicitly allowlists them.
-- Fall back to `/account/profile` for an authenticated Account destination and `/` for a generic invalid destination.
+- A00 falls back only to the implemented generic `/`; A04 may add an account fallback once that route is implemented.
 
 The anonymous Account navigation target is `/sign-in?returnTo=%2Faccount%2Fprofile`; the authenticated target is `/account/profile`. Admin destinations are never accepted as customer `returnTo` values.
 

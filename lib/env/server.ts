@@ -10,9 +10,17 @@ const environmentSchema = z.object({
   APP_ORIGIN: z.string().min(1),
 });
 
+const sessionEnvironmentSchema = z.object({
+  SESSION_ENCRYPTION_KEY: z.string().min(1),
+});
+
 export type ServerEnvironment = Readonly<{
   ecommerceApiBaseUrl: string;
   appOrigin: string;
+}>;
+
+export type SessionEnvironment = Readonly<{
+  sessionEncryptionKey: string;
 }>;
 
 export class EnvironmentValidationError extends Error {
@@ -90,4 +98,45 @@ export function parseServerEnvironment(input: Record<string, string | undefined>
 
 export function getServerEnvironment(): ServerEnvironment {
   return parseServerEnvironment(process.env);
+}
+
+function validateSessionEncryptionKey(value: string): string {
+  if (!/^[A-Za-z0-9_-]{43}$/u.test(value)) {
+    throw new EnvironmentValidationError(
+      "SESSION_ENCRYPTION_KEY must be 32 bytes encoded as 43 unpadded base64url characters.",
+    );
+  }
+
+  let decoded: Uint8Array;
+  try {
+    decoded = Uint8Array.from(Buffer.from(value, "base64url"));
+  } catch {
+    throw new EnvironmentValidationError("SESSION_ENCRYPTION_KEY is invalid.");
+  }
+
+  if (decoded.length !== 32) {
+    throw new EnvironmentValidationError(
+      "SESSION_ENCRYPTION_KEY must decode to exactly 32 bytes.",
+    );
+  }
+
+  return value;
+}
+
+export function parseSessionEnvironment(
+  input: Record<string, string | undefined>,
+): SessionEnvironment {
+  const parsed = sessionEnvironmentSchema.safeParse(input);
+
+  if (!parsed.success) {
+    throw new EnvironmentValidationError("Missing environment variable: SESSION_ENCRYPTION_KEY.");
+  }
+
+  return Object.freeze({
+    sessionEncryptionKey: validateSessionEncryptionKey(parsed.data.SESSION_ENCRYPTION_KEY),
+  });
+}
+
+export function getSessionEnvironment(): SessionEnvironment {
+  return parseSessionEnvironment(process.env);
 }

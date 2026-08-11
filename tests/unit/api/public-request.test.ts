@@ -34,6 +34,8 @@ describe("public GET transport", () => {
     });
     expect(init).not.toHaveProperty("body");
     expect(init).toHaveProperty("headers", { Accept: "application/json" });
+    expect(init.headers).not.toHaveProperty("token");
+    expect(init.headers).not.toHaveProperty("Authorization");
     expect(init.signal).toBeInstanceOf(AbortSignal);
   });
 

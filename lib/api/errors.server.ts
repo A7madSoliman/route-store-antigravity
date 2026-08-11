@@ -33,3 +33,28 @@ export function publicApiError(
 ): PublicApiError {
   return new PublicApiError(code, status);
 }
+
+export type ProtectedApiErrorCode =
+  | "invalid-request"
+  | "unavailable"
+  | "invalid-response"
+  | "upstream-failure";
+
+const protectedSafeMessages: Record<ProtectedApiErrorCode, string> = {
+  "invalid-request": "The protected request was invalid.",
+  unavailable: "The protected service is temporarily unavailable.",
+  "invalid-response": "The protected service returned an invalid response.",
+  "upstream-failure": "The protected service could not complete the request.",
+};
+
+export class ProtectedApiError extends Error {
+  readonly code: ProtectedApiErrorCode;
+  readonly status?: number;
+
+  constructor(code: ProtectedApiErrorCode, status?: number) {
+    super(protectedSafeMessages[code]);
+    this.name = "ProtectedApiError";
+    this.code = code;
+    this.status = status;
+  }
+}

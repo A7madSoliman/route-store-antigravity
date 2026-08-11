@@ -8,8 +8,9 @@ This document defines the D10 environment contract. Private configuration is rea
 |---|---|---|---|---|
 | `ECOMMERCE_API_BASE_URL` | Yes | Server-only, non-public | `https://ecommerce.routemisr.com/api/v1` | Verified third-party API host and `/api/v1` path. A trailing slash is normalized away. |
 | `APP_ORIGIN` | Yes | Server-only, non-public | `http://localhost:3000` | The application origin used for application-owned return URL construction. It is not payment-success evidence. |
+| `SESSION_ENCRYPTION_KEY` | Required when session helpers are used | Server-only secret | Generate locally; never commit | A 32-byte random value encoded as exactly 43 unpadded base64url characters for the AES-256-GCM session envelope. |
 
-Both variables are required for every application environment. They must never be prefixed with `NEXT_PUBLIC_`.
+`ECOMMERCE_API_BASE_URL` and `APP_ORIGIN` are required for every application environment. `SESSION_ENCRYPTION_KEY` is validated lazily when session code is used. None may be prefixed with `NEXT_PUBLIC_`.
 
 ## Validation rules
 
@@ -23,6 +24,7 @@ Examples:
 # valid local values
 ECOMMERCE_API_BASE_URL=https://ecommerce.routemisr.com/api/v1
 APP_ORIGIN=http://localhost:3000
+# SESSION_ENCRYPTION_KEY=<43-character unpadded base64url value; do not commit a literal>
 ```
 
 Invalid values include relative URLs, an API host other than `ecommerce.routemisr.com`, an API path other than `/api/v1`, `https://user:password@example.com`, `https://example.com/app`, `https://example.com/?next=/checkout`, `https://example.com/#return`, and external `http://` origins.
@@ -34,6 +36,7 @@ Invalid values include relative URLs, an API host other than `ecommerce.routemis
 - Tests must use deterministic non-secret values and must not depend on `.env.local`; test-account credentials and tokens remain in a separate ignored local secret store.
 - Preview and production values are supplied by the deployment system and must use the same validation contract. Deployment-specific hosts, ports, and secret-store settings remain with the deployment milestone.
 - Missing or invalid values fail at the server configuration boundary with a safe error that names only the invalid variable, never its value or another environment value.
+- `SESSION_ENCRYPTION_KEY` must match the canonical 43-character unpadded base64url form and decode to exactly 32 bytes. It is read through the isolated session-environment path so anonymous public catalog builds do not require it unless session code executes.
 
 ## Secret handling and incidents
 

@@ -7,6 +7,7 @@ vi.mock("server-only", () => ({}));
 const serverRoots = [
   "lib/api/errors.server.ts",
   "lib/api/transport/public-request.server.ts",
+  "lib/api/transport/protected-request.server.ts",
   "lib/api/query/product-query.server.ts",
   "lib/api/schemas/catalog-entities.schema.server.ts",
   "lib/api/schemas/pagination.schema.server.ts",
@@ -29,6 +30,10 @@ const serverRoots = [
   "lib/api/endpoints/public/subcategories.server.ts",
   "lib/api/endpoints/public/brands.server.ts",
   "lib/media/api-image.server.ts",
+  "lib/auth/session-codec.server.ts",
+  "lib/auth/session.server.ts",
+  "lib/auth/require-session.server.ts",
+  "lib/auth/return-to.server.ts",
 ];
 
 describe("C01 server boundaries", () => {

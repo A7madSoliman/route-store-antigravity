@@ -4,6 +4,7 @@ vi.mock("server-only", () => ({}));
 
 import {
   EnvironmentValidationError,
+  parseSessionEnvironment,
   parseServerEnvironment,
 } from "../../../lib/env/server";
 
@@ -73,5 +74,30 @@ describe("server environment validation", () => {
       expect(error).toBeInstanceOf(EnvironmentValidationError);
       expect((error as Error).message).not.toContain(secret);
     }
+  });
+});
+
+describe("session environment validation", () => {
+  const validKey = "A".repeat(43);
+
+  it("validates a canonical 32-byte base64url key independently", () => {
+    expect(parseSessionEnvironment({ SESSION_ENCRYPTION_KEY: validKey })).toEqual({
+      sessionEncryptionKey: validKey,
+    });
+  });
+
+  it.each([undefined, "", "A".repeat(42), `${"A".repeat(42)}=`, "!".repeat(43)])(
+    "rejects an invalid session key: %s",
+    (value) => {
+      expect(() => parseSessionEnvironment({ SESSION_ENCRYPTION_KEY: value })).toThrow(
+        EnvironmentValidationError,
+      );
+    },
+  );
+
+  it("does not require the session key for public environment parsing", () => {
+    expect(parseServerEnvironment(validEnvironment)).toMatchObject({
+      ecommerceApiBaseUrl: validEnvironment.ECOMMERCE_API_BASE_URL,
+    });
   });
 });
