@@ -83,6 +83,7 @@ describe("forgot-password form", () => {
     );
     expect(screen.queryByRole("textbox", { name: "Email Address" })).toBeNull();
     expect(screen.queryByRole("button", { name: "Send Reset Code" })).toBeNull();
+    expect(screen.getByRole("link", { name: "Enter Reset Code" }).getAttribute("href")).toBe("/verify-reset-code");
     expect(document.activeElement).toBe(screen.getByRole("status").parentElement);
   });
 });

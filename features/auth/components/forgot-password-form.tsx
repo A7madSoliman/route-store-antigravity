@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 import { AlertBanner } from "@/components/ui/alert-banner";
 import { FormField } from "@/components/ui/form-field";
@@ -30,6 +31,12 @@ export function ForgotPasswordForm() {
         tabIndex={-1}
       >
         <AlertBanner tone="info">{state.message}</AlertBanner>
+        <Link
+          className="mt-5 inline-flex text-body-small font-semibold text-brand-primary hover:underline"
+          href="/verify-reset-code"
+        >
+          Enter Reset Code
+        </Link>
       </div>
     );
   }

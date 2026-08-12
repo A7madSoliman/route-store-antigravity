@@ -434,10 +434,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A06 — Implement reset-code verification
 
-- **Status:** Planned.
-- **Outcome:** `/verify-reset-code` verifies the observed code format and carries only verified proof forward.
-- **Work:** Add accessible OTP input, paste/correction behavior, adapter, expiry/error handling, and direct-step guard.
-- **Verification:** Tests cover valid, invalid, expired, malformed, retry, and direct access.
+- **Status:** Complete.
+- **Outcome:** `/verify-reset-code` submits the observed reset-code request and presents a safe verification result without inventing code-format rules or client-carried recovery proof.
+- **Work:** Add one accessible unconstrained reset-code text input, server validation, adapter, generic failure handling, pending/error/success states, and the route-backed A05 entry link. Do not add resend, countdown, expiry, invalid-code semantics, recovery cookies, URL state, browser storage, application-session proof, or the A07 reset form.
+- **Verification:** Tests cover arbitrary nonempty input, missing/non-string/File/blank/whitespace rejection, unchanged forwarding, observed 200 schema, generic handling for all unobserved failures, no raw upstream leakage, single-input accessibility, keyboard/paste/delete behavior, A05 navigation, and direct route access. AUTH-004 remains Provisional; the backend linkage between verification and reset is not resolved by A06 and must be confirmed during A07 planning.
 - **Commit:** `feat(auth): add reset code verification`
 - **Dependencies:** A05, F07.
 
