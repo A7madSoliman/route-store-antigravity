@@ -416,10 +416,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A04 — Add protected-route guards and return flow
 
-- **Status:** Planned.
-- **Outcome:** Anonymous users are redirected before wishlist, cart, checkout, address, and account actions, then returned safely after sign-in; Account and Orders navigation expose only approved routes.
-- **Work:** Implement route/action guards and allowlisted relative return destinations; never retry an unsafe mutation automatically. Account targets `/account/profile` for authenticated users and `/sign-in?returnTo=%2Faccount%2Fprofile` for anonymous users. Omit Orders navigation until O00 passes and O02 implements `/account/orders`.
-- **Verification:** Route tests cover authenticated Account navigation, the exact anonymous Account redirect, expired sessions, encoded/malicious return URLs, and absence of Orders navigation while the route is conditional or unimplemented.
+- **Status:** Complete; amended to infrastructure-only because no A04-owned protected page is reachable yet. `/account/profile` remains owned by A08; wishlist, cart, address, and checkout routes remain owned by later milestones.
+- **Outcome:** Establish reusable server-controlled protected-route guard infrastructure and safe return-flow construction for later protected pages.
+- **Work:** Add a server-only route guard around `requireSession()` and a standards-based sign-in redirect constructor that delegates to the existing `normalizeReturnTo()` allowlist. The future page supplies its own route-owned canonical destination. Do not create a protected page, route-group guard, proxy/middleware, global session read, protected API request, or speculative auth-entry refactor. Orders navigation remains omitted until O00 passes and O02 implements `/account/orders`.
+- **Verification:** PASS. Focused A04/A00/A02/A03 coverage passes (13 files, 83 tests), full Vitest passes (52 files, 359 tests), TypeScript, ESLint, production build, diff check, server-boundary review, and security/scope review pass. The A04 route-level browser gate is **Not Applicable** under this amended contract because no reachable protected route exists; no browser pass is claimed and no live auth or protected API request was made. A05 remains the next planned milestone and AUTH-002 remains Provisional.
 - **Commit:** `feat(auth): guard protected customer routes`
 - **Dependencies:** A03.
 

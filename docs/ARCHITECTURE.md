@@ -426,6 +426,10 @@ Session rules:
 
 The anonymous Account navigation target is `/sign-in?returnTo=%2Faccount%2Fprofile`; the authenticated target is `/account/profile`. Admin destinations are never accepted as customer `returnTo` values.
 
+### 10.2 Protected-route guard boundary
+
+Protected pages and Server Actions use the server-only `lib/auth/protected-route.server.ts` helper close to their protected boundary. The helper wraps the existing `requireSession()` primitive and accepts a route-owned canonical destination supplied by the caller; it does not discover the current pathname globally, inspect client state, or establish which routes are protected. Route groups organize ownership but do not authorize access. Protected data and mutation boundaries continue to perform session checks close to the protected operation. A04 does not require Proxy or middleware, and root/storefront layouts remain free of session reads. No current reachable protected page consumes this helper until its owning milestone ships.
+
 ## 11. Caching and revalidation
 
 The current repository does not enable Cache Components. Do not use `use cache`, `cacheLife`, or Cache-Components-only behavior unless a later configuration decision adopts that model.

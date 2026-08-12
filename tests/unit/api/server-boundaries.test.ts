@@ -36,6 +36,7 @@ const serverRoots = [
   "lib/auth/session.server.ts",
   "lib/auth/require-session.server.ts",
   "lib/auth/return-to.server.ts",
+  "lib/auth/protected-route.server.ts",
   "features/auth/sign-up-form.schema.server.ts",
   "features/auth/sign-in-form.schema.server.ts",
   "lib/api/endpoints/public/signin.server.ts",
