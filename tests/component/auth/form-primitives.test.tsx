@@ -29,6 +29,16 @@ describe("auth form primitives", () => {
     expect(screen.getByText("Email is required.").id).toBe("email-error");
   });
 
+  it("keeps an optional label-row action outside the semantic label", () => {
+    render(<FormField control={<input />} id="email" label="Email" labelTrailing={<a href="/help">Help</a>} />);
+
+    const label = document.querySelector("label[for='email']");
+    const link = screen.getByRole("link", { name: "Help" });
+    expect(label).not.toBeNull();
+    expect(label?.contains(link)).toBe(false);
+    expect(link.parentElement?.className).toContain("justify-between");
+  });
+
   it("toggles password visibility with an accessible button", async () => {
     const user = userEvent.setup();
     render(<PasswordField id="password" label="Password" name="password" />);

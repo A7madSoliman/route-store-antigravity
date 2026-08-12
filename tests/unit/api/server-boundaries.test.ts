@@ -37,6 +37,9 @@ const serverRoots = [
   "lib/auth/require-session.server.ts",
   "lib/auth/return-to.server.ts",
   "features/auth/sign-up-form.schema.server.ts",
+  "features/auth/sign-in-form.schema.server.ts",
+  "lib/api/endpoints/public/signin.server.ts",
+  "lib/api/schemas/signin-response.schema.server.ts",
 ];
 
 describe("C01 server boundaries", () => {

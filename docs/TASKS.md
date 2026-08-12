@@ -407,10 +407,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A03 — Implement sign-in
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** `/sign-in` establishes a session and continues to a validated destination.
 - **Work:** Add sign-in adapter, invalid-credential handling, pending state, and default destination.
-- **Verification:** Tests cover success, failure, malformed token response, safe redirect, and secret redaction.
+- **Verification:** Complete. Final automated gates pass with 51 test files and 347 tests, TypeScript, ESLint, production build, and diff check. The real `/sign-in` route passed the mandatory browser gate at 390, 639, 640, 768, 1024, and 1440px, including responsive shell/copy, field semantics, the single Password label with independent `Forgot Password?` link, counterpart placement, native validation, focus, toggle click behavior, no overflow, and `/sign-up` navigation at 768px. No live sign-in was performed and the browser observed zero `POST /auth/signin` requests; F06 remains the live source for observed 200/401/token evidence. The `/forgot-password` href was verified, but A05 owns its unimplemented route. Pending and server-returned auth/session behavior were intentionally not exercised in the browser and remain covered by deterministic tests. Direct Enter/Space toggle activation was not reliably injectable by the browser driver; native button focus/semantics and deterministic component coverage remain authoritative. A04 remains Planned/unstarted and AUTH-002 remains Provisional.
 - **Commit:** `feat(auth): add sign-in flow`
 - **Dependencies:** A00, A01, F06.
 

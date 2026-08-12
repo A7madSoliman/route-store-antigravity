@@ -9,9 +9,10 @@ type FormFieldProps = {
   error?: ReactNode;
   required?: boolean;
   controlSuffix?: ReactNode;
+  labelTrailing?: ReactNode;
 };
 
-export function FormField({ id, label, control, description, error, required = false, controlSuffix }: FormFieldProps) {
+export function FormField({ id, label, control, description, error, required = false, controlSuffix, labelTrailing }: FormFieldProps) {
   const descriptionId = description ? `${id}-description` : undefined;
   const errorId = error ? `${id}-error` : undefined;
   const describedBy = [control.props["aria-describedby"], descriptionId, errorId].filter(Boolean).join(" ") || undefined;
@@ -25,10 +26,13 @@ export function FormField({ id, label, control, description, error, required = f
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-body-small font-semibold text-text-primary" htmlFor={id}>
-        {label}
-        {required ? <span aria-hidden="true"> *</span> : null}
-      </label>
+      <div className={labelTrailing ? "flex items-center justify-between gap-4" : undefined}>
+        <label className="text-body-small font-semibold text-text-primary" htmlFor={id}>
+          {label}
+          {required ? <span aria-hidden="true"> *</span> : null}
+        </label>
+        {labelTrailing}
+      </div>
       <div className={controlSuffix ? "relative" : undefined}>
         {fieldControl}
         {controlSuffix ? <div className="absolute inset-y-0 right-1 flex items-center">{controlSuffix}</div> : null}

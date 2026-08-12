@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import type { InputHTMLAttributes } from "react";
+import type { InputHTMLAttributes, ReactNode } from "react";
 import { EyeIcon, EyeOffIcon } from "@/components/icons/auth-icons";
 import { FormField } from "./form-field";
 
@@ -10,9 +10,10 @@ type PasswordFieldProps = Omit<InputHTMLAttributes<HTMLInputElement>, "id" | "ty
   label: string;
   description?: string;
   error?: string;
+  labelTrailing?: ReactNode;
 };
 
-export function PasswordField({ id, label, description, error, ...inputProps }: PasswordFieldProps) {
+export function PasswordField({ id, label, description, error, labelTrailing, ...inputProps }: PasswordFieldProps) {
   const generatedId = useId();
   const fieldId = id ?? `password-${generatedId}`;
   const [visible, setVisible] = useState(false);
@@ -29,6 +30,7 @@ export function PasswordField({ id, label, description, error, ...inputProps }: 
       error={error}
       id={fieldId}
       label={label}
+      labelTrailing={labelTrailing}
       required={inputProps.required}
     />
   );
