@@ -114,10 +114,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F07 — Verify password-recovery contracts
 
-- **Status:** Planned; requires control of the test inbox.
+- **Status:** Complete; a fresh dedicated F07 account was created and validated, the controlled reset code was obtained locally, verify-code returned `200`, reset-password returned `200`, and final sign-in with the replacement password returned `200`. Sanitized recovery evidence is recorded in the three auth examples; no reset code, email, password, token, or cookie was committed. Account-enumeration behavior remains unresolved and no invalid/rate-limit probes were performed.
 - **Outcome:** Forgot-password, reset-code verification, and password reset have observed transitions and errors.
 - **Work:** Use only the dedicated account to exercise the three-step flow. Record delivery behavior, reset-code format/expiry only as observed, proof carried between steps, reset response, rate-limit behavior encountered naturally, and the ability to sign in with the new password.
-- **Verification:** Sanitized examples cover all three requests and the account remains usable; no reset code or email is committed.
+- **Verification:** Sanitized examples cover forgot-password, reset-code verification, and password reset; the account remains usable after final sign-in; secret scans and diff review pass; no reset code or email is committed. The observed handoff is code-only verification followed by reset with `email` and `newPassword`; no recovery proof field was returned.
 - **Commit:** `docs: verify password recovery flow`
 - **Dependencies:** F06.
 
