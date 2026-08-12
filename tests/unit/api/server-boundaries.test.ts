@@ -31,6 +31,8 @@ const serverRoots = [
   "lib/api/endpoints/public/brands.server.ts",
   "lib/api/endpoints/public/signup.server.ts",
   "lib/api/schemas/signup-response.schema.server.ts",
+  "lib/api/endpoints/public/forgot-password.server.ts",
+  "lib/api/schemas/forgot-password-response.schema.server.ts",
   "lib/media/api-image.server.ts",
   "lib/auth/session-codec.server.ts",
   "lib/auth/session.server.ts",
@@ -39,6 +41,7 @@ const serverRoots = [
   "lib/auth/protected-route.server.ts",
   "features/auth/sign-up-form.schema.server.ts",
   "features/auth/sign-in-form.schema.server.ts",
+  "features/auth/forgot-password-form.schema.server.ts",
   "lib/api/endpoints/public/signin.server.ts",
   "lib/api/schemas/signin-response.schema.server.ts",
 ];

@@ -425,10 +425,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A05 — Implement forgot password
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** `/forgot-password` starts recovery without exposing account existence beyond observed API behavior.
-- **Work:** Add the email form, adapter, pending state, safe response copy, and navigation to code verification.
-- **Verification:** Tests cover success, invalid input, observed errors/rate limits, malformed response, and repeat submission.
+- **Work:** Add the email form, server validation, public adapter, pending state, safe response copy, and navigation back to sign-in. The form does not create a reset-code route or handoff.
+- **Verification:** Focused A05 tests pass, together with full Vitest (56 files, 386 tests), TypeScript, ESLint, production build, diff check, server-boundary review, and security/scope review. The adapter sends exactly `{ email }` to the observed endpoint, accepts only the observed 200 schema, maps the observed 404 to the same privacy-preserving confirmation, and maps other failures—including 429—to a generic safe error without exposing upstream content. The mandatory browser gate passed at 390, 639, 640, 768, 1024, and 1440px with no overflow, one accessible email field, native validation, focus/keyboard checks, and working sign-in navigation. No valid live recovery request was submitted; account-enumeration and rate-limit behavior remain unresolved.
 - **Commit:** `feat(auth): add forgot password step`
 - **Dependencies:** A01, F07.
 

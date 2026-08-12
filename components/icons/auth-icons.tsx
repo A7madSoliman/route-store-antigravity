@@ -28,3 +28,14 @@ export function EyeOffIcon({ size = 20, ...props }: AuthIconProps) {
     </svg>
   );
 }
+
+export function ResetLockIcon({ size = 32, ...props }: AuthIconProps) {
+  return (
+    <svg aria-hidden="true" focusable="false" height={size} viewBox="0 0 24 24" width={size} {...props}>
+      <path d="M5.5 10.5V8a6.5 6.5 0 0 1 12.8-1.6" {...common} />
+      <path d="m18.3 3.4.2 3.2-3.2.2" {...common} />
+      <rect height="8" rx="1.5" width="10" x="7" y="10.5" {...common} />
+      <path d="M12 13.5v2" {...common} />
+    </svg>
+  );
+}
