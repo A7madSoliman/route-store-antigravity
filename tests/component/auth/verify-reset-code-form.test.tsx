@@ -65,6 +65,7 @@ describe("verify-reset-code form", () => {
     actionState.current = { status: "success", message: "Reset code verified." };
     rerender(<VerifyResetCodeForm />);
     expect(screen.getByRole("status").textContent).toBe("Reset code verified.");
+    expect(screen.getByRole("link", { name: "Set New Password" }).getAttribute("href")).toBe("/reset-password");
     expect(screen.queryByRole("textbox", { name: "Reset code" })).toBeNull();
   });
 });

@@ -41,7 +41,8 @@ function isAbortLike(error: unknown): boolean {
   );
 }
 
-export async function publicPostJson(
+async function publicJsonMutation(
+  method: "POST" | "PUT",
   pathSegments: readonly string[],
   body: Record<string, string>,
 ): Promise<{ status: number; body: unknown }> {
@@ -50,7 +51,7 @@ export async function publicPostJson(
   let response: Response;
   try {
     response = await fetch(url, {
-      method: "POST",
+      method,
       headers: { Accept: "application/json", "Content-Type": "application/json" },
       credentials: "omit",
       redirect: "manual",
@@ -67,6 +68,20 @@ export async function publicPostJson(
   } catch {
     throw new PublicApiError("invalid-response", response.status);
   }
+}
+
+export async function publicPostJson(
+  pathSegments: readonly string[],
+  body: Record<string, string>,
+): Promise<{ status: number; body: unknown }> {
+  return publicJsonMutation("POST", pathSegments, body);
+}
+
+export async function publicPutJson(
+  pathSegments: readonly string[],
+  body: Record<string, string>,
+): Promise<{ status: number; body: unknown }> {
+  return publicJsonMutation("PUT", pathSegments, body);
 }
 
 export async function publicGet(

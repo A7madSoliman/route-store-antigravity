@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 import { AlertBanner } from "@/components/ui/alert-banner";
 import { FormField } from "@/components/ui/form-field";
@@ -28,6 +29,12 @@ export function VerifyResetCodeForm() {
     return (
       <div aria-live="polite" className="outline-none" ref={summaryRef} tabIndex={-1}>
         <AlertBanner tone="info">{state.message}</AlertBanner>
+        <Link
+          className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-brand-primary px-4 text-body font-semibold text-white hover:bg-brand-primary/90"
+          href="/reset-password"
+        >
+          Set New Password
+        </Link>
       </div>
     );
   }

@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 
 import { PublicApiError } from "@/lib/api/errors.server";
-import { publicGet, publicPostJson } from "@/lib/api/transport/public-request.server";
+import { publicGet, publicPostJson, publicPutJson } from "@/lib/api/transport/public-request.server";
 
 const fetchMock = vi.fn();
 
@@ -109,5 +109,38 @@ describe("public POST JSON transport", () => {
     fetchMock.mockRejectedValue(new DOMException("timed out", "TimeoutError"));
     await expect(publicPostJson(["auth", "signup"], { name: "N", email: "E", password: "P", rePassword: "P", phone: "1" })).rejects.toMatchObject({ code: "unavailable" });
     expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe("public PUT JSON transport", () => {
+  it("sends the exact safe request shape once without auth headers", async () => {
+    fetchMock.mockResolvedValue(new Response(JSON.stringify({ token: "synthetic" }), { status: 200 }));
+
+    await expect(publicPutJson(["auth", "resetPassword"], { email: "E", newPassword: "P" })).resolves.toMatchObject({ status: 200 });
+
+    expect(fetchMock).toHaveBeenCalledOnce();
+    const [url, init] = fetchMock.mock.calls[0] as [URL, RequestInit];
+    expect(url.toString()).toBe("https://ecommerce.routemisr.com/api/v1/auth/resetPassword");
+    expect(init).toMatchObject({
+      method: "PUT",
+      credentials: "omit",
+      redirect: "manual",
+      cache: "no-store",
+      body: JSON.stringify({ email: "E", newPassword: "P" }),
+    });
+    expect(init.headers).toEqual({ Accept: "application/json", "Content-Type": "application/json" });
+    expect(init.headers).not.toHaveProperty("token");
+    expect(init.headers).not.toHaveProperty("Authorization");
+    expect(init.signal).toBeInstanceOf(AbortSignal);
+  });
+
+  it("uses the same timeout, safe failures, and no-retry policy", async () => {
+    const timeoutSpy = vi.spyOn(AbortSignal, "timeout");
+    fetchMock.mockRejectedValueOnce(new DOMException("timed out", "TimeoutError"));
+
+    await expect(publicPutJson(["auth", "resetPassword"], { email: "E", newPassword: "P" })).rejects.toMatchObject({ code: "unavailable" });
+    expect(timeoutSpy).toHaveBeenCalledWith(10_000);
+    expect(fetchMock).toHaveBeenCalledOnce();
+    timeoutSpy.mockRestore();
   });
 });

@@ -43,8 +43,11 @@ const serverRoots = [
   "features/auth/sign-in-form.schema.server.ts",
   "features/auth/forgot-password-form.schema.server.ts",
   "features/auth/verify-reset-code-form.schema.server.ts",
+  "features/auth/reset-password-form.schema.server.ts",
   "lib/api/endpoints/public/verify-reset-code.server.ts",
   "lib/api/schemas/verify-reset-code-response.schema.server.ts",
+  "lib/api/endpoints/public/reset-password.server.ts",
+  "lib/api/schemas/reset-password-response.schema.server.ts",
   "lib/api/endpoints/public/signin.server.ts",
   "lib/api/schemas/signin-response.schema.server.ts",
 ];

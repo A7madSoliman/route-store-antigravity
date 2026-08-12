@@ -443,7 +443,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A07 — Implement password reset
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** `/reset-password` submits verified email/new-password data after a valid recovery step.
 - **Work:** Add guarded reset form, adapter, verified password rules, success handling, and return to sign-in.
 - **Verification:** Tests cover valid reset, missing proof, mismatch, backend validation, malformed response, and subsequent sign-in.
