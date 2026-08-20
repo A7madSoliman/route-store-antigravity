@@ -132,11 +132,11 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F09 — Verify wishlist contracts
 
-- **Status:** Planned.
+- **Status:** Complete; on 2026-08-20 the three wishlist endpoints (GET /wishlist, POST /wishlist, DELETE /wishlist/{id}) were verified against a dedicated synthetic account. Wishlist read returns full populated product objects, POST /wishlist adds products and handles duplicates idempotently returning string product IDs, and DELETE /wishlist/{id} uses the product `_id` as path parameter and returns remaining product IDs. Sanitized evidence is recorded in `docs/api/examples/wishlist/`.
 - **Outcome:** Wishlist list/add/remove shapes, duplicate behavior, and delete-ID semantics are known.
 - **Work:** Select a product returned by F04, snapshot the dedicated account’s wishlist, add it, list the wishlist, remove only that item, and restore the original state. Record pending-safe mutation behavior and all returned identifier meanings.
-- **Verification:** Three sanitized request examples exist; the final wishlist matches the initial snapshot; `WISH-001` is updated.
-- **Commit:** `docs: verify wishlist contracts`
+- **Verification:** Three sanitized request examples exist; the final wishlist matches the initial snapshot; `WISH-001` and `WISH-002` are updated.
+- **Commit:** `docs(api): record F09 wishlist contract verification`
 - **Dependencies:** F04, F06.
 
 ### F10 — Verify cart contracts
