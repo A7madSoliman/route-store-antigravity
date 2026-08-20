@@ -26,7 +26,10 @@ beforeEach(() => {
 
 describe("protected route guard", () => {
   it("returns the token-free local session summary", async () => {
-    const session = { expiresAt: new Date("2026-12-01T00:00:00.000Z") };
+    const session = {
+      expiresAt: new Date("2026-12-01T00:00:00.000Z"),
+      user: { name: "User", email: "user@example.com" },
+    };
     requireSessionMock.mockResolvedValue(session);
     await expect(requireProtectedRoute("/products")).resolves.toEqual(session);
     expect(redirectMock).not.toHaveBeenCalled();
@@ -37,7 +40,12 @@ describe("protected route guard", () => {
     await expect(requireProtectedRoute("/products?sort=price")).rejects.toThrow("REDIRECT:/sign-in?returnTo=%2Fproducts%3Fsort%3Dprice");
   });
 
-  it.each(["https://evil.example/", "//evil.example/path", "/products\\secret", "/products#fragment", "/products/../brands", "/products/%2e%2e/brands", "/account/profile"])("delegates unsafe or unsupported candidate %s to the existing normalizer", (candidate) => {
+  it("redirects unauthenticated access to /account/profile with preserved returnTo", async () => {
+    requireSessionMock.mockRejectedValue(new SessionRequiredError());
+    await expect(requireProtectedRoute("/account/profile")).rejects.toThrow("REDIRECT:/sign-in?returnTo=%2Faccount%2Fprofile");
+  });
+
+  it.each(["https://evil.example/", "//evil.example/path", "/products\\secret", "/products#fragment", "/products/../brands", "/products/%2e%2e/brands"])("delegates unsafe or unsupported candidate %s to the existing normalizer", (candidate) => {
     expect(buildProtectedSignInPath(candidate)).toBe("/sign-in?returnTo=%2F");
   });
 
@@ -57,11 +65,13 @@ describe("protected route guard", () => {
   });
 
   it("does not expose token or cookie data", async () => {
-    requireSessionMock.mockResolvedValue({ expiresAt: new Date("2026-12-01T00:00:00.000Z") });
+    requireSessionMock.mockResolvedValue({
+      expiresAt: new Date("2026-12-01T00:00:00.000Z"),
+      user: { name: "User", email: "user@example.com" },
+    });
     const result = await requireProtectedRoute("/products");
     expect(result).not.toHaveProperty("token");
     expect(JSON.stringify(result)).not.toContain("eyJ");
     expect(buildProtectedSignInPath("/products")).not.toMatch(/cookie|token|eyJ/i);
   });
-
 });

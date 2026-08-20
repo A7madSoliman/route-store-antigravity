@@ -5,7 +5,9 @@ import { cookies } from "next/headers";
 import {
   sealSessionToken,
   unsealSessionToken,
+  type SessionIdentity,
   type SessionMetadata,
+  type UnsealedSession,
 } from "@/lib/auth/session-codec.server";
 import { getServerEnvironment, getSessionEnvironment } from "@/lib/env/server";
 
@@ -23,7 +25,7 @@ function cookieOptions(expires: Date) {
   } as const;
 }
 
-async function readSession(): Promise<Readonly<{ token: string; expiresAt: Date }> | null> {
+async function readSession(): Promise<UnsealedSession | null> {
   const cookieStore = await cookies();
   const value = cookieStore.get(sessionCookieName)?.value;
   return unsealSessionToken(value, getSessionEnvironment().sessionEncryptionKey);
@@ -31,7 +33,7 @@ async function readSession(): Promise<Readonly<{ token: string; expiresAt: Date 
 
 export async function getSession(): Promise<SessionState | null> {
   const session = await readSession();
-  return session ? Object.freeze({ expiresAt: session.expiresAt }) : null;
+  return session ? Object.freeze({ expiresAt: session.expiresAt, user: session.user }) : null;
 }
 
 /** Internal server-only capability for protected transport. */
@@ -39,8 +41,18 @@ export async function getSessionToken(): Promise<string | null> {
   return (await readSession())?.token ?? null;
 }
 
-export async function setSession(token: string): Promise<void> {
-  const sealed = await sealSessionToken(token, getSessionEnvironment().sessionEncryptionKey);
+export async function setSession(token: string, identity: SessionIdentity): Promise<void> {
+  const sealed = await sealSessionToken(token, identity, getSessionEnvironment().sessionEncryptionKey);
+  const cookieStore = await cookies();
+  cookieStore.set(sessionCookieName, sealed.value, cookieOptions(sealed.expiresAt));
+}
+
+export async function updateSessionIdentity(identity: SessionIdentity): Promise<void> {
+  const session = await readSession();
+  if (!session) {
+    throw new Error("Cannot update session identity: no active session found.");
+  }
+  const sealed = await sealSessionToken(session.token, identity, getSessionEnvironment().sessionEncryptionKey);
   const cookieStore = await cookies();
   cookieStore.set(sessionCookieName, sealed.value, cookieOptions(sealed.expiresAt));
 }

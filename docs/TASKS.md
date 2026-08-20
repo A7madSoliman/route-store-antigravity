@@ -452,10 +452,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A08 — Implement profile update
 
-- **Status:** Planned.
-- **Outcome:** `/account/profile` updates only `name`, `email`, and `phone` from a verified identity source.
-- **Work:** Add protected form/adapter and safe reconciliation; omit avatar, country, bio, and other unsupported design fields.
-- **Verification:** Tests cover success, full/partial semantics as verified, conflicts, validation, expired auth, and missing initial identity.
+- **Status:** Complete.
+- **Outcome:** `/account/profile` updates only `name`, `email`, and `phone` using single-field partial mutations against `PUT /users/updateMe` and maintains in-place session identity reconciliation.
+- **Work:** Upgraded session codec to `v2` embedding verified user identity (`{ name, email }`), created server-only endpoint adapter `lib/api/endpoints/protected/update-profile.server.ts` enforcing single-field payload serialization, built Server Action `updateProfileAction`, created `AccountShell` layout and `ProfileForm` component with atomic mutation sections. Omitted avatar, country, bio, and unsupported design fields.
+- **Verification:** 67 test files (452 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build with `ƒ /account/profile`.
 - **Commit:** `feat(account): add profile update`
 - **Dependencies:** A04, F08, `AUTH-007`.
 

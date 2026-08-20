@@ -1,12 +1,24 @@
 import "server-only";
 
-const cookieVersion = "v1";
-const aad = "route-store-session:v1";
+const cookieVersion = "v2";
+const aad = "route-store-session:v2";
 const maxTokenCharacters = 2_048;
 const maxCookieValueCharacters = 3_800;
 
+export type SessionIdentity = Readonly<{
+  name: string;
+  email: string;
+}>;
+
 export type SessionMetadata = Readonly<{
   expiresAt: Date;
+  user: SessionIdentity;
+}>;
+
+export type UnsealedSession = Readonly<{
+  token: string;
+  expiresAt: Date;
+  user: SessionIdentity;
 }>;
 
 export class SessionValidationError extends Error {
@@ -77,14 +89,34 @@ function parseTokenExpiry(token: string, now: number): Date {
 
 export async function sealSessionToken(
   token: string,
+  identity: SessionIdentity,
   encryptionKey: string,
   now = Date.now(),
 ): Promise<Readonly<{ value: string; expiresAt: Date }>> {
+  if (
+    !identity ||
+    typeof identity.name !== "string" ||
+    identity.name.trim().length === 0 ||
+    typeof identity.email !== "string" ||
+    identity.email.trim().length === 0
+  ) {
+    throw new SessionValidationError();
+  }
+
   const expiresAt = parseTokenExpiry(token, now);
   const key = await importKey(encryptionKey);
   const iv = new Uint8Array(12);
   globalThis.crypto.getRandomValues(iv);
-  const plaintext = new TextEncoder().encode(JSON.stringify({ v: 1, t: token }));
+  const plaintext = new TextEncoder().encode(
+    JSON.stringify({
+      v: 2,
+      t: token,
+      i: {
+        name: identity.name.trim(),
+        email: identity.email.trim(),
+      },
+    }),
+  );
   const ciphertext = new Uint8Array(
     await globalThis.crypto.subtle.encrypt(
       {
@@ -106,7 +138,7 @@ export async function unsealSessionToken(
   value: string | undefined,
   encryptionKey: string,
   now = Date.now(),
-): Promise<Readonly<{ token: string; expiresAt: Date }> | null> {
+): Promise<UnsealedSession | null> {
   if (!value || value.length > maxCookieValueCharacters) return null;
   try {
     const [version, encodedIv, encodedCiphertext, extra] = value.split(".");
@@ -131,15 +163,32 @@ export async function unsealSessionToken(
       typeof parsed !== "object" ||
       parsed === null ||
       Array.isArray(parsed) ||
-      Object.keys(payloadRecord).length !== 2 ||
-      payloadRecord.v !== 1 ||
-      typeof payloadRecord.t !== "string"
+      Object.keys(payloadRecord).length !== 3 ||
+      payloadRecord.v !== 2 ||
+      typeof payloadRecord.t !== "string" ||
+      typeof payloadRecord.i !== "object" ||
+      payloadRecord.i === null ||
+      Array.isArray(payloadRecord.i)
+    ) {
+      return null;
+    }
+    const identityRecord = payloadRecord.i as Record<string, unknown>;
+    if (
+      Object.keys(identityRecord).length !== 2 ||
+      typeof identityRecord.name !== "string" ||
+      identityRecord.name.trim().length === 0 ||
+      typeof identityRecord.email !== "string" ||
+      identityRecord.email.trim().length === 0
     ) {
       return null;
     }
     const token = payloadRecord.t as string;
     const expiresAt = parseTokenExpiry(token, now);
-    return Object.freeze({ token, expiresAt });
+    const user = Object.freeze({
+      name: identityRecord.name.trim(),
+      email: identityRecord.email.trim(),
+    });
+    return Object.freeze({ token, expiresAt, user });
   } catch {
     return null;
   }

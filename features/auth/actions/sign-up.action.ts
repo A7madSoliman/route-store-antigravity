@@ -17,7 +17,10 @@ export async function signUpAction(previous: SignUpState, formData: FormData): P
   try {
     const result = await signUp({ name, email, password, rePassword, phone });
     try {
-      await setSession(result.token);
+      const user = result.user?.name && result.user?.email
+        ? { name: result.user.name, email: result.user.email }
+        : { name, email };
+      await setSession(result.token, user);
     } catch (error) {
       if (error instanceof SessionValidationError || error instanceof EnvironmentValidationError) {
         return { status: "account-created", name, email, phone, message: "Your account was created. Please sign in to continue." };

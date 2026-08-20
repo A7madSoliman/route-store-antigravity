@@ -12,7 +12,7 @@ export class SignupApiError extends Error {
   }
 }
 
-export async function signUp(input: { name: string; email: string; password: string; rePassword: string; phone: string }): Promise<{ token: string }> {
+export async function signUp(input: { name: string; email: string; password: string; rePassword: string; phone: string }): Promise<{ token: string; user?: { name: string; email: string } }> {
   try {
     const response = await publicPostJson(["auth", "signup"], {
       name: input.name,
@@ -24,7 +24,14 @@ export async function signUp(input: { name: string; email: string; password: str
     if (response.status !== 201) throw new SignupApiError("upstream-failure");
     const parsed = signupResponseSchema.safeParse(response.body);
     if (!parsed.success) throw new SignupApiError("invalid-response");
-    return parsed.data;
+    const user =
+      parsed.data.user?.name && parsed.data.user?.email
+        ? {
+            name: parsed.data.user.name,
+            email: parsed.data.user.email,
+          }
+        : undefined;
+    return user ? { token: parsed.data.token, user } : { token: parsed.data.token };
   } catch (error) {
     if (error instanceof SignupApiError) throw error;
     if (error instanceof PublicApiError) {

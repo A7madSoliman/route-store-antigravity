@@ -11,8 +11,14 @@ const getSessionMock = vi.mocked(getSession);
 
 describe("requireSession", () => {
   it("returns only the token-free summary", async () => {
-    getSessionMock.mockResolvedValue({ expiresAt: new Date(1_700_000_000_000) });
-    await expect(requireSession()).resolves.toEqual({ expiresAt: new Date(1_700_000_000_000) });
+    getSessionMock.mockResolvedValue({
+      expiresAt: new Date(1_700_000_000_000),
+      user: { name: "User", email: "user@example.com" },
+    });
+    await expect(requireSession()).resolves.toEqual({
+      expiresAt: new Date(1_700_000_000_000),
+      user: { name: "User", email: "user@example.com" },
+    });
   });
 
   it("throws a fixed safe error without redirecting", async () => {
