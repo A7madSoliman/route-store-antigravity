@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageContainer } from "@/components/layout/page-container";
 import { Breadcrumbs } from "@/components/navigation/breadcrumbs";
 import { ProductGallery } from "@/features/catalog/components/product-gallery";
+import { AddToWishlistButton } from "@/features/wishlist/components/add-to-wishlist-button";
 import type { ProductDetailState } from "@/features/catalog/product-detail-data.server";
 import type { ProductDetails } from "@/types/product";
 
@@ -47,7 +48,10 @@ export function ProductDetail({ state }: { state: ProductDetailState }) {
           <h1 className="mt-3 text-display-mobile text-text-primary md:text-display-desktop">{product.title}</h1>
           <p className="mt-3 text-body text-text-secondary">{product.brand.name}</p>
           <p className="mt-6 text-heading-2 text-text-primary">Price {product.price.toLocaleString("en-US")}</p>
-          <p className="mt-6 text-body-small text-text-secondary">Purchase actions are not available yet.</p>
+          <div className="mt-6 space-y-3">
+            <AddToWishlistButton productId={product.id} />
+            <p className="text-body-small text-text-secondary">Cart purchase actions are not available yet.</p>
+          </div>
           {description && (
             <section aria-labelledby="product-description-title" className="mt-10 border-t border-outline-subtle pt-6">
               <h2 className="text-heading-3 text-text-primary" id="product-description-title">Product description</h2>

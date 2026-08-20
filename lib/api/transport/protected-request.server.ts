@@ -113,3 +113,46 @@ export async function protectedPutJson(
     body: responseBody,
   });
 }
+
+export async function protectedPostJson(
+  pathSegments: readonly string[],
+  body: unknown,
+): Promise<ProtectedTransportResponse> {
+  const token = await getSessionToken();
+  if (!token) throw new SessionRequiredError();
+
+  const environment = getServerEnvironment();
+  const url = buildUrl(environment.ecommerceApiBaseUrl, pathSegments);
+
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        token,
+      },
+      body: JSON.stringify(body),
+      credentials: "omit",
+      redirect: "manual",
+      cache: "no-store",
+      signal: AbortSignal.timeout(requestTimeoutMs),
+    });
+  } catch (error) {
+    if (isAbortLike(error) || error instanceof TypeError) throw new ProtectedApiError("unavailable");
+    throw new ProtectedApiError("unavailable");
+  }
+
+  let responseBody: unknown = null;
+  try {
+    responseBody = await response.json();
+  } catch {
+    responseBody = null;
+  }
+
+  return Object.freeze({
+    status: response.status,
+    body: responseBody,
+  });
+}

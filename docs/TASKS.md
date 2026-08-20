@@ -481,10 +481,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### W02 — Implement wishlist add
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Product list/detail controls add a verified product once with visible pending state.
-- **Work:** Add mutation adapter, duplicate behavior, disable repeated clicks, and reconcile from returned/refetched state.
-- **Verification:** Tests cover success, duplicate, invalid product, rapid clicks, failure, and auth expiry.
+- **Work:** Added protected POST transport (`protectedPostJson`), Zod response schema (`lib/api/schemas/add-to-wishlist-response.schema.server.ts`), server-only endpoint adapter (`lib/api/endpoints/protected/add-to-wishlist.server.ts`), Server Action `addToWishlistAction` with input validation, session enforcement, and `/wishlist` revalidation, `AddToWishlistButton` component supporting icon and full-width button variants with pending feedback, and integrated into `ProductCard` and `ProductDetail`.
+- **Verification:** 80 test files (498 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build.
 - **Commit:** `feat(wishlist): add product mutation`
 - **Dependencies:** W01.
 

@@ -3,11 +3,17 @@ import { StorefrontIcon } from "@/components/icons/storefront-icons";
 import { ActiveNavLink } from "./active-nav-link";
 import { MobileMenu } from "./mobile-menu";
 import { PageContainer } from "./page-container";
-import { primaryNavigation, utilityNavigation } from "./navigation";
+import { ACCOUNT_HREF, primaryNavigation, utilityNavigation } from "./navigation";
 
-export function StoreHeader() {
+export function StoreHeader({ accountHref = ACCOUNT_HREF }: { accountHref?: string }) {
   const search = utilityNavigation[0];
   const cart = utilityNavigation[2];
+
+  const utilityItems = [
+    utilityNavigation[1],
+    utilityNavigation[2],
+    { label: "Account", href: accountHref, icon: "account" as const },
+  ];
 
   return (
     <header className="relative border-b border-outline-subtle bg-card" role="banner">
@@ -38,7 +44,7 @@ export function StoreHeader() {
             <StorefrontIcon name="search" />
           </Link>
           <div className="hidden items-center gap-1 md:flex">
-            {utilityNavigation.slice(1).map((item) => (
+            {utilityItems.map((item) => (
               <Link
                 key={item.label}
                 aria-label={item.label}

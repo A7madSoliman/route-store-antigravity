@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { PageContainer } from "./page-container";
-import { footerNavigation } from "./navigation";
+import { ACCOUNT_HREF, footerNavigation } from "./navigation";
 
-export function SiteFooter() {
+export function SiteFooter({ accountHref = ACCOUNT_HREF }: { accountHref?: string }) {
+  const groups = footerNavigation.map((group) => ({
+    ...group,
+    items: group.items.map((item) =>
+      item.label === "Account" ? { ...item, href: accountHref } : item,
+    ),
+  }));
+
   return (
     <footer
       className="border-t border-outline-subtle bg-surface-low pb-[calc(var(--spacing-bottom-nav)+env(safe-area-inset-bottom))] md:pb-0"
@@ -18,7 +25,7 @@ export function SiteFooter() {
               A clear, accessible storefront foundation.
             </p>
           </div>
-          {footerNavigation.map((group) => (
+          {groups.map((group) => (
             <div key={group.label}>
               <h2 className="text-body-small font-semibold text-text-primary">{group.label}</h2>
               <ul className="mt-3 space-y-2">
@@ -35,7 +42,7 @@ export function SiteFooter() {
         </div>
 
         <div className="md:hidden">
-          {footerNavigation.map((group) => (
+          {groups.map((group) => (
             <details key={group.label} className="border-b border-outline-subtle last:border-b-0">
               <summary className="flex min-h-11 cursor-pointer items-center justify-between py-3 text-body-small font-semibold text-text-primary">
                 {group.label}

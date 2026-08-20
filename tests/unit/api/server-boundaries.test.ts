@@ -50,6 +50,11 @@ const serverRoots = [
   "lib/api/schemas/reset-password-response.schema.server.ts",
   "lib/api/endpoints/public/signin.server.ts",
   "lib/api/schemas/signin-response.schema.server.ts",
+  "lib/api/schemas/get-wishlist-response.schema.server.ts",
+  "lib/api/schemas/add-to-wishlist-response.schema.server.ts",
+  "lib/api/adapters/wishlist.adapter.server.ts",
+  "lib/api/endpoints/protected/wishlist.server.ts",
+  "lib/api/endpoints/protected/add-to-wishlist.server.ts",
 ];
 
 describe("C01 server boundaries", () => {
@@ -60,7 +65,7 @@ describe("C01 server boundaries", () => {
   });
 
   it("keeps domain declarations free of runtime imports", () => {
-    for (const path of ["types/catalog-page.ts", "types/product.ts", "types/category.ts", "types/subcategory.ts", "types/brand.ts"]) {
+    for (const path of ["types/catalog-page.ts", "types/product.ts", "types/category.ts", "types/subcategory.ts", "types/brand.ts", "types/wishlist.ts"]) {
       expect(readFileSync(path, "utf8"), path).not.toMatch(/^import /mu);
     }
   });

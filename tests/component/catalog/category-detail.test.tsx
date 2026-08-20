@@ -1,5 +1,7 @@
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("server-only", () => ({}));
 import CategoryDetailError from "@/app/(shop)/categories/[categoryId]/error";
 import CategoryDetailLoading from "@/app/(shop)/categories/[categoryId]/loading";
 import CategoryDetailNotFound from "@/app/(shop)/categories/[categoryId]/not-found";
@@ -26,9 +28,9 @@ describe("C06 category detail presentation", () => {
     expect(screen.getByRole("list", { name: "Products" })).toBeTruthy();
     expect(screen.getByRole("link", { name: /product/i }).getAttribute("href")).toBe("/products/product%2Fone");
     expect(screen.getByText("Price 149")).toBeTruthy();
-    expect(screen.queryByText(/description|count|popular|trending|rating|review|wishlist|cart|sale|discount|currency|stock|variant/i)).toBeNull();
+    expect(screen.queryByText(/description|count|popular|trending|rating|review|cart|sale|discount|currency|stock|variant/i)).toBeNull();
     expect(screen.queryByRole("search")).toBeNull();
-    expect(screen.queryByRole("button")).toBeNull();
+    expect(screen.getByRole("button", { name: /add to wishlist/i })).toBeTruthy();
   });
 
   it("keeps successful sibling sections visible when one secondary section has a known error", () => {

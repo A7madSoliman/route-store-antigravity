@@ -1,5 +1,7 @@
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("server-only", () => ({}));
 import ProductsError from "@/app/(shop)/products/error";
 import ProductsLoading from "@/app/(shop)/products/loading";
 import { ProductListing } from "@/features/catalog/components/product-listing";

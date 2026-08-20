@@ -32,6 +32,16 @@ describe("StorefrontShell", () => {
     expect(screen.getByRole("link", { name: "Home" }).getAttribute("aria-current")).toBe("page");
   });
 
+  it("renders authenticated account destination when accountHref is provided", () => {
+    render(
+      <StorefrontShell accountHref="/account/profile">
+        <h1>Authenticated Shell</h1>
+      </StorefrontShell>,
+    );
+
+    expect(screen.getAllByRole("link", { name: "Account" }).every((link) => link.getAttribute("href") === "/account/profile")).toBe(true);
+  });
+
   it("does not claim unsupported storefront features", () => {
     render(
       <StorefrontShell>

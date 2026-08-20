@@ -6,9 +6,10 @@ import { StoreHeader } from "./store-header";
 
 type StorefrontShellProps = {
   children: ReactNode;
+  accountHref?: string;
 };
 
-export function StorefrontShell({ children }: StorefrontShellProps) {
+export function StorefrontShell({ children, accountHref }: StorefrontShellProps) {
   return (
     <div className="flex min-h-dvh flex-col">
       <a
@@ -19,13 +20,13 @@ export function StorefrontShell({ children }: StorefrontShellProps) {
       </a>
       <div className="sticky top-0 z-30">
         <AnnouncementBar />
-        <StoreHeader />
+        <StoreHeader accountHref={accountHref} />
       </div>
       <main className="flex-1 pb-[calc(var(--spacing-bottom-nav)+env(safe-area-inset-bottom))] md:pb-0" id="main-content">
         {children}
       </main>
-      <SiteFooter />
-      <MobileBottomNav />
+      <SiteFooter accountHref={accountHref} />
+      <MobileBottomNav accountHref={accountHref} />
     </div>
   );
 }

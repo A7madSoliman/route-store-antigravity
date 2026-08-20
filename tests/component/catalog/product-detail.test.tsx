@@ -1,5 +1,7 @@
 import { cleanup, render, screen, within } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("server-only", () => ({}));
 import { ProductDetail, buildDisplayMedia } from "@/features/catalog/components/product-detail";
 
 afterEach(() => cleanup());
@@ -19,16 +21,17 @@ describe("C04 product detail presentation", () => {
     expect(buildDisplayMedia({ imageUrl: null, gallery: [gallery, cover] })).toEqual([gallery, cover]);
   });
 
-  it("renders only verified product fields and a noninteractive purchase note", () => {
+  it("renders only verified product fields, add to wishlist action, and a noninteractive cart purchase note", () => {
     render(<ProductDetail state={{ status: "ready", product }} />);
     expect(screen.getByRole("heading", { level: 1, name: "Verified product" })).toBeTruthy();
     expect(screen.getByText("Category")).toBeTruthy();
     expect(screen.getByText("Brand")).toBeTruthy();
     expect(screen.getByText("Price 2,379")).toBeTruthy();
     expect(screen.getByText((_, element) => element?.textContent === "First line\nSecond line")).toBeTruthy();
-    expect(screen.getByText("Purchase actions are not available yet.")).toBeTruthy();
-    expect(screen.getAllByRole("button")).toHaveLength(2);
-    expect(screen.queryByText(/currency|rating|review|stock|wishlist|cart|discount|sale|variant|color|size/i)).toBeNull();
+    expect(screen.getByRole("button", { name: /add to wishlist/i })).toBeTruthy();
+    expect(screen.getByText("Cart purchase actions are not available yet.")).toBeTruthy();
+    expect(screen.getAllByRole("button")).toHaveLength(3);
+    expect(screen.queryByText(/currency|rating|review|stock|discount|sale|variant|color|size/i)).toBeNull();
     const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
     expect(within(breadcrumb).getByText("Verified product").getAttribute("aria-current")).toBe("page");
   });
