@@ -68,6 +68,9 @@ const serverRoots = [
   "lib/api/endpoints/protected/remove-from-cart.server.ts",
   "lib/api/schemas/clear-cart-response.schema.server.ts",
   "lib/api/endpoints/protected/clear-cart.server.ts",
+  "lib/api/schemas/get-addresses-response.schema.server.ts",
+  "lib/api/adapters/address.adapter.server.ts",
+  "lib/api/endpoints/protected/addresses.server.ts",
 ];
 
 describe("C01 server boundaries", () => {
@@ -78,7 +81,7 @@ describe("C01 server boundaries", () => {
   });
 
   it("keeps domain declarations free of runtime imports", () => {
-    for (const path of ["types/catalog-page.ts", "types/product.ts", "types/category.ts", "types/subcategory.ts", "types/brand.ts", "types/wishlist.ts", "types/cart.ts"]) {
+    for (const path of ["types/catalog-page.ts", "types/product.ts", "types/category.ts", "types/subcategory.ts", "types/brand.ts", "types/wishlist.ts", "types/cart.ts", "types/address.ts"]) {
       expect(readFileSync(path, "utf8"), path).not.toMatch(/^import /mu);
     }
   });

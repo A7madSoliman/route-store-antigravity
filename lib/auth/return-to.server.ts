@@ -19,7 +19,7 @@ function hasUnsafePathSegment(pathname: string): boolean {
 }
 
 function isImplementedPath(pathname: string): boolean {
-  if (["/", "/products", "/categories", "/subcategories", "/brands", "/account/profile", "/account/security", "/wishlist", "/cart"].includes(pathname)) {
+  if (["/", "/products", "/categories", "/subcategories", "/brands", "/account/profile", "/account/security", "/account/addresses", "/wishlist", "/cart"].includes(pathname)) {
     return true;
   }
   const match = dynamicCatalogRoute.exec(pathname.slice(1));

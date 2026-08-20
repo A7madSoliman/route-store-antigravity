@@ -546,10 +546,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### X01 — Implement address list
 
-- **Status:** Planned.
-- **Outcome:** `/account/addresses` lists the authenticated customer’s addresses with standard states.
-- **Work:** Add address-list adapter and approved cards without edit/default controls.
-- **Verification:** Tests cover anonymous redirect, empty, success, malformed response, network failure, and auth expiry.
+- **Status:** Complete.
+- **Outcome:** `/account/addresses` lists the authenticated customer's addresses with standard loading, empty, and ready states.
+- **Work:** Added address domain types (`types/address.ts`), Zod response schema (`lib/api/schemas/get-addresses-response.schema.server.ts`), domain adapter (`lib/api/adapters/address.adapter.server.ts`), server-only endpoint adapter (`lib/api/endpoints/protected/addresses.server.ts`), UI components (`AddressCard`, `AddressList`, `AddressEmpty`), and protected server-rendered route `app/(account)/account/addresses/page.tsx` within `AccountShell`. Updated `normalizeReturnTo()` allowlist.
+- **Verification:** 115 test files (598 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build generating dynamic `ƒ /account/addresses`.
 - **Commit:** `feat(addresses): add address list`
 - **Dependencies:** A04, F11.
 
