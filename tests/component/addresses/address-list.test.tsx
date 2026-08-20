@@ -1,5 +1,9 @@
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("@/features/addresses/actions/remove-address.action", () => ({
+  removeAddressAction: vi.fn(),
+}));
 
 import { AddressList } from "@/features/addresses/components/address-list";
 import type { Address } from "@/types/address";

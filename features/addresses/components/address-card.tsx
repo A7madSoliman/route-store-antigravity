@@ -1,4 +1,5 @@
 import type { Address } from "@/types/address";
+import { RemoveAddressButton } from "@/features/addresses/components/remove-address-button";
 
 interface AddressCardProps {
   address: Address;
@@ -33,6 +34,8 @@ export function AddressCard({ address }: AddressCardProps) {
           <span className="text-slate-400">Tel:</span>
           <span>{address.phone}</span>
         </div>
+
+        <RemoveAddressButton addressId={address.id} addressName={address.name} />
       </div>
     </article>
   );

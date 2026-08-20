@@ -573,10 +573,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### X04 — Implement address removal
 
-- **Status:** Planned.
-- **Outcome:** Customers can confirm and remove only an address returned for their account.
-- **Work:** Add remove confirmation, exact returned ID, pending state, failure recovery, and list reconciliation.
-- **Verification:** Tests cover cancellation, success, not found, failure, repeated click, and auth expiry.
+- **Status:** Complete.
+- **Outcome:** Customers can remove an address returned for their account, triggering list reconciliation and empty state fallback.
+- **Work:** Added server-only Zod response schema (`lib/api/schemas/remove-address-response.schema.server.ts`), protected endpoint adapter (`lib/api/endpoints/protected/remove-address.server.ts`), Server Action `removeAddressAction` with session validation and revalidation, `RemoveAddressButton` client component with accessible label and pending state, and integrated it into `AddressCard`.
+- **Verification:** 124 test files (629 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build.
 - **Commit:** `feat(addresses): add remove action`
 - **Dependencies:** X01, F11.
 
