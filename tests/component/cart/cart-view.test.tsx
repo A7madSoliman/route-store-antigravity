@@ -8,6 +8,9 @@ vi.mock("@/features/cart/actions/update-cart-quantity.action", () => ({
 vi.mock("@/features/cart/actions/remove-from-cart.action", () => ({
   removeFromCartAction: vi.fn(),
 }));
+vi.mock("@/features/cart/actions/clear-cart.action", () => ({
+  clearCartAction: vi.fn(),
+}));
 
 import { CartView } from "@/features/cart/components/cart-view";
 import type { Cart } from "@/types/cart";
@@ -29,7 +32,7 @@ describe("CartView Component", () => {
     expect(screen.queryByRole("list", { name: "Shopping cart items" })).toBeNull();
   });
 
-  it("renders cart heading, items list, and summary when populated", () => {
+  it("renders cart heading, items list, clear cart button, and summary when populated", () => {
     const populatedCart: Cart = {
       id: "cart-1",
       cartOwner: "user-1",
@@ -60,6 +63,7 @@ describe("CartView Component", () => {
     expect(screen.getByRole("heading", { name: "Shopping Cart" })).not.toBeNull();
     expect(screen.getByRole("list", { name: "Shopping cart items" })).not.toBeNull();
     expect(screen.getByRole("heading", { name: "Smart Fitness Watch" })).not.toBeNull();
+    expect(screen.getByRole("button", { name: "Clear all items from cart" })).not.toBeNull();
     expect(screen.getByRole("heading", { name: "Order Summary" })).not.toBeNull();
   });
 });

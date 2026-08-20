@@ -66,6 +66,8 @@ const serverRoots = [
   "lib/api/endpoints/protected/update-cart-quantity.server.ts",
   "lib/api/schemas/remove-from-cart-response.schema.server.ts",
   "lib/api/endpoints/protected/remove-from-cart.server.ts",
+  "lib/api/schemas/clear-cart-response.schema.server.ts",
+  "lib/api/endpoints/protected/clear-cart.server.ts",
 ];
 
 describe("C01 server boundaries", () => {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CartEmpty } from "@/features/cart/components/cart-empty";
 import { CartLineItem } from "@/features/cart/components/cart-line-item";
 import { CartSummary } from "@/features/cart/components/cart-summary";
+import { ClearCartButton } from "@/features/cart/components/clear-cart-button";
 import type { Cart } from "@/types/cart";
 
 export function CartView({ cart }: { cart: Cart }) {
@@ -13,13 +14,17 @@ export function CartView({ cart }: { cart: Cart }) {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-display-mobile md:text-heading-1 font-bold text-text-primary">
-          Shopping Cart
-        </h1>
-        <p className="mt-1 text-body-small text-text-secondary">
-          {itemCount} {itemCount === 1 ? "item" : "items"} in your cart
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-display-mobile md:text-heading-1 font-bold text-text-primary">
+            Shopping Cart
+          </h1>
+          <p className="mt-1 text-body-small text-text-secondary">
+            {itemCount} {itemCount === 1 ? "item" : "items"} in your cart
+          </p>
+        </div>
+
+        <ClearCartButton />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

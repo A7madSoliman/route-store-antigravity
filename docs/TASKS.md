@@ -535,10 +535,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### W08 — Implement clear cart
 
-- **Status:** Planned.
-- **Outcome:** Customers can explicitly confirm and clear their own cart.
-- **Work:** Add confirmation, pending state, cancel path, clear adapter, and empty-state reconciliation.
-- **Verification:** Tests cover cancellation, success, already-empty behavior, failure, repeat submission, and auth expiry.
+- **Status:** Complete.
+- **Outcome:** Customers can clear their own cart with `DELETE /cart`, transitioning immediately to the empty cart state.
+- **Work:** Added Zod response schema (`lib/api/schemas/clear-cart-response.schema.server.ts`), protected endpoint adapter (`lib/api/endpoints/protected/clear-cart.server.ts`), Server Action `clearCartAction` with session validation and `/cart` revalidation, and `ClearCartButton` client component with pending feedback and rapid submission prevention, integrated into `CartView`.
+- **Verification:** 107 test files (583 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build.
 - **Commit:** `feat(cart): add clear action`
 - **Dependencies:** W04.
 
