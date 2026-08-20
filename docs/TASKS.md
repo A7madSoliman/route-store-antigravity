@@ -461,10 +461,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### A09 — Implement password change
 
-- **Status:** Planned.
-- **Outcome:** `/account/security` changes the authenticated test/user password and handles observed token behavior.
-- **Work:** Add current/new/confirmation form, adapter, pending state, and session response behavior without promising cross-device logout.
-- **Verification:** Tests cover success, wrong current password, mismatch, validation, token rotation if observed, and expired auth.
+- **Status:** Complete.
+- **Outcome:** `/account/security` changes the authenticated user password via `PUT /users/changeMyPassword`, immediately handles token rotation via `setSession()`, and presents accessible validation and security feedback without promising cross-device sign-out.
+- **Work:** Added Zod response schema `changePasswordResponseSchema`, server-only endpoint adapter `changePassword()`, Zod form validation `parseChangePasswordFormData()`, Server Action `changePasswordAction()` with immediate in-place session token re-sealing, `SecurityForm` client component using `PasswordField` and `AlertBanner`, and server-rendered `/account/security` route within `AccountShell`.
+- **Verification:** 70 test files (467 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build generating dynamic `ƒ /account/security`.
 - **Commit:** `feat(account): add password change`
 - **Dependencies:** A04, F08.
 
