@@ -499,10 +499,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### W04 — Implement cart read
 
-- **Status:** Planned.
-- **Outcome:** `/cart` renders server-authoritative lines and totals with all standard states.
-- **Work:** Add cart adapter, responsive lines, summary, and empty state; omit unverified rewards/tax/shipping promises.
-- **Verification:** Tests cover anonymous redirect, empty, success, malformed lines/totals, network failure, and auth expiry.
+- **Status:** Complete.
+- **Outcome:** `/cart` renders server-authoritative lines, subtotal/total calculation, and responsive summary/empty states with protected session enforcement.
+- **Work:** Added domain types (`types/cart.ts`), Zod response schema (`lib/api/schemas/get-cart-response.schema.server.ts`), domain adapter with empty-cart fallback (`lib/api/adapters/cart.adapter.server.ts`), protected endpoint adapter (`lib/api/endpoints/protected/cart.server.ts`), updated `returnTo` allowlist in `lib/auth/return-to.server.ts`, created UI components (`CartLineItem`, `CartSummary`, `CartEmpty`, `CartView`), and implemented the protected Server Component page (`app/(shop)/cart/page.tsx`).
+- **Verification:** 91 test files (527 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build.
 - **Commit:** `feat(cart): add cart page`
 - **Dependencies:** A04, C04, F10.
 
