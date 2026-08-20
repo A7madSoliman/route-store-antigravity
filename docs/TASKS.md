@@ -150,11 +150,11 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F11 — Verify address contracts
 
-- **Status:** Planned.
-- **Outcome:** Address list/detail/add/remove shapes and validation are known without touching another user’s data.
-- **Work:** Snapshot the dedicated account’s addresses, add a clearly synthetic address, list and read that returned ID, remove it, and confirm cleanup. Do not test editing because no endpoint exists.
-- **Verification:** Four sanitized request examples exist; the created address is removed; `ADDR-001` records observed requiredness and shape.
-- **Commit:** `docs: verify address contracts`
+- **Status:** Complete; on 2026-08-21 all four address endpoints (GET /addresses, POST /addresses, GET /addresses/{id}, DELETE /addresses/{id}) were verified against a dedicated synthetic account. Addresses use fields `{ _id, name, details, phone, city }`. POST /addresses requires all four string fields and returns the updated address list, GET /addresses/{id} returns the single address object, and DELETE /addresses/{id} uses the address `_id` as path parameter and returns the remaining address list. Sanitized evidence is recorded in `docs/api/examples/addresses/`.
+- **Outcome:** Address list/detail/add/remove shapes, identifier semantics, and validation are confirmed.
+- **Work:** Snapshot the dedicated account's addresses, add a synthetic address, list and read that returned ID, remove it, and confirm cleanup.
+- **Verification:** Four sanitized request examples exist; the created address is removed; `ADDR-001` is Confirmed in `DECISIONS.md`.
+- **Commit:** `docs(api): record F11 address contract verification`
 - **Dependencies:** F06.
 
 ### F12 — Verify checkout and customer-order candidates safely
