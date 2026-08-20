@@ -18,6 +18,8 @@ describe("safe returnTo normalization", () => {
     "/subcategories",
     "/brands",
     "/account/profile",
+    "/account/security",
+    "/wishlist",
     "/products/product-1",
     "/categories/category-1",
     "/products?sort=price",

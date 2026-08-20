@@ -472,10 +472,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### W01 — Implement wishlist read
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** `/wishlist` renders authenticated loading, empty, error, and ready states.
-- **Work:** Add wishlist adapter and approved responsive product layout.
-- **Verification:** Tests cover anonymous redirect, empty, success, malformed response, network failure, and auth expiry.
+- **Work:** Added wishlist DTO types (`types/wishlist.ts`), Zod response schema (`lib/api/schemas/get-wishlist-response.schema.server.ts`), domain adapter (`lib/api/adapters/wishlist.adapter.server.ts`), server-only endpoint adapter (`lib/api/endpoints/protected/wishlist.server.ts`), UI components (`WishlistCard`, `WishlistGrid`, `WishlistEmpty`), and protected server-rendered route `app/(shop)/wishlist/page.tsx` within `AccountShell`. Updated `normalizeReturnTo()` allowlist.
+- **Verification:** 76 test files (484 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build with `ƒ /wishlist`.
 - **Commit:** `feat(wishlist): add wishlist page`
 - **Dependencies:** A04, C04, F09.
 
