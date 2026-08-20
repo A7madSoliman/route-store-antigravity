@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { StorefrontIcon } from "@/components/icons/storefront-icons";
+import { QuantityStepper } from "@/features/cart/components/quantity-stepper";
 import type { CartItem } from "@/types/cart";
 
 export function CartLineItem({ item }: { item: CartItem }) {
@@ -57,10 +58,11 @@ export function CartLineItem({ item }: { item: CartItem }) {
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-surface-low rounded-lg border border-slate-200/60 text-body-small font-medium text-text-primary">
-            <span className="text-text-muted">Qty:</span>
-            <span>{item.count}</span>
-          </div>
+          <QuantityStepper
+            productId={item.productId}
+            count={item.count}
+            max={item.product.quantity}
+          />
         </div>
       </div>
     </li>

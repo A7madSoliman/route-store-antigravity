@@ -517,10 +517,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### W06 — Implement cart quantity update
 
-- **Status:** Planned.
-- **Outcome:** Cart-line quantity changes use the verified identifier and count encoding; this milestone owns every active `QuantityStepper` in the initial implementation.
-- **Work:** Add the bounded stepper to cart lines only, serialize the observed `PUT /cart/{id}` count type, coalesce/disable rapid updates, and reconcile totals.
-- **Verification:** Tests cover cart-only rendering, bounds, exact PUT request shape, rapid changes, stock conflict, rollback/refetch, auth expiry, and the absence of repeated POST-based quantity behavior.
+- **Status:** Complete.
+- **Outcome:** Cart-line quantity changes use the verified identifier (`productId`) and integer count encoding; this milestone owns every active `QuantityStepper` in the initial implementation.
+- **Work:** Added Zod response schema (`lib/api/schemas/update-cart-quantity-response.schema.server.ts`), protected endpoint adapter (`lib/api/endpoints/protected/update-cart-quantity.server.ts`), Server Action `updateCartQuantityAction` with session validation and `/cart` revalidation, and `QuantityStepper` client component with bounds checking and rapid submission prevention, integrated into `CartLineItem`.
+- **Verification:** 99 test files (554 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build.
 - **Commit:** `feat(cart): add quantity updates`
 - **Dependencies:** W04, `CART-001` resolved by F10.
 

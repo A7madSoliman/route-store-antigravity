@@ -1,5 +1,10 @@
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("@/features/cart/actions/update-cart-quantity.action", () => ({
+  updateCartQuantityAction: vi.fn(),
+}));
+
 import { CartLineItem } from "@/features/cart/components/cart-line-item";
 import type { CartItem } from "@/types/cart";
 
@@ -24,7 +29,7 @@ describe("CartLineItem Component", () => {
     },
   };
 
-  it("renders product title, image, brand/category, unit price, quantity, and line total", () => {
+  it("renders product title, image, brand/category, unit price, quantity stepper, and line total", () => {
     render(<CartLineItem item={mockItem} />);
 
     expect(screen.getByRole("heading", { name: "Premium Wireless Earbuds" })).not.toBeNull();
@@ -35,5 +40,8 @@ describe("CartLineItem Component", () => {
 
     const img = screen.getByRole("img", { name: "Premium Wireless Earbuds" });
     expect(img).not.toBeNull();
+
+    expect(screen.getByRole("button", { name: "Decrease quantity" })).not.toBeNull();
+    expect(screen.getByRole("button", { name: "Increase quantity" })).not.toBeNull();
   });
 });

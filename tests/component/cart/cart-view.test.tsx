@@ -1,5 +1,11 @@
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("server-only", () => ({}));
+vi.mock("@/features/cart/actions/update-cart-quantity.action", () => ({
+  updateCartQuantityAction: vi.fn(),
+}));
+
 import { CartView } from "@/features/cart/components/cart-view";
 import type { Cart } from "@/types/cart";
 
