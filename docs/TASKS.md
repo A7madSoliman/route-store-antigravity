@@ -564,10 +564,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### X03 — Implement address add
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** `/account/addresses/new` submits exactly `name`, `details`, `phone`, and `city` with verified validation.
-- **Work:** Add form/adapter, pending state, error mapping, and list reconciliation.
-- **Verification:** Tests cover verified requiredness, backend validation, success, malformed response, repeated submit, and auth expiry.
+- **Work:** Added server-only Zod response schema (`lib/api/schemas/add-address-response.schema.server.ts`), protected endpoint adapter (`lib/api/endpoints/protected/add-address.server.ts`), form validation schema (`features/addresses/schemas/add-address-form.schema.server.ts`), Server Action `addAddressAction` with session validation and revalidation/redirect, client form component `AddAddressForm` with accessible validation feedback and pending submit state, and server-rendered route `app/(account)/account/addresses/new/page.tsx` within `AccountShell`. Updated `normalizeReturnTo()` allowlist.
+- **Verification:** 121 test files (616 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build generating dynamic `ƒ /account/addresses/new`.
 - **Commit:** `feat(addresses): add address form`
 - **Dependencies:** X01, F11.
 

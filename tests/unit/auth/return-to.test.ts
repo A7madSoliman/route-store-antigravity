@@ -20,6 +20,7 @@ describe("safe returnTo normalization", () => {
     "/account/profile",
     "/account/security",
     "/account/addresses",
+    "/account/addresses/new",
     "/wishlist",
     "/cart",
     "/products/product-1",

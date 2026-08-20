@@ -71,6 +71,9 @@ const serverRoots = [
   "lib/api/schemas/get-addresses-response.schema.server.ts",
   "lib/api/adapters/address.adapter.server.ts",
   "lib/api/endpoints/protected/addresses.server.ts",
+  "lib/api/schemas/add-address-response.schema.server.ts",
+  "lib/api/endpoints/protected/add-address.server.ts",
+  "features/addresses/schemas/add-address-form.schema.server.ts",
 ];
 
 describe("C01 server boundaries", () => {
