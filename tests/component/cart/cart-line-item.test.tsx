@@ -4,6 +4,9 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 vi.mock("@/features/cart/actions/update-cart-quantity.action", () => ({
   updateCartQuantityAction: vi.fn(),
 }));
+vi.mock("@/features/cart/actions/remove-from-cart.action", () => ({
+  removeFromCartAction: vi.fn(),
+}));
 
 import { CartLineItem } from "@/features/cart/components/cart-line-item";
 import type { CartItem } from "@/types/cart";
@@ -29,7 +32,7 @@ describe("CartLineItem Component", () => {
     },
   };
 
-  it("renders product title, image, brand/category, unit price, quantity stepper, and line total", () => {
+  it("renders product title, image, brand/category, unit price, quantity stepper, and remove action", () => {
     render(<CartLineItem item={mockItem} />);
 
     expect(screen.getByRole("heading", { name: "Premium Wireless Earbuds" })).not.toBeNull();
@@ -43,5 +46,8 @@ describe("CartLineItem Component", () => {
 
     expect(screen.getByRole("button", { name: "Decrease quantity" })).not.toBeNull();
     expect(screen.getByRole("button", { name: "Increase quantity" })).not.toBeNull();
+    expect(
+      screen.getByRole("button", { name: "Remove Premium Wireless Earbuds from cart" }),
+    ).not.toBeNull();
   });
 });

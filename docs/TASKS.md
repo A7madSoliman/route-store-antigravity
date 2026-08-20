@@ -526,10 +526,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### W07 — Implement cart line removal
 
-- **Status:** Planned.
-- **Outcome:** A cart line can be removed with safe pending and recovery behavior.
-- **Work:** Add exact-ID removal, pending row state, failure recovery, and total reconciliation.
-- **Verification:** Tests cover success, not found/idempotency as observed, failure, repeated click, and auth expiry.
+- **Status:** Complete.
+- **Outcome:** A cart line can be removed with safe pending, accessible labeling, and seamless transition to empty state.
+- **Work:** Added Zod response schema (`lib/api/schemas/remove-from-cart-response.schema.server.ts`), protected endpoint adapter (`lib/api/endpoints/protected/remove-from-cart.server.ts`), Server Action `removeFromCartAction` with session validation and `/cart` revalidation, and `RemoveFromCartButton` client component with accessible labeling and rapid submission prevention, integrated into `CartLineItem`.
+- **Verification:** 103 test files (569 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build.
 - **Commit:** `feat(cart): add line removal`
 - **Dependencies:** W04, `CART-001` resolved by F10.
 

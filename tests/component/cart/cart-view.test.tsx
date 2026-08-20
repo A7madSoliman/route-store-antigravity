@@ -5,6 +5,9 @@ vi.mock("server-only", () => ({}));
 vi.mock("@/features/cart/actions/update-cart-quantity.action", () => ({
   updateCartQuantityAction: vi.fn(),
 }));
+vi.mock("@/features/cart/actions/remove-from-cart.action", () => ({
+  removeFromCartAction: vi.fn(),
+}));
 
 import { CartView } from "@/features/cart/components/cart-view";
 import type { Cart } from "@/types/cart";

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { StorefrontIcon } from "@/components/icons/storefront-icons";
 import { QuantityStepper } from "@/features/cart/components/quantity-stepper";
+import { RemoveFromCartButton } from "@/features/cart/components/remove-from-cart-button";
 import type { CartItem } from "@/types/cart";
 
 export function CartLineItem({ item }: { item: CartItem }) {
@@ -45,9 +46,15 @@ export function CartLineItem({ item }: { item: CartItem }) {
               </p>
             ) : null}
           </div>
-          <span className="text-heading-4 font-bold text-text-primary sm:text-right shrink-0">
-            EGP {lineTotal.toLocaleString("en-US")}
-          </span>
+          <div className="flex items-center gap-2 sm:text-right shrink-0">
+            <span className="text-heading-4 font-bold text-text-primary">
+              EGP {lineTotal.toLocaleString("en-US")}
+            </span>
+            <RemoveFromCartButton
+              productId={item.productId}
+              title={item.product.title}
+            />
+          </div>
         </div>
 
         <div className="mt-4 flex items-center justify-between gap-4 pt-2 border-t border-slate-100">
