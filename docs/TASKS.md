@@ -508,10 +508,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### W05 — Implement cart add
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Product controls add exactly one item by sending one `POST /cart` request containing only `productId`, with duplicate-submit protection and reconciliation.
-- **Work:** Add the one-item mutation adapter, pending feedback, stock/error handling, and cart-count refresh. Disable repeated submission while pending; never issue repeated add requests to emulate a selected quantity.
-- **Verification:** Tests assert the exact `{ productId }` body, one request per accepted action, success, invalid product, stock conflict, suppressed rapid clicks, failure, and auth expiry. Product-detail quantity controls remain absent.
+- **Work:** Added Zod response schema (`lib/api/schemas/add-to-cart-response.schema.server.ts`), protected endpoint adapter (`lib/api/endpoints/protected/add-to-cart.server.ts`), Server Action `addToCartAction` with session validation and `/cart` revalidation, `AddToCartButton` component supporting primary and compact variants with pending/success feedback and rapid submission prevention, and integrated across `ProductDetail` and `WishlistCard`.
+- **Verification:** 95 test files (540 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build.
 - **Commit:** `feat(cart): add product mutation`
 - **Dependencies:** W04.
 

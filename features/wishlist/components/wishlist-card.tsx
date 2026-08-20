@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { StorefrontIcon } from "@/components/icons/storefront-icons";
+import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
 import { RemoveFromWishlistButton } from "@/features/wishlist/components/remove-from-wishlist-button";
 import type { WishlistItem } from "@/types/wishlist";
 
@@ -61,14 +62,7 @@ export function WishlistCard({ item }: { item: WishlistItem }) {
               EGP {item.price.toLocaleString("en-US")}
             </span>
 
-            <button
-              type="button"
-              disabled
-              aria-disabled="true"
-              className="bg-surface-base text-text-muted px-4 py-2 rounded-lg text-button font-semibold cursor-not-allowed select-none"
-            >
-              Add to Bag
-            </button>
+            <AddToCartButton productId={item.id} variant="compact" label="Add to Bag" />
           </div>
         </div>
       </div>

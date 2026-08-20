@@ -4,6 +4,9 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 vi.mock("@/features/wishlist/actions/remove-from-wishlist.action", () => ({
   removeFromWishlistAction: vi.fn(),
 }));
+vi.mock("@/features/cart/actions/add-to-cart.action", () => ({
+  addToCartAction: vi.fn(),
+}));
 
 import { WishlistCard } from "@/features/wishlist/components/wishlist-card";
 import type { WishlistItem } from "@/types/wishlist";
@@ -56,12 +59,11 @@ describe("WishlistCard Component", () => {
     ).not.toBeNull();
   });
 
-  it("renders disabled Add to Bag button with aria-disabled='true'", () => {
+  it("renders active Add to Bag button", () => {
     render(<WishlistCard item={mockItem} />);
 
     const button = screen.getByRole("button", { name: "Add to Bag" });
     expect(button).not.toBeNull();
-    expect(button.hasAttribute("disabled")).toBe(true);
-    expect(button.getAttribute("aria-disabled")).toBe("true");
+    expect(button.getAttribute("type")).toBe("submit");
   });
 });
