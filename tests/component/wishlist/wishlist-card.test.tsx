@@ -1,5 +1,10 @@
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("@/features/wishlist/actions/remove-from-wishlist.action", () => ({
+  removeFromWishlistAction: vi.fn(),
+}));
+
 import { WishlistCard } from "@/features/wishlist/components/wishlist-card";
 import type { WishlistItem } from "@/types/wishlist";
 
@@ -27,7 +32,7 @@ describe("WishlistCard Component", () => {
     },
   };
 
-  it("renders product title, formatted price, and image", () => {
+  it("renders product title, formatted price, image, and remove button", () => {
     render(<WishlistCard item={mockItem} />);
 
     expect(screen.getByRole("heading", { name: "Premium Wireless Headphones" })).not.toBeNull();
@@ -38,15 +43,16 @@ describe("WishlistCard Component", () => {
 
     const img = screen.getByRole("img", { name: "Premium Wireless Headphones" });
     expect(img).not.toBeNull();
+
+    const removeButton = screen.getByRole("button", { name: "Remove from wishlist" });
+    expect(removeButton).not.toBeNull();
   });
 
   it("truncates description over 50 chars with ellipsis", () => {
     render(<WishlistCard item={mockItem} />);
 
-    // Description is > 50 chars: "High quality noise-cancelling wireless over-ear headphones with superior audio clarity."
-    // First 50 chars: "High quality noise-cancelling wireless over-ear he" + "..."
     expect(
-      screen.getByText("High quality noise-cancelling wireless over-ear he...")
+      screen.getByText("High quality noise-cancelling wireless over-ear he..."),
     ).not.toBeNull();
   });
 

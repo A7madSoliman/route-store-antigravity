@@ -490,10 +490,10 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### W03 — Implement wishlist remove
 
-- **Status:** Planned.
-- **Outcome:** Wishlist/product controls remove using the verified path identifier.
-- **Work:** Add pending removal, rollback/refetch behavior, and safe not-found handling.
-- **Verification:** Tests assert exact ID serialization and cover success, failure, idempotent/not-found response, and auth expiry.
+- **Status:** Complete.
+- **Outcome:** Wishlist controls remove products using the verified path identifier with visible pending state.
+- **Work:** Added protected DELETE transport (`protectedDelete`), Zod response schema (`lib/api/schemas/remove-from-wishlist-response.schema.server.ts`), server-only endpoint adapter (`lib/api/endpoints/protected/remove-from-wishlist.server.ts`), Server Action `removeFromWishlistAction` with input validation, session enforcement, and `/wishlist` revalidation, `RemoveFromWishlistButton` component supporting icon and full-width button variants with pending feedback, and integrated into `WishlistCard`.
+- **Verification:** 85 test files (513 tests) passing in Vitest; `npm run lint` clean (0 errors, 0 warnings); `npm exec tsc -- --noEmit` clean (0 errors); `npm run build` clean production build.
 - **Commit:** `feat(wishlist): add remove mutation`
 - **Dependencies:** W01, `WISH-001` resolved by F09.
 

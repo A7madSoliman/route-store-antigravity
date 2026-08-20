@@ -52,9 +52,11 @@ const serverRoots = [
   "lib/api/schemas/signin-response.schema.server.ts",
   "lib/api/schemas/get-wishlist-response.schema.server.ts",
   "lib/api/schemas/add-to-wishlist-response.schema.server.ts",
+  "lib/api/schemas/remove-from-wishlist-response.schema.server.ts",
   "lib/api/adapters/wishlist.adapter.server.ts",
   "lib/api/endpoints/protected/wishlist.server.ts",
   "lib/api/endpoints/protected/add-to-wishlist.server.ts",
+  "lib/api/endpoints/protected/remove-from-wishlist.server.ts",
 ];
 
 describe("C01 server boundaries", () => {

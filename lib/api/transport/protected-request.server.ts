@@ -156,3 +156,43 @@ export async function protectedPostJson(
     body: responseBody,
   });
 }
+
+export async function protectedDelete(
+  pathSegments: readonly string[],
+): Promise<ProtectedTransportResponse> {
+  const token = await getSessionToken();
+  if (!token) throw new SessionRequiredError();
+
+  const environment = getServerEnvironment();
+  const url = buildUrl(environment.ecommerceApiBaseUrl, pathSegments);
+
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        token,
+      },
+      credentials: "omit",
+      redirect: "manual",
+      cache: "no-store",
+      signal: AbortSignal.timeout(requestTimeoutMs),
+    });
+  } catch (error) {
+    if (isAbortLike(error) || error instanceof TypeError) throw new ProtectedApiError("unavailable");
+    throw new ProtectedApiError("unavailable");
+  }
+
+  let responseBody: unknown = null;
+  try {
+    responseBody = await response.json();
+  } catch {
+    responseBody = null;
+  }
+
+  return Object.freeze({
+    status: response.status,
+    body: responseBody,
+  });
+}
