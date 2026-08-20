@@ -2,6 +2,9 @@ import { cleanup, fireEvent, render, screen, within } from "@testing-library/rea
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
+vi.mock("@/features/cart/actions/add-to-cart.action", () => ({
+  addToCartAction: vi.fn(),
+}));
 import ProductsError from "@/app/(shop)/products/error";
 import ProductsLoading from "@/app/(shop)/products/loading";
 import { ProductListing } from "@/features/catalog/components/product-listing";

@@ -23,9 +23,21 @@ export class GetCartApiError extends Error {
 export async function getCart(): Promise<Cart> {
   try {
     const raw = await protectedGet(["cart"]);
+    if (!raw || typeof raw !== "object") {
+      return createEmptyCart();
+    }
+
+    const rawObj = raw as Record<string, unknown>;
+    if (rawObj.status && rawObj.status !== "success") {
+      throw new GetCartApiError("invalid-response");
+    }
+
     const parsed = GetCartResponseSchema.safeParse(raw);
 
     if (!parsed.success) {
+      if (rawObj.status === "success" || rawObj.numOfCartItems === 0) {
+        return createEmptyCart();
+      }
       throw new GetCartApiError("invalid-response");
     }
 

@@ -2,6 +2,9 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
+vi.mock("@/features/cart/actions/add-to-cart.action", () => ({
+  addToCartAction: vi.fn(),
+}));
 import { HomeCategorySection } from "@/features/home/components/home-category-section";
 import { HomeProductSection } from "@/features/home/components/home-product-section";
 import { NewsletterPromo } from "@/features/home/components/newsletter-promo";

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { StorefrontIcon } from "@/components/icons/storefront-icons";
+import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
 import { AddToWishlistButton } from "@/features/wishlist/components/add-to-wishlist-button";
 import type { ProductSummary } from "@/types/product";
 
@@ -11,7 +12,7 @@ export function ProductCard({ product, layout = "rail" }: { product: ProductSumm
 
   return (
     <li className={isRail ? "min-w-[72vw] snap-start sm:min-w-[45vw] md:min-w-0" : "min-w-0"}>
-      <div className="group relative rounded-xl">
+      <div className="group relative flex flex-col h-full rounded-xl">
         <Link className="block rounded-xl focus-visible:ring-2 focus-visible:ring-brand-primary" href={`/products/${encodeURIComponent(product.id)}`}>
           <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-surface-low">
             {product.imageUrl ? (
@@ -36,6 +37,9 @@ export function ProductCard({ product, layout = "rail" }: { product: ProductSumm
         </Link>
         <div className="absolute top-3 right-3 z-10">
           <AddToWishlistButton productId={product.id} variant="icon" />
+        </div>
+        <div className="mt-3 pt-2">
+          <AddToCartButton productId={product.id} variant="compact" label="Add to Cart" className="w-full justify-center" />
         </div>
       </div>
     </li>

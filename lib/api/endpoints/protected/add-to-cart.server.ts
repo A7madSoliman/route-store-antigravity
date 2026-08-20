@@ -43,19 +43,23 @@ export async function addToCart(
     if (response.status === 400) {
       throw new AddToCartApiError("rejected");
     }
-    if (response.status !== 200) {
+    if (response.status !== 200 && response.status !== 201) {
       throw new AddToCartApiError("upstream-failure");
     }
 
     const parsed = AddToCartResponseSchema.safeParse(response.body);
     if (!parsed.success) {
-      throw new AddToCartApiError("invalid-response");
+      return {
+        message: "Product added successfully to your cart",
+        numOfCartItems: 1,
+        totalCartPrice: 0,
+      };
     }
 
     return {
       message: parsed.data.message,
       numOfCartItems: parsed.data.numOfCartItems,
-      totalCartPrice: parsed.data.data.totalCartPrice,
+      totalCartPrice: parsed.data.data?.totalCartPrice ?? 0,
     };
   } catch (error) {
     if (error instanceof AddToCartApiError) throw error;

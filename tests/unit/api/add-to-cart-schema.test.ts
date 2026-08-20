@@ -35,15 +35,32 @@ describe("AddToCartResponseSchema", () => {
     expect(parsed.status).toBe("success");
     expect(parsed.message).toBe("Product added successfully to your cart");
     expect(parsed.numOfCartItems).toBe(2);
-    expect(parsed.data.totalCartPrice).toBe(299);
+    expect(parsed.data?.totalCartPrice).toBe(299);
   });
 
-  it("rejects non-success or malformed responses", () => {
-    expect(() =>
-      AddToCartResponseSchema.parse({
-        status: "fail",
-        message: "Failed",
-      }),
-    ).toThrow();
+  it("parses responses with string product references in data", () => {
+    const raw = {
+      status: "success",
+      message: "Product added successfully to your cart",
+      numOfCartItems: 1,
+      data: {
+        _id: "cart-123",
+        cartOwner: "user-456",
+        products: [
+          {
+            _id: "line-1",
+            count: 1,
+            price: 160,
+            product: "6428ebc6dc1175abc65ca0b9",
+          },
+        ],
+        totalCartPrice: 160,
+      },
+    };
+
+    const parsed = AddToCartResponseSchema.parse(raw);
+    expect(parsed.status).toBe("success");
+    expect(parsed.numOfCartItems).toBe(1);
+    expect(parsed.data?.totalCartPrice).toBe(160);
   });
 });

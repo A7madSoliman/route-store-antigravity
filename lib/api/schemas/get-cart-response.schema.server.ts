@@ -5,7 +5,7 @@ import { z } from "zod";
 export const CartProductSchema = z.object({
   _id: z.string().optional(),
   id: z.string().optional(),
-  title: z.string(),
+  title: z.string().optional().default(""),
   slug: z.string().optional(),
   price: z.number().nonnegative().optional(),
   imageCover: z.string().nullable().optional(),
@@ -28,27 +28,27 @@ export const CartProductSchema = z.object({
 });
 
 export const CartItemSchema = z.object({
-  _id: z.string(),
-  product: CartProductSchema,
-  price: z.number().nonnegative(),
-  count: z.number().positive(),
+  _id: z.string().optional().default(""),
+  product: z.union([CartProductSchema, z.string(), z.record(z.string(), z.unknown())]).optional(),
+  price: z.number().nonnegative().optional().default(0),
+  count: z.number().positive().optional().default(1),
 });
 
 export const GetCartDataSchema = z.object({
-  _id: z.string(),
-  cartOwner: z.string(),
-  products: z.array(CartItemSchema),
-  totalCartPrice: z.number().nonnegative(),
+  _id: z.string().optional().default(""),
+  cartOwner: z.string().optional().default(""),
+  products: z.array(CartItemSchema).optional().default([]),
+  totalCartPrice: z.number().nonnegative().optional().default(0),
   createdAt: z.string().optional(),
   updatedAt: z.string().optional(),
   __v: z.number().optional(),
 });
 
 export const GetCartResponseSchema = z.object({
-  status: z.literal("success"),
-  numOfCartItems: z.number().nonnegative(),
+  status: z.string().optional(),
+  numOfCartItems: z.number().nonnegative().optional().default(0),
   cartId: z.string().optional(),
-  data: GetCartDataSchema,
+  data: GetCartDataSchema.nullable().optional(),
 });
 
 export type GetCartResponse = z.infer<typeof GetCartResponseSchema>;

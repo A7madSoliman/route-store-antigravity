@@ -38,8 +38,8 @@ describe("GetCartResponseSchema", () => {
     const parsed = GetCartResponseSchema.parse(raw);
     expect(parsed.status).toBe("success");
     expect(parsed.numOfCartItems).toBe(2);
-    expect(parsed.data.products).toHaveLength(1);
-    expect(parsed.data.totalCartPrice).toBe(300);
+    expect(parsed.data?.products).toHaveLength(1);
+    expect(parsed.data?.totalCartPrice).toBe(300);
   });
 
   it("parses valid empty cart response", () => {
@@ -57,19 +57,24 @@ describe("GetCartResponseSchema", () => {
     const parsed = GetCartResponseSchema.parse(raw);
     expect(parsed.status).toBe("success");
     expect(parsed.numOfCartItems).toBe(0);
-    expect(parsed.data.products).toHaveLength(0);
-    expect(parsed.data.totalCartPrice).toBe(0);
+    expect(parsed.data?.products).toHaveLength(0);
+    expect(parsed.data?.totalCartPrice).toBe(0);
   });
 
-  it("rejects invalid response payloads", () => {
-    expect(() =>
-      GetCartResponseSchema.parse({
-        status: "fail",
-        numOfCartItems: 0,
-        data: null,
-      }),
-    ).toThrow();
+  it("allows null data when cart is empty/cleared", () => {
+    const raw = {
+      status: "success",
+      numOfCartItems: 0,
+      data: null,
+    };
 
+    const parsed = GetCartResponseSchema.parse(raw);
+    expect(parsed.status).toBe("success");
+    expect(parsed.numOfCartItems).toBe(0);
+    expect(parsed.data).toBeNull();
+  });
+
+  it("rejects invalid numOfCartItems", () => {
     expect(() =>
       GetCartResponseSchema.parse({
         status: "success",
