@@ -741,7 +741,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### T07 — Release and rollback readiness
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Production release has an explicit go/no-go checklist, smoke test, monitoring boundary, and rollback procedure.
 - **Work:** Confirm enabled/conditional/deferred features, production variables, API host, migrations if any, monitoring redaction, rollback version, and post-deploy smoke steps.
 - **Verification:** Build/lint/type/test suites pass; production smoke test covers only safe customer flows; rollback procedure is rehearsed or documented.

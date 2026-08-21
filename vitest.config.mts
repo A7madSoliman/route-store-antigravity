@@ -13,6 +13,8 @@ export default defineConfig({
       "**/.{idea,git,cache,output,temp}/**",
       "tests/a11y/**",
       "tests/responsive/**",
+      "tests/preview/**",
+      "tests/production/**",
     ],
   },
 });
