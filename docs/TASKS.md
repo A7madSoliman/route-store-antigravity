@@ -714,7 +714,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### T04 — Complete privacy and security review
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Credentials and customer data remain absent from URLs, logs, analytics, client bundles, fixtures, and error reports.
 - **Work:** Review session storage, redirects, headers, CSP/security headers, redaction, dependency risks, admin absence/guards, and payment return behavior.
 - **Verification:** Secret scans, client-bundle inspection, authorization tests, unsafe-redirect tests, and redaction tests pass.
@@ -723,7 +723,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### T05 — Complete performance and metadata
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Images, fonts, route metadata, loading behavior, caching, and bundle sizes meet documented budgets.
 - **Work:** Apply verified caching strategy, optimize local assets, add route metadata, measure key pages, and remove unused client code/dependencies.
 - **Verification:** Production build passes and agreed performance/bundle budgets are recorded and met.
