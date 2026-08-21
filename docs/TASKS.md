@@ -705,7 +705,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### T03 — Complete responsive and visual QA
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Approved desktop/mobile screens and inferred tablet behavior are stable without overflow or hidden actions.
 - **Work:** Compare primary routes with Stitch references, test intermediate widths, sticky bars, bottom sheets, images, loading/error/empty states, and safe areas.
 - **Verification:** Visual snapshots/manual checklist pass at agreed phone, tablet, desktop, and wide sizes.
