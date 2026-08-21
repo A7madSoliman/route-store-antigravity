@@ -117,12 +117,13 @@ export async function protectedPutJson(
 export async function protectedPostJson(
   pathSegments: readonly string[],
   body: unknown,
+  searchParams?: URLSearchParams,
 ): Promise<ProtectedTransportResponse> {
   const token = await getSessionToken();
   if (!token) throw new SessionRequiredError();
 
   const environment = getServerEnvironment();
-  const url = buildUrl(environment.ecommerceApiBaseUrl, pathSegments);
+  const url = buildUrl(environment.ecommerceApiBaseUrl, pathSegments, searchParams);
 
   let response: Response;
   try {
