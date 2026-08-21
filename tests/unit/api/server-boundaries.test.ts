@@ -76,6 +76,13 @@ const serverRoots = [
   "features/addresses/schemas/add-address-form.schema.server.ts",
   "lib/api/schemas/remove-address-response.schema.server.ts",
   "lib/api/endpoints/protected/remove-address.server.ts",
+  "lib/api/schemas/create-cash-order-response.schema.server.ts",
+  "lib/api/schemas/create-checkout-session-response.schema.server.ts",
+  "lib/api/endpoints/protected/create-cash-order.server.ts",
+  "lib/api/endpoints/protected/create-checkout-session.server.ts",
+  "features/checkout/schemas/checkout-form.schema.server.ts",
+  "lib/api/schemas/get-orders-response.schema.server.ts",
+  "lib/api/endpoints/protected/get-orders.server.ts",
 ];
 
 describe("C01 server boundaries", () => {
@@ -86,7 +93,7 @@ describe("C01 server boundaries", () => {
   });
 
   it("keeps domain declarations free of runtime imports", () => {
-    for (const path of ["types/catalog-page.ts", "types/product.ts", "types/category.ts", "types/subcategory.ts", "types/brand.ts", "types/wishlist.ts", "types/cart.ts", "types/address.ts"]) {
+    for (const path of ["types/catalog-page.ts", "types/product.ts", "types/category.ts", "types/subcategory.ts", "types/brand.ts", "types/wishlist.ts", "types/cart.ts", "types/address.ts", "types/order.ts"]) {
       expect(readFileSync(path, "utf8"), path).not.toMatch(/^import /mu);
     }
   });

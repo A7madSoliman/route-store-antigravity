@@ -8,11 +8,12 @@ interface AccountShellProps {
     name: string;
     email: string;
   };
-  activeItem?: "profile" | "security" | "addresses" | "wishlist";
+  activeItem?: "profile" | "security" | "addresses" | "orders" | "wishlist";
 }
 
 const navItems = [
   { id: "profile", label: "My Profile", href: "/account/profile" },
+  { id: "orders", label: "My Orders", href: "/account/orders" },
   { id: "security", label: "Security & Password", href: "/account/security" },
   { id: "addresses", label: "Saved Addresses", href: "/account/addresses" },
   { id: "wishlist", label: "My Wishlist", href: "/wishlist" },

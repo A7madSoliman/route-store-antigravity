@@ -9,20 +9,20 @@ export type OrderPaymentMethod = "cash" | "card";
 export type OrderProduct = {
   id: string;
   title: string;
-  slug: string;
-  price: number;
+  slug?: string;
+  price?: number;
   imageUrl: string | null;
-  category: {
+  category?: {
     id: string;
     name: string;
     slug: string;
   };
-  brand: {
+  brand?: {
     id: string;
     name: string;
     slug: string;
   };
-  ratingsAverage: number;
+  ratingsAverage?: number;
 };
 
 export type OrderItem = {
@@ -33,9 +33,17 @@ export type OrderItem = {
   price: number;
 };
 
-export type CashOrder = {
+export type OrderUser = {
   id: string;
-  user: string;
+  name: string;
+  email: string;
+  phone?: string;
+};
+
+export type Order = {
+  id: string;
+  numericId?: number;
+  user: OrderUser | string;
   cartItems: OrderItem[];
   totalOrderPrice: number;
   taxPrice: number;
@@ -43,10 +51,14 @@ export type CashOrder = {
   paymentMethodType: string;
   isPaid: boolean;
   isDelivered: boolean;
+  paidAt?: string;
+  deliveredAt?: string;
   shippingAddress: ShippingAddress;
   createdAt: string;
   updatedAt: string;
 };
+
+export type CashOrder = Order;
 
 export type CheckoutSession = {
   url: string;
