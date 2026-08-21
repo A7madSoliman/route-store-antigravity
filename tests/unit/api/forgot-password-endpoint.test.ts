@@ -17,22 +17,24 @@ import {
 } from "@/lib/api/endpoints/public/forgot-password.server";
 import { forgotPasswordResponseSchema } from "@/lib/api/schemas/forgot-password-response.schema.server";
 
+import forgotPasswordFixture from "../../fixtures/api/forgot-password.success.json";
+
 beforeEach(() => post.mockReset());
 
 describe("forgot-password endpoint", () => {
   it("sends the exact approved request and returns only confirmation", async () => {
     post.mockResolvedValue({
       status: 200,
-      body: { statusMsg: "accepted", message: "provider message", ignored: "extra" },
+      body: forgotPasswordFixture,
     });
 
     await expect(requestPasswordReset({ email: "person@example.test" })).resolves.toBe("confirmation");
     expect(post).toHaveBeenCalledWith(["auth", "forgotPasswords"], {
       email: "person@example.test",
     });
-    expect(forgotPasswordResponseSchema.parse({ statusMsg: "accepted", message: "provider message", ignored: "extra" })).toEqual({
-      statusMsg: "accepted",
-      message: "provider message",
+    expect(forgotPasswordResponseSchema.parse(forgotPasswordFixture)).toEqual({
+      statusMsg: forgotPasswordFixture.statusMsg,
+      message: forgotPasswordFixture.message,
     });
   });
 

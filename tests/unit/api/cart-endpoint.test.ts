@@ -14,40 +14,20 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 import { getCart } from "@/lib/api/endpoints/protected/cart.server";
 import { ProtectedApiError } from "@/lib/api/errors.server";
 
+import getCartFixture from "../../fixtures/api/get-cart.success.json";
+
 beforeEach(() => {
   protectedGetMock.mockReset();
 });
 
 describe("getCart endpoint adapter", () => {
-  it("fetches and adapts populated cart data", async () => {
-    protectedGetMock.mockResolvedValueOnce({
-      status: "success",
-      numOfCartItems: 1,
-      cartId: "cart-1",
-      data: {
-        _id: "cart-1",
-        cartOwner: "user-1",
-        products: [
-          {
-            _id: "item-1",
-            count: 1,
-            price: 500,
-            product: {
-              _id: "prod-1",
-              title: "Product 1",
-              price: 500,
-              imageCover: null,
-            },
-          },
-        ],
-        totalCartPrice: 500,
-      },
-    });
+  it("fetches and adapts populated cart data using fixture", async () => {
+    protectedGetMock.mockResolvedValueOnce(getCartFixture);
 
     const result = await getCart();
     expect(protectedGetMock).toHaveBeenCalledWith(["cart"]);
-    expect(result.id).toBe("cart-1");
-    expect(result.totalCartPrice).toBe(500);
+    expect(result.id).toBe(getCartFixture.cartId);
+    expect(result.totalCartPrice).toBe(getCartFixture.data.totalCartPrice);
     expect(result.items).toHaveLength(1);
   });
 

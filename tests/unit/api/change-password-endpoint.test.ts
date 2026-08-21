@@ -13,23 +13,17 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 
 import { changePassword } from "@/lib/api/endpoints/protected/change-password.server";
 
+import changePasswordFixture from "../../fixtures/api/change-password.success.json";
+
 beforeEach(() => {
   protectedPutJsonMock.mockReset();
 });
 
 describe("changePassword endpoint adapter", () => {
-  it("serializes password change payload and returns user identity plus rotated token", async () => {
+  it("serializes password change payload and returns user identity plus rotated token using fixture", async () => {
     protectedPutJsonMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        message: "success",
-        user: {
-          name: "Test User",
-          email: "test@example.com",
-          role: "user",
-        },
-        token: "new-rotated-token-12345",
-      },
+      body: changePasswordFixture,
     });
 
     const result = await changePassword({
@@ -48,10 +42,10 @@ describe("changePassword endpoint adapter", () => {
     );
     expect(result).toEqual({
       user: {
-        name: "Test User",
-        email: "test@example.com",
+        name: changePasswordFixture.user.name,
+        email: changePasswordFixture.user.email,
       },
-      token: "new-rotated-token-12345",
+      token: changePasswordFixture.token,
     });
   });
 

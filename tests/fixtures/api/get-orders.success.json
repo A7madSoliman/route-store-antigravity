@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "order-123",
+    "id": 6900,
+    "user": {
+      "_id": "user-123",
+      "name": "Jane Doe",
+      "email": "jane@example.com",
+      "phone": "01012345678"
+    },
+    "cartItems": [
+      {
+        "_id": "item-1",
+        "count": 2,
+        "price": 150,
+        "product": {
+          "_id": "prod-1",
+          "title": "Test Product",
+          "slug": "test-product",
+          "imageCover": "https://example.com/image.jpg",
+          "ratingsAverage": 4.5,
+          "ratingsQuantity": 10,
+          "category": {
+            "_id": "cat-1",
+            "name": "Electronics",
+            "slug": "electronics"
+          },
+          "brand": {
+            "_id": "brand-1",
+            "name": "BrandX",
+            "slug": "brandx"
+          }
+        }
+      }
+    ],
+    "totalOrderPrice": 300,
+    "taxPrice": 0,
+    "shippingPrice": 0,
+    "paymentMethodType": "cash",
+    "isPaid": false,
+    "isDelivered": false,
+    "shippingAddress": {
+      "details": "123 Main St",
+      "phone": "01012345678",
+      "city": "Cairo"
+    },
+    "createdAt": "2026-08-21T08:00:00.000Z",
+    "updatedAt": "2026-08-21T08:00:00.000Z"
+  }
+]

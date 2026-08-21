@@ -13,30 +13,25 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 
 import { updateProfile } from "@/lib/api/endpoints/protected/update-profile.server";
 
+import updateProfileFixture from "../../fixtures/api/update-profile.success.json";
+
 beforeEach(() => {
   protectedPutJsonMock.mockReset();
 });
 
 describe("updateProfile endpoint adapter", () => {
-  it("serializes single-field name mutation and returns parsed user identity", async () => {
+  it("serializes single-field name mutation and returns parsed user identity using fixture", async () => {
     protectedPutJsonMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        message: "success",
-        user: {
-          name: "Updated Name",
-          email: "test@example.com",
-          role: "user",
-        },
-      },
+      body: updateProfileFixture,
     });
 
     const result = await updateProfile({ name: "Updated Name" });
     expect(protectedPutJsonMock).toHaveBeenCalledWith(["users", "updateMe"], { name: "Updated Name" });
     expect(result).toEqual({
       user: {
-        name: "Updated Name",
-        email: "test@example.com",
+        name: updateProfileFixture.user.name,
+        email: updateProfileFixture.user.email,
       },
     });
   });

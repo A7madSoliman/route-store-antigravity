@@ -13,22 +13,22 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 
 import { clearCart } from "@/lib/api/endpoints/protected/clear-cart.server";
 
+import clearCartFixture from "../../fixtures/api/clear-cart.success.json";
+
 beforeEach(() => {
   protectedDeleteMock.mockReset();
 });
 
 describe("clearCart endpoint adapter", () => {
-  it("issues DELETE /cart and returns response message", async () => {
+  it("issues DELETE /cart and returns response message using fixture", async () => {
     protectedDeleteMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        message: "success",
-      },
+      body: clearCartFixture,
     });
 
     const result = await clearCart();
     expect(protectedDeleteMock).toHaveBeenCalledWith(["cart"]);
-    expect(result).toEqual({ message: "success" });
+    expect(result).toEqual({ message: clearCartFixture.message });
   });
 
   it("maps 401 unauthorized status", async () => {

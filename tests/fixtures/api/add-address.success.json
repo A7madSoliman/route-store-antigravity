@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "message": "Address added successfully to your addresses",
+  "data": [
+    {
+      "_id": "address-123",
+      "name": "Home",
+      "details": "123 Main St",
+      "phone": "01012345678",
+      "city": "Cairo"
+    }
+  ]
+}

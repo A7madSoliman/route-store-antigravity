@@ -1,0 +1,8 @@
+{
+  "status": "success",
+  "session": {
+    "url": "https://checkout.stripe.com/pay/cs_test_123",
+    "success_url": "http://app/allorders",
+    "cancel_url": "http://app/cart"
+  }
+}

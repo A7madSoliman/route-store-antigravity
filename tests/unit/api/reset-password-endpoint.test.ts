@@ -15,11 +15,13 @@ import {
   ResetPasswordApiError,
 } from "@/lib/api/endpoints/public/reset-password.server";
 
+import resetPasswordFixture from "../../fixtures/api/reset-password.success.json";
+
 beforeEach(() => put.mockReset());
 
 describe("reset-password endpoint", () => {
   it("sends exactly email and newPassword and returns a token-free success", async () => {
-    put.mockResolvedValueOnce({ status: 200, body: { token: "synthetic", ignored: "extra" } });
+    put.mockResolvedValueOnce({ status: 200, body: resetPasswordFixture });
 
     await expect(resetPassword({ email: "person@example.test", newPassword: "new-value" })).resolves.toBe("reset");
     expect(put).toHaveBeenCalledOnce();
@@ -27,7 +29,7 @@ describe("reset-password endpoint", () => {
       email: "person@example.test",
       newPassword: "new-value",
     });
-    expect(JSON.stringify(await resetPasswordResult())).not.toContain("synthetic");
+    expect(JSON.stringify(await resetPasswordResult())).not.toContain(resetPasswordFixture.token);
   });
 
   it.each([400, 401, 403, 404, 409, 422, 429, 500, 503])(

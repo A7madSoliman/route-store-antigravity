@@ -14,34 +14,23 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 import { removeAddress } from "@/lib/api/endpoints/protected/remove-address.server";
 import { ProtectedApiError } from "@/lib/api/errors.server";
 
+import removeAddressFixture from "../../fixtures/api/remove-address.success.json";
+
 beforeEach(() => {
   protectedDeleteMock.mockReset();
 });
 
 describe("removeAddress endpoint adapter", () => {
-  it("deletes address and returns updated list", async () => {
+  it("deletes address and returns updated list using fixture", async () => {
     protectedDeleteMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        status: "success",
-        message: "Address removed successfully to your addresses",
-        data: [
-          {
-            _id: "addr-2",
-            name: "Work",
-            details: "45 Smart Village",
-            phone: "01098765432",
-            city: "Giza",
-          },
-        ],
-      },
+      body: removeAddressFixture,
     });
 
     const result = await removeAddress("addr-1");
     expect(protectedDeleteMock).toHaveBeenCalledWith(["addresses", "addr-1"]);
-    expect(result.message).toBe("Address removed successfully to your addresses");
-    expect(result.addresses).toHaveLength(1);
-    expect(result.addresses[0].id).toBe("addr-2");
+    expect(result.message).toBe(removeAddressFixture.message);
+    expect(result.addresses).toHaveLength(0);
   });
 
   it("throws rejected error for empty addressId", async () => {

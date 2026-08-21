@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "numOfCartItems": 0,
+  "cartId": "cart-123",
+  "data": {
+    "_id": "cart-123",
+    "cartOwner": "user-123",
+    "products": [],
+    "totalCartPrice": 0
+  }
+}

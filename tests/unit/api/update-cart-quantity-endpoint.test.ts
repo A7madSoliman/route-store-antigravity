@@ -13,42 +13,23 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 
 import { updateCartQuantity } from "@/lib/api/endpoints/protected/update-cart-quantity.server";
 
+import updateCartQuantityFixture from "../../fixtures/api/update-cart-quantity.success.json";
+
 beforeEach(() => {
   protectedPutJsonMock.mockReset();
 });
 
 describe("updateCartQuantity endpoint adapter", () => {
-  it("serializes productId in path and count in body", async () => {
+  it("serializes productId in path and count in body using fixture", async () => {
     protectedPutJsonMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        status: "success",
-        numOfCartItems: 1,
-        cartId: "cart-1",
-        data: {
-          _id: "cart-1",
-          cartOwner: "user-1",
-          products: [
-            {
-              _id: "line-1",
-              count: 2,
-              price: 200,
-              product: {
-                _id: "prod-1",
-                title: "Product 1",
-                price: 200,
-              },
-            },
-          ],
-          totalCartPrice: 400,
-        },
-      },
+      body: updateCartQuantityFixture,
     });
 
     const result = await updateCartQuantity({ productId: "prod-1", count: 2 });
     expect(protectedPutJsonMock).toHaveBeenCalledWith(["cart", "prod-1"], { count: 2 });
-    expect(result.id).toBe("cart-1");
-    expect(result.totalCartPrice).toBe(400);
+    expect(result.id).toBe(updateCartQuantityFixture.cartId);
+    expect(result.totalCartPrice).toBe(updateCartQuantityFixture.data.totalCartPrice);
     expect(result.items[0].count).toBe(2);
   });
 

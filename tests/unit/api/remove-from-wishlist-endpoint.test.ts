@@ -13,25 +13,23 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 
 import { removeFromWishlist } from "@/lib/api/endpoints/protected/remove-from-wishlist.server";
 
+import removeFromWishlistFixture from "../../fixtures/api/remove-from-wishlist.success.json";
+
 beforeEach(() => {
   protectedDeleteMock.mockReset();
 });
 
 describe("removeFromWishlist endpoint adapter", () => {
-  it("serializes productId in path and returns remaining wishlist IDs", async () => {
+  it("serializes productId in path and returns remaining wishlist IDs using fixture", async () => {
     protectedDeleteMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        status: "success",
-        message: "Product removed successfully to your wishlist",
-        data: ["prod-1"],
-      },
+      body: removeFromWishlistFixture,
     });
 
     const result = await removeFromWishlist({ productId: "prod-2" });
     expect(protectedDeleteMock).toHaveBeenCalledWith(["wishlist", "prod-2"]);
     expect(result).toEqual({
-      remainingProductIds: ["prod-1"],
+      remainingProductIds: removeFromWishlistFixture.data,
     });
   });
 

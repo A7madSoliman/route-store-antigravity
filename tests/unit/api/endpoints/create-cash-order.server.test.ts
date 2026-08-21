@@ -3,6 +3,7 @@ vi.mock("server-only", () => ({}));
 import { createCashOrder } from "@/lib/api/endpoints/protected/create-cash-order.server";
 import * as protectedRequest from "@/lib/api/transport/protected-request.server";
 import { ProtectedApiError } from "@/lib/api/errors.server";
+import createCashOrderFixture from "../../../fixtures/api/create-cash-order.success.json";
 
 vi.mock("@/lib/api/transport/protected-request.server");
 
@@ -17,19 +18,10 @@ describe("createCashOrder", () => {
     city: "Cairo",
   };
 
-  it("returns cash order on successful 201 response", async () => {
+  it("returns cash order on successful 201 response using fixture", async () => {
     vi.mocked(protectedRequest.protectedPostJson).mockResolvedValue({
       status: 201,
-      body: {
-        status: "success",
-        data: {
-          _id: "order-1",
-          user: "user-1",
-          cartItems: [{ _id: "item-1", count: 1, price: 100, product: "prod-1" }],
-          totalOrderPrice: 100,
-          shippingAddress: validShippingAddress,
-        },
-      },
+      body: createCashOrderFixture,
     });
 
     const result = await createCashOrder("cart-1", validShippingAddress);
@@ -38,8 +30,8 @@ describe("createCashOrder", () => {
       ["orders", "cart-1"],
       { shippingAddress: validShippingAddress }
     );
-    expect(result.id).toBe("order-1");
-    expect(result.totalOrderPrice).toBe(100);
+    expect(result.id).toBe(createCashOrderFixture.data._id);
+    expect(result.totalOrderPrice).toBe(createCashOrderFixture.data.totalOrderPrice);
   });
 
   it("throws ProtectedApiError(invalid-request) on 400 status", async () => {

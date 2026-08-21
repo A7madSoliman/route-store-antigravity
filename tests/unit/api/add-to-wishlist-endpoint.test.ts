@@ -13,25 +13,23 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 
 import { addToWishlist } from "@/lib/api/endpoints/protected/add-to-wishlist.server";
 
+import addToWishlistFixture from "../../fixtures/api/add-to-wishlist.success.json";
+
 beforeEach(() => {
   protectedPostJsonMock.mockReset();
 });
 
 describe("addToWishlist endpoint adapter", () => {
-  it("serializes productId and returns updated wishlist IDs", async () => {
+  it("serializes productId and returns updated wishlist IDs using fixture", async () => {
     protectedPostJsonMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        status: "success",
-        message: "Product added successfully to your wishlist",
-        data: ["prod-1", "prod-2"],
-      },
+      body: addToWishlistFixture,
     });
 
     const result = await addToWishlist({ productId: "prod-2" });
     expect(protectedPostJsonMock).toHaveBeenCalledWith(["wishlist"], { productId: "prod-2" });
     expect(result).toEqual({
-      wishlistProductIds: ["prod-1", "prod-2"],
+      wishlistProductIds: addToWishlistFixture.data,
     });
   });
 

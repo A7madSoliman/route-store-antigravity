@@ -1,0 +1,8 @@
+{
+  "token": "mocked-jwt-token-for-signin",
+  "user": {
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "role": "user"
+  }
+}

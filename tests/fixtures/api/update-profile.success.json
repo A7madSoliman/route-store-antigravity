@@ -1,0 +1,8 @@
+{
+  "message": "success",
+  "user": {
+    "name": "Jane Doe Updated",
+    "email": "jane.doe.updated@example.com",
+    "role": "user"
+  }
+}

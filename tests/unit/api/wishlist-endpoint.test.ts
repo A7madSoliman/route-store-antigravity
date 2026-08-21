@@ -13,45 +13,20 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 
 import { getWishlist } from "@/lib/api/endpoints/protected/wishlist.server";
 
+import getWishlistFixture from "../../fixtures/api/get-wishlist.success.json";
+
 beforeEach(() => {
   protectedGetMock.mockReset();
 });
 
 describe("getWishlist endpoint", () => {
-  it("calls protectedGet with ['wishlist'] and returns adapted data", async () => {
-    protectedGetMock.mockResolvedValueOnce({
-      status: "success",
-      count: 1,
-      data: [
-        {
-          _id: "prod-1",
-          title: "Product 1",
-          slug: "product-1",
-          description: "Description",
-          price: 100,
-          imageCover: "https://ecommerce.routemisr.com/products/1.jpg",
-          images: [],
-          subcategory: [],
-          category: {
-            _id: "cat-1",
-            name: "Category",
-            slug: "category",
-            image: "https://ecommerce.routemisr.com/categories/1.jpg",
-          },
-          brand: {
-            _id: "brand-1",
-            name: "Brand",
-            slug: "brand",
-            image: "https://ecommerce.routemisr.com/brands/1.jpg",
-          },
-        },
-      ],
-    });
+  it("calls protectedGet with ['wishlist'] and returns adapted data using fixture", async () => {
+    protectedGetMock.mockResolvedValueOnce(getWishlistFixture);
 
     const result = await getWishlist();
     expect(protectedGetMock).toHaveBeenCalledWith(["wishlist"]);
     expect(result.count).toBe(1);
-    expect(result.items[0].id).toBe("prod-1");
+    expect(result.items[0].id).toBe("64a1234567890");
   });
 
   it("handles empty wishlist", async () => {

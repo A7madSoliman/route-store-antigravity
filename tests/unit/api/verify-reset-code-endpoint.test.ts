@@ -16,21 +16,23 @@ import {
 } from "@/lib/api/endpoints/public/verify-reset-code.server";
 import { verifyResetCodeResponseSchema } from "@/lib/api/schemas/verify-reset-code-response.schema.server";
 
+import verifyResetCodeFixture from "../../fixtures/api/verify-reset-code.success.json";
+
 beforeEach(() => post.mockReset());
 
 describe("verify-reset-code endpoint", () => {
   it("sends the exact code-only request and returns a narrow success", async () => {
     post.mockResolvedValue({
       status: 200,
-      body: { status: "verified", ignored: "extra" },
+      body: verifyResetCodeFixture,
     });
 
     await expect(verifyResetCode({ resetCode: "abc123456789" })).resolves.toBe("verified");
     expect(post).toHaveBeenCalledWith(["auth", "verifyResetCode"], {
       resetCode: "abc123456789",
     });
-    expect(verifyResetCodeResponseSchema.parse({ status: "verified", ignored: "extra" })).toEqual({
-      status: "verified",
+    expect(verifyResetCodeResponseSchema.parse(verifyResetCodeFixture)).toEqual({
+      status: "Success",
     });
   });
 

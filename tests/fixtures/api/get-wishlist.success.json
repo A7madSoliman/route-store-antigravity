@@ -1,0 +1,35 @@
+{
+  "status": "success",
+  "count": 1,
+  "data": [
+    {
+      "_id": "64a1234567890",
+      "title": "Test Product",
+      "slug": "test-product",
+      "description": "This is a test product description.",
+      "price": 199.99,
+      "imageCover": "https://ecommerce.routemisr.com/test.jpg",
+      "images": [],
+      "subcategory": [
+        {
+          "_id": "subcat-123",
+          "name": "Subcategory Name",
+          "slug": "subcategory-slug",
+          "category": "cat-123"
+        }
+      ],
+      "category": {
+        "_id": "cat-123",
+        "name": "Category Name",
+        "slug": "category-slug",
+        "image": "https://ecommerce.routemisr.com/cat.jpg"
+      },
+      "brand": {
+        "_id": "brand-123",
+        "name": "Brand Name",
+        "slug": "brand-slug",
+        "image": "https://ecommerce.routemisr.com/brand.jpg"
+      }
+    }
+  ]
+}

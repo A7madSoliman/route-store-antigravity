@@ -14,27 +14,17 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 import { addAddress } from "@/lib/api/endpoints/protected/add-address.server";
 import { ProtectedApiError } from "@/lib/api/errors.server";
 
+import addAddressFixture from "../../fixtures/api/add-address.success.json";
+
 beforeEach(() => {
   protectedPostJsonMock.mockReset();
 });
 
 describe("addAddress endpoint adapter", () => {
-  it("submits valid payload and returns updated addresses", async () => {
+  it("submits valid payload and returns updated addresses using fixture", async () => {
     protectedPostJsonMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        status: "success",
-        message: "Address added successfully to your addresses",
-        data: [
-          {
-            _id: "addr-1",
-            name: "Home",
-            details: "123 Nile Street",
-            phone: "01012345678",
-            city: "Cairo",
-          },
-        ],
-      },
+      body: addAddressFixture,
     });
 
     const result = await addAddress({
@@ -50,9 +40,9 @@ describe("addAddress endpoint adapter", () => {
       phone: "01012345678",
       city: "Cairo",
     });
-    expect(result.message).toBe("Address added successfully to your addresses");
+    expect(result.message).toBe(addAddressFixture.message);
     expect(result.addresses).toHaveLength(1);
-    expect(result.addresses[0].id).toBe("addr-1");
+    expect(result.addresses[0].id).toBe(addAddressFixture.data[0]._id);
   });
 
   it("maps 401 unauthorized status to unauthorized error", async () => {

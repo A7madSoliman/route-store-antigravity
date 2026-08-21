@@ -14,31 +14,21 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 import { getAddresses } from "@/lib/api/endpoints/protected/addresses.server";
 import { ProtectedApiError } from "@/lib/api/errors.server";
 
+import getAddressesFixture from "../../fixtures/api/get-addresses.success.json";
+
 beforeEach(() => {
   protectedGetMock.mockReset();
 });
 
 describe("getAddresses endpoint adapter", () => {
-  it("fetches and adapts populated addresses data", async () => {
-    protectedGetMock.mockResolvedValueOnce({
-      status: "success",
-      results: 1,
-      data: [
-        {
-          _id: "addr-1",
-          name: "Home",
-          details: "123 Nile Street",
-          phone: "01012345678",
-          city: "Cairo",
-        },
-      ],
-    });
+  it("fetches and adapts populated addresses data using fixture", async () => {
+    protectedGetMock.mockResolvedValueOnce(getAddressesFixture);
 
     const result = await getAddresses();
     expect(protectedGetMock).toHaveBeenCalledWith(["addresses"]);
     expect(result).toHaveLength(1);
-    expect(result[0].id).toBe("addr-1");
-    expect(result[0].name).toBe("Home");
+    expect(result[0].id).toBe(getAddressesFixture.data[0]._id);
+    expect(result[0].name).toBe(getAddressesFixture.data[0].name);
   });
 
   it("handles 404 upstream status by returning an empty array", async () => {

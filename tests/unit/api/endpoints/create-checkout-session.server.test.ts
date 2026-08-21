@@ -3,6 +3,7 @@ vi.mock("server-only", () => ({}));
 import { createCheckoutSession } from "@/lib/api/endpoints/protected/create-checkout-session.server";
 import * as protectedRequest from "@/lib/api/transport/protected-request.server";
 import { ProtectedApiError } from "@/lib/api/errors.server";
+import createCheckoutSessionFixture from "../../../fixtures/api/create-checkout-session.success.json";
 
 vi.mock("@/lib/api/transport/protected-request.server");
 
@@ -17,17 +18,10 @@ describe("createCheckoutSession", () => {
     city: "Cairo",
   };
 
-  it("returns checkout session on successful 200 response", async () => {
+  it("returns checkout session on successful 200 response using fixture", async () => {
     vi.mocked(protectedRequest.protectedPostJson).mockResolvedValue({
       status: 200,
-      body: {
-        status: "success",
-        session: {
-          url: "https://checkout.stripe.com/pay/123",
-          success_url: "http://app/allorders",
-          cancel_url: "http://app/cart",
-        },
-      },
+      body: createCheckoutSessionFixture,
     });
 
     const result = await createCheckoutSession("cart-1", validShippingAddress, "http://app");
@@ -37,8 +31,8 @@ describe("createCheckoutSession", () => {
       { shippingAddress: validShippingAddress },
       new URLSearchParams({ url: "http://app" })
     );
-    expect(result.url).toBe("https://checkout.stripe.com/pay/123");
-    expect(result.successUrl).toBe("http://app/allorders");
+    expect(result.url).toBe(createCheckoutSessionFixture.session.url);
+    expect(result.successUrl).toBe(createCheckoutSessionFixture.session.success_url);
   });
 
   it("throws ProtectedApiError(invalid-request) on 404 status", async () => {

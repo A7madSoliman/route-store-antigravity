@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "data": {
+    "_id": "order-123",
+    "user": "user-456",
+    "cartItems": [
+      {
+        "_id": "item-1",
+        "count": 2,
+        "price": 150,
+        "product": "prod-1"
+      }
+    ],
+    "totalOrderPrice": 300,
+    "taxPrice": 0,
+    "shippingPrice": 0,
+    "paymentMethodType": "cash",
+    "isPaid": false,
+    "isDelivered": false,
+    "shippingAddress": {
+      "details": "123 Street",
+      "phone": "01012345678",
+      "city": "Cairo"
+    },
+    "createdAt": "2026-08-21T00:00:00Z",
+    "updatedAt": "2026-08-21T00:00:00Z"
+  }
+}

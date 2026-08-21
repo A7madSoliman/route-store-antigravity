@@ -13,33 +13,25 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 
 import { removeFromCart } from "@/lib/api/endpoints/protected/remove-from-cart.server";
 
+import removeFromCartFixture from "../../fixtures/api/remove-from-cart.success.json";
+
 beforeEach(() => {
   protectedDeleteMock.mockReset();
 });
 
 describe("removeFromCart endpoint adapter", () => {
-  it("serializes productId in path and returns adapted cart", async () => {
+  it("serializes productId in path and returns adapted cart using fixture", async () => {
     protectedDeleteMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        status: "success",
-        numOfCartItems: 0,
-        cartId: "cart-1",
-        data: {
-          _id: "cart-1",
-          cartOwner: "user-1",
-          products: [],
-          totalCartPrice: 0,
-        },
-      },
+      body: removeFromCartFixture,
     });
 
     const result = await removeFromCart({ productId: "prod-1" });
     expect(protectedDeleteMock).toHaveBeenCalledWith(["cart", "prod-1"]);
-    expect(result.id).toBe("cart-1");
-    expect(result.numOfCartItems).toBe(0);
+    expect(result.id).toBe(removeFromCartFixture.cartId);
+    expect(result.numOfCartItems).toBe(removeFromCartFixture.numOfCartItems);
     expect(result.items).toHaveLength(0);
-    expect(result.totalCartPrice).toBe(0);
+    expect(result.totalCartPrice).toBe(removeFromCartFixture.data.totalCartPrice);
   });
 
   it("rejects invalid or empty productId", async () => {

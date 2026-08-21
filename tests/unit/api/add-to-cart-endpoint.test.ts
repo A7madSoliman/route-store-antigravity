@@ -13,34 +13,25 @@ vi.mock("@/lib/api/transport/protected-request.server", () => ({
 
 import { addToCart } from "@/lib/api/endpoints/protected/add-to-cart.server";
 
+import addToCartFixture from "../../fixtures/api/add-to-cart.success.json";
+
 beforeEach(() => {
   protectedPostJsonMock.mockReset();
 });
 
 describe("addToCart endpoint adapter", () => {
-  it("serializes productId and returns cart summary", async () => {
+  it("serializes productId and returns cart summary using fixture", async () => {
     protectedPostJsonMock.mockResolvedValueOnce({
       status: 200,
-      body: {
-        status: "success",
-        message: "Product added successfully to your cart",
-        numOfCartItems: 1,
-        cartId: "cart-1",
-        data: {
-          _id: "cart-1",
-          cartOwner: "user-1",
-          products: [],
-          totalCartPrice: 199,
-        },
-      },
+      body: addToCartFixture,
     });
 
     const result = await addToCart({ productId: "prod-101" });
     expect(protectedPostJsonMock).toHaveBeenCalledWith(["cart"], { productId: "prod-101" });
     expect(result).toEqual({
-      message: "Product added successfully to your cart",
-      numOfCartItems: 1,
-      totalCartPrice: 199,
+      message: addToCartFixture.message,
+      numOfCartItems: addToCartFixture.numOfCartItems,
+      totalCartPrice: addToCartFixture.data.totalCartPrice,
     });
   });
 

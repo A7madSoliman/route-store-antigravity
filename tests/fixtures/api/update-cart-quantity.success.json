@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "numOfCartItems": 2,
+  "cartId": "cart-123",
+  "data": {
+    "_id": "cart-123",
+    "cartOwner": "user-123",
+    "products": [
+      {
+        "_id": "item-123",
+        "product": "prod-123",
+        "price": 199.99,
+        "count": 2
+      }
+    ],
+    "totalCartPrice": 399.98
+  }
+}

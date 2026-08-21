@@ -678,7 +678,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### T00 — Run contract and adapter regression
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Every enabled endpoint adapter accepts sanitized known-good shapes and fails safely on malformed inputs.
 - **Work:** Consolidate contract fixtures, serializer cases, redaction cases, and conditional-feature exclusions.
 - **Verification:** Unit/contract suite passes and reports coverage for every enabled request.

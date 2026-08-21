@@ -1,0 +1,24 @@
+{
+  "status": "success",
+  "numOfCartItems": 1,
+  "cartId": "cart-123",
+  "data": {
+    "_id": "cart-123",
+    "cartOwner": "user-123",
+    "products": [
+      {
+        "_id": "item-123",
+        "product": {
+          "_id": "prod-123",
+          "title": "Test Product",
+          "slug": "test-product",
+          "price": 199.99,
+          "imageCover": "https://ecommerce.routemisr.com/test.jpg"
+        },
+        "price": 199.99,
+        "count": 1
+      }
+    ],
+    "totalCartPrice": 199.99
+  }
+}
