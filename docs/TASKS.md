@@ -696,7 +696,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### T02 — Complete accessibility QA
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Primary routes meet keyboard, focus, labeling, announcement, contrast, and reduced-motion requirements.
 - **Work:** Run automated checks and manual keyboard/screen-reader smoke tests against all primary states.
 - **Verification:** No critical/serious automated findings remain and manual results are recorded.
