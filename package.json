@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "scan:bundle": "ts-node scripts/scan-client-bundle.ts",
+    "prebuild": "npm run lint && npm run scan:bundle"
   },
   "dependencies": {
     "next": "16.3.0",
@@ -30,6 +32,7 @@
     "eslint-config-next": "16.3.0",
     "jsdom": "^29.1.1",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "typescript": "^5",
     "vite": "8.0.16",
     "vite-tsconfig-paths": "^6.1.1",

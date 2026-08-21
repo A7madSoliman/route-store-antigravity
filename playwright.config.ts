@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./tests/a11y",
+  testDir: "./tests",
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -18,8 +18,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npm run dev",
-    url: "http://localhost:3000",
+    command: "npm run dev -- -p 3002",
+    url: "http://localhost:3002",
     reuseExistingServer: !process.env.CI,
     stdout: "ignore",
     stderr: "pipe",
@@ -27,7 +27,7 @@ export default defineConfig({
     env: {
       ECOMMERCE_API_BASE_URL: "https://ecommerce.routemisr.com/api/v1",
       SESSION_ENCRYPTION_KEY: "SoP4AHsfP0CGh_yU2MzHnmK-RbJ0Rvafzs4XHgaSAJo",
-      APP_ORIGIN: "http://localhost:3000",
+      APP_ORIGIN: "http://localhost:3002",
       NODE_OPTIONS: "--require ./tests/a11y/preload.js",
     },
   },

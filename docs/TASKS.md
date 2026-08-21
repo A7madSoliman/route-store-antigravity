@@ -732,7 +732,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### T06 — Validate preview deployment and environment configuration
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Preview deployment uses separate validated configuration and safe third-party API behavior.
 - **Work:** Configure preview variables, build/deploy, test direct links/refreshes, inspect headers/log redaction, and run smoke tests without production credentials.
 - **Verification:** Preview build and customer smoke suite pass; no private variable appears client-side.
