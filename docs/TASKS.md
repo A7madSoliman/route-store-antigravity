@@ -649,7 +649,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### ADM00 — Evaluate admin role evidence
 
-- **Status:** Conditional.
+- **Status:** Complete.
 - **Outcome:** Admin work is either explicitly authorized by a normally issued role/session or remains deferred.
 - **Work:** Review ordinary authentication evidence for a documented role and authorized test account. Do not call admin candidates merely to discover whether data leaks. A customer account is not treated as admin.
 - **Verification:** `ADMIN-001` records either verified role evidence and a safe account or the decision to keep both routes absent.
@@ -658,7 +658,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### ADM01 — Implement read-only users directory
 
-- **Status:** Deferred unless ADM00 passes.
+- **Status:** Deferred.
 - **Outcome:** `/admin/users` is role-guarded and renders only approved non-sensitive fields.
 - **Work:** Verify the authorized request with the designated account, add adapter/page, omit credential/reset/token material, and keep navigation invisible to non-admins.
 - **Verification:** Authorized fixtures and anonymous/customer route tests pass without exposing sensitive data.
@@ -667,7 +667,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### ADM02 — Implement read-only all-orders directory
 
-- **Status:** Deferred unless ADM00 passes.
+- **Status:** Deferred.
 - **Outcome:** `/admin/orders` is role-guarded and renders only approved fields.
 - **Work:** Verify the authorized request, add adapter/page, redact customer data from logs/analytics, and add no admin mutation.
 - **Verification:** Authorized fixtures and anonymous/customer route tests pass; privacy review approves rendered fields.
