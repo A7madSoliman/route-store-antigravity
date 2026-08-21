@@ -2,9 +2,13 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests/responsive',
-  // Use the same baseURL as the main config
+  fullyParallel: false,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: 1,
+  reporter: 'line',
   use: {
-    baseURL: 'http://localhost:3002',
+    baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
   },
   projects: [
@@ -13,10 +17,21 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
-  // Increase timeout for visual diff generation
   timeout: 60_000,
   expect: {
-    // Adjust screenshot comparison tolerance if needed
-    toMatchSnapshot: { threshold: 0.1 },
+    toHaveScreenshot: { threshold: 0.1 },
+  },
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://localhost:3000',
+    reuseExistingServer: !process.env.CI,
+    stdout: 'ignore',
+    stderr: 'pipe',
+    timeout: 120_000,
+    env: {
+      ECOMMERCE_API_BASE_URL: 'https://ecommerce.routemisr.com/api/v1',
+      SESSION_ENCRYPTION_KEY: 'SoP4AHsfP0CGh_yU2MzHnmK-RbJ0Rvafzs4XHgaSAJo',
+      APP_ORIGIN: 'http://localhost:3000',
+    },
   },
 });

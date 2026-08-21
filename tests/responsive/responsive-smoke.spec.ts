@@ -1,13 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
 
-// Define viewports for different breakpoints (used only for reference)
-const viewports = [
-  { name: 'mobile', width: 375, height: 800 },
-  { name: 'tablet', width: 768, height: 1024 },
-  { name: 'desktop', width: 1024, height: 768 },
-  { name: 'wide', width: 1440, height: 900 },
-];
-
 // Primary routes to test
 const routes = [
   '/',
