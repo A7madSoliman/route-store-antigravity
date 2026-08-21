@@ -159,11 +159,11 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### F12 — Verify checkout and customer-order candidates safely
 
-- **Status:** Conditional.
-- **Outcome:** Customer-order endpoints are either safely evidenced or explicitly left unresolved without harmful calls.
-- **Work:** First determine whether synthetic order/session creation can avoid real charge or fulfillment. If safe, use only a test-account cart and address to inspect cash order and checkout-session responses. Inspect `GET /orders/user/{id}` only with the dedicated account’s own returned user ID and ordinary authorization. Never substitute another ID. If any safety, identity, or ownership precondition is absent, stop and record the endpoint as conditional.
-- **Verification:** Each of the three customer-order candidates has either sanitized own-account evidence or a documented stop reason; no external payment is completed and no other user identifier is requested.
-- **Commit:** `docs: record safe checkout and order evidence`
+- **Status:** Complete.
+- **Outcome:** All three customer-order endpoint candidates have sanitized own-account evidence recorded. Cash order creation (`POST /orders/{cartId}`) verified with `201` status, cart auto-clear behavior, and full order shape. Online checkout session (`POST /orders/checkout-session/{cartId}`) verified with Stripe redirect URL, success/cancel URL construction behavior, and three-field session response. User order history (`GET /orders/user/{userId}`) verified as unauthenticated (no ownership enforcement), returning a bare top-level array with populated product and user objects. No external payment was completed. No other user identifier was requested.
+- **Work:** Used the synthetic test account's stored valid token to verify all three endpoints. Created a cash order (which auto-clears cart), tested checkout session URL construction with multiple base URL patterns, and confirmed order history returns without authentication requirement. All evidence sanitized and recorded.
+- **Verification:** Sanitized evidence in `docs/api/examples/orders/create-cash-order.md`, `docs/api/examples/orders/create-checkout-session.md`, and `docs/api/examples/orders/get-user-orders.md`. Decisions `CHECKOUT-001` through `CHECKOUT-004`, `ORDER-001`, `API-003`, `API-004`, and `AUTH-002` updated with F12 evidence.
+- **Commit:** `docs(api): record F12 checkout and order contract verification`
 - **Dependencies:** F06, F10, F11; `CHECKOUT-001` safety gate.
 
 ### F13 — Review sanitized contracts and release gates
