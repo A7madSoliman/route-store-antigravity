@@ -75,7 +75,7 @@ export async function submitCheckoutAction(
     let checkoutUrl = "";
     try {
       const appOrigin = getServerEnvironment().appOrigin;
-      const session = await createCheckoutSession(cartId, shippingAddress, appOrigin);
+      const session = await createCheckoutSession(cartId, shippingAddress, `${appOrigin}/checkout/online/return`);
       
       if (!session.url.startsWith("https://checkout.stripe.com/")) {
         return { status: "error", message: "Invalid payment gateway URL returned." };

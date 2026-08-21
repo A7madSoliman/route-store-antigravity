@@ -609,7 +609,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### X08 — Implement neutral online return
 
-- **Status:** Planned after X07.
+- **Status:** Complete.
 - **Outcome:** `/checkout/online/return` reconciles supported server state without declaring success from query parameters.
 - **Work:** Show neutral loading/result copy, refresh cart and conditional own-order data, and provide retry/shop/order-history navigation only when supported.
 - **Verification:** Tests cover provider return/cancel parameters as untrusted input, missing status API, unchanged cart, changed cart, failure, and repeated visits.

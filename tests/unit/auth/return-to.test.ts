@@ -25,6 +25,8 @@ describe("safe returnTo normalization", () => {
     "/wishlist",
     "/cart",
     "/checkout",
+    "/checkout/online/return/allorders",
+    "/checkout/online/return/cart",
     "/products/product-1",
     "/categories/category-1",
     "/products?sort=price",

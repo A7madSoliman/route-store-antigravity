@@ -83,6 +83,7 @@ const serverRoots = [
   "features/checkout/schemas/checkout-form.schema.server.ts",
   "lib/api/schemas/get-orders-response.schema.server.ts",
   "lib/api/endpoints/protected/get-orders.server.ts",
+  "app/(shop)/checkout/online/return/[status]/page.tsx",
 ];
 
 describe("C01 server boundaries", () => {

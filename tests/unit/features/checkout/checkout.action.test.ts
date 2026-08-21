@@ -81,7 +81,7 @@ describe("submitCheckoutAction", () => {
     const formData = getFormData({ cartId: "cart-1", paymentMethod: "card", ...validAddressData });
     await submitCheckoutAction({ status: "idle" }, formData);
     
-    expect(checkoutSessionServer.createCheckoutSession).toHaveBeenCalledWith("cart-1", validAddressData, "http://localhost:3000");
+    expect(checkoutSessionServer.createCheckoutSession).toHaveBeenCalledWith("cart-1", validAddressData, "http://localhost:3000/checkout/online/return");
     expect(nextNavigation.redirect).toHaveBeenCalledWith("https://checkout.stripe.com/pay/123");
   });
 
