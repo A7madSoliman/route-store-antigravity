@@ -687,7 +687,7 @@ Each milestone contains the same fields: Status, Outcome, Work, Verification, Co
 
 ### T01 — Run customer-flow integration tests
 
-- **Status:** Planned.
+- **Status:** Complete.
 - **Outcome:** Catalog, auth, wishlist, cart, address, checkout, and enabled orders work across route boundaries.
 - **Work:** Add fixture-backed integration tests for happy paths, recoverable failures, expired sessions, and duplicate-submission protection.
 - **Verification:** The integration suite is deterministic and uses no live credentials.
