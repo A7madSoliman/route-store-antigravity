@@ -55,6 +55,32 @@ export function AccountShell({ children, user, activeItem = "profile" }: Account
           </div>
         </div>
 
+        {/* Mobile Horizontally Scrollable Navigation Pills (lg:hidden) */}
+        <nav
+          aria-label="Mobile account navigation"
+          className="lg:hidden mb-6 -mt-4"
+        >
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 px-1 -mx-1 scroll-smooth">
+            {navItems.map((item) => {
+              const isActive = item.id === activeItem;
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  className={`inline-flex items-center justify-center shrink-0 min-h-[44px] min-w-[44px] px-4 py-2.5 rounded-xl text-sm transition-all duration-200 select-none ${
+                    isActive
+                      ? "bg-blue-50 text-blue-600 font-semibold border border-blue-200/80 shadow-xs"
+                      : "bg-white text-[#434655] font-medium border border-slate-200/80 hover:bg-[#F3F3FE] hover:text-[#191B23]"
+                  }`}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Desktop Sidebar Navigation */}
           <aside className="hidden lg:block lg:col-span-1">
