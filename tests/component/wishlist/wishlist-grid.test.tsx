@@ -5,6 +5,9 @@ vi.mock("server-only", () => ({}));
 vi.mock("@/features/wishlist/actions/remove-from-wishlist.action", () => ({
   removeFromWishlistAction: vi.fn(),
 }));
+vi.mock("@/features/wishlist/actions/move-to-bag.action", () => ({
+  moveToBagAction: vi.fn(),
+}));
 vi.mock("@/features/cart/actions/add-to-cart.action", () => ({
   addToCartAction: vi.fn(),
 }));

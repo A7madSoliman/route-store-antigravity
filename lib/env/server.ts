@@ -97,7 +97,10 @@ export function parseServerEnvironment(input: Record<string, string | undefined>
 }
 
 export function getServerEnvironment(): ServerEnvironment {
-  return parseServerEnvironment(process.env);
+  return parseServerEnvironment({
+    ECOMMERCE_API_BASE_URL: process.env.ECOMMERCE_API_BASE_URL ?? "https://ecommerce.routemisr.com/api/v1",
+    APP_ORIGIN: process.env.APP_ORIGIN ?? "http://localhost:3000",
+  });
 }
 
 function validateSessionEncryptionKey(value: string): string {

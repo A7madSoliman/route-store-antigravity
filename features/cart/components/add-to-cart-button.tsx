@@ -33,13 +33,13 @@ export function AddToCartButton({
           disabled={isPending}
           aria-disabled={isPending}
           aria-label={isSuccess ? "Added to Bag" : defaultLabel}
-          className={`inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-button font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary cursor-pointer select-none ${
+          className={`inline-flex items-center justify-center gap-1.5 py-2 px-3.5 rounded-xl text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary cursor-pointer select-none ${
             isSuccess
               ? "bg-emerald-600 text-white"
               : "bg-brand-primary text-white hover:bg-brand-primary/90 active:scale-[0.98]"
           } ${isPending ? "opacity-60 cursor-not-allowed" : ""} ${className}`}
         >
-          <StorefrontIcon name="cart" size={16} />
+          <StorefrontIcon name="cart" size={15} />
           <span>
             {isPending ? "Adding..." : isSuccess ? "Added ✓" : defaultLabel}
           </span>
