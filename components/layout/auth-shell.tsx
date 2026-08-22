@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 type AuthShellProps = {
@@ -13,7 +14,9 @@ export function AuthShell({ children, footer, headerAction }: AuthShellProps) {
         Skip to content
       </a>
       <header className="flex h-header-compact items-center justify-between border-b border-outline-subtle bg-card px-gutter-mobile md:px-gutter-tablet lg:px-gutter-desktop" role="banner">
-        <div className="text-heading-4 font-semibold tracking-tight text-brand-primary">Nexa Store</div>
+        <Link href="/" className="hover:opacity-80 cursor-pointer transition-opacity">
+          <div className="text-heading-4 font-semibold tracking-tight text-brand-primary">Nexa Store</div>
+        </Link>
         {headerAction ? <div className="flex items-center">{headerAction}</div> : null}
       </header>
       <main className="flex flex-1 items-start justify-center px-gutter-mobile py-8 md:items-center md:px-gutter-tablet md:py-12 lg:px-gutter-desktop" id="main-content">

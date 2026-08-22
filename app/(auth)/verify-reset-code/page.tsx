@@ -11,9 +11,11 @@ export default function VerifyResetCodePage() {
     <AuthShell>
       <div className="mx-auto max-w-[480px] text-center">
         <div className="mb-10">
-          <div className="mb-8 text-heading-3 font-semibold tracking-tight text-brand-primary">
-            Nexa Store
-          </div>
+          <Link href="/" className="inline-block hover:opacity-80 cursor-pointer transition-opacity">
+            <div className="mb-8 text-heading-3 font-semibold tracking-tight text-brand-primary">
+              Nexa Store
+            </div>
+          </Link>
           <h1 className="text-heading-2 font-semibold text-text-primary">Verify Reset Code</h1>
           <p className="mt-3 text-body text-text-muted">Enter the reset code to continue.</p>
         </div>
